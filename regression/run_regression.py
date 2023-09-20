@@ -33,9 +33,11 @@ if __name__ == "__main__":
     batch = options.batch
 
     testplan = os.path.join(os.path.dirname(__file__),'testlist','erot_fpga.py')
+
     spec = importlib.util.spec_from_file_location("module.name",testplan)
-    py = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(py)
+    plan = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(plan)
+
 
 
 
