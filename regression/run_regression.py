@@ -4,7 +4,9 @@ import os
 import re
 import sys
 import subprocess
-
+import time
+import importlib
+sys.path.append(os.path.join(os.path.dirname(__file__),'libs'))
 
 ###################################
 # Main
@@ -25,10 +27,15 @@ if __name__ == "__main__":
                         default = None,
                         help="Specify test name pattern to search in defined in test plan to run")
 
-
+    options = parser.parse_args()
     grouptag = options.grouptag
     grouptest = options.grouptest
     batch = options.batch
+
+    testplan = os.path.join(os.path.dirname(__file__),'testlist','erot_fpga.py')
+    spec = importlib.util.spec_from_file_location("module.name",testplan)
+    py = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(py)
 
 
 

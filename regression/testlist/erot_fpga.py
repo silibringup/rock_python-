@@ -21,7 +21,7 @@ with feature('erot_fpga/lighton'):
     test_args   =   ['''-py erot_light_on_test.py ''']
     test_tags   =   ['lighton']
     AddTest(
-        name    =   'erot_reg_access_%s' % ip.lower(),
+        name    =   'erot_reg_light_on_test',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,

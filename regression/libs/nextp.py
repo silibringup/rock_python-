@@ -5,10 +5,16 @@ class Plan:
         self.run_script = ''
 
 class feature:
-    def __init__(self):
+    def __init__(self, tree=''):
+        pass
+
+    def __enter__(self):
+        pass
+    def __exit__(self,exc_type,exc_val,exc_tb):
+        pass
 
 def mk_str_list(str_or_list):
-    if isinstance(str_or_list, str) or isinstance(str_or_list, unicode):
+    if isinstance(str_or_list, str):
         return [str_or_list]
     elif isinstance(str_or_list, list):
         return str_or_list
@@ -25,16 +31,16 @@ def AddTest(**test_dict):
         testObj = Test(**test_dict)
         testObjs += [testObj]
 
-def Test:
+class Test:
     def __init__(self, name='', **kwargs):
         self.tags = []
         self.args = []
         self.name = ''
-        if kwargs.has_key('tags')
+        if 'tags' in kwargs:
             self.tags = kwargs['tags']
-        if kwargs.has_key('args')
+        if 'args' in kwargs:
             self.args = kwargs['args']
-        if kwargs.has_key('name')
+        if 'name' in kwargs:
             self.name = kwargs['name']
 
     def gen_cmd(self):
