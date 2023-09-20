@@ -1,6 +1,9 @@
 #!/home/utils/Python/3.8/3.8.6-20201005/bin/python3
 import driver.helpers.helper as hp
 from driver.helpers.regobj import *
+import time
+from driver.helpers.PrgnRiscV import FSP, OOB
+
 
 class TestAPIs:
     __instance = None
@@ -1108,6 +1111,11 @@ class TestAPIs:
             self.config_32B_write_data(spi,data0,data1,data2,data3)
         self.send_cmd(spi,1,0,31,data_line,0,cs)
 
+    def send_read_1_0_x_socv(self,spi,opcode,data_line,bit_length,dummy_cycle,cs):
+        self.config_qspi_cmb_cmd(spi,opcode,1,0,1)
+        spi.DMA_BLK_SIZE_0.write(0)          
+        self.send_cmd(spi,0,1,bit_length-1,data_line,dummy_cycle,cs)
+
     def send_1_0_0_socv(self,spi,data,size,cs):
         spi.GLOBAL_CONFIG_0.update(CMB_SEQ_EN=0)
         spi.CMB_SEQ_CMD_CFG_0.update(COMMAND_SIZE=0)
@@ -1146,7 +1154,13 @@ class TestAPIs:
         if cnt != value:
             self.helper.perror("Cnt value wrong %s" % str(cnt))
             self.helper.perror("Expected cnt value should be %s" % str(value))
-            self.helper.perror("Path of cnt is %s" % str(cnt_path))           
+            self.helper.perror("Path of cnt is %s" % str(cnt_path))     
+                  
+    def check_clk_gate(self,bm,golden_value):
+        clk_gate_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_nverot_bypmon'+str(bm)+'.nverot_bypmon_erot_qspi_clk_gate'
+        gate_value = self.helper.hdl_read(clk_gate_path)
+        if gate_value != golden_value:
+            self.helper.perror("clk_gate value wrong %s" % str(gate_value))     
 
     #check tx clock gate of bypass monitor
     def check_tx_clk_result(self,flash,value):
@@ -1509,6 +1523,12 @@ class TestAPIs:
     def enable_vip_connection(self):
         self.helper.hdl_force("ntb_top.u_clk_rst_if.enable_qspi_vip",7)
 
+    def send_legal_command(self,ap):
+        self.helper.hdl_force("ntb_top.u_clk_rst_if.ap_spi_legal_cmd_flag", ap)
+    
+    def end_legal_command(self):
+        self.helper.hdl_force("ntb_top.u_clk_rst_if.ap_spi_legal_cmd_flag", 0)       
+
     def config_bm_mode(self,bm,monitor_mode,flash_en,cs_swap,addr_mode):
         bm.bmon_cfg_0.update(mon_mode=monitor_mode,ap_flash_acc_en=flash_en,ap_flash_cs_sel=cs_swap,addr_mode_4b = addr_mode)
     
@@ -1582,3 +1602,181 @@ class TestAPIs:
             ans += [tval]
 
         return ans
+
+
+    def default_cms_selection(self):
+        self.helper.pinfo("Polling DEVICE_STATUS = RECOVERY_MODE ...")
+        success = self.helper.SMBus_poll(0x3, 0xff, OOB.SMCommand.DEVICE_STATUS, 20)
+        if success:
+            self.helper.pinfo("Found DEVICE_STATUS = RECOVERY_MODE")
+    
+        self.helper.pinfo("Polling RECOVERY_STATUS = AWITING_RECOVERY_IMAGE ...")
+        success = self.helper.SMBus_poll(0x1, 0xff, OOB.SMCommand.RECOVERY_STATUS, 20)
+        if success:
+            self.helper.pinfo("Found RECOVERY_STATUS = AWITING_RECOVERY_IMAGE")
+
+        self.helper.pinfo("Use Recovery Image from memory window (CMS) ...")
+        self.helper.SMBus_write(OOB.SMCommand.RECOVERY_CTRL, [0x00, 0x01, 0x00])
+        self.helper.pinfo("Used Recovery Image from memory window (CMS)")
+    
+        self.helper.pinfo("Polling DEVICE_STATUS = RECOVERY_PENDING ...")
+        success = self.helper.SMBus_poll(0x4, 0xff, OOB.SMCommand.DEVICE_STATUS, 20)
+        if success:
+            self.helper.pinfo("Found DEVICE_STATUS = RECOVERY_PENDING")
+
+        self.helper.pinfo("Polling RECOVERY_STATUS = AWITING_RECOVERY_IMAGE ...")
+        success = self.helper.SMBus_poll(0x1, 0xff, OOB.SMCommand.RECOVERY_STATUS, 20)
+        if success:
+            self.helper.pinfo("Found RECOVERY_STATUS = AWITING_RECOVERY_IMAGE")   
+
+
+    def fsp_fmc_loading(self,fmc_bin):
+        self.helper.pinfo("Trigger indirect ctrl for image loading ...")
+        self.helper.SMBus_write(OOB.SMCommand.INDIRECT_CTRL, [0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        self.helper.pinfo("Trigger indirect ctrl for image loading completed")
+
+        self.helper.pinfo("Starts loading image ...")
+        fmc_bytes = None
+        with open(fmc_bin, 'rb') as f:
+            fmc_bytes = list(f.read())
+
+        len_indirect_data = 252
+        while len(fmc_bytes) > 0:
+            if len(fmc_bytes) > len_indirect_data:
+                wr_data = fmc_bytes[:len_indirect_data]
+                fmc_bytes = fmc_bytes[len_indirect_data:]
+            else:
+                wr_data = fmc_bytes
+                fmc_bytes = []
+
+            self.helper.pinfo("Sending one image data section ...")
+            self.helper.SMBus_write(OOB.SMCommand.INDIRECT_DATA, wr_data)
+            self.helper.wait_sim_time("us", 100)
+            time.sleep(0.1)
+            self.helper.pinfo("Sent one image data section")
+            
+            self.helper.pinfo("Waiting for loading acknowledge ...")
+            if not self.helper.SMBus_poll(0x4, 0x4, OOB.SMCommand.INDIRECT_STATUS, 100, False):
+                self.helper.perror("polling INDIRECT_STATUS.ACK = 1 during fmc loading failed")
+                return None
+            
+            self.helper.pinfo("Found acknowledge. INDIRECT_STATUS ACK = 1")
+
+            self.helper.pinfo("Clear acknowledge ...")
+            self.helper.SMBus_write(OOB.SMCommand.INDIRECT_STATUS, [0x00])
+            self.helper.pinfo("Acknowledge cleared")
+        self.helper.pinfo("Completes loading image")
+        
+
+    def image_activation(self):
+        #read DEVICE_STATUS = RECOVERY_PENDING
+        self.helper.pinfo("polling DEVICE_STATUS = RECOVERY_PENDING ...")
+        success = self.helper.SMBus_poll(0x4, 0xff, OOB.SMCommand.DEVICE_STATUS, 200)
+        if success:
+            self.helper.pinfo(f"Found DEVICE_STATUS = RECOVERY_PENDING")
+
+        #write RECOVERY_CTRL, CMS=0x0, RECOVERY_IMAGE_SELECTION=0x1, ACTIVATE_RECOVERY_IMAGE=0xf
+        self.helper.pinfo("Sending image activatition command ...")
+        self.helper.SMBus_write(OOB.SMCommand.RECOVERY_CTRL, [0x00, 0x01, 0x0f])
+        self.helper.pinfo("Sent image activatition command")
+
+        #read RECOVERY_STATUS = BOOTING_RECOVERY_IMG
+        self.helper.pinfo("polling RECOVERY_STATUS = BOOTING_RECOVERY_IMG ...")
+        success = self.helper.SMBus_poll(0x2, 0xff, OOB.SMCommand.RECOVERY_STATUS, 200)
+        if success:
+            self.helper.pinfo(f"Found RECOVERY_STATUS = BOOTING_RECOVERY_IMG")
+
+
+    def boot_up_recovery_image(self):
+        #read DEVICE_STATUS = RUNNING_RECOVERY_IMAGE
+        self.helper.pinfo("polling DEVICE_STATUS = RUNNING_RECOVERY_IMAGE ...")
+        success = self.helper.SMBus_poll(0x5, 0xff, OOB.SMCommand.DEVICE_STATUS, 200)
+        if success:
+            self.helper.pinfo(f"Found DEVICE_STATUS = RUNNING_RECOVERY_IMAGE")
+    
+    
+    
+    def trigger_recovery(self):
+        self.helper.pinfo("wait at least 760 VrefRO cycle(0.02us) + 990us fuse sense for L3 reset tp release ...")
+        self.helper.pinfo("Refer to https://confluence.nvidia.com/display/GROOT/SR01+System+GFD+-+Resets+Clocks")
+        self.helper.wait_sim_time("us", 0.02*760 + 1005)
+        self.helper.pinfo("L3 reset release wait completed")
+    
+        self.helper.pinfo("Sending recovery reset command ...")
+        self.helper.SMBus_write(OOB.SMCommand.RESET, [0x01, 0x0f, 0x00])
+        self.helper.pinfo("Sent recovery reset command")
+    
+        self.helper.pinfo("Reset command will trigger L1 reset, wait reset for one more round")
+        self.helper.pinfo("wait at least 760 VrefRO cycle(0.02us) + 990us fuse sense for L3 reset tp release ...")
+        self.helper.pinfo("Refer to https://confluence.nvidia.com/display/GROOT/SR01+System+GFD+-+Resets+Clocks")
+        self.helper.wait_sim_time("us", 0.02*760 + 1005)
+        self.helper.pinfo("L3 reset release wait completed")
+    
+        # wait FSP to finish startup self certification
+        self.helper.pinfo("Wait for boot rom to finish self certification before sending next command")
+        self.helper.wait_sim_time("us", 500)
+        time.sleep(5)
+    
+    
+    def wait_boot_complete(self,BMC_I2C_SLV_ADDR):
+        cnt = 0
+        while True:
+            cnt += 1
+            nbr_byte, oob_dev_status = self.helper.erot_rcvy_block_read(slv_addr=BMC_I2C_SLV_ADDR, cmd_code=OOB.SMCommand.DEVICE_STATUS, ret_bytes_nbr=True)
+            oob_dev_status = oob_dev_status.to_bytes(nbr_byte, 'little')
+            vecdor_status_length = int(oob_dev_status[6])
+            if vecdor_status_length > 0:
+                if (oob_dev_status[12] & 0x3) == 0x3:
+                    self.helper.pinfo("Detect boot success")
+                    break
+    
+            if cnt >= 200:
+                self.helper.perror("Fail to find boot success")
+                break
+    
+    
+    def interacting_with_fmc(self):
+        self.helper.pinfo("Start interacting with FMC ...")
+        gdata = 0xccddeeff
+        dmem_end_addr = 0x00200000
+        addr = dmem_end_addr - 4
+    
+        self.helper.pinfo(f"Write {hex(gdata)} to {hex(addr)}")
+        self.helper.i2c_proxy_write(3, 0, addr, gdata, addr_space_id=2)
+        self.helper.pinfo(f"Read data from {hex(addr)} to check")
+        rdata = self.helper.i2c_proxy_read(3, 0, addr, addr_space_id=2)
+        if rdata != gdata:
+            self.helper.perror(f"Mismatch, exp: {hex(gdata)}, act: {hex(rdata)}")
+        else:
+            self.helper.pinfo(f"Match {hex(gdata)}@{hex(addr)}")
+
+
+    def rcv_load_image(self,fmc_bin,BMC_I2C_SLV_ADDR):
+
+        self.trigger_recovery()
+    
+        self.helper.pinfo("start default cms selection")
+        self.default_cms_selection()
+        self.helper.pinfo("default cms selection completed")
+
+        self.helper.pinfo("start fsp fmc")
+        self.fsp_fmc_loading(fmc_bin)
+        self.helper.pinfo("fsp fmc completed")
+
+        # wait manifest
+        time.sleep(5)
+
+        self.helper.pinfo("start image activation")
+        self.image_activation()
+        self.helper.pinfo("image activation completed")
+
+        self.helper.pinfo("start boot up recovery image")
+        self.boot_up_recovery_image()
+        self.helper.pinfo("boot up recovery image completed")
+    
+        # give time for fsp to run to main()
+        self.helper.wait_sim_time("us", 1500)
+        self.wait_boot_complete(BMC_I2C_SLV_ADDR)
+        time.sleep(5)
+
+        self.interacting_with_fmc()

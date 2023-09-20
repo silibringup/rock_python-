@@ -11,6 +11,7 @@ import driver.apis.TestAPIs as apis
 from driver.helpers.regobj import *
 from driver.helpers.rock_thread import *
 from driver.helpers.PrgnRiscV import FSP, OOB
+import importlib
 
 
 class HeartBeat(rock_thread):
@@ -59,6 +60,8 @@ class Test:
         self.parser.add_argument("--prex","-px",  type=str, default="", help="pre run")
         self.parser.add_argument("--activate_error", type=str, default="", help="error id to activate, erra errb errc ...")
         self.parser.add_argument("--disable_peripheral_init_agent", action="store_true", default=False, help="disable auto peripheral initialization agency at the beginning of test")
+        self.parser.add_argument("--rcv_boot", action="store_true", default=False, help="run recovery boot before normal test and load genric proxy ucode")
+        self.parser.add_argument("--fmc_bin",    type=str, default=None, help="JTAG mode recovery proxy image")
         self.parser.add_argument('--seed', default=1)
         self.parser.add_argument('--loadimem_frontdoor',action="store_true", default=False)
         self.parser.add_argument('--debug_hdl',action="store_true", default=False)
@@ -131,6 +134,8 @@ class Test:
             helper.pdebug(f"end to boot fsp in %s mode" % helper.platform)
         if not self.options.disable_peripheral_init_agent:
             test_api.test_init()
+        if 'fpga' in helper.target and self.options.rcv_boot:
+            test_api.rcv_load_image(self.options.fmc_bin,0x69)
         return self
 
     def eos_check(self):

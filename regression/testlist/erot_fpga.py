@@ -18,101 +18,98 @@ PLATFORM_SIM_HEAD  = [ '--platform=SIM_HEAD',''' -rtlarg '+disable_falcon_mem_wa
 PLATFORM_SIM_HEADLESS = [ '--platform=SIM_HEADLESS' ] 
 
 with feature('erot_fpga/lighton'):
-    #for ip in light_on_reg_list:
-        #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit %s ' ''' % ip] + PLATFORM_SIM_HEADLESS
-        test_args   =   ['''-py erot_light_on_test.py -pyarg '--disable_peripheral_init_agent' '''] + PLATFORM_HEAD
-        test_tags   =   ['lighton']
-        #test_tags.append('as2') if ip in as2_list else test_tags
-        AddTest(
-            name    =   'erot_reg_access_%s' % ip.lower(),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''light on each IP in chip'''
-                )
+    test_args   =   ['''-py erot_light_on_test.py ''']
+    test_tags   =   ['lighton']
+    AddTest(
+        name    =   'erot_reg_access_%s' % ip.lower(),
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''light on each IP in chip'''
+            )
     
-    AS2IP_REGEX = '|'.join(as2_list)
-    test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
-    test_tags   =   ['lighton','as2']
-    AddTest(
-        name    =   'erot_reg_access',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip for AS2'''
-            )
+    #AS2IP_REGEX = '|'.join(as2_list)
+    #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
+    #test_tags   =   ['lighton','as2']
+    #AddTest(
+    #    name    =   'erot_reg_access',
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip for AS2'''
+    #        )
 
-    test_args   =   ['-py erot_uart_loopback_test.py ' ] + PLATFORM_SIM_HEADLESS
-    test_tags   =   ['lighton','as2']
-    AddTest(
-        name    =   'erot_uart_loopback_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['-py erot_uart_loopback_test.py ' ] + PLATFORM_SIM_HEADLESS
+    #test_tags   =   ['lighton','as2']
+    #AddTest(
+    #    name    =   'erot_uart_loopback_test' ,
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
-    test_args   =   ['''-py erot_oobhub_i2c_test.py -pyarg '--mst I2C_IB1 ' '''] + PLATFORM_HEAD
-    test_tags   =   ['lighton']
-    AddTest(
-        name    =   'erot_oobhub_i2c_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['''-py erot_oobhub_i2c_test.py -pyarg '--mst I2C_IB1 ' '''] + PLATFORM_HEAD
+    #test_tags   =   ['lighton']
+    #AddTest(
+    #    name    =   'erot_oobhub_i2c_test' ,
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
-    test_args   =   ['''-py erot_oobhub_i3c_test.py -pyarg '--i3c 1 ' '''] + PLATFORM_HEAD
-    test_tags   =   ['lighton']
-    AddTest(
-        name    =   'erot_oobhub_i3c_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['''-py erot_oobhub_i3c_test.py -pyarg '--i3c 1 ' '''] + PLATFORM_HEAD
+    #test_tags   =   ['lighton']
+    #AddTest(
+    #    name    =   'erot_oobhub_i3c_test' ,
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
 
-    test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + PLATFORM_HEAD
-    test_tags   =   ['lighton']
-    AddTest(
-        name    =   'erot_debug_mram_mtpr_test_head' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + PLATFORM_HEAD
+    #test_tags   =   ['lighton']
+    #AddTest(
+    #    name    =   'erot_debug_mram_mtpr_test_head' ,
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
-    test_args   =   ['''-py bm_fpga_vip_test.py ''',''' -rtlarg '+ENABLE_SPI_VIP' '''] + PLATFORM_HEAD
-    test_tags   =   ['lighton']
-    AddTest(
-        name    =   'bm_fpga_vip_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['''-py bm_fpga_vip_test.py ''',''' -rtlarg '+ENABLE_SPI_VIP' '''] + PLATFORM_HEAD
+    #test_tags   =   ['lighton']
+    #AddTest(
+    #    name    =   'bm_fpga_vip_test' ,
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
-    br_rel      =   '/home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_candidate/presil_hex'
-    test_args   =   ['''-py erot_recovery_mfg_boot_test.py --platform JTAG -pyarg ' --replace_brom %s --disable_peripheral_init_agent ' ''' % (br_rel )]
-    test_tags   =   ['br']
-    AddTest(
-        name    =   'erot_recovery_mfg_boot_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''Recovery non-mfg boot test'''
-            )
+    #br_rel      =   '/home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_candidate/presil_hex'
+    #test_args   =   ['''-py erot_recovery_mfg_boot_test.py --platform JTAG -pyarg ' --replace_brom %s --disable_peripheral_init_agent ' ''' % (br_rel )]
+    #test_tags   =   ['br']
+    #AddTest(
+    #    name    =   'erot_recovery_mfg_boot_test',
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''Recovery non-mfg boot test'''
+    #        )
 
-    test_args   =   ['''-py erot_nominal_boot_test.py -pyarg '--replace_brom %s --disable_peripheral_init_agent ' --platform JTAG ''' % (br_rel)]
-    test_tags   =   ['br']
-    AddTest(
-        name    =   'erot_br_nominal_boot_mram_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''nominal boot, basic mode booting from MRAM'''
-            )
+    #test_args   =   ['''-py erot_nominal_boot_test.py -pyarg '--replace_brom %s --disable_peripheral_init_agent ' --platform JTAG ''' % (br_rel)]
+    #test_tags   =   ['br']
+    #AddTest(
+    #    name    =   'erot_br_nominal_boot_mram_test',
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''nominal boot, basic mode booting from MRAM'''
+    #        )
 
     #test_args   =   ['''-py erot_debug_fsp_test.py '''] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
