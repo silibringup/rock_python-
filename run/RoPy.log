@@ -1,0 +1,1886 @@
+[RockPy] INFO 14:43:46 MainThread - RockPY Initilized
+[RockPy] INFO 14:43:46 MainThread - #null ns# Test starts ...
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] INFO 14:43:46 MainThread - wait at least 760 VrefRO cycle(0.02us) + 990us fuse sense for L3 reset tp release ...
+[RockPy] INFO 14:43:46 MainThread - Refer to https://confluence.nvidia.com/display/GROOT/SR01+System+GFD+-+Resets+Clocks
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:46 MainThread - L3 reset release wait completed
+[RockPy] INFO 14:43:46 MainThread - Sending recovery reset command ...
+[RockPy] INFO 14:43:46 MainThread - Sent recovery reset command
+[RockPy] INFO 14:43:46 MainThread - Reset command will trigger L1 reset, wait reset for one more round
+[RockPy] INFO 14:43:46 MainThread - wait at least 760 VrefRO cycle(0.02us) + 990us fuse sense for L3 reset tp release ...
+[RockPy] INFO 14:43:46 MainThread - Refer to https://confluence.nvidia.com/display/GROOT/SR01+System+GFD+-+Resets+Clocks
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:46 MainThread - L3 reset release wait completed
+[RockPy] INFO 14:43:46 MainThread - Wait for boot rom to finish self certification before sending next command
+[RockPy] WARNING 14:43:46 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:51 MainThread - start default cms selection
+[RockPy] INFO 14:43:51 MainThread - Polling DEVICE_STATUS = RECOVERY_MODE ...
+[RockPy] INFO 14:43:51 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 14:43:51 MainThread - Found DEVICE_STATUS = RECOVERY_MODE
+[RockPy] INFO 14:43:51 MainThread - Polling RECOVERY_STATUS = AWITING_RECOVERY_IMAGE ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=39 1 times
+[RockPy] INFO 14:43:52 MainThread - Found RECOVERY_STATUS = AWITING_RECOVERY_IMAGE
+[RockPy] INFO 14:43:52 MainThread - Use Recovery Image from memory window (CMS) ...
+[RockPy] INFO 14:43:52 MainThread - Used Recovery Image from memory window (CMS)
+[RockPy] INFO 14:43:52 MainThread - Polling DEVICE_STATUS = RECOVERY_PENDING ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 14:43:52 MainThread - Found DEVICE_STATUS = RECOVERY_PENDING
+[RockPy] INFO 14:43:52 MainThread - Polling RECOVERY_STATUS = AWITING_RECOVERY_IMAGE ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=39 1 times
+[RockPy] INFO 14:43:52 MainThread - Found RECOVERY_STATUS = AWITING_RECOVERY_IMAGE
+[RockPy] INFO 14:43:52 MainThread - default cms selection completed
+[RockPy] INFO 14:43:52 MainThread - start fsp fmc
+[RockPy] INFO 14:43:52 MainThread - Trigger indirect ctrl for image loading ...
+[RockPy] INFO 14:43:52 MainThread - Trigger indirect ctrl for image loading completed
+[RockPy] INFO 14:43:52 MainThread - Starts loading image ...
+[RockPy] INFO 14:43:52 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:52 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:52 MainThread - Sent one image data section
+[RockPy] INFO 14:43:52 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:52 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:52 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:52 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:52 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:52 MainThread - Sent one image data section
+[RockPy] INFO 14:43:52 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:52 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:52 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:52 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:52 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:52 MainThread - Sent one image data section
+[RockPy] INFO 14:43:52 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:52 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:52 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:52 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:52 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:52 MainThread - Sent one image data section
+[RockPy] INFO 14:43:52 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:52 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:52 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:52 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:52 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:52 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:53 MainThread - Sent one image data section
+[RockPy] INFO 14:43:53 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:53 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:53 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:53 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:53 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:53 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:54 MainThread - Sent one image data section
+[RockPy] INFO 14:43:54 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:54 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:54 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:54 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:54 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:54 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:55 MainThread - Sent one image data section
+[RockPy] INFO 14:43:55 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:55 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:55 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:55 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:55 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:55 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:56 MainThread - Sent one image data section
+[RockPy] INFO 14:43:56 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:56 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:56 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:56 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:56 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:56 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:57 MainThread - Sent one image data section
+[RockPy] INFO 14:43:57 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:57 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:57 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:57 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:57 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:57 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:57 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:57 MainThread - Sent one image data section
+[RockPy] INFO 14:43:57 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:57 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:57 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:57 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:57 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:57 MainThread - Sending one image data section ...
+[RockPy] WARNING 14:43:57 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:43:57 MainThread - Sent one image data section
+[RockPy] INFO 14:43:57 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 14:43:57 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 14:43:57 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 14:43:57 MainThread - Clear acknowledge ...
+[RockPy] INFO 14:43:57 MainThread - Acknowledge cleared
+[RockPy] INFO 14:43:57 MainThread - Completes loading image
+[RockPy] INFO 14:43:57 MainThread - fsp fmc completed
+[RockPy] INFO 14:44:02 MainThread - start image activation
+[RockPy] INFO 14:44:02 MainThread - polling DEVICE_STATUS = RECOVERY_PENDING ...
+[RockPy] INFO 14:44:02 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 14:44:02 MainThread - Found DEVICE_STATUS = RECOVERY_PENDING
+[RockPy] INFO 14:44:02 MainThread - Sending image activatition command ...
+[RockPy] INFO 14:44:02 MainThread - Sent image activatition command
+[RockPy] INFO 14:44:02 MainThread - polling RECOVERY_STATUS = BOOTING_RECOVERY_IMG ...
+[RockPy] INFO 14:44:02 MainThread - Polling cmd_code=39 1 times
+[RockPy] INFO 14:44:02 MainThread - Found RECOVERY_STATUS = BOOTING_RECOVERY_IMG
+[RockPy] INFO 14:44:02 MainThread - image activation completed
+[RockPy] INFO 14:44:02 MainThread - start boot up recovery image
+[RockPy] INFO 14:44:02 MainThread - polling DEVICE_STATUS = RUNNING_RECOVERY_IMAGE ...
+[RockPy] INFO 14:44:02 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 14:44:02 MainThread - Found DEVICE_STATUS = RUNNING_RECOVERY_IMAGE
+[RockPy] INFO 14:44:02 MainThread - boot up recovery image completed
+[RockPy] WARNING 14:44:02 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:44:02 MainThread - Detect boot success
+[RockPy] INFO 14:44:07 MainThread - Start interacting with FMC ...
+[RockPy] INFO 14:44:07 MainThread - Write 0xccddeeff to 0x1ffffc
+[RockPy] INFO 14:44:07 MainThread - Read data from 0x1ffffc to check
+[RockPy] INFO 14:44:07 MainThread - Match 0xccddeeff@0x1ffffc
+[RockPy] INFO 14:44:07 MainThread - Start End of Simulation Check : <None>
+[RockPy] INFO 14:44:07 MainThread - TEST SUCCESS COMPLETED
+[RockPy] INFO 14:44:07 MainThread - Running Test: /home/erot/dev/recovery_regression/testlist/erot_fab_blf_lck_test.py
+[RockPy] INFO 14:44:07 MainThread - RockPY Initilized
+[RockPy] INFO 14:44:07 MainThread - #null ns# Test starts ...
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] INFO 14:44:07 MainThread - #null ns# Test start
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 14:44:07 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] INFO 14:44:07 MainThread - j2h_unlock sequence start
+[RockPy] INFO 14:44:07 MainThread - j2h_unlock sequence finish
+[RockPy] INFO 14:44:07 MainThread - JTAG COMPONNET WRITE : 0x13124 0xffffffff 
+[RockPy] INFO 14:44:08 MainThread - JTAG COMPONNET WRITE : 0x13120 0xffffffff 
+[RockPy] INFO 14:44:09 MainThread - JTAG COMPONNET WRITE : 0x13128 0x30000 
+[RockPy] INFO 14:44:09 MainThread - #null ns# ================= l1_csr check start================
+[RockPy] INFO 14:44:09 MainThread - JTAG COMPONNET WRITE : 0x13128 0x80000000 
+[RockPy] INFO 14:44:10 MainThread - #null ns# Lock bit set to 1
+[RockPy] INFO 14:44:10 MainThread - JTAG COMPONNET WRITE : 0x13128 0x30000 
+[RockPy] INFO 14:44:10 MainThread - JTAG COMPONNET WRITE : 0x13124 0x0 
+[RockPy] INFO 14:44:11 MainThread - JTAG COMPONNET WRITE : 0x13120 0x0 
+[RockPy] INFO 14:44:13 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x80000000
+[RockPy] INFO 14:44:14 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:15 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:15 MainThread - JTAG COMPONNET WRITE : 0x1304c 0xffffffff 
+[RockPy] INFO 14:44:16 MainThread - JTAG COMPONNET WRITE : 0x13048 0xffffffff 
+[RockPy] INFO 14:44:18 MainThread - JTAG COMPONNET WRITE : 0x13050 0x30000 
+[RockPy] INFO 14:44:19 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:20 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:21 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:44:21 MainThread - JTAG COMPONNET WRITE : 0x1304c 0x0 
+[RockPy] INFO 14:44:22 MainThread - JTAG COMPONNET WRITE : 0x13048 0x0 
+[RockPy] INFO 14:44:23 MainThread - JTAG COMPONNET WRITE : 0x13050 0x0 
+[RockPy] INFO 14:44:26 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:27 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:28 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:28 MainThread - JTAG COMPONNET WRITE : 0x13064 0xffffffff 
+[RockPy] INFO 14:44:28 MainThread - JTAG COMPONNET WRITE : 0x13060 0xffffffff 
+[RockPy] INFO 14:44:29 MainThread - JTAG COMPONNET WRITE : 0x13068 0x30000 
+[RockPy] INFO 14:44:32 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:33 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:34 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:44:34 MainThread - JTAG COMPONNET WRITE : 0x13064 0x0 
+[RockPy] INFO 14:44:35 MainThread - JTAG COMPONNET WRITE : 0x13060 0x0 
+[RockPy] INFO 14:44:36 MainThread - JTAG COMPONNET WRITE : 0x13068 0x0 
+[RockPy] INFO 14:44:39 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:40 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:41 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:41 MainThread - JTAG COMPONNET WRITE : 0x1307c 0xffffffff 
+[RockPy] INFO 14:44:42 MainThread - JTAG COMPONNET WRITE : 0x13078 0xffffffff 
+[RockPy] INFO 14:44:42 MainThread - JTAG COMPONNET WRITE : 0x13080 0x30000 
+[RockPy] INFO 14:44:44 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:47 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:48 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:44:48 MainThread - JTAG COMPONNET WRITE : 0x1307c 0x0 
+[RockPy] INFO 14:44:48 MainThread - JTAG COMPONNET WRITE : 0x13078 0x0 
+[RockPy] INFO 14:44:49 MainThread - JTAG COMPONNET WRITE : 0x13080 0x0 
+[RockPy] INFO 14:44:50 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:52 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:54 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:44:54 MainThread - JTAG COMPONNET WRITE : 0x13094 0xffffffff 
+[RockPy] INFO 14:44:55 MainThread - JTAG COMPONNET WRITE : 0x13090 0xffffffff 
+[RockPy] INFO 14:44:55 MainThread - JTAG COMPONNET WRITE : 0x13098 0x30000 
+[RockPy] INFO 14:44:57 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:44:58 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:00 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:45:00 MainThread - JTAG COMPONNET WRITE : 0x13094 0x0 
+[RockPy] INFO 14:45:02 MainThread - JTAG COMPONNET WRITE : 0x13090 0x0 
+[RockPy] INFO 14:45:02 MainThread - JTAG COMPONNET WRITE : 0x13098 0x0 
+[RockPy] INFO 14:45:04 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:05 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:06 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:06 MainThread - JTAG COMPONNET WRITE : 0x130ac 0xffffffff 
+[RockPy] INFO 14:45:08 MainThread - JTAG COMPONNET WRITE : 0x130a8 0xffffffff 
+[RockPy] INFO 14:45:09 MainThread - JTAG COMPONNET WRITE : 0x130b0 0x30000 
+[RockPy] INFO 14:45:10 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:11 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:12 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:45:12 MainThread - JTAG COMPONNET WRITE : 0x130ac 0x0 
+[RockPy] INFO 14:45:13 MainThread - JTAG COMPONNET WRITE : 0x130a8 0x0 
+[RockPy] INFO 14:45:14 MainThread - JTAG COMPONNET WRITE : 0x130b0 0x0 
+[RockPy] INFO 14:45:17 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:18 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:19 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:19 MainThread - JTAG COMPONNET WRITE : 0x130c4 0xffffffff 
+[RockPy] INFO 14:45:19 MainThread - JTAG COMPONNET WRITE : 0x130c0 0xffffffff 
+[RockPy] INFO 14:45:20 MainThread - JTAG COMPONNET WRITE : 0x130c8 0x30000 
+[RockPy] INFO 14:45:24 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:25 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:26 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:45:26 MainThread - JTAG COMPONNET WRITE : 0x130c4 0x0 
+[RockPy] INFO 14:45:26 MainThread - JTAG COMPONNET WRITE : 0x130c0 0x0 
+[RockPy] INFO 14:45:27 MainThread - JTAG COMPONNET WRITE : 0x130c8 0x0 
+[RockPy] INFO 14:45:28 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:29 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:30 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:30 MainThread - JTAG COMPONNET WRITE : 0x130dc 0xffffffff 
+[RockPy] INFO 14:45:31 MainThread - JTAG COMPONNET WRITE : 0x130d8 0xffffffff 
+[RockPy] INFO 14:45:31 MainThread - JTAG COMPONNET WRITE : 0x130e0 0x30000 
+[RockPy] INFO 14:45:33 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:34 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:36 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:45:36 MainThread - JTAG COMPONNET WRITE : 0x130dc 0x0 
+[RockPy] INFO 14:45:37 MainThread - JTAG COMPONNET WRITE : 0x130d8 0x0 
+[RockPy] INFO 14:45:38 MainThread - JTAG COMPONNET WRITE : 0x130e0 0x0 
+[RockPy] INFO 14:45:39 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:41 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:42 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:42 MainThread - JTAG COMPONNET WRITE : 0x13004 0xffffffff 
+[RockPy] INFO 14:45:43 MainThread - JTAG COMPONNET WRITE : 0x13000 0xffffffff 
+[RockPy] INFO 14:45:44 MainThread - JTAG COMPONNET WRITE : 0x13008 0x30000 
+[RockPy] INFO 14:45:46 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:47 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:48 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:45:48 MainThread - JTAG COMPONNET WRITE : 0x13004 0x0 
+[RockPy] INFO 14:45:49 MainThread - JTAG COMPONNET WRITE : 0x13000 0x0 
+[RockPy] INFO 14:45:50 MainThread - JTAG COMPONNET WRITE : 0x13008 0x0 
+[RockPy] INFO 14:45:51 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:52 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:53 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:45:53 MainThread - JTAG COMPONNET WRITE : 0x1301c 0xffffffff 
+[RockPy] INFO 14:45:54 MainThread - JTAG COMPONNET WRITE : 0x13018 0xffffffff 
+[RockPy] INFO 14:45:54 MainThread - JTAG COMPONNET WRITE : 0x13020 0x30000 
+[RockPy] INFO 14:45:56 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:57 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:45:58 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:45:58 MainThread - JTAG COMPONNET WRITE : 0x1301c 0x0 
+[RockPy] INFO 14:45:58 MainThread - JTAG COMPONNET WRITE : 0x13018 0x0 
+[RockPy] INFO 14:45:59 MainThread - JTAG COMPONNET WRITE : 0x13020 0x0 
+[RockPy] INFO 14:46:01 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:02 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:03 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:03 MainThread - JTAG COMPONNET WRITE : 0x13034 0xffffffff 
+[RockPy] INFO 14:46:03 MainThread - JTAG COMPONNET WRITE : 0x13030 0xffffffff 
+[RockPy] INFO 14:46:04 MainThread - JTAG COMPONNET WRITE : 0x13038 0x30000 
+[RockPy] INFO 14:46:07 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:10 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:11 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:46:11 MainThread - JTAG COMPONNET WRITE : 0x13034 0x0 
+[RockPy] INFO 14:46:12 MainThread - JTAG COMPONNET WRITE : 0x13030 0x0 
+[RockPy] INFO 14:46:12 MainThread - JTAG COMPONNET WRITE : 0x13038 0x0 
+[RockPy] INFO 14:46:14 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:16 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:18 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:18 MainThread - JTAG COMPONNET WRITE : 0x130f4 0xffffffff 
+[RockPy] INFO 14:46:18 MainThread - JTAG COMPONNET WRITE : 0x130f0 0xffffffff 
+[RockPy] INFO 14:46:19 MainThread - JTAG COMPONNET WRITE : 0x130f8 0x30000 
+[RockPy] INFO 14:46:20 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:22 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:24 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:46:24 MainThread - JTAG COMPONNET WRITE : 0x130f4 0x0 
+[RockPy] INFO 14:46:25 MainThread - JTAG COMPONNET WRITE : 0x130f0 0x0 
+[RockPy] INFO 14:46:26 MainThread - JTAG COMPONNET WRITE : 0x130f8 0x0 
+[RockPy] INFO 14:46:27 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:28 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:29 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:29 MainThread - JTAG COMPONNET WRITE : 0x1310c 0xffffffff 
+[RockPy] INFO 14:46:31 MainThread - JTAG COMPONNET WRITE : 0x13108 0xffffffff 
+[RockPy] INFO 14:46:32 MainThread - JTAG COMPONNET WRITE : 0x13110 0x30000 
+[RockPy] INFO 14:46:34 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:35 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:36 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:46:36 MainThread - JTAG COMPONNET WRITE : 0x1310c 0x0 
+[RockPy] INFO 14:46:37 MainThread - JTAG COMPONNET WRITE : 0x13108 0x0 
+[RockPy] INFO 14:46:38 MainThread - JTAG COMPONNET WRITE : 0x13110 0x0 
+[RockPy] INFO 14:46:40 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:41 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:42 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:42 MainThread - JTAG COMPONNET WRITE : 0x1313c 0xffffffff 
+[RockPy] INFO 14:46:43 MainThread - JTAG COMPONNET WRITE : 0x13138 0xffffffff 
+[RockPy] INFO 14:46:43 MainThread - JTAG COMPONNET WRITE : 0x13140 0x30000 
+[RockPy] INFO 14:46:47 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:48 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:49 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:46:49 MainThread - JTAG COMPONNET WRITE : 0x1313c 0x0 
+[RockPy] INFO 14:46:49 MainThread - JTAG COMPONNET WRITE : 0x13138 0x0 
+[RockPy] INFO 14:46:50 MainThread - JTAG COMPONNET WRITE : 0x13140 0x0 
+[RockPy] INFO 14:46:52 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:53 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:54 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:46:54 MainThread - JTAG COMPONNET WRITE : 0x13154 0xffffffff 
+[RockPy] INFO 14:46:54 MainThread - JTAG COMPONNET WRITE : 0x13150 0xffffffff 
+[RockPy] INFO 14:46:55 MainThread - JTAG COMPONNET WRITE : 0x13158 0x30000 
+[RockPy] INFO 14:46:56 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:57 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:46:59 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:46:59 MainThread - JTAG COMPONNET WRITE : 0x13154 0x0 
+[RockPy] INFO 14:47:01 MainThread - JTAG COMPONNET WRITE : 0x13150 0x0 
+[RockPy] INFO 14:47:02 MainThread - JTAG COMPONNET WRITE : 0x13158 0x0 
+[RockPy] INFO 14:47:03 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:04 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:05 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:05 MainThread - JTAG COMPONNET WRITE : 0x1316c 0xffffffff 
+[RockPy] INFO 14:47:06 MainThread - JTAG COMPONNET WRITE : 0x13168 0xffffffff 
+[RockPy] INFO 14:47:08 MainThread - JTAG COMPONNET WRITE : 0x13170 0x30000 
+[RockPy] INFO 14:47:10 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:11 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:12 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:47:12 MainThread - JTAG COMPONNET WRITE : 0x1316c 0x0 
+[RockPy] INFO 14:47:12 MainThread - JTAG COMPONNET WRITE : 0x13168 0x0 
+[RockPy] INFO 14:47:14 MainThread - JTAG COMPONNET WRITE : 0x13170 0x0 
+[RockPy] INFO 14:47:16 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:17 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:19 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:19 MainThread - JTAG COMPONNET WRITE : 0x13184 0xffffffff 
+[RockPy] INFO 14:47:19 MainThread - JTAG COMPONNET WRITE : 0x13180 0xffffffff 
+[RockPy] INFO 14:47:20 MainThread - JTAG COMPONNET WRITE : 0x13188 0x30000 
+[RockPy] INFO 14:47:23 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:24 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:25 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:47:25 MainThread - JTAG COMPONNET WRITE : 0x13184 0x0 
+[RockPy] INFO 14:47:26 MainThread - JTAG COMPONNET WRITE : 0x13180 0x0 
+[RockPy] INFO 14:47:26 MainThread - JTAG COMPONNET WRITE : 0x13188 0x0 
+[RockPy] INFO 14:47:28 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:29 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:30 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:30 MainThread - JTAG COMPONNET WRITE : 0x1319c 0xffffffff 
+[RockPy] INFO 14:47:31 MainThread - JTAG COMPONNET WRITE : 0x13198 0xffffffff 
+[RockPy] INFO 14:47:31 MainThread - JTAG COMPONNET WRITE : 0x131a0 0x30000 
+[RockPy] INFO 14:47:33 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:34 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:35 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:47:35 MainThread - JTAG COMPONNET WRITE : 0x1319c 0x0 
+[RockPy] INFO 14:47:37 MainThread - JTAG COMPONNET WRITE : 0x13198 0x0 
+[RockPy] INFO 14:47:38 MainThread - JTAG COMPONNET WRITE : 0x131a0 0x0 
+[RockPy] INFO 14:47:39 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:40 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:41 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:41 MainThread - JTAG COMPONNET WRITE : 0x131b4 0xffffffff 
+[RockPy] INFO 14:47:42 MainThread - JTAG COMPONNET WRITE : 0x131b0 0xffffffff 
+[RockPy] INFO 14:47:43 MainThread - JTAG COMPONNET WRITE : 0x131b8 0x30000 
+[RockPy] INFO 14:47:46 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:47 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:47:48 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:47:48 MainThread - JTAG COMPONNET WRITE : 0x131b4 0x0 
+[RockPy] INFO 14:47:48 MainThread - JTAG COMPONNET WRITE : 0x131b0 0x0 
+[RockPy] INFO 14:47:49 MainThread - JTAG COMPONNET WRITE : 0x131b8 0x0 
+[RockPy] INFO 14:47:52 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:53 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:54 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:47:54 MainThread - JTAG COMPONNET WRITE : 0x131cc 0xffffffff 
+[RockPy] INFO 14:47:55 MainThread - JTAG COMPONNET WRITE : 0x131c8 0xffffffff 
+[RockPy] INFO 14:47:56 MainThread - JTAG COMPONNET WRITE : 0x131d0 0x30000 
+[RockPy] INFO 14:47:58 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:00 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:01 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:48:01 MainThread - JTAG COMPONNET WRITE : 0x131cc 0x0 
+[RockPy] INFO 14:48:02 MainThread - JTAG COMPONNET WRITE : 0x131c8 0x0 
+[RockPy] INFO 14:48:02 MainThread - JTAG COMPONNET WRITE : 0x131d0 0x0 
+[RockPy] INFO 14:48:04 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:05 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:06 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:06 MainThread - JTAG COMPONNET WRITE : 0x131e4 0xffffffff 
+[RockPy] INFO 14:48:06 MainThread - JTAG COMPONNET WRITE : 0x131e0 0xffffffff 
+[RockPy] INFO 14:48:07 MainThread - JTAG COMPONNET WRITE : 0x131e8 0x30000 
+[RockPy] INFO 14:48:10 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:11 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:12 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:48:12 MainThread - JTAG COMPONNET WRITE : 0x131e4 0x0 
+[RockPy] INFO 14:48:13 MainThread - JTAG COMPONNET WRITE : 0x131e0 0x0 
+[RockPy] INFO 14:48:14 MainThread - JTAG COMPONNET WRITE : 0x131e8 0x0 
+[RockPy] INFO 14:48:16 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:18 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:19 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:19 MainThread - JTAG COMPONNET WRITE : 0x131fc 0xffffffff 
+[RockPy] INFO 14:48:20 MainThread - JTAG COMPONNET WRITE : 0x131f8 0xffffffff 
+[RockPy] INFO 14:48:20 MainThread - JTAG COMPONNET WRITE : 0x13200 0x30000 
+[RockPy] INFO 14:48:22 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:23 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:24 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:48:24 MainThread - JTAG COMPONNET WRITE : 0x131fc 0x0 
+[RockPy] INFO 14:48:24 MainThread - JTAG COMPONNET WRITE : 0x131f8 0x0 
+[RockPy] INFO 14:48:25 MainThread - JTAG COMPONNET WRITE : 0x13200 0x0 
+[RockPy] INFO 14:48:27 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:28 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:29 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:29 MainThread - JTAG COMPONNET WRITE : 0x13214 0xffffffff 
+[RockPy] INFO 14:48:30 MainThread - JTAG COMPONNET WRITE : 0x13210 0xffffffff 
+[RockPy] INFO 14:48:31 MainThread - JTAG COMPONNET WRITE : 0x13218 0x30000 
+[RockPy] INFO 14:48:33 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:34 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:35 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:48:35 MainThread - JTAG COMPONNET WRITE : 0x13214 0x0 
+[RockPy] INFO 14:48:36 MainThread - JTAG COMPONNET WRITE : 0x13210 0x0 
+[RockPy] INFO 14:48:36 MainThread - JTAG COMPONNET WRITE : 0x13218 0x0 
+[RockPy] INFO 14:48:38 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:39 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:40 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:40 MainThread - JTAG COMPONNET WRITE : 0x1322c 0xffffffff 
+[RockPy] INFO 14:48:40 MainThread - JTAG COMPONNET WRITE : 0x13228 0xffffffff 
+[RockPy] INFO 14:48:41 MainThread - JTAG COMPONNET WRITE : 0x13230 0x30000 
+[RockPy] INFO 14:48:43 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:44 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:47 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:48:47 MainThread - JTAG COMPONNET WRITE : 0x1322c 0x0 
+[RockPy] INFO 14:48:47 MainThread - JTAG COMPONNET WRITE : 0x13228 0x0 
+[RockPy] INFO 14:48:48 MainThread - JTAG COMPONNET WRITE : 0x13230 0x0 
+[RockPy] INFO 14:48:49 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:51 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:53 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:48:53 MainThread - JTAG COMPONNET WRITE : 0x13244 0xffffffff 
+[RockPy] INFO 14:48:54 MainThread - JTAG COMPONNET WRITE : 0x13240 0xffffffff 
+[RockPy] INFO 14:48:55 MainThread - JTAG COMPONNET WRITE : 0x13248 0x30000 
+[RockPy] INFO 14:48:56 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:57 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:48:58 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:48:58 MainThread - JTAG COMPONNET WRITE : 0x13244 0x0 
+[RockPy] INFO 14:48:59 MainThread - JTAG COMPONNET WRITE : 0x13240 0x0 
+[RockPy] INFO 14:48:59 MainThread - JTAG COMPONNET WRITE : 0x13248 0x0 
+[RockPy] INFO 14:49:01 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:02 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:03 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:03 MainThread - JTAG COMPONNET WRITE : 0x1325c 0xffffffff 
+[RockPy] INFO 14:49:04 MainThread - JTAG COMPONNET WRITE : 0x13258 0xffffffff 
+[RockPy] INFO 14:49:04 MainThread - JTAG COMPONNET WRITE : 0x13260 0x30000 
+[RockPy] INFO 14:49:06 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:09 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:10 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:49:10 MainThread - JTAG COMPONNET WRITE : 0x1325c 0x0 
+[RockPy] INFO 14:49:10 MainThread - JTAG COMPONNET WRITE : 0x13258 0x0 
+[RockPy] INFO 14:49:11 MainThread - JTAG COMPONNET WRITE : 0x13260 0x0 
+[RockPy] INFO 14:49:12 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:15 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:16 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:16 MainThread - JTAG COMPONNET WRITE : 0x13274 0xffffffff 
+[RockPy] INFO 14:49:17 MainThread - JTAG COMPONNET WRITE : 0x13270 0xffffffff 
+[RockPy] INFO 14:49:17 MainThread - JTAG COMPONNET WRITE : 0x13278 0x30000 
+[RockPy] INFO 14:49:19 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:21 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:23 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:49:23 MainThread - JTAG COMPONNET WRITE : 0x13274 0x0 
+[RockPy] INFO 14:49:24 MainThread - JTAG COMPONNET WRITE : 0x13270 0x0 
+[RockPy] INFO 14:49:24 MainThread - JTAG COMPONNET WRITE : 0x13278 0x0 
+[RockPy] INFO 14:49:26 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:27 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:28 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:28 MainThread - JTAG COMPONNET WRITE : 0x1328c 0xffffffff 
+[RockPy] INFO 14:49:28 MainThread - JTAG COMPONNET WRITE : 0x13288 0xffffffff 
+[RockPy] INFO 14:49:29 MainThread - JTAG COMPONNET WRITE : 0x13290 0x30000 
+[RockPy] INFO 14:49:30 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:31 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:32 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:49:32 MainThread - JTAG COMPONNET WRITE : 0x1328c 0x0 
+[RockPy] INFO 14:49:33 MainThread - JTAG COMPONNET WRITE : 0x13288 0x0 
+[RockPy] INFO 14:49:34 MainThread - JTAG COMPONNET WRITE : 0x13290 0x0 
+[RockPy] INFO 14:49:35 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:36 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:37 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:37 MainThread - JTAG COMPONNET WRITE : 0x132a4 0xffffffff 
+[RockPy] INFO 14:49:38 MainThread - JTAG COMPONNET WRITE : 0x132a0 0xffffffff 
+[RockPy] INFO 14:49:38 MainThread - JTAG COMPONNET WRITE : 0x132a8 0x30000 
+[RockPy] INFO 14:49:40 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:41 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:42 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:49:42 MainThread - JTAG COMPONNET WRITE : 0x132a4 0x0 
+[RockPy] INFO 14:49:43 MainThread - JTAG COMPONNET WRITE : 0x132a0 0x0 
+[RockPy] INFO 14:49:44 MainThread - JTAG COMPONNET WRITE : 0x132a8 0x0 
+[RockPy] INFO 14:49:46 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:47 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:48 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:48 MainThread - JTAG COMPONNET WRITE : 0x132bc 0xffffffff 
+[RockPy] INFO 14:49:49 MainThread - JTAG COMPONNET WRITE : 0x132b8 0xffffffff 
+[RockPy] INFO 14:49:49 MainThread - JTAG COMPONNET WRITE : 0x132c0 0x30000 
+[RockPy] INFO 14:49:51 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:52 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:49:53 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:49:53 MainThread - JTAG COMPONNET WRITE : 0x132bc 0x0 
+[RockPy] INFO 14:49:54 MainThread - JTAG COMPONNET WRITE : 0x132b8 0x0 
+[RockPy] INFO 14:49:54 MainThread - JTAG COMPONNET WRITE : 0x132c0 0x0 
+[RockPy] INFO 14:49:56 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:57 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:58 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:49:58 MainThread - JTAG COMPONNET WRITE : 0x132d4 0xffffffff 
+[RockPy] INFO 14:49:58 MainThread - JTAG COMPONNET WRITE : 0x132d0 0xffffffff 
+[RockPy] INFO 14:49:59 MainThread - JTAG COMPONNET WRITE : 0x132d8 0x30000 
+[RockPy] INFO 14:50:01 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:02 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:03 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:50:03 MainThread - JTAG COMPONNET WRITE : 0x132d4 0x0 
+[RockPy] INFO 14:50:03 MainThread - JTAG COMPONNET WRITE : 0x132d0 0x0 
+[RockPy] INFO 14:50:04 MainThread - JTAG COMPONNET WRITE : 0x132d8 0x0 
+[RockPy] INFO 14:50:05 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:06 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:08 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:08 MainThread - JTAG COMPONNET WRITE : 0x132ec 0xffffffff 
+[RockPy] INFO 14:50:08 MainThread - JTAG COMPONNET WRITE : 0x132e8 0xffffffff 
+[RockPy] INFO 14:50:09 MainThread - JTAG COMPONNET WRITE : 0x132f0 0x30000 
+[RockPy] INFO 14:50:10 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:11 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:12 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:50:12 MainThread - JTAG COMPONNET WRITE : 0x132ec 0x0 
+[RockPy] INFO 14:50:13 MainThread - JTAG COMPONNET WRITE : 0x132e8 0x0 
+[RockPy] INFO 14:50:13 MainThread - JTAG COMPONNET WRITE : 0x132f0 0x0 
+[RockPy] INFO 14:50:15 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:16 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:17 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:17 MainThread - JTAG COMPONNET WRITE : 0x13304 0xffffffff 
+[RockPy] INFO 14:50:18 MainThread - JTAG COMPONNET WRITE : 0x13300 0xffffffff 
+[RockPy] INFO 14:50:18 MainThread - JTAG COMPONNET WRITE : 0x13308 0x30000 
+[RockPy] INFO 14:50:20 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:21 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:22 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:50:22 MainThread - JTAG COMPONNET WRITE : 0x13304 0x0 
+[RockPy] INFO 14:50:24 MainThread - JTAG COMPONNET WRITE : 0x13300 0x0 
+[RockPy] INFO 14:50:25 MainThread - JTAG COMPONNET WRITE : 0x13308 0x0 
+[RockPy] INFO 14:50:26 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:28 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:29 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:29 MainThread - JTAG COMPONNET WRITE : 0x1331c 0xffffffff 
+[RockPy] INFO 14:50:30 MainThread - JTAG COMPONNET WRITE : 0x13318 0xffffffff 
+[RockPy] INFO 14:50:31 MainThread - JTAG COMPONNET WRITE : 0x13320 0x30000 
+[RockPy] INFO 14:50:33 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:34 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:35 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:50:35 MainThread - JTAG COMPONNET WRITE : 0x1331c 0x0 
+[RockPy] INFO 14:50:36 MainThread - JTAG COMPONNET WRITE : 0x13318 0x0 
+[RockPy] INFO 14:50:37 MainThread - JTAG COMPONNET WRITE : 0x13320 0x0 
+[RockPy] INFO 14:50:38 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:39 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:40 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:40 MainThread - JTAG COMPONNET WRITE : 0x13334 0xffffffff 
+[RockPy] INFO 14:50:41 MainThread - JTAG COMPONNET WRITE : 0x13330 0xffffffff 
+[RockPy] INFO 14:50:41 MainThread - JTAG COMPONNET WRITE : 0x13338 0x30000 
+[RockPy] INFO 14:50:43 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:44 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:50:45 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:50:45 MainThread - JTAG COMPONNET WRITE : 0x13334 0x0 
+[RockPy] INFO 14:50:45 MainThread - JTAG COMPONNET WRITE : 0x13330 0x0 
+[RockPy] INFO 14:50:46 MainThread - JTAG COMPONNET WRITE : 0x13338 0x0 
+[RockPy] INFO 14:50:48 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:49 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:50 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:50 MainThread - JTAG COMPONNET WRITE : 0x33010 0x0 
+[RockPy] INFO 14:50:50 MainThread - #null ns# L3 Reset Triggered
+[RockPy] WARNING 14:50:50 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 14:50:50 MainThread - #null ns# After wait for 2 us
+[RockPy] INFO 14:50:50 MainThread - #null ns# FPGA env does not need clk and reset init
+[RockPy] INFO 14:50:50 MainThread - #null ns# reset init done
+[RockPy] INFO 14:50:51 MainThread - #null ns# Poll REG SW_L3_RST_0 done after 1 times. Reg value = 0x1
+[RockPy] INFO 14:50:51 MainThread - #null ns# L3 Reset Recovered
+[RockPy] INFO 14:50:51 MainThread - JTAG COMPONNET WRITE : 0x13124 0xffffffff 
+[RockPy] INFO 14:50:52 MainThread - JTAG COMPONNET WRITE : 0x13120 0xffffffff 
+[RockPy] INFO 14:50:53 MainThread - JTAG COMPONNET WRITE : 0x13128 0x30000 
+[RockPy] INFO 14:50:54 MainThread - JTAG COMPONNET WRITE : 0x13128 0x0 
+[RockPy] INFO 14:50:55 MainThread - JTAG COMPONNET WRITE : 0x13120 0x0 
+[RockPy] INFO 14:50:55 MainThread - JTAG COMPONNET WRITE : 0x13124 0x0 
+[RockPy] INFO 14:50:57 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:58 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:59 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:50:59 MainThread - JTAG COMPONNET WRITE : 0x13124 0xffffffff 
+[RockPy] INFO 14:50:59 MainThread - JTAG COMPONNET WRITE : 0x13120 0xffffffff 
+[RockPy] INFO 14:51:00 MainThread - JTAG COMPONNET WRITE : 0x13128 0x30000 
+[RockPy] INFO 14:51:01 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:51:02 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:51:03 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:51:03 MainThread - #null ns# ================= l1_csr check finish================
+[RockPy] INFO 14:51:03 MainThread - #null ns# ================= clock_vrefro_ctl check start================
+[RockPy] INFO 14:51:04 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:04 MainThread - JTAG COMPONNET WRITE : 0x1304c 0xffffffff 
+[RockPy] INFO 14:51:06 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:51:07 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:08 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:09 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:51:10 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:51:11 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:51:12 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:13 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:14 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:15 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:16 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:18 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:19 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:20 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:21 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:22 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:23 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:24 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:25 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:26 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:27 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:28 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:29 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:30 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:31 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:32 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:33 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:34 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:35 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:36 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:37 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:38 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:39 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:40 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:41 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:43 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:44 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:45 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:46 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:47 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:48 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:49 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:51 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:53 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:54 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:55 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:56 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:51:58 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:00 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:01 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:02 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:03 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:05 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:07 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:08 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:09 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:10 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:11 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:12 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:13 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:14 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:16 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:18 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:19 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:20 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:21 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:22 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:23 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:24 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:26 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:27 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:28 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:29 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:31 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:33 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:34 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:35 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:36 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:37 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:38 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:39 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:40 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:41 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:42 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:43 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:44 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:45 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:46 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:47 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:49 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:50 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:51 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:53 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:54 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:56 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:57 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:52:58 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:00 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:02 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:03 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:04 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:05 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:06 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:07 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:08 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:08 MainThread - JTAG COMPONNET WRITE : 0x1304c 0x0 
+[RockPy] INFO 14:53:10 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:11 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:11 MainThread - JTAG COMPONNET WRITE : 0x13048 0xffffffff 
+[RockPy] INFO 14:53:12 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:53:13 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:14 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:15 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:53:16 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:53:17 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:53:18 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:19 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:21 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:23 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:24 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:25 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:26 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:27 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:29 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:31 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:32 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:33 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:34 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:35 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:36 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:37 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:39 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:40 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:41 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:42 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:43 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:44 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:45 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:46 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:47 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:48 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:49 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:50 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:51 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:52 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:53 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:54 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:55 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:56 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:58 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:53:59 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:00 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:01 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:02 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:03 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:04 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:05 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:06 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:07 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:09 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:11 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:12 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:13 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:14 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:15 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:16 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:17 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:18 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:20 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:21 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:22 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:25 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:26 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:27 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:28 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:29 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:30 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:31 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:32 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:33 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:34 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:35 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:36 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:37 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:38 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:39 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:40 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:41 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:42 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:43 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:44 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:45 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:46 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:48 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:49 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:50 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:51 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:53 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:55 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:56 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:57 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:58 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:54:59 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:00 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:01 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:02 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:04 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:05 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:06 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:07 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:08 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:09 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:10 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:11 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:11 MainThread - JTAG COMPONNET WRITE : 0x13048 0x0 
+[RockPy] INFO 14:55:12 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:14 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:14 MainThread - JTAG COMPONNET WRITE : 0x13050 0x30000 
+[RockPy] INFO 14:55:15 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:55:16 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:17 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:18 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:55:19 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:55:20 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:55:21 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:22 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:23 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:24 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:25 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:27 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:28 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:29 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:30 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:31 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:32 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:33 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:34 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:36 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:38 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:39 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:40 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:41 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:42 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:44 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:46 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:47 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:48 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:49 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:50 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:51 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:52 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:53 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:54 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:55 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:56 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:55:59 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:00 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:01 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:02 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:03 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:05 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:07 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:08 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:09 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:10 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:11 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:13 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:14 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:15 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:17 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:18 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:20 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:21 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:22 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:24 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:26 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:27 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:28 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:29 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:30 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:31 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:32 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:33 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:34 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:35 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:36 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:37 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:38 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:39 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:40 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:41 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:42 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:43 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:45 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:46 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:47 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:48 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:49 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:50 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:51 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:52 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:53 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:54 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:55 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:56 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:57 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:56:59 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:01 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:02 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:03 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:04 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:05 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:07 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:08 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:09 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:10 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:11 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:12 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:13 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:14 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:15 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:16 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:17 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:17 MainThread - JTAG COMPONNET WRITE : 0x13050 0x0 
+[RockPy] INFO 14:57:19 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:19 MainThread - JTAG COMPONNET WRITE : 0x13050 0x80000000 
+[RockPy] INFO 14:57:19 MainThread - #null ns# Lock bit set to 1
+[RockPy] INFO 14:57:19 MainThread - JTAG COMPONNET WRITE : 0x13050 0x30000 
+[RockPy] INFO 14:57:20 MainThread - JTAG COMPONNET WRITE : 0x1304c 0xffffffff 
+[RockPy] INFO 14:57:21 MainThread - JTAG COMPONNET WRITE : 0x13048 0xffffffff 
+[RockPy] INFO 14:57:22 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x80000000
+[RockPy] INFO 14:57:23 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:24 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:24 MainThread - JTAG COMPONNET WRITE : 0x13128 0x0 
+[RockPy] INFO 14:57:25 MainThread - JTAG COMPONNET WRITE : 0x13120 0x0 
+[RockPy] INFO 14:57:26 MainThread - JTAG COMPONNET WRITE : 0x13124 0x0 
+[RockPy] INFO 14:57:27 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:28 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:30 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:30 MainThread - JTAG COMPONNET WRITE : 0x13124 0xffffffff 
+[RockPy] INFO 14:57:30 MainThread - JTAG COMPONNET WRITE : 0x13120 0xffffffff 
+[RockPy] INFO 14:57:31 MainThread - JTAG COMPONNET WRITE : 0x13128 0x30000 
+[RockPy] INFO 14:57:32 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:33 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:34 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:57:34 MainThread - JTAG COMPONNET WRITE : 0x13064 0xffffffff 
+[RockPy] INFO 14:57:35 MainThread - JTAG COMPONNET WRITE : 0x13060 0xffffffff 
+[RockPy] INFO 14:57:35 MainThread - JTAG COMPONNET WRITE : 0x13068 0x30000 
+[RockPy] INFO 14:57:37 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:38 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:39 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:57:39 MainThread - JTAG COMPONNET WRITE : 0x13064 0x0 
+[RockPy] INFO 14:57:39 MainThread - JTAG COMPONNET WRITE : 0x13060 0x0 
+[RockPy] INFO 14:57:40 MainThread - JTAG COMPONNET WRITE : 0x13068 0x0 
+[RockPy] INFO 14:57:41 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:43 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:44 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:44 MainThread - JTAG COMPONNET WRITE : 0x1307c 0xffffffff 
+[RockPy] INFO 14:57:44 MainThread - JTAG COMPONNET WRITE : 0x13078 0xffffffff 
+[RockPy] INFO 14:57:45 MainThread - JTAG COMPONNET WRITE : 0x13080 0x30000 
+[RockPy] INFO 14:57:46 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:47 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:48 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:57:48 MainThread - JTAG COMPONNET WRITE : 0x1307c 0x0 
+[RockPy] INFO 14:57:49 MainThread - JTAG COMPONNET WRITE : 0x13078 0x0 
+[RockPy] INFO 14:57:49 MainThread - JTAG COMPONNET WRITE : 0x13080 0x0 
+[RockPy] INFO 14:57:51 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:52 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:53 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:57:53 MainThread - JTAG COMPONNET WRITE : 0x13094 0xffffffff 
+[RockPy] INFO 14:57:54 MainThread - JTAG COMPONNET WRITE : 0x13090 0xffffffff 
+[RockPy] INFO 14:57:54 MainThread - JTAG COMPONNET WRITE : 0x13098 0x30000 
+[RockPy] INFO 14:57:56 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:57 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:57:58 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:57:58 MainThread - JTAG COMPONNET WRITE : 0x13094 0x0 
+[RockPy] INFO 14:57:58 MainThread - JTAG COMPONNET WRITE : 0x13090 0x0 
+[RockPy] INFO 14:57:59 MainThread - JTAG COMPONNET WRITE : 0x13098 0x0 
+[RockPy] INFO 14:58:00 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:01 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:02 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:02 MainThread - JTAG COMPONNET WRITE : 0x130ac 0xffffffff 
+[RockPy] INFO 14:58:03 MainThread - JTAG COMPONNET WRITE : 0x130a8 0xffffffff 
+[RockPy] INFO 14:58:04 MainThread - JTAG COMPONNET WRITE : 0x130b0 0x30000 
+[RockPy] INFO 14:58:07 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:09 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:11 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:58:11 MainThread - JTAG COMPONNET WRITE : 0x130ac 0x0 
+[RockPy] INFO 14:58:11 MainThread - JTAG COMPONNET WRITE : 0x130a8 0x0 
+[RockPy] INFO 14:58:12 MainThread - JTAG COMPONNET WRITE : 0x130b0 0x0 
+[RockPy] INFO 14:58:13 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:15 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:17 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:17 MainThread - JTAG COMPONNET WRITE : 0x130c4 0xffffffff 
+[RockPy] INFO 14:58:18 MainThread - JTAG COMPONNET WRITE : 0x130c0 0xffffffff 
+[RockPy] INFO 14:58:18 MainThread - JTAG COMPONNET WRITE : 0x130c8 0x30000 
+[RockPy] INFO 14:58:20 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:21 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:22 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:58:22 MainThread - JTAG COMPONNET WRITE : 0x130c4 0x0 
+[RockPy] INFO 14:58:23 MainThread - JTAG COMPONNET WRITE : 0x130c0 0x0 
+[RockPy] INFO 14:58:23 MainThread - JTAG COMPONNET WRITE : 0x130c8 0x0 
+[RockPy] INFO 14:58:25 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:26 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:27 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:27 MainThread - JTAG COMPONNET WRITE : 0x130dc 0xffffffff 
+[RockPy] INFO 14:58:27 MainThread - JTAG COMPONNET WRITE : 0x130d8 0xffffffff 
+[RockPy] INFO 14:58:28 MainThread - JTAG COMPONNET WRITE : 0x130e0 0x30000 
+[RockPy] INFO 14:58:30 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:31 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:32 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:58:32 MainThread - JTAG COMPONNET WRITE : 0x130dc 0x0 
+[RockPy] INFO 14:58:32 MainThread - JTAG COMPONNET WRITE : 0x130d8 0x0 
+[RockPy] INFO 14:58:33 MainThread - JTAG COMPONNET WRITE : 0x130e0 0x0 
+[RockPy] INFO 14:58:34 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:35 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:37 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:37 MainThread - JTAG COMPONNET WRITE : 0x13004 0xffffffff 
+[RockPy] INFO 14:58:38 MainThread - JTAG COMPONNET WRITE : 0x13000 0xffffffff 
+[RockPy] INFO 14:58:39 MainThread - JTAG COMPONNET WRITE : 0x13008 0x30000 
+[RockPy] INFO 14:58:41 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:42 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:43 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:58:43 MainThread - JTAG COMPONNET WRITE : 0x13004 0x0 
+[RockPy] INFO 14:58:44 MainThread - JTAG COMPONNET WRITE : 0x13000 0x0 
+[RockPy] INFO 14:58:44 MainThread - JTAG COMPONNET WRITE : 0x13008 0x0 
+[RockPy] INFO 14:58:46 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:47 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:48 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:48 MainThread - JTAG COMPONNET WRITE : 0x1301c 0xffffffff 
+[RockPy] INFO 14:58:48 MainThread - JTAG COMPONNET WRITE : 0x13018 0xffffffff 
+[RockPy] INFO 14:58:49 MainThread - JTAG COMPONNET WRITE : 0x13020 0x30000 
+[RockPy] INFO 14:58:51 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:53 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:58:54 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:58:54 MainThread - JTAG COMPONNET WRITE : 0x1301c 0x0 
+[RockPy] INFO 14:58:55 MainThread - JTAG COMPONNET WRITE : 0x13018 0x0 
+[RockPy] INFO 14:58:56 MainThread - JTAG COMPONNET WRITE : 0x13020 0x0 
+[RockPy] INFO 14:58:57 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:58 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:59 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:58:59 MainThread - JTAG COMPONNET WRITE : 0x13034 0xffffffff 
+[RockPy] INFO 14:59:00 MainThread - JTAG COMPONNET WRITE : 0x13030 0xffffffff 
+[RockPy] INFO 14:59:00 MainThread - JTAG COMPONNET WRITE : 0x13038 0x30000 
+[RockPy] INFO 14:59:02 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:03 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:04 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:59:04 MainThread - JTAG COMPONNET WRITE : 0x13034 0x0 
+[RockPy] INFO 14:59:05 MainThread - JTAG COMPONNET WRITE : 0x13030 0x0 
+[RockPy] INFO 14:59:05 MainThread - JTAG COMPONNET WRITE : 0x13038 0x0 
+[RockPy] INFO 14:59:07 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:08 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:09 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:09 MainThread - JTAG COMPONNET WRITE : 0x130f4 0xffffffff 
+[RockPy] INFO 14:59:09 MainThread - JTAG COMPONNET WRITE : 0x130f0 0xffffffff 
+[RockPy] INFO 14:59:10 MainThread - JTAG COMPONNET WRITE : 0x130f8 0x30000 
+[RockPy] INFO 14:59:12 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:13 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:15 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:59:15 MainThread - JTAG COMPONNET WRITE : 0x130f4 0x0 
+[RockPy] INFO 14:59:16 MainThread - JTAG COMPONNET WRITE : 0x130f0 0x0 
+[RockPy] INFO 14:59:17 MainThread - JTAG COMPONNET WRITE : 0x130f8 0x0 
+[RockPy] INFO 14:59:18 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:19 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:20 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:20 MainThread - JTAG COMPONNET WRITE : 0x1310c 0xffffffff 
+[RockPy] INFO 14:59:21 MainThread - JTAG COMPONNET WRITE : 0x13108 0xffffffff 
+[RockPy] INFO 14:59:22 MainThread - JTAG COMPONNET WRITE : 0x13110 0x30000 
+[RockPy] INFO 14:59:23 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:24 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:25 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:59:25 MainThread - JTAG COMPONNET WRITE : 0x1310c 0x0 
+[RockPy] INFO 14:59:26 MainThread - JTAG COMPONNET WRITE : 0x13108 0x0 
+[RockPy] INFO 14:59:26 MainThread - JTAG COMPONNET WRITE : 0x13110 0x0 
+[RockPy] INFO 14:59:28 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:29 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:30 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:30 MainThread - JTAG COMPONNET WRITE : 0x1313c 0xffffffff 
+[RockPy] INFO 14:59:31 MainThread - JTAG COMPONNET WRITE : 0x13138 0xffffffff 
+[RockPy] INFO 14:59:31 MainThread - JTAG COMPONNET WRITE : 0x13140 0x30000 
+[RockPy] INFO 14:59:33 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:34 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:35 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:59:35 MainThread - JTAG COMPONNET WRITE : 0x1313c 0x0 
+[RockPy] INFO 14:59:36 MainThread - JTAG COMPONNET WRITE : 0x13138 0x0 
+[RockPy] INFO 14:59:36 MainThread - JTAG COMPONNET WRITE : 0x13140 0x0 
+[RockPy] INFO 14:59:38 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:39 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:40 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:40 MainThread - JTAG COMPONNET WRITE : 0x13154 0xffffffff 
+[RockPy] INFO 14:59:40 MainThread - JTAG COMPONNET WRITE : 0x13150 0xffffffff 
+[RockPy] INFO 14:59:41 MainThread - JTAG COMPONNET WRITE : 0x13158 0x30000 
+[RockPy] INFO 14:59:44 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:45 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:46 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:59:46 MainThread - JTAG COMPONNET WRITE : 0x13154 0x0 
+[RockPy] INFO 14:59:47 MainThread - JTAG COMPONNET WRITE : 0x13150 0x0 
+[RockPy] INFO 14:59:48 MainThread - JTAG COMPONNET WRITE : 0x13158 0x0 
+[RockPy] INFO 14:59:49 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:50 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:51 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 14:59:51 MainThread - JTAG COMPONNET WRITE : 0x1316c 0xffffffff 
+[RockPy] INFO 14:59:52 MainThread - JTAG COMPONNET WRITE : 0x13168 0xffffffff 
+[RockPy] INFO 14:59:52 MainThread - JTAG COMPONNET WRITE : 0x13170 0x30000 
+[RockPy] INFO 14:59:54 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:55 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 14:59:56 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 14:59:56 MainThread - JTAG COMPONNET WRITE : 0x1316c 0x0 
+[RockPy] INFO 14:59:57 MainThread - JTAG COMPONNET WRITE : 0x13168 0x0 
+[RockPy] INFO 14:59:57 MainThread - JTAG COMPONNET WRITE : 0x13170 0x0 
+[RockPy] INFO 14:59:59 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:00 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:01 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:01 MainThread - JTAG COMPONNET WRITE : 0x13184 0xffffffff 
+[RockPy] INFO 15:00:01 MainThread - JTAG COMPONNET WRITE : 0x13180 0xffffffff 
+[RockPy] INFO 15:00:02 MainThread - JTAG COMPONNET WRITE : 0x13188 0x30000 
+[RockPy] INFO 15:00:03 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:06 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:07 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:00:07 MainThread - JTAG COMPONNET WRITE : 0x13184 0x0 
+[RockPy] INFO 15:00:08 MainThread - JTAG COMPONNET WRITE : 0x13180 0x0 
+[RockPy] INFO 15:00:08 MainThread - JTAG COMPONNET WRITE : 0x13188 0x0 
+[RockPy] INFO 15:00:10 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:11 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:12 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:12 MainThread - JTAG COMPONNET WRITE : 0x1319c 0xffffffff 
+[RockPy] INFO 15:00:13 MainThread - JTAG COMPONNET WRITE : 0x13198 0xffffffff 
+[RockPy] INFO 15:00:13 MainThread - JTAG COMPONNET WRITE : 0x131a0 0x30000 
+[RockPy] INFO 15:00:15 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:16 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:17 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:00:17 MainThread - JTAG COMPONNET WRITE : 0x1319c 0x0 
+[RockPy] INFO 15:00:17 MainThread - JTAG COMPONNET WRITE : 0x13198 0x0 
+[RockPy] INFO 15:00:18 MainThread - JTAG COMPONNET WRITE : 0x131a0 0x0 
+[RockPy] INFO 15:00:19 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:20 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:21 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:21 MainThread - JTAG COMPONNET WRITE : 0x131b4 0xffffffff 
+[RockPy] INFO 15:00:22 MainThread - JTAG COMPONNET WRITE : 0x131b0 0xffffffff 
+[RockPy] INFO 15:00:22 MainThread - JTAG COMPONNET WRITE : 0x131b8 0x30000 
+[RockPy] INFO 15:00:24 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:25 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:26 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:00:26 MainThread - JTAG COMPONNET WRITE : 0x131b4 0x0 
+[RockPy] INFO 15:00:27 MainThread - JTAG COMPONNET WRITE : 0x131b0 0x0 
+[RockPy] INFO 15:00:27 MainThread - JTAG COMPONNET WRITE : 0x131b8 0x0 
+[RockPy] INFO 15:00:29 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:30 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:31 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:31 MainThread - JTAG COMPONNET WRITE : 0x131cc 0xffffffff 
+[RockPy] INFO 15:00:31 MainThread - JTAG COMPONNET WRITE : 0x131c8 0xffffffff 
+[RockPy] INFO 15:00:32 MainThread - JTAG COMPONNET WRITE : 0x131d0 0x30000 
+[RockPy] INFO 15:00:33 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:34 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:35 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:00:35 MainThread - JTAG COMPONNET WRITE : 0x131cc 0x0 
+[RockPy] INFO 15:00:36 MainThread - JTAG COMPONNET WRITE : 0x131c8 0x0 
+[RockPy] INFO 15:00:37 MainThread - JTAG COMPONNET WRITE : 0x131d0 0x0 
+[RockPy] INFO 15:00:40 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:41 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:42 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:42 MainThread - JTAG COMPONNET WRITE : 0x131e4 0xffffffff 
+[RockPy] INFO 15:00:43 MainThread - JTAG COMPONNET WRITE : 0x131e0 0xffffffff 
+[RockPy] INFO 15:00:43 MainThread - JTAG COMPONNET WRITE : 0x131e8 0x30000 
+[RockPy] INFO 15:00:47 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:48 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:00:49 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:00:49 MainThread - JTAG COMPONNET WRITE : 0x131e4 0x0 
+[RockPy] INFO 15:00:49 MainThread - JTAG COMPONNET WRITE : 0x131e0 0x0 
+[RockPy] INFO 15:00:50 MainThread - JTAG COMPONNET WRITE : 0x131e8 0x0 
+[RockPy] INFO 15:00:52 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:54 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:55 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:00:55 MainThread - JTAG COMPONNET WRITE : 0x131fc 0xffffffff 
+[RockPy] INFO 15:00:56 MainThread - JTAG COMPONNET WRITE : 0x131f8 0xffffffff 
+[RockPy] INFO 15:00:56 MainThread - JTAG COMPONNET WRITE : 0x13200 0x30000 
+[RockPy] INFO 15:00:58 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:01 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:02 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:01:02 MainThread - JTAG COMPONNET WRITE : 0x131fc 0x0 
+[RockPy] INFO 15:01:02 MainThread - JTAG COMPONNET WRITE : 0x131f8 0x0 
+[RockPy] INFO 15:01:03 MainThread - JTAG COMPONNET WRITE : 0x13200 0x0 
+[RockPy] INFO 15:01:04 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:06 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:07 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:07 MainThread - JTAG COMPONNET WRITE : 0x13214 0xffffffff 
+[RockPy] INFO 15:01:07 MainThread - JTAG COMPONNET WRITE : 0x13210 0xffffffff 
+[RockPy] INFO 15:01:08 MainThread - JTAG COMPONNET WRITE : 0x13218 0x30000 
+[RockPy] INFO 15:01:09 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:10 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:11 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:01:11 MainThread - JTAG COMPONNET WRITE : 0x13214 0x0 
+[RockPy] INFO 15:01:12 MainThread - JTAG COMPONNET WRITE : 0x13210 0x0 
+[RockPy] INFO 15:01:13 MainThread - JTAG COMPONNET WRITE : 0x13218 0x0 
+[RockPy] INFO 15:01:14 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:15 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:16 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:16 MainThread - JTAG COMPONNET WRITE : 0x1322c 0xffffffff 
+[RockPy] INFO 15:01:17 MainThread - JTAG COMPONNET WRITE : 0x13228 0xffffffff 
+[RockPy] INFO 15:01:18 MainThread - JTAG COMPONNET WRITE : 0x13230 0x30000 
+[RockPy] INFO 15:01:19 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:20 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:21 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:01:21 MainThread - JTAG COMPONNET WRITE : 0x1322c 0x0 
+[RockPy] INFO 15:01:22 MainThread - JTAG COMPONNET WRITE : 0x13228 0x0 
+[RockPy] INFO 15:01:22 MainThread - JTAG COMPONNET WRITE : 0x13230 0x0 
+[RockPy] INFO 15:01:24 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:25 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:26 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:26 MainThread - JTAG COMPONNET WRITE : 0x13244 0xffffffff 
+[RockPy] INFO 15:01:27 MainThread - JTAG COMPONNET WRITE : 0x13240 0xffffffff 
+[RockPy] INFO 15:01:27 MainThread - JTAG COMPONNET WRITE : 0x13248 0x30000 
+[RockPy] INFO 15:01:29 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:30 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:31 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:01:31 MainThread - JTAG COMPONNET WRITE : 0x13244 0x0 
+[RockPy] INFO 15:01:32 MainThread - JTAG COMPONNET WRITE : 0x13240 0x0 
+[RockPy] INFO 15:01:32 MainThread - JTAG COMPONNET WRITE : 0x13248 0x0 
+[RockPy] INFO 15:01:34 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:35 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:36 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:36 MainThread - JTAG COMPONNET WRITE : 0x1325c 0xffffffff 
+[RockPy] INFO 15:01:36 MainThread - JTAG COMPONNET WRITE : 0x13258 0xffffffff 
+[RockPy] INFO 15:01:37 MainThread - JTAG COMPONNET WRITE : 0x13260 0x30000 
+[RockPy] INFO 15:01:38 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:39 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:40 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:01:40 MainThread - JTAG COMPONNET WRITE : 0x1325c 0x0 
+[RockPy] INFO 15:01:41 MainThread - JTAG COMPONNET WRITE : 0x13258 0x0 
+[RockPy] INFO 15:01:42 MainThread - JTAG COMPONNET WRITE : 0x13260 0x0 
+[RockPy] INFO 15:01:45 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:46 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:47 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:47 MainThread - JTAG COMPONNET WRITE : 0x13274 0xffffffff 
+[RockPy] INFO 15:01:48 MainThread - JTAG COMPONNET WRITE : 0x13270 0xffffffff 
+[RockPy] INFO 15:01:48 MainThread - JTAG COMPONNET WRITE : 0x13278 0x30000 
+[RockPy] INFO 15:01:50 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:51 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:01:52 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:01:52 MainThread - JTAG COMPONNET WRITE : 0x13274 0x0 
+[RockPy] INFO 15:01:52 MainThread - JTAG COMPONNET WRITE : 0x13270 0x0 
+[RockPy] INFO 15:01:53 MainThread - JTAG COMPONNET WRITE : 0x13278 0x0 
+[RockPy] INFO 15:01:54 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:56 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:57 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:01:57 MainThread - JTAG COMPONNET WRITE : 0x1328c 0xffffffff 
+[RockPy] INFO 15:01:57 MainThread - JTAG COMPONNET WRITE : 0x13288 0xffffffff 
+[RockPy] INFO 15:01:58 MainThread - JTAG COMPONNET WRITE : 0x13290 0x30000 
+[RockPy] INFO 15:01:59 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:00 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:01 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:02:01 MainThread - JTAG COMPONNET WRITE : 0x1328c 0x0 
+[RockPy] INFO 15:02:02 MainThread - JTAG COMPONNET WRITE : 0x13288 0x0 
+[RockPy] INFO 15:02:02 MainThread - JTAG COMPONNET WRITE : 0x13290 0x0 
+[RockPy] INFO 15:02:04 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:07 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:08 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:08 MainThread - JTAG COMPONNET WRITE : 0x132a4 0xffffffff 
+[RockPy] INFO 15:02:08 MainThread - JTAG COMPONNET WRITE : 0x132a0 0xffffffff 
+[RockPy] INFO 15:02:09 MainThread - JTAG COMPONNET WRITE : 0x132a8 0x30000 
+[RockPy] INFO 15:02:10 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:11 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:12 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:02:12 MainThread - JTAG COMPONNET WRITE : 0x132a4 0x0 
+[RockPy] INFO 15:02:13 MainThread - JTAG COMPONNET WRITE : 0x132a0 0x0 
+[RockPy] INFO 15:02:14 MainThread - JTAG COMPONNET WRITE : 0x132a8 0x0 
+[RockPy] INFO 15:02:15 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:16 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:17 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:17 MainThread - JTAG COMPONNET WRITE : 0x132bc 0xffffffff 
+[RockPy] INFO 15:02:18 MainThread - JTAG COMPONNET WRITE : 0x132b8 0xffffffff 
+[RockPy] INFO 15:02:18 MainThread - JTAG COMPONNET WRITE : 0x132c0 0x30000 
+[RockPy] INFO 15:02:20 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:21 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:22 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:02:22 MainThread - JTAG COMPONNET WRITE : 0x132bc 0x0 
+[RockPy] INFO 15:02:22 MainThread - JTAG COMPONNET WRITE : 0x132b8 0x0 
+[RockPy] INFO 15:02:23 MainThread - JTAG COMPONNET WRITE : 0x132c0 0x0 
+[RockPy] INFO 15:02:24 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:25 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:26 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:26 MainThread - JTAG COMPONNET WRITE : 0x132d4 0xffffffff 
+[RockPy] INFO 15:02:27 MainThread - JTAG COMPONNET WRITE : 0x132d0 0xffffffff 
+[RockPy] INFO 15:02:27 MainThread - JTAG COMPONNET WRITE : 0x132d8 0x30000 
+[RockPy] INFO 15:02:29 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:30 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:31 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:02:31 MainThread - JTAG COMPONNET WRITE : 0x132d4 0x0 
+[RockPy] INFO 15:02:32 MainThread - JTAG COMPONNET WRITE : 0x132d0 0x0 
+[RockPy] INFO 15:02:32 MainThread - JTAG COMPONNET WRITE : 0x132d8 0x0 
+[RockPy] INFO 15:02:34 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:35 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:36 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:36 MainThread - JTAG COMPONNET WRITE : 0x132ec 0xffffffff 
+[RockPy] INFO 15:02:37 MainThread - JTAG COMPONNET WRITE : 0x132e8 0xffffffff 
+[RockPy] INFO 15:02:38 MainThread - JTAG COMPONNET WRITE : 0x132f0 0x30000 
+[RockPy] INFO 15:02:40 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:41 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:42 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:02:42 MainThread - JTAG COMPONNET WRITE : 0x132ec 0x0 
+[RockPy] INFO 15:02:43 MainThread - JTAG COMPONNET WRITE : 0x132e8 0x0 
+[RockPy] INFO 15:02:43 MainThread - JTAG COMPONNET WRITE : 0x132f0 0x0 
+[RockPy] INFO 15:02:47 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:48 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:49 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:49 MainThread - JTAG COMPONNET WRITE : 0x13304 0xffffffff 
+[RockPy] INFO 15:02:49 MainThread - JTAG COMPONNET WRITE : 0x13300 0xffffffff 
+[RockPy] INFO 15:02:50 MainThread - JTAG COMPONNET WRITE : 0x13308 0x30000 
+[RockPy] INFO 15:02:51 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:52 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:02:54 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:02:54 MainThread - JTAG COMPONNET WRITE : 0x13304 0x0 
+[RockPy] INFO 15:02:54 MainThread - JTAG COMPONNET WRITE : 0x13300 0x0 
+[RockPy] INFO 15:02:55 MainThread - JTAG COMPONNET WRITE : 0x13308 0x0 
+[RockPy] INFO 15:02:56 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:57 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:58 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:02:58 MainThread - JTAG COMPONNET WRITE : 0x1331c 0xffffffff 
+[RockPy] INFO 15:02:59 MainThread - JTAG COMPONNET WRITE : 0x13318 0xffffffff 
+[RockPy] INFO 15:03:00 MainThread - JTAG COMPONNET WRITE : 0x13320 0x30000 
+[RockPy] INFO 15:03:01 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:02 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:03 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:03:03 MainThread - JTAG COMPONNET WRITE : 0x1331c 0x0 
+[RockPy] INFO 15:03:04 MainThread - JTAG COMPONNET WRITE : 0x13318 0x0 
+[RockPy] INFO 15:03:04 MainThread - JTAG COMPONNET WRITE : 0x13320 0x0 
+[RockPy] INFO 15:03:06 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:07 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:08 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:08 MainThread - JTAG COMPONNET WRITE : 0x13334 0xffffffff 
+[RockPy] INFO 15:03:09 MainThread - JTAG COMPONNET WRITE : 0x13330 0xffffffff 
+[RockPy] INFO 15:03:09 MainThread - JTAG COMPONNET WRITE : 0x13338 0x30000 
+[RockPy] INFO 15:03:11 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:12 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:13 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:03:13 MainThread - JTAG COMPONNET WRITE : 0x13334 0x0 
+[RockPy] INFO 15:03:15 MainThread - JTAG COMPONNET WRITE : 0x13330 0x0 
+[RockPy] INFO 15:03:16 MainThread - JTAG COMPONNET WRITE : 0x13338 0x0 
+[RockPy] INFO 15:03:17 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:18 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:19 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:19 MainThread - JTAG COMPONNET WRITE : 0x33010 0x0 
+[RockPy] INFO 15:03:20 MainThread - #null ns# L3 Reset Triggered
+[RockPy] WARNING 15:03:20 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 15:03:20 MainThread - #null ns# After wait for 2 us
+[RockPy] INFO 15:03:20 MainThread - #null ns# FPGA env does not need clk and reset init
+[RockPy] INFO 15:03:20 MainThread - #null ns# reset init done
+[RockPy] INFO 15:03:21 MainThread - #null ns# Poll REG SW_L3_RST_0 done after 1 times. Reg value = 0x1
+[RockPy] INFO 15:03:21 MainThread - #null ns# L3 Reset Recovered
+[RockPy] INFO 15:03:21 MainThread - JTAG COMPONNET WRITE : 0x13124 0xffffffff 
+[RockPy] INFO 15:03:21 MainThread - JTAG COMPONNET WRITE : 0x13120 0xffffffff 
+[RockPy] INFO 15:03:22 MainThread - JTAG COMPONNET WRITE : 0x13128 0x30000 
+[RockPy] INFO 15:03:22 MainThread - JTAG COMPONNET WRITE : 0x1304c 0xffffffff 
+[RockPy] INFO 15:03:23 MainThread - JTAG COMPONNET WRITE : 0x13048 0xffffffff 
+[RockPy] INFO 15:03:23 MainThread - JTAG COMPONNET WRITE : 0x13050 0x30000 
+[RockPy] INFO 15:03:25 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:26 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:27 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:03:27 MainThread - JTAG COMPONNET WRITE : 0x1304c 0x0 
+[RockPy] INFO 15:03:27 MainThread - JTAG COMPONNET WRITE : 0x13048 0x0 
+[RockPy] INFO 15:03:28 MainThread - JTAG COMPONNET WRITE : 0x13050 0x0 
+[RockPy] INFO 15:03:29 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:30 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:31 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:31 MainThread - #null ns# ================= clock_vrefro_ctl check finish================
+[RockPy] INFO 15:03:31 MainThread - #null ns# ================= clock_sys_ctl check start================
+[RockPy] INFO 15:03:32 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:32 MainThread - JTAG COMPONNET WRITE : 0x13064 0xffffffff 
+[RockPy] INFO 15:03:34 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:36 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:38 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:39 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:40 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:03:41 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:03:42 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:43 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:44 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:45 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:46 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:47 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:48 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:50 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:52 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:53 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:54 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:55 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:57 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:03:59 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:00 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:01 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:02 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:03 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:05 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:06 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:07 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:08 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:11 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:12 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:13 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:14 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:15 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:16 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:17 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:18 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:19 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:20 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:21 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:22 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:23 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:24 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:25 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:26 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:27 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:28 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:29 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:30 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:31 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:32 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:33 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:35 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:36 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:37 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:38 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:39 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:40 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:41 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:42 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:43 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:44 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:45 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:46 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:47 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:48 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:49 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:50 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:51 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:52 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:53 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:54 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:55 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:56 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:57 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:04:59 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:01 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:02 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:03 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:04 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:05 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:07 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:08 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:09 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:10 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:11 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:12 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:13 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:16 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:17 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:18 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:19 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:20 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:22 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:24 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:25 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:26 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:27 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:28 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:29 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:30 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:31 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:32 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:33 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:34 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:36 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:36 MainThread - JTAG COMPONNET WRITE : 0x13064 0x0 
+[RockPy] INFO 15:05:38 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:39 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:39 MainThread - JTAG COMPONNET WRITE : 0x13060 0xffffffff 
+[RockPy] INFO 15:05:41 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:05:42 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:45 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:46 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:05:47 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:05:48 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:05:49 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:50 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:51 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:52 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:53 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:54 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:55 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:56 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:57 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:58 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:05:59 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:00 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:01 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:02 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:03 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:05 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:07 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:08 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:09 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:10 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:11 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:12 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:13 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:14 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:15 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:16 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:17 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:18 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:19 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:20 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:21 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:23 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:25 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:26 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:27 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:28 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:29 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:30 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:31 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:32 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:33 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:34 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:35 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:37 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:38 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:39 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:40 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:41 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:42 MainThread - #null ns# Poll REG OOBHUB_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:43 MainThread - #null ns# Poll REG OOBHUB_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:44 MainThread - #null ns# Poll REG OOBHUB_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:45 MainThread - #null ns# Poll REG PUF_DBG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:46 MainThread - #null ns# Poll REG PUF_DBG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:47 MainThread - #null ns# Poll REG PUF_DBG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:48 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:49 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:50 MainThread - #null ns# Poll REG QSPI0_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:51 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:53 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:55 MainThread - #null ns# Poll REG QSPI0_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:56 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:57 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:06:58 MainThread - #null ns# Poll REG QSPI0_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:00 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:02 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:03 MainThread - #null ns# Poll REG QSPI1_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:04 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:05 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:06 MainThread - #null ns# Poll REG QSPI1_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:07 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:08 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:09 MainThread - #null ns# Poll REG QSPI1_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:10 MainThread - #null ns# Poll REG RESET_REG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:12 MainThread - #null ns# Poll REG RESET_REG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:13 MainThread - #null ns# Poll REG RESET_REG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:14 MainThread - #null ns# Poll REG RESET_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:15 MainThread - #null ns# Poll REG RESET_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:16 MainThread - #null ns# Poll REG RESET_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:17 MainThread - #null ns# Poll REG RTS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:18 MainThread - #null ns# Poll REG RTS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:19 MainThread - #null ns# Poll REG RTS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:20 MainThread - #null ns# Poll REG SPI_MON0_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:21 MainThread - #null ns# Poll REG SPI_MON0_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:22 MainThread - #null ns# Poll REG SPI_MON0_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:23 MainThread - #null ns# Poll REG SPI_MON1_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:24 MainThread - #null ns# Poll REG SPI_MON1_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:25 MainThread - #null ns# Poll REG SPI_MON1_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:27 MainThread - #null ns# Poll REG NV_PMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:28 MainThread - #null ns# Poll REG NV_PMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:29 MainThread - #null ns# Poll REG NV_PMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:30 MainThread - #null ns# Poll REG NV_PBUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:31 MainThread - #null ns# Poll REG NV_PBUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:32 MainThread - #null ns# Poll REG NV_PBUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:33 MainThread - #null ns# Poll REG NV_PTOP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:34 MainThread - #null ns# Poll REG NV_PTOP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:35 MainThread - #null ns# Poll REG NV_PTOP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:36 MainThread - #null ns# Poll REG THERM_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:37 MainThread - #null ns# Poll REG THERM_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:39 MainThread - #null ns# Poll REG THERM_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:39 MainThread - JTAG COMPONNET WRITE : 0x13060 0x0 
+[RockPy] INFO 15:07:40 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:41 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:41 MainThread - JTAG COMPONNET WRITE : 0x13068 0x30000 
+[RockPy] INFO 15:07:43 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:07:44 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:45 MainThread - #null ns# Poll REG CLOCK_SYS_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:46 MainThread - #null ns# Poll REG L1_CSR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:07:47 MainThread - #null ns# Poll REG L1_CSR_BLF_READ_CTL_0 done after 1 times. Reg value = 0xffffffff
+[RockPy] INFO 15:07:48 MainThread - #null ns# Poll REG L1_CSR_BLF_CTL_0 done after 1 times. Reg value = 0x30000
+[RockPy] INFO 15:07:49 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:50 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:51 MainThread - #null ns# Poll REG CLOCK_VREFRO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:52 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:53 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:54 MainThread - #null ns# Poll REG CLOCK_IO_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:56 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:57 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:07:59 MainThread - #null ns# Poll REG CLOCK_STATUS_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:01 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:02 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:03 MainThread - #null ns# Poll REG CLOCK_CMN_PAD_CTL_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:04 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:05 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:06 MainThread - #null ns# Poll REG CLOCK_PODVMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:07 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:08 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:09 MainThread - #null ns# Poll REG CLOCK_FMON_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:10 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:11 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:12 MainThread - #null ns# Poll REG BOOT_QSPI_CORE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:13 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:14 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:15 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:16 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:17 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:18 MainThread - #null ns# Poll REG BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:19 MainThread - #null ns# Poll REG FUSE_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:20 MainThread - #null ns# Poll REG FUSE_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:23 MainThread - #null ns# Poll REG FUSE_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:27 MainThread - #null ns# Poll REG JTAG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:32 MainThread - #null ns# Poll REG JTAG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:34 MainThread - #null ns# Poll REG JTAG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:35 MainThread - #null ns# Poll REG MRAM_CFG_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:37 MainThread - #null ns# Poll REG MRAM_CFG_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:40 MainThread - #null ns# Poll REG MRAM_CFG_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:41 MainThread - #null ns# Poll REG MRAM_TMC_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:42 MainThread - #null ns# Poll REG MRAM_TMC_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:43 MainThread - #null ns# Poll REG MRAM_TMC_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:45 MainThread - #null ns# Poll REG MRAM_OTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:48 MainThread - #null ns# Poll REG MRAM_OTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:49 MainThread - #null ns# Poll REG MRAM_OTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:51 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:53 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:56 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 15:08:59 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0

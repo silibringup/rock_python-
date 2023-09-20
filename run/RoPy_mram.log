@@ -1,0 +1,525 @@
+[RockPy] INFO 22:50:18 MainThread - RockPY Initilized
+[RockPy] INFO 22:50:18 MainThread - #null ns# Test starts ...
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] INFO 22:50:19 MainThread - wait at least 760 VrefRO cycle(0.02us) + 990us fuse sense for L3 reset tp release ...
+[RockPy] INFO 22:50:19 MainThread - Refer to https://confluence.nvidia.com/display/GROOT/SR01+System+GFD+-+Resets+Clocks
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:19 MainThread - L3 reset release wait completed
+[RockPy] INFO 22:50:19 MainThread - Sending recovery reset command ...
+[RockPy] INFO 22:50:19 MainThread - Sent recovery reset command
+[RockPy] INFO 22:50:19 MainThread - Reset command will trigger L1 reset, wait reset for one more round
+[RockPy] INFO 22:50:19 MainThread - wait at least 760 VrefRO cycle(0.02us) + 990us fuse sense for L3 reset tp release ...
+[RockPy] INFO 22:50:19 MainThread - Refer to https://confluence.nvidia.com/display/GROOT/SR01+System+GFD+-+Resets+Clocks
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:19 MainThread - L3 reset release wait completed
+[RockPy] INFO 22:50:19 MainThread - Wait for boot rom to finish self certification before sending next command
+[RockPy] WARNING 22:50:19 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:24 MainThread - start default cms selection
+[RockPy] INFO 22:50:24 MainThread - Polling DEVICE_STATUS = RECOVERY_MODE ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 22:50:24 MainThread - Found DEVICE_STATUS = RECOVERY_MODE
+[RockPy] INFO 22:50:24 MainThread - Polling RECOVERY_STATUS = AWITING_RECOVERY_IMAGE ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=39 1 times
+[RockPy] INFO 22:50:24 MainThread - Found RECOVERY_STATUS = AWITING_RECOVERY_IMAGE
+[RockPy] INFO 22:50:24 MainThread - Use Recovery Image from memory window (CMS) ...
+[RockPy] INFO 22:50:24 MainThread - Used Recovery Image from memory window (CMS)
+[RockPy] INFO 22:50:24 MainThread - Polling DEVICE_STATUS = RECOVERY_PENDING ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 22:50:24 MainThread - Found DEVICE_STATUS = RECOVERY_PENDING
+[RockPy] INFO 22:50:24 MainThread - Polling RECOVERY_STATUS = AWITING_RECOVERY_IMAGE ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=39 1 times
+[RockPy] INFO 22:50:24 MainThread - Found RECOVERY_STATUS = AWITING_RECOVERY_IMAGE
+[RockPy] INFO 22:50:24 MainThread - default cms selection completed
+[RockPy] INFO 22:50:24 MainThread - start fsp fmc
+[RockPy] INFO 22:50:24 MainThread - Trigger indirect ctrl for image loading ...
+[RockPy] INFO 22:50:24 MainThread - Trigger indirect ctrl for image loading completed
+[RockPy] INFO 22:50:24 MainThread - Starts loading image ...
+[RockPy] INFO 22:50:24 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:24 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:24 MainThread - Sent one image data section
+[RockPy] INFO 22:50:24 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:24 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:24 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:24 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:24 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:24 MainThread - Sent one image data section
+[RockPy] INFO 22:50:24 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:24 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:24 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:24 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:24 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:24 MainThread - Sent one image data section
+[RockPy] INFO 22:50:24 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:24 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:24 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:24 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:24 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:24 MainThread - Sent one image data section
+[RockPy] INFO 22:50:24 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:24 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:24 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:24 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:24 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:24 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:24 MainThread - Sent one image data section
+[RockPy] INFO 22:50:24 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:25 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:25 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:25 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:25 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:25 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:25 MainThread - Sent one image data section
+[RockPy] INFO 22:50:25 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:26 MainThread - Sent one image data section
+[RockPy] INFO 22:50:26 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:26 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:26 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:26 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:26 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:26 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:27 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:27 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:27 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:27 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:27 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:27 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:27 MainThread - Sent one image data section
+[RockPy] INFO 22:50:27 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:27 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:27 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:27 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:27 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:28 MainThread - Sent one image data section
+[RockPy] INFO 22:50:28 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:28 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:28 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:28 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:28 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:28 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:29 MainThread - Sent one image data section
+[RockPy] INFO 22:50:29 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:29 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:29 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:29 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:29 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:29 MainThread - Sent one image data section
+[RockPy] INFO 22:50:29 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:29 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:29 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:29 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:29 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:29 MainThread - Sent one image data section
+[RockPy] INFO 22:50:29 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:29 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:29 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:29 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:29 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:29 MainThread - Sent one image data section
+[RockPy] INFO 22:50:29 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:29 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:29 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:29 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:29 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:29 MainThread - Sent one image data section
+[RockPy] INFO 22:50:29 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:29 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:29 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:29 MainThread - Sending one image data section ...
+[RockPy] WARNING 22:50:29 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:29 MainThread - Sent one image data section
+[RockPy] INFO 22:50:29 MainThread - Waiting for loading acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Polling cmd_code=42 1 times
+[RockPy] INFO 22:50:29 MainThread - Found acknowledge. INDIRECT_STATUS ACK = 1
+[RockPy] INFO 22:50:29 MainThread - Clear acknowledge ...
+[RockPy] INFO 22:50:29 MainThread - Acknowledge cleared
+[RockPy] INFO 22:50:29 MainThread - Completes loading image
+[RockPy] INFO 22:50:29 MainThread - fsp fmc completed
+[RockPy] INFO 22:50:34 MainThread - start image activation
+[RockPy] INFO 22:50:34 MainThread - polling DEVICE_STATUS = RECOVERY_PENDING ...
+[RockPy] INFO 22:50:34 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 22:50:34 MainThread - Found DEVICE_STATUS = RECOVERY_PENDING
+[RockPy] INFO 22:50:34 MainThread - Sending image activatition command ...
+[RockPy] INFO 22:50:34 MainThread - Sent image activatition command
+[RockPy] INFO 22:50:34 MainThread - polling RECOVERY_STATUS = BOOTING_RECOVERY_IMG ...
+[RockPy] INFO 22:50:34 MainThread - Polling cmd_code=39 1 times
+[RockPy] INFO 22:50:34 MainThread - Found RECOVERY_STATUS = BOOTING_RECOVERY_IMG
+[RockPy] INFO 22:50:34 MainThread - image activation completed
+[RockPy] INFO 22:50:34 MainThread - start boot up recovery image
+[RockPy] INFO 22:50:34 MainThread - polling DEVICE_STATUS = RUNNING_RECOVERY_IMAGE ...
+[RockPy] INFO 22:50:34 MainThread - Polling cmd_code=36 1 times
+[RockPy] INFO 22:50:34 MainThread - Found DEVICE_STATUS = RUNNING_RECOVERY_IMAGE
+[RockPy] INFO 22:50:34 MainThread - boot up recovery image completed
+[RockPy] WARNING 22:50:34 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] INFO 22:50:34 MainThread - Detect boot success
+[RockPy] INFO 22:50:39 MainThread - Start interacting with FMC ...
+[RockPy] INFO 22:50:39 MainThread - Write 0xccddeeff to 0x1ffffc
+[RockPy] INFO 22:50:39 MainThread - Read data from 0x1ffffc to check
+[RockPy] INFO 22:50:40 MainThread - Match 0xccddeeff@0x1ffffc
+[RockPy] INFO 22:50:40 MainThread - Start End of Simulation Check : <None>
+[RockPy] INFO 22:50:40 MainThread - TEST SUCCESS COMPLETED
+[RockPy] INFO 22:50:40 MainThread - Running Test: /home/erot/dev/recovery_regression/testlist/erot_debug_mram_mtpr_test_sim_head.py
+[RockPy] INFO 22:50:40 MainThread - RockPY Initilized
+[RockPy] INFO 22:50:40 MainThread - #null ns# Test starts ...
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. wait_sim_time() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] WARNING 22:50:40 MainThread - #null ns# Running on JTAG. hdl_force() hasn't been supported
+[RockPy] INFO 22:50:40 MainThread - #null ns# Test start
+[RockPy] INFO 22:50:40 MainThread - #null ns# Step 1: Init the start 100*256b in MRAM
+[RockPy] INFO 22:50:40 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:41 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:41 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:41 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:41 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:42 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:42 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:42 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:43 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:43 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:43 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:44 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:44 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:44 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:44 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:45 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:45 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:45 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:46 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:47 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:50:47 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:48 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:50:49 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:49 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:49 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:50 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:50 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:50 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:51 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:51 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:51 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:52 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:52 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:52 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:53 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:53 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:54 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:50:55 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:55 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:56 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:50:56 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:57 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:57 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:58 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:58 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:58 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:58 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:59 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:59 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:59 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:50:59 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:00 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:00 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:00 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:00 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:51:01 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:02 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:51:03 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:03 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:04 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:04 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:04 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:05 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:05 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:05 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:05 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:05 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:06 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:06 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:06 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:06 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:07 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:07 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:07 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:07 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:08 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:51:08 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:51:09 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:51:10 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:10 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x80
+[RockPy] INFO 22:51:11 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:11 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:12 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:12 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:12 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:13 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:13 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:13 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:14 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:14 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:14 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:14 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:15 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:15 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:16 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:17 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:17 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:18 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:18 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:19 MainThread - #null ns# Poll REG mram_mtp_wport_state_0 done after 1 times. Reg value = 0x0
+[RockPy] INFO 22:51:19 MainThread - #null ns# Finish initialization
+[RockPy] INFO 22:51:19 MainThread - #null ns# #1, MPTR continuously read per 32b at start addr
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 1000194, Act: d6f559d6, Exp: d6f55956
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 10001a8, Act: aa0630a9, Exp: aa063029
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 1000338, Act: 2916ecb4, Exp: 2916ec34
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 1000344, Act: 3fbd6bc3, Exp: 3fbd6b43
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 1000348, Act: 1259cf8b, Exp: 1259cf0b
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 1000358, Act: d176aef2, Exp: d176ae72
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 100035c, Act: a990b0b4, Exp: a990b034
+[RockPy] ERROR 22:51:46 MainThread - #null ns# Mismatch, Addr: 1000360, Act: 9b22de4, Exp: 9b22d64
+[RockPy] INFO 22:51:46 MainThread - #null ns# #2, MTPR read interleave on different 256b
+[RockPy] ERROR 22:51:50 MainThread - #null ns# Mismatch, Addr: 1000080, Act: f33acfb6, Exp: f33acf36
+[RockPy] ERROR 22:51:50 MainThread - #null ns# Mismatch, Addr: 10000a0, Act: 368214af, Exp: 3682142f
+[RockPy] ERROR 22:51:50 MainThread - #null ns# Mismatch, Addr: 10001a0, Act: 63cfdcfd, Exp: 63cfdc7d
+[RockPy] ERROR 22:51:50 MainThread - #null ns# Mismatch, Addr: 10001e0, Act: e55726c3, Exp: e5572643
+[RockPy] INFO 22:51:50 MainThread - #null ns# #3, MTPR mix 
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 100098c, Act: 962b3be0, Exp: 962b3b60
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 1000b00, Act: a81b1a9, Exp: a81b129
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 1000410, Act: 56c1fbec, Exp: 56c1fb6c
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 1000780, Act: c50238c5, Exp: c5023845
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 1000a7c, Act: 3bfe6bc4, Exp: 3bfe6b44
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 1000450, Act: 5b6dde81, Exp: 5b6dde01
+[RockPy] ERROR 22:51:56 MainThread - #null ns# Mismatch, Addr: 10003bc, Act: 1a30e9ab, Exp: 1a30e92b
+[RockPy] INFO 22:51:56 MainThread - #null ns# Test done
+[RockPy] INFO 22:51:56 MainThread - Start End of Simulation Check : <None>
+[RockPy] INFO 22:51:56 MainThread - Test finished: /home/erot/dev/recovery_regression/testlist/erot_debug_mram_mtpr_test_sim_head.py
+[RockPy] INFO 22:51:56 MainThread - Regression Completed
