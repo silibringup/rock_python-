@@ -18,16 +18,25 @@ PLATFORM_SIM_HEAD  = [ '--platform=SIM_HEAD',''' -rtlarg '+disable_falcon_mem_wa
 PLATFORM_SIM_HEADLESS = [ '--platform=SIM_HEADLESS' ] 
 
 with feature('erot_fpga/lighton'):
-    test_args   =   ['''-py erot_light_on_test.py ''']+PLATFORM_HEAD
+    #test_args   =   ['''-py erot_light_on_test.py ''']+PLATFORM_HEAD
+    #test_tags   =   ['lighton']
+    #AddTest(
+    #    name    =   'erot_reg_light_on_test',
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
+
+    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
     test_tags   =   ['lighton']
     AddTest(
-        name    =   'erot_reg_light_on_test',
+        name    =   'erot_reset_l3_light_on',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''light on each IP in chip'''
             )
-    
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
@@ -49,15 +58,15 @@ with feature('erot_fpga/lighton'):
     #    desc    =   '''light on each IP in chip'''
     #        )
 
-    test_args   =   ['''-py erot_oobhub_i2c_test.py -pyarg '--mst I2C_IB1 ' '''] + PLATFORM_HEAD
-    test_tags   =   ['lighton']
-    AddTest(
-        name    =   'erot_oobhub_i2c_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['''-py erot_oobhub_i2c_test.py -pyarg '--mst I2C_IB1 ' '''] + PLATFORM_HEAD
+    #test_tags   =   ['lighton']
+    #AddTest(
+    #    name    =   'erot_oobhub_i2c_test' ,
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
     #test_args   =   ['''-py erot_oobhub_i3c_test.py -pyarg '--i3c 1 ' '''] + PLATFORM_HEAD
     #test_tags   =   ['lighton']

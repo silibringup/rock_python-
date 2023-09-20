@@ -45,7 +45,7 @@ class Test:
             
 
     def gen_cmd(self):
-        self.cmd = 'python run_test.py'
+        self.cmd = ''
         arg_str = ' '.join(self.args)
 
         py_result = re.findall('-py\s*\w+.py',arg_str)

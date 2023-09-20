@@ -36,7 +36,7 @@ if __name__ == "__main__":
             print("Error to find correct Python file %s" % python_test)
             sys.exit(1)
         python_exe = f'python -B {searched_python_list[0]}'
-        pycmd = f"{python_exe} {pyarg} --port 1234 --ip 127.0.0.1 |& tee rockpy.log"
+        pycmd = f"{python_exe} {pyarg} --port 1234 --ip 127.0.0.1 "
         print(pycmd) 
         pyproc = subprocess.Popen([pycmd], shell=True)
 
