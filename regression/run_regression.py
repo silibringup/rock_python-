@@ -60,6 +60,7 @@ if __name__ == "__main__":
     infra_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src/erot_pkg_dev/tests'))
     cur_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
     clean_file = os.path.join(os.path.dirname(__file__),'clean.sh')
+    logcheck = os.path.join(os.path.dirname(__file__),'logcheck')
     openocd = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src','openocd'))
     cfg = os.path.abspath(os.path.join(os.path.dirname(__file__),'..','sr01.cfg'))
 
@@ -73,11 +74,14 @@ if __name__ == "__main__":
             test_cmd = os.path.join(test_url,'run.sh')
             with open(test_cmd,'w') as f:
                 f.write(f'export PYTHONPATH={infra_path}\n')
-                f.write(f'sudo sh {clean_file}\nsleep 1\n\n')
+                f.write(f'cd {test_url}\n\n')
+                f.write(f'sudo {clean_file}\nsleep 1\n\n')
                 f.write(f'sudo raspi-gpio set 23 op dl; sudo raspi-gpio set 23 op dh\nsleep 1\n\n')
                 f.write(f'sudo {openocd} -f {cfg} -socket 1234 -no_scan_verbo & \n\n')
                 f.write(f'python {cur_path}/run_test.py {test.gen_cmd()}')
                 f.write('\n\n')
+                f.write(f'sudo {clean_file}\nsleep 1\n\n')
+                f.write(f'python {logcheck}\n')
             os.chmod(test_cmd,stat.S_IRWXU) 
     os.chmod(testlist,stat.S_IRWXU)            
             

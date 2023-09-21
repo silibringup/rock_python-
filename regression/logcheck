@@ -1,0 +1,47 @@
+import os
+import re
+import sys
+from termcolor import colored
+
+def is_error_line(line):
+    if re.search("\[RockPy\] ERROR", line) or re.search("\[RockPy\] CRITICAL", line):
+        return True
+    return False
+
+
+PASS = \
+r"""
+______  ___  _____ _____ 
+| ___ \/ _ \/  ___/  ___|
+| |_/ / /_\ \ `--.\ `--. 
+|  __/|  _  |`--. \`--. \
+| |   | | | /\__/ /\__/ /
+\_|   \_| |_\____/\____/ 
+ """
+
+FAIL = \
+"""
+______ ___ _____ _     
+|  ___/ _ |_   _| |    
+| |_ / /_\ \| | | |    
+|  _||  _  || | | |    
+| |  | | | _| |_| |____
+\_|  \_| |_\___/\_____/
+"""
+
+if __name__ == "__main__":
+    fail = 0
+    with open("RoPy.log", 'r') as f:
+        if not re.search('\[RockPy\].+TEST SUCCESS COMPLETED', f.read()):
+            print(colored(f'{FAIL}', 'red'))
+            fail = 1
+        else :
+            print(colored(f'{PASS}', 'green'))
+    if fail:
+        with open("RoPy.log", 'r') as f:
+            lines = f.readlines()
+            for i in lines:
+                if is_error_line(i):
+                    print(colored(f'Test Failed Reason:\n{i}', 'red'))
+                    sys.exit(1)
+            
