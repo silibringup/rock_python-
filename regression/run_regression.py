@@ -59,8 +59,8 @@ if __name__ == "__main__":
 
     infra_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src/erot_pkg_dev/tests'))
     cur_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
-    clean_file = os.path.join(os.path.dirname(__file__),'clean.sh')
-    logcheck = os.path.join(os.path.dirname(__file__),'logcheck')
+    clean_file = os.path.join(os.path.dirname(__file__),'libs','clean.sh')
+    logcheck = os.path.join(os.path.dirname(__file__),'libs','logcheck')
     openocd = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src','openocd'))
     cfg = os.path.abspath(os.path.join(os.path.dirname(__file__),'..','sr01.cfg'))
 
@@ -85,11 +85,8 @@ if __name__ == "__main__":
             os.chmod(test_cmd,stat.S_IRWXU) 
     os.chmod(testlist,stat.S_IRWXU)            
             
-    cmd = f"sh {testlist}"
-    #pyproc = subprocess.Popen([cmd], shell=True) 
-
-
-
+    cmd = f"{testlist}"
+    pyproc = subprocess.Popen([cmd],shell=True) 
 
 
 
