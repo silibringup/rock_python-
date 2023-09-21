@@ -23,7 +23,7 @@ if __name__ == "__main__":
     python_test = options.python_test
     pyarg = ' '.join(options.pyarg)
 
-    pyarg = f'{pyarg} --platform JTAG --target fpga --disable_peripheral_init_agent'
+    pyarg = f' --platform JTAG --target fpga --disable_peripheral_init_agent {pyarg} '
 
     if python_test:
         search_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../test'))

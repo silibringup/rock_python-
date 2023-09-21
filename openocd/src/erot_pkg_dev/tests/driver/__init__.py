@@ -135,7 +135,13 @@ class Test:
         if not self.options.disable_peripheral_init_agent:
             test_api.test_init()
         if 'fpga' in helper.target and self.options.rcv_boot:
-            test_api.rcv_load_image(self.options.fmc_bin,0x69)
+            if self.options.fmc_bin:
+                fmc_bin = self.options.fmc_bin
+            elif helper.target == 'fpga_simv':
+                fmc_bin = '%s/../ucode/build/mashUpBin.bin' % DRV_DIR
+            elif helper.target == 'fpga':
+                fmc_bin = os.path.join(os.path.dirname(os.path.realpath(__file__)),'../recovery_test','mashUpBin.bin')
+            test_api.rcv_load_image(fmc_bin,0x69)
         return self
 
     def eos_check(self):
