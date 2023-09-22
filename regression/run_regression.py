@@ -9,6 +9,7 @@ import importlib
 sys.path.append(os.path.join(os.path.dirname(__file__),'libs'))
 import stat
 import signal
+from termcolor import colored
 
 ###################################
 # Main
@@ -82,7 +83,7 @@ if __name__ == "__main__":
                 f.write(f'cd {test_url}\n\n')
                 f.write(f'sleep 1\nsudo raspi-gpio set 23 op dl; sudo raspi-gpio set 23 op dh\nsleep 1\n\n')
                 f.write(f'sudo {openocd} -f {cfg} -socket 1234 -no_scan_verbo & \n\n')
-                f.write(f'python {cur_path}/run_test.py {test.gen_cmd()}\n\n')
+                f.write(f'python {cur_path}/run_test.py {test.gen_cmd()} 2>&1| tee rockpy.log\n\n')
                 f.write(f'sudo killall -9 openocd\n\n')
                 f.write('\n\n')
             os.chmod(test_cmd,stat.S_IRWXU) 
@@ -93,20 +94,56 @@ if __name__ == "__main__":
         p.communicate()
     
     
-    print('\n\n|---------------- regression start------------------|\n\n')
-    print(f'There are {len(lists)} tests in this regression')
-    print('\n\n|---------------- regression start------------------|\n\n')
+    print('\n\n|**************** regression start******************|\n')
+    print(f' There are {len(lists)} tests in this regression')
+    print('\n|**************** regression start******************|\n\n')
 
     for test in lists:
-        print(f'\n\n|------- Test {test.name} Start Running -------|\n\n')
+        print(f'\n\n|******* Test {test.name} Start Running *******|\n\n')
         test_url = os.path.join(batch_dir,test.name)
         test_cmd = os.path.join(test_url,'run.sh')
         run_cmd(f'sh {test_cmd}')
-        print(f'\n\n|------- Test {test.name} Done --------|\n\n ')
+        print(f'\n\n|******* Test {test.name} Done ********|\n\n ')
 
-    print('|---------------- regression done------------------|\n\n')
 
-    print('regression cleanup')
+    print('|**************** regression report ******************|\n')
+    fail_list= []
+    pass_list= []
+    for test in lists:
+        testout = os.path.join(batch_dir,test.name,'RoPy.log')
+        if os.path.exists(testout):
+            with open(testout,'r') as f:
+                if not re.search('\[RockPy\].+TEST SUCCESS COMPLETED', f.read()):
+                    fail_list.append(test.name)
+                else :
+                    pass_list.append(test.name)
+        else:
+            print(f'Attention : please check test {test.name} for Ropy.log which does not exist')
+            fail_list.append(test.name)
+    print(f'    Total Tests  : {len(lists)}')
+    print(colored(f'    Pass  Tests  : {len(pass_list)}','green'))
+    print(colored(f'    Fail  Tests  : {len(fail_list)}','red'))
+    print('    Passing Rate : {:.2%}\n'.format(len(pass_list)/len(lists)))
+    print('|**************** regression report ******************|\n\n')
+
+    with open (os.path.join(batch_dir,'result.txt'),'w') as f:
+        f.write(f'Result Summary :\n')
+        f.write(f'  Total Tests  : {len(lists)}\n')
+        f.write(f'  Pass  Tests  : {len(pass_list)}\n')
+        f.write(f'  Fail  Tests  : {len(fail_list)}\n')
+        f.write('  Passing Rate : {:.2%}\n'.format(len(pass_list)/len(lists)))
+        f.write('\n\n')
+        if len(fail_list):  
+            f.write(f'----- FAIL TEST {len(fail_list)} -----\n') 
+            for test in fail_list:
+                f.write(f'   TEST {test}  FAIL  URL {os.path.join(batch_dir,test)}\n') 
+            
+        if len(pass_list):  
+            f.write(f'----- PASS TEST {len(pass_list)} -----\n') 
+            for test in pass_list:
+                f.write(f'   TEST {test}  PASS  URL {os.path.join(batch_dir,test)}\n')         
+
+    print('Regression Cleanup')
     run_cmd(f'sudo {clean_file}\nsleep 1\n\n')
 
 

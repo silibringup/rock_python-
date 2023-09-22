@@ -19,7 +19,7 @@ PLATFORM_SIM_HEADLESS = [ '--platform=SIM_HEADLESS' ]
 
 with feature('erot_fpga/lighton'):
     test_args   =   ['''-py erot_light_on_test.py -pyarg ' --rcv_boot' ''']+PLATFORM_HEAD
-    test_tags   =   ['lighton']
+    test_tags   =   ['fabric']
     AddTest(
         name    =   'erot_reg_light_on_test',
         config  =   ['erot_fpga'],
@@ -29,7 +29,7 @@ with feature('erot_fpga/lighton'):
             )
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
-    test_tags   =   ['lighton']
+    test_tags   =   ['reset']
     AddTest(
         name    =   'erot_reset_l3_light_on',
         config  =   ['erot_fpga'],
