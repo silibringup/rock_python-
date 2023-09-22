@@ -1,0 +1,1 @@
+regression cmd : python run_regression.py -b <batch_name> -g <tag_name>
