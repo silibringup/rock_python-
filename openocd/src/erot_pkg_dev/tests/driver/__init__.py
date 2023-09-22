@@ -81,6 +81,11 @@ class Test:
         
         helper.loadimem_frontdoor = self.options.loadimem_frontdoor
 
+        self.disable_peripheral_init_agent = self.options.disable_peripheral_init_agent
+
+        if self.options.platform == 'JTAG':
+            self.disable_peripheral_init_agent = 1
+
         if self.options.platform not in ["SIM_HEAD", "SIM_HEADLESS", "JTAG", "HEAD"]:
             s = f"Wrong platform argument: {self.options.platform}"
             helper.perror(s)
@@ -132,7 +137,7 @@ class Test:
             helper.fsp_boot_init(bin_path=self.options.ucode, i_file_start_offset=0x200, i_mem_start_offset=0x200, i_load_size=0x6000+datsize,
                 d_file_start_offset=0x8000, d_load_size=0)
             helper.pdebug(f"end to boot fsp in %s mode" % helper.platform)
-        if not self.options.disable_peripheral_init_agent:
+        if not self.disable_peripheral_init_agent:
             test_api.test_init()
         if 'fpga' in helper.target and self.options.rcv_boot:
             if self.options.fmc_bin:
