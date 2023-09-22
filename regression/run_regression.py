@@ -8,6 +8,7 @@ import time
 import importlib
 sys.path.append(os.path.join(os.path.dirname(__file__),'libs'))
 import stat
+import signal
 
 ###################################
 # Main
@@ -54,8 +55,9 @@ if __name__ == "__main__":
             lists.append(test)
 
     batch_dir = os.path.join(os.path.dirname(__file__),batch)
-    if not os.path.exists(batch_dir):
-        os.mkdir(batch)
+    if os.path.exists(batch_dir):
+        os.system(f'rm -rf {batch_dir}')
+    os.mkdir(batch)
 
     infra_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src/erot_pkg_dev/tests'))
     cur_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
@@ -70,7 +72,8 @@ if __name__ == "__main__":
             test_url = os.path.join(batch_dir,test.name)
             if not os.path.exists(test_url):
                 os.mkdir(test_url)
-            t.write(f'sh {test_url}/run.sh\n')
+            #t.write(f'sh {test_url}/run.sh > /dev/null 2>&1\n')
+            t.write(f'sh {test_url}/run.sh \n')
             test_cmd = os.path.join(test_url,'run.sh')
             with open(test_cmd,'w') as f:
                 f.write(f'export PYTHONPATH={infra_path}\n')
@@ -81,13 +84,15 @@ if __name__ == "__main__":
                 f.write(f'python {cur_path}/run_test.py {test.gen_cmd()}')
                 f.write('\n\n')
                 f.write(f'sudo {clean_file}\nsleep 1\n\n')
-                f.write(f'python {logcheck}\n')
+                #f.write(f'python {logcheck}\n')
             os.chmod(test_cmd,stat.S_IRWXU) 
     os.chmod(testlist,stat.S_IRWXU)            
             
     cmd = f"{testlist}"
-    pyproc = subprocess.Popen([cmd],shell=True) 
+    print('regression start')
+    pyproc = subprocess.Popen(cmd,shell=True) 
 
 
+    
 
     

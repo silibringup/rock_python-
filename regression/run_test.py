@@ -4,6 +4,8 @@ import os
 import re
 import sys
 import subprocess
+import importlib
+sys.path.append(os.path.join(os.path.dirname(__file__),'libs'))
 
 ###################################
 # Main
@@ -43,3 +45,6 @@ if __name__ == "__main__":
     if python_test and pyproc.wait():
         print(f"ERROR: {python_test} failed")
         sys.exit(1)
+
+    logcheck = os.path.join(os.path.dirname(__file__),'libs','logcheck')
+    os.system(f'python {logcheck}')
