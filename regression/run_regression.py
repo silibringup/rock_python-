@@ -73,24 +73,43 @@ if __name__ == "__main__":
             if not os.path.exists(test_url):
                 os.mkdir(test_url)
             #t.write(f'sh {test_url}/run.sh > /dev/null 2>&1\n')
-            t.write(f'sh {test_url}/run.sh \n')
+            #t.write(f'sudo {clean_file}\nsleep 1\n\n')
+            t.write(f'sh {test_url}/run.sh \n\n')
+            t.write(f'sudo {clean_file}\nsleep 1\n\n')
             test_cmd = os.path.join(test_url,'run.sh')
             with open(test_cmd,'w') as f:
                 f.write(f'export PYTHONPATH={infra_path}\n')
                 f.write(f'cd {test_url}\n\n')
-                f.write(f'sudo {clean_file}\nsleep 1\n\n')
-                f.write(f'sudo raspi-gpio set 23 op dl; sudo raspi-gpio set 23 op dh\nsleep 1\n\n')
+                f.write(f'sleep 1\nsudo raspi-gpio set 23 op dl; sudo raspi-gpio set 23 op dh\nsleep 1\n\n')
                 f.write(f'sudo {openocd} -f {cfg} -socket 1234 -no_scan_verbo & \n\n')
-                f.write(f'python {cur_path}/run_test.py {test.gen_cmd()}')
+                f.write(f'python {cur_path}/run_test.py {test.gen_cmd()}\n\n')
+                f.write(f'sudo killall -9 openocd\n\n')
                 f.write('\n\n')
-                f.write(f'sudo {clean_file}\nsleep 1\n\n')
-                #f.write(f'python {logcheck}\n')
             os.chmod(test_cmd,stat.S_IRWXU) 
     os.chmod(testlist,stat.S_IRWXU)            
-            
-    cmd = f"{testlist}"
-    print('regression start')
-    pyproc = subprocess.Popen(cmd,shell=True) 
+
+    def run_cmd(cmd):
+        p = subprocess.Popen(cmd,shell=True) 
+        p.communicate()
+    
+    
+    print('\n\n|---------------- regression start------------------|\n\n')
+    print(f'There are {len(lists)} tests in this regression')
+    print('\n\n|---------------- regression start------------------|\n\n')
+
+    for test in lists:
+        print(f'\n\n|------- Test {test.name} Start Running -------|\n\n')
+        test_url = os.path.join(batch_dir,test.name)
+        test_cmd = os.path.join(test_url,'run.sh')
+        run_cmd(f'sh {test_cmd}')
+        print(f'\n\n|------- Test {test.name} Done --------|\n\n ')
+
+    print('|---------------- regression done------------------|\n\n')
+
+    print('regression cleanup')
+    run_cmd(f'sudo {clean_file}\nsleep 1\n\n')
+
+
 
 
     

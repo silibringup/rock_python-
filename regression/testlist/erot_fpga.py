@@ -28,15 +28,15 @@ with feature('erot_fpga/lighton'):
         desc    =   '''light on each IP in chip'''
             )
 
-    #test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
-    #test_tags   =   ['lighton']
-    #AddTest(
-    #    name    =   'erot_reset_l3_light_on',
-    #    config  =   ['erot_fpga'],
-    #    args    =   common_args+test_args,
-    #    tags    =   test_tags,
-    #    desc    =   '''light on each IP in chip'''
-    #        )
+    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
+    test_tags   =   ['lighton']
+    AddTest(
+        name    =   'erot_reset_l3_light_on',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''light on each IP in chip'''
+            )
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
