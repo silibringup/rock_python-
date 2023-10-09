@@ -1883,4 +1883,3 @@
 [RockPy] INFO 15:08:51 MainThread - #null ns# Poll REG MRAM_MTP_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
 [RockPy] INFO 15:08:53 MainThread - #null ns# Poll REG MRAM_MTP_BLF_READ_CTL_0 done after 1 times. Reg value = 0x0
 [RockPy] INFO 15:08:56 MainThread - #null ns# Poll REG MRAM_MTP_BLF_CTL_0 done after 1 times. Reg value = 0x0
-[RockPy] INFO 15:08:59 MainThread - #null ns# Poll REG MRAM_MTPR_BLF_WRITE_CTL_0 done after 1 times. Reg value = 0x0
