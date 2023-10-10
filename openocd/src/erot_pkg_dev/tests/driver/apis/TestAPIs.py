@@ -1780,3 +1780,44 @@ class TestAPIs:
         time.sleep(5)
 
         self.interacting_with_fmc()
+    
+    def mram_mtp_write(self,addr, data_list, rand_shuffle=0):
+        mram = erot.MRAM
+        if not isinstance(data_list, list):
+            self.helper.perror("data_list should be a list")
+            return
+        if len(data_list) != 8:
+            self.helper.perror("data_list's size should == 0")
+            return
+        idx_list = list(range(9))
+        if rand_shuffle == 1:
+            random.shuffle(idx_list)
+        for i in idx_list:
+            if i < 8:
+                wr_data_reg = mram.get_reg_by_name("mram_mtp_wport_data_" + str(i) + "_0")
+                wr_data_reg.write(VAL=data_list[i])
+            else:
+                mram.mram_mtp_wport_addr_0.write(VAL=addr)
+        mram.mram_mtp_wport_cmd_0.write(TRIG=1)
+        mram.mram_mtp_wport_state_0.poll(BUSY=0)
+    
+    def mram_init(self):
+        mram = erot.MRAM
+        exp_addr_data_dist = {}
+        MRAM_MTPR_BASE = mram.base + int(64*1024*4)
+        MRAM_MTPR_SIZE = int(4*1024*1024)
+        
+        self.helper.pinfo("Init the start 100*256b in MRAM")
+        for i in range(100):
+            wr_addr = i*32
+            abs_addr = MRAM_MTPR_BASE + wr_addr 
+            wr_data_list = []
+            for j in range(8):
+                exp_data = random.randint(0,(1<<32)-1)
+                wr_data_list.append(exp_data)
+                exp_addr_data_dist[abs_addr + j*4] = exp_data 
+            self.mram_mtp_write(wr_addr, wr_data_list, rand_shuffle=1)
+        self.helper.pinfo("Finish initialization")
+        
+        return exp_addr_data_dist
+
