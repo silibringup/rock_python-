@@ -3,6 +3,7 @@ import re
 import struct
 import subprocess
 from driver.components.priv import Priv
+from driver.components.bm_sim import Bm_sim
 from driver.components.i2c_mst import I2c_mst
 from driver.components.spi_mst import SPIMaster
 from driver.components.spi_mst import SPI_SCLK_FREQ_SEL
@@ -30,6 +31,7 @@ class Helper:
         self.__regblk_top = regblk_top
         self.__failure = False
         self.__priv = Priv()
+        self.__bm_sim = Bm_sim()
         self.priv = self.__priv
         self.__i2c_mst = I2c_mst()
         self.__spi_mst = SPIMaster(self.__link)
@@ -231,7 +233,7 @@ class Helper:
         return int(actual_data,2)
 
     def j2h_write(self, addr, data, check_ack=True):
-        self.pinfo("JTAG COMPONNET WRITE : 0x%x 0x%x " % (addr,data) )
+        self.pdebug("JTAG COMPONNET WRITE : 0x%x 0x%x " % (addr,data) )
         START_WRITE_DR = 0x1<<(118+4)| data<<(86+4) | addr<<(12+4) | 0xf22<<(0+4) | 0
         END_WRITE_DR = addr<<(7) | 0x79<<(0) | 0
         self.pdebug("J2H write start")
@@ -435,7 +437,7 @@ class Helper:
                 return self.__oob.read_gio(addr,*args, **kwargs)    
             else:
                 return self.__fsp.read_gio(addr,*args, **kwargs)
-        elif Helper.platform == "HEAD" or (Helper.platform == "JTAG" and Helper.target == "fpga"):
+        elif Helper.platform == "HEAD" or (Helper.platform == "JTAG" and "fpga" in Helper.target):
             if len(args) > 0 :
                 priv_level = args[0]
             else:
@@ -458,6 +460,9 @@ class Helper:
         else:
             self.pplatform_unsupport("read_headless")
 
+    def send_payload_to_bm(self, data_byte_list):
+        self.__bm_sim.send_payload_to_bm(self.__link, data_byte_list)
+
     def write(self, addr, value, priv_id=0, *args, **kwargs):
         self.pdebug(f"[{Helper.platform}]: write {hex(value)} @ {hex(addr)}")
         if Helper.platform == "SIM_HEADLESS":
@@ -476,7 +481,7 @@ class Helper:
                 self.__oob.write_gio(addr, value,*args, **kwargs)
             else:
                 self.__fsp.write_gio(addr, value,*args, **kwargs)
-        elif Helper.platform == "HEAD" or (Helper.platform == "JTAG" and Helper.target=='fpga'):
+        elif Helper.platform == "HEAD" or (Helper.platform == "JTAG" and "fpga" in Helper.target):
             if len(args) > 0 :
                 priv_level = args[0]
             else:
