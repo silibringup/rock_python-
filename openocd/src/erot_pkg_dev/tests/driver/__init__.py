@@ -142,7 +142,7 @@ class Test:
         if 'fpga' in helper.target and self.options.rcv_boot:
             if self.options.fmc_bin:
                 fmc_bin = self.options.fmc_bin
-            elif helper.target == 'fpga_simv':
+            elif helper.target == 'simv_fpga':
                 fmc_bin = '%s/../ucode/build/mashUpBin.bin' % DRV_DIR
             elif helper.target == 'fpga':
                 fmc_bin = os.path.join(os.path.dirname(os.path.realpath(__file__)),'../recovery_test','mashUpBin.bin')
