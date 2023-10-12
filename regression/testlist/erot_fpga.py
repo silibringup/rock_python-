@@ -15,7 +15,7 @@ RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
     test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
-    test_tags   =   ['fabric','as2','l0']
+    test_tags   =   ['fabric','l0']
     AddTest(
         name    =   'erot_reg_light_on_test',
         config  =   ['erot_fpga'],
@@ -25,7 +25,7 @@ with feature('erot_fpga/lighton'):
             )
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
-    test_tags   =   ['reset']
+    test_tags   =   ['reset','as2']
     AddTest(
         name    =   'erot_reset_l3_light_on',
         config  =   ['erot_fpga'],
@@ -45,7 +45,7 @@ with feature('erot_fpga/lighton'):
             )
 
     test_args   =   ['''-py erot_j2h_debug_test.py ''']
-    test_tags   =   ['j2h','l0']
+    test_tags   =   ['j2h','l0','as2']
     AddTest(
         name    =   'erot_j2h_debug_test',
         config  =   ['erot_fpga'],
@@ -56,7 +56,7 @@ with feature('erot_fpga/lighton'):
 
 
     test_args   =   ['''-py erot_jtag_idcode_test.py ''']
-    test_tags   =   ['j2h','l0']
+    test_tags   =   ['j2h','l0','as2']
     AddTest(
         name    =   'erot_jtag_idcode_test',
         config  =   ['erot_fpga'],
