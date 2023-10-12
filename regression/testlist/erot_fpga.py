@@ -3,23 +3,19 @@ from nextp import *
 root = Plan(claimed_feature="erot_fpga")
 root.run_script = 'nvrun run_test'
 
-common_args = ['-u erot_fpga','''-rtlarg '-xlrm hier_inst_seed' ''','''-rtlarg '+UVM_TIMEOUT=500000000' ''','''-pyarg 'NOT_DEFAULT_GO_MAIN --target simv_fpga' ''']
 
-light_on_reg_list      = ['I2C_IB0','I2C_IB1','IO_EXPANDER','SPI_IB0','SPI_IB1','OOBHUB_SPI','QSPI0','QSPI1','BOOT_QSPI',
-                          'I3C_IB0' ,'I3C_IB1','GPIO','MRAM','CLOCK' ,'RESET','THERM','UART',
-                          'OOBHUB','RTS','FUSE','NV_PBUS']
+PLATFORM_HEAD           = [ '--platform=HEAD',''' -rtlarg '+disable_falcon_mem_wakeup_scrubbing' ''']
+PLATFORM_SIM_HEAD       = [ '--platform=SIM_HEAD',''' -rtlarg '+disable_falcon_mem_wakeup_scrubbing' '''] 
+PLATFORM_SIM_HEADLESS   = [ '--platform=SIM_HEADLESS' ] 
+PLATFORM_JTAG           = [ '--platform=JTAG' ] 
 
-failure_case      = ['OOBHUB','QSPI0','QSPI1','BOOT_QSPI']
-
-as2_list          = [x for x in light_on_reg_list if x not in failure_case] 
-
-PLATFORM_HEAD      = [ '--platform=HEAD',''' -rtlarg '+disable_falcon_mem_wakeup_scrubbing' ''']
-PLATFORM_SIM_HEAD  = [ '--platform=SIM_HEAD',''' -rtlarg '+disable_falcon_mem_wakeup_scrubbing' '''] 
-PLATFORM_SIM_HEADLESS = [ '--platform=SIM_HEADLESS' ] 
+common_args = ['-u erot_fpga','''-rtlarg '-xlrm hier_inst_seed' ''','''-rtlarg '+UVM_TIMEOUT=500000000' ''','''-pyarg ' --target simv_fpga' ''']+PLATFORM_JTAG
+br_rel      = '/home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_candidate/presil_hex'
+RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
-    test_args   =   ['''-py erot_light_on_test.py -pyarg ' --rcv_boot' ''']+PLATFORM_HEAD
-    test_tags   =   ['fabric']
+    test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
+    test_tags   =   ['fabric','as2','l0']
     AddTest(
         name    =   'erot_reg_light_on_test',
         config  =   ['erot_fpga'],
@@ -37,6 +33,18 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''light on each IP in chip'''
             )
+
+    test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
+    test_tags   =   ['boot','l0']
+    AddTest(
+        name    =   'erot_rts_basic_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''RTS basic measurement logging test'''
+            )
+
+
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
