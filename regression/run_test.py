@@ -28,7 +28,7 @@ if __name__ == "__main__":
     pyarg = f' --platform JTAG --target fpga {pyarg} '
 
     if python_test:
-        search_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../test'))
+        search_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../tests'))
         searched_python_list = []
         for _root, _dir, _files in os.walk(search_path):
             for filename in _files:
