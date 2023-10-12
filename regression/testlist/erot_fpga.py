@@ -44,6 +44,27 @@ with feature('erot_fpga/lighton'):
         desc    =   '''RTS basic measurement logging test'''
             )
 
+    test_args   =   ['''-py erot_j2h_debug_test.py ''']
+    test_tags   =   ['j2h','l0']
+    AddTest(
+        name    =   'erot_j2h_debug_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''light on each IP in chip'''
+            )
+
+
+    test_args   =   ['''-py erot_jtag_idcode_test.py ''']
+    test_tags   =   ['j2h','l0']
+    AddTest(
+        name    =   'erot_jtag_idcode_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''light on each IP in chip'''
+            )
+
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
