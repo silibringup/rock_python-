@@ -55,6 +55,7 @@ class Test:
         for arg in pyarg_result:
             arg = arg.replace('NOT_DEFAULT_GO_MAIN','')
             arg = arg.replace('--target simv_fpga','')
+            arg = arg.replace('--replace_brom /home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_candidate/presil_hex','')
             if not re.match("-pyarg\s*'\s*'\s*",arg):
                 self.cmd = f'{self.cmd} {arg}'
         return self.cmd
