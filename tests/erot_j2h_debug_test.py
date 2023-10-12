@@ -21,7 +21,7 @@ with Test(sys.argv) as t:
     #file_in = cur_path + '/' + options.i
           
     helper.pinfo("JTAG J2H Debug Test Starts!")
-
+    helper.wait_sim_time('us',50)
     if helper.target == "simv_fpga":
         helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
     if helper.target != "simv_fpga":
