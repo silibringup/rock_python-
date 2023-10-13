@@ -139,15 +139,15 @@ class Test:
             helper.pdebug(f"end to boot fsp in %s mode" % helper.platform)
         if not self.disable_peripheral_init_agent:
             test_api.test_init()
-        if 'fpga' in helper.target and self.options.rcv_boot:
+        if 'fpga' in helper.target:
             if self.options.fmc_bin:
-                fmc_bin = self.options.fmc_bin
+                test_api.fmc_bin = self.options.fmc_bin
             elif helper.target == 'simv_fpga':
-                fmc_bin = '%s/../ucode/build/mashUpBin.bin' % DRV_DIR
+                test_api.fmc_bin = '%s/../ucode/build/mashUpBin.bin' % DRV_DIR
             elif helper.target == 'fpga':
-                fmc_bin = os.path.join(os.path.dirname(os.path.realpath(__file__)),'../recovery_test','mashUpBin.bin')
-            test_api.fmc_bin = fmc_bin
-            test_api.rcv_load_image(fmc_bin,0x69)
+                test_api.fmc_bin = os.path.join(os.path.dirname(os.path.realpath(__file__)),'../recovery_test','mashUpBin.bin')
+            if self.options.rcv_boot:
+                test_api.rcv_load_image(test_api.fmc_bin,0x69)
         return self
 
     def eos_check(self):
