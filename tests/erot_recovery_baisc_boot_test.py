@@ -3,6 +3,8 @@ import os
 import time
 from driver import *
 
+BMC_I2C_SLV_ADDR = 0x69
+BMC_I2C_ID = 3
 
 def check_cms2():
     helper.pinfo("Start checking CMS2 ...")
@@ -27,6 +29,33 @@ def check_cms2():
     helper.pinfo("Checking CMS2 completed")
 
 with Test(sys.argv) as t:
-    # recovery process is called before test by --rcv_boot
+
+    test_api.trigger_recovery()
+    
+    helper.pinfo("start default cms selection")
+    test_api.default_cms_selection()
+    helper.pinfo("default cms selection completed")
+
+    helper.pinfo("start fsp fmc")
+    test_api.fsp_fmc_loading(test_api.fmc_bin)
+    helper.pinfo("fsp fmc completed")
+
+    # wait manifest
+    time.sleep(5)
+
+    helper.pinfo("start image activation")
+    test_api.image_activation()
+    helper.pinfo("image activation completed")
+
+    helper.pinfo("start boot up recovery image")
+    test_api.boot_up_recovery_image()
+    helper.pinfo("boot up recovery image completed")
+    
+    # give time for fsp to run to main()
+    helper.wait_sim_time("us", 1500)
+    test_api.wait_boot_complete(BMC_I2C_SLV_ADDR)
+    time.sleep(5)
+
     check_cms2()
+    interacting_with_fmc()
 

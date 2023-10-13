@@ -15,7 +15,8 @@ class TestAPIs:
         return cls.__instance
 
     def init(self,helper=None):
-        self.helper = helper
+        self.helper  = helper
+        self.fmc_bin = ''
 
     def log(self,s):
         self.helper.log(s)

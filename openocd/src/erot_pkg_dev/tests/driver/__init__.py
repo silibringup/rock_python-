@@ -146,6 +146,7 @@ class Test:
                 fmc_bin = '%s/../ucode/build/mashUpBin.bin' % DRV_DIR
             elif helper.target == 'fpga':
                 fmc_bin = os.path.join(os.path.dirname(os.path.realpath(__file__)),'../recovery_test','mashUpBin.bin')
+            test_api.fmc_bin = fmc_bin
             test_api.rcv_load_image(fmc_bin,0x69)
         return self
 
