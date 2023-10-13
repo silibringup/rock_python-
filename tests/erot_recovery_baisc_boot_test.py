@@ -19,7 +19,7 @@ def check_cms2():
         nbr_byte, rd_data = helper.erot_rcvy_block_read(slv_addr=BMC_I2C_SLV_ADDR, cmd_code=OOB.SMCommand.INDIRECT_DATA, ret_bytes_nbr=True)
         if nbr_byte == 0:
             break
-        print(rd_data)
+        #print(rd_data)
         rd_data = rd_data.to_bytes(nbr_byte, 'little')
         cms2_bytes += rd_data
 
