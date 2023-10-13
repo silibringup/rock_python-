@@ -3,8 +3,6 @@ import os
 import time
 from driver import *
 
-BMC_I2C_SLV_ADDR = 0x69
-BMC_I2C_ID = 3
 
 def check_cms2():
     helper.pinfo("Start checking CMS2 ...")
