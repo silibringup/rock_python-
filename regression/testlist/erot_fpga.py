@@ -15,7 +15,7 @@ RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
 
-    test_args   =   ['''-py erot_recovery_baisc_boot_test.py '''] + RCV_BOOT
+    test_args   =   ['''-py erot_recovery_baisc_boot_test.py ''']
     test_tags   =   ['rcv','l0','as2']
     AddTest(
         name    =   'erot_recovery_baisc_boot_test',
