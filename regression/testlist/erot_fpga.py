@@ -14,6 +14,17 @@ br_rel      = '/home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_can
 RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
+
+    test_args   =   ['''-py erot_recovery_baisc_boot_test.py '''] + RCV_BOOT
+    test_tags   =   ['rcv','l0','as2']
+    AddTest(
+        name    =   'erot_recovery_baisc_boot_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''light on each IP in chip'''
+            )
+
     test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
     test_tags   =   ['fabric','l0']
     AddTest(
