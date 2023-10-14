@@ -53,7 +53,6 @@ doc/openocd.toc
 doc/openocd.tp
 doc/openocd.vr
 doc/version.texi
-src/openocd
 src/openocd.exe
 
 # configure/autotools output
