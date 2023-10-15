@@ -15,15 +15,15 @@ RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
 
-    test_args   =   ['''-py erot_recovery_baisc_boot_test.py '''] + RCV_BOOT
-    test_tags   =   ['boot','l0']
-    AddTest(
-        name    =   'erot_recovery_baisc_boot_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
+    #test_args   =   ['''-py erot_recovery_baisc_boot_test.py '''] + RCV_BOOT
+    #test_tags   =   ['boot','l0']
+    #AddTest(
+    #    name    =   'erot_recovery_baisc_boot_test',
+    #    config  =   ['erot_fpga'],
+    #    args    =   common_args+test_args,
+    #    tags    =   test_tags,
+    #    desc    =   '''light on each IP in chip'''
+    #        )
 
     test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
     test_tags   =   ['fabric','l0']

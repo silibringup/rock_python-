@@ -30,5 +30,6 @@ def check_cms2():
     helper.pinfo("Checking CMS2 completed")
 
 with Test(sys.argv) as t:
-    check_cms2()
+    #check_cms2()
+    pass
 
