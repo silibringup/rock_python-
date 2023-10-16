@@ -202,19 +202,22 @@ with Test(sys.argv) as t:
         helper.perror("With ECC default enable, mram_tmc_tdout_o_0's value should not be 0 after a MTP rd")
 
 
-    helper.log("Cfg TSMC TMC reg")
-    mram.mram_tmc_udin_i0_0.write(wr_buf=0x1)
-    mram.mram_tmc_xadr_i_0.write(0x0)
-    mram.mram_tmc_cmd_i_0.update(wrt_config=1)
-    mram.mram_tmc_udin_i0_0.write(wr_buf=0x34880061)
-    mram.mram_tmc_xadr_i_0.write(0x1)
-    mram.mram_tmc_cmd_i_0.update(wrt_config=1)
-    mram.mram_tmc_xadr_i_0.write(0x1)
-    mram.mram_tmc_cmd_i_0.update(read_config=1)
-    while True:
-        rd = mram.mram_tmc_regif_dout_o_0.read()
-        if rd['rd_buf'] & 0xc == 0:
-            break
+    if helper.target in ["fpga", "simv_fpga"]:
+        helper.log("This step closes the ECC duo the backdoor mram init, but fpga does not need this step")
+    else:
+        helper.log("Cfg TSMC TMC reg")
+        mram.mram_tmc_udin_i0_0.write(wr_buf=0x1)
+        mram.mram_tmc_xadr_i_0.write(0x0)
+        mram.mram_tmc_cmd_i_0.update(wrt_config=1)
+        mram.mram_tmc_udin_i0_0.write(wr_buf=0x34880061)
+        mram.mram_tmc_xadr_i_0.write(0x1)
+        mram.mram_tmc_cmd_i_0.update(wrt_config=1)
+        mram.mram_tmc_xadr_i_0.write(0x1)
+        mram.mram_tmc_cmd_i_0.update(read_config=1)
+        while True:
+            rd = mram.mram_tmc_regif_dout_o_0.read()
+            if rd['rd_buf'] & 0xc == 0:
+                break
 
 #                    "mram_tmc_sram_dout_o0_0",
 #                    "mram_tmc_sram_dout_o1_0",
