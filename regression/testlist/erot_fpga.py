@@ -23,6 +23,17 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''light on each IP in chip'''
             )
+    
+    #mram bring-up tests
+    test_args   =   ['-py erot_mram_tmc_test.py '] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_tmc_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''MRAM tmc feature check'''
+            )
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
     test_tags   =   ['reset','as2']
