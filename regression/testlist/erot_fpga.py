@@ -14,6 +14,7 @@ br_rel      = '/home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_can
 RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
+    # fabric bring-up tests
     test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
     test_tags   =   ['fabric','l0']
     AddTest(
@@ -24,7 +25,7 @@ with feature('erot_fpga/lighton'):
         desc    =   '''light on each IP in chip'''
             )
     
-    #mram bring-up tests
+    # mram bring-up tests
     test_args   =   ['-py erot_mram_tmc_test.py '] + RCV_BOOT
     test_tags   =   ['mram','l1']
     AddTest(
@@ -33,6 +34,16 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''MRAM tmc feature check'''
+            )
+    
+    test_args   =   ['-py erot_mram_region_protect_normal_test.py '] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_region_protect_normal_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''MRAM region WPEN/WP check'''
             )
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
