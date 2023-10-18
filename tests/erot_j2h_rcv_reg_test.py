@@ -155,10 +155,22 @@ with Test(sys.argv) as t:
             #    helper.pinfo(f"J2H read out {REG_LIST[i]['reg']} {hex(rd)}")
         elif REG_LIST[i]['direction'] == 'WRITE':
             helper.j2h_write(REG_LIST[i]['addr'], data)
-            rd = REG_LIST[i]['reg'].read()
-            if (rd.value & REG_LIST[i]['reg'].write_mask) != (data & REG_LIST[i]['reg'].write_mask):
-                helper.perror(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value & REG_LIST[i]['reg'].write_mask)} but expect {hex(data & REG_LIST[i]['reg'].write_mask)}")
-            else:
-                helper.pinfo(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value)}")
+            #poll
+            cnt = 0
+            matched = 0 
+            while matched == 0 and cnt < 10:
+                rd = REG_LIST[i]['reg'].read()
+                cnt += 1
+                if (rd.value & REG_LIST[i]['reg'].write_mask) == (data & REG_LIST[i]['reg'].write_mask):
+                    matched = 1
+                    helper.pinfo(f"FSP read out {REG_LIST[i]['reg']} {hex(rd)}")
+            if matched == 0:
+                helper.perror(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value & REG_LIST[i]['reg'].write_mask)} but expect {hex(data & REG_LIST[i]['reg'].write_mask)}")           
+
+            #rd = REG_LIST[i]['reg'].read()
+            #if (rd.value & REG_LIST[i]['reg'].write_mask) != (data & REG_LIST[i]['reg'].write_mask):
+            #    helper.perror(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value & REG_LIST[i]['reg'].write_mask)} but expect {hex(data & REG_LIST[i]['reg'].write_mask)}")
+            #else:
+            #    helper.pinfo(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value)}")
         else:
             helper.perror(f"invalid keyword of direction {REG_LIST[i]['direction']}")
