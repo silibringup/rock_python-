@@ -25,6 +25,67 @@ with feature('erot_fpga/lighton'):
         desc    =   '''light on each IP in chip'''
             )
     
+    test_args   =   ['-py erot_fab_AddrHighBits_cov_test.py ']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_AddrHighBits_cov_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric address hole check'''
+            )
+    
+    test_args   =   ['''-py erot_fab_blf_lck_test.py  -pyarg ' --IP L1_FUSE' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_test_l1_fuse',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck test for fuse'''
+            )
+
+    test_args   =   ['''-py erot_fab_blf_lck_test.py  -pyarg ' --IP L1_PART1' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_test_l1_part1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck test for l1 part1'''
+            )
+
+    test_args   =   ['''-py erot_fab_blf_lck_test.py  -pyarg ' --IP L1_PART2' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_test_l1_part2',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck test for l1 part2'''
+            )
+
+    test_args   =   ['''-py erot_fab_blf_lck_test.py  -pyarg ' --IP L2_PART1' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_test_l2_part1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck test for l2 part1'''
+            )
+
+    test_args   =   ['''-py erot_fab_blf_lck_test.py  -pyarg ' --IP L2_PART2' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_test_l2_part2',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck test for L2 part2'''
+            )
+    # fabric bring-up tests END
+    
     # mram bring-up tests
     test_args   =   ['-py erot_mram_tmc_test.py '] + RCV_BOOT
     test_tags   =   ['mram','l1']
@@ -45,6 +106,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''MRAM region WPEN/WP check'''
             )
+    test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + RCV_BOOT
+    test_tags   =   ['mram','l0']
+    AddTest(
+        name    =   'erot_debug_mram_mtpr_test_head' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''mram mtpr test'''
+            )
+    # mram bring-up tests END
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
     test_tags   =   ['reset','as2']
@@ -191,16 +262,6 @@ with feature('erot_fpga/lighton'):
     #    desc    =   '''light on each IP in chip'''
     #        )
 
-
-    #test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + PLATFORM_HEAD
-    #test_tags   =   ['lighton']
-    #AddTest(
-    #    name    =   'erot_debug_mram_mtpr_test_head' ,
-    #    config  =   ['erot_fpga'],
-    #    args    =   common_args+test_args,
-    #    tags    =   test_tags,
-    #    desc    =   '''light on each IP in chip'''
-    #        )
 
     #test_args   =   ['''-py bm_fpga_vip_test.py ''',''' -rtlarg '+ENABLE_SPI_VIP' '''] + PLATFORM_HEAD
     #test_tags   =   ['lighton']

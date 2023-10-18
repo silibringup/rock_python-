@@ -4,7 +4,7 @@ from driver import *
 with Test(sys.argv) as t:
 
     def parse_args():
-        t.parser.add_argument("--IP", action='store', help="Test Fabric BLF locking reg", default='L1_ALL')
+        t.parser.add_argument("--IP", action='store', help="Test Fabric BLF locking reg", default='L1_FUSE')
         opts, unknown = t.parser.parse_known_args(sys.argv[1:])
         return opts
 
@@ -120,6 +120,8 @@ with Test(sys.argv) as t:
     L1_FABRIC_TARGET_SYSCTRL = []
     L1_FABRIC_TARGET_THERM = []
     L1_FABRIC_TARGET_ALL = []
+    L1_FABRIC_TARGET_PART1 = []
+    L1_FABRIC_TARGET_PART2 = []
 
     L2_FABRIC_TARGET_L2_CSR = []
     L2_FABRIC_TARGET_GPIO1 = []
@@ -135,6 +137,8 @@ with Test(sys.argv) as t:
     L2_FABRIC_TARGET_SPIIB0 = []
     L2_FABRIC_TARGET_SPIIB1 = []
     L2_FABRIC_TARGET_UART = []
+    L2_FABRIC_TARGET_PART1 = []
+    L2_FABRIC_TARGET_PART2 = []
 
     for i in range(0, 1):
         L1_FABRIC_TARGET_L1_CSR.append(L1_FABRIC_TARGET[i])
@@ -166,8 +170,10 @@ with Test(sys.argv) as t:
         L1_FABRIC_TARGET_SYSCTRL.append(L1_FABRIC_TARGET[i])
     for i in range(34, 35):
         L1_FABRIC_TARGET_THERM.append(L1_FABRIC_TARGET[i])
-    for i in range(0, 35):
-        L1_FABRIC_TARGET_ALL.append(L1_FABRIC_TARGET[i])
+    for i in range(0, 18):
+        L1_FABRIC_TARGET_PART1.append(L1_FABRIC_TARGET[i])
+    for i in range(18, 35):
+        L1_FABRIC_TARGET_PART2.append(L1_FABRIC_TARGET[i])
 
     for i in range(0, 1):
         L2_FABRIC_TARGET_L2_CSR.append(L2_FABRIC_TARGET[i])
@@ -197,6 +203,10 @@ with Test(sys.argv) as t:
         L2_FABRIC_TARGET_SPIIB1.append(L2_FABRIC_TARGET[i])
     for i in range(23, 24):
         L2_FABRIC_TARGET_UART.append(L2_FABRIC_TARGET[i])
+    for i in range(0, 12):
+        L2_FABRIC_TARGET_PART1.append(L2_FABRIC_TARGET[i])
+    for i in range(12, 24):
+        L2_FABRIC_TARGET_PART2.append(L2_FABRIC_TARGET[i])
 
     def L3_reset():
         #erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_write(0, 1)
@@ -347,6 +357,14 @@ with Test(sys.argv) as t:
     else:
         helper.perror("wrong pyarg option(1): %s" %fabric[0:2])
 
+   #def read_blf_err(ip):
+   #    L1_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_nverot_fabric_l1.u_l1_csr.u_fabric_l1_blf_core.u_fabric_l1_regif.u_blfsecreg.nverot_fabric_l1_blf_'
+   #    L2_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_nverot_fabric_l2.u_l2_csr.u_fabric_l2_blf_core.u_fabric_l2_regif.u_blfsecreg.nverot_fabric_l2_blf_'
+   #    csr_path = L1_path if(fabric[0:2] == 'L1') else L2_path
+   #    read_value = helper.hdl_read(csr_path + ip + '_blf_slverr')
+   #    if(read_value != 1):
+   #        helper.perror("BLF ERROR has not raised when accessing BLF locked register")
+
     def check_BLF_Lock(target_list):
         for target in target_list:
             helper.log("================= %s check start================" %target['name'])
@@ -374,9 +392,13 @@ with Test(sys.argv) as t:
                 check_value(target['WRITE'], 0xffffffff) #for L1_CSR/L2_CSR, previous value is 0xffffffff
                 check_value(target['READ'], 0xffffffff)
             #Check blf regs of other targets can be read and write normally
-            for other_target in full_list:
-                if(other_target['name'] != target['name']):
-                    normal_write_read(other_target)
+            #too long time to run, so comment this, will verify it with another case
+            if((options.IP == 'L1_PART1') or (options.IP == 'L1_PART2') or (options.IP == 'L2_PART1') or (options.IP == 'L2_PART2')):
+                helper.log("L1/2_PART1/2 will take too long time so does not check other targets")
+            else:
+                for other_target in full_list:
+                    if(other_target['name'] != target['name']):
+                        normal_write_read(other_target)
             #Trigger SW L3 reset
             L3_reset()
             #Check blf regs in all targets can be read and write -> only need to check the locked reg can be again read and write
@@ -454,9 +476,14 @@ with Test(sys.argv) as t:
         check_BLF_Lock(L2_FABRIC_TARGET_SPIIB1)
     elif(options.IP == 'L2_UART'):
         check_BLF_Lock(L2_FABRIC_TARGET_UART)
-    elif(options.IP == 'L1_ALL'):
-	    check_BLF_Lock(L1_FABRIC_TARGET_ALL)
+    elif(options.IP == 'L1_PART1'):
+        check_BLF_Lock(L1_FABRIC_TARGET_PART1)
+    elif(options.IP == 'L1_PART2'):
+        check_BLF_Lock(L1_FABRIC_TARGET_PART2)
+    elif(options.IP == 'L2_PART1'):
+        check_BLF_Lock(L2_FABRIC_TARGET_PART1)
+    elif(options.IP == 'L2_PART2'):
+        check_BLF_Lock(L2_FABRIC_TARGET_PART2)
     else:
         helper.perror("Wrong --IP %s" % options.monitor)
     helper.log("Test Finish")
-

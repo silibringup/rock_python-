@@ -59,8 +59,6 @@ with Test(sys.argv) as t:
         wr_data_list = []
         for j in range(8):
             exp_data = random.randint(0,(1<<32)-1)
-            #exp_data = 0xaa063029
-            #exp_data = 0x0
             wr_data_list.append(exp_data)
             exp_addr_data_dist[abs_addr + j*4] = exp_data
         mram_mtp_write(wr_addr, wr_data_list, rand_shuffle=1)
