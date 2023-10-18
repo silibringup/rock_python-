@@ -163,7 +163,7 @@ with Test(sys.argv) as t:
                 cnt += 1
                 if (rd.value & REG_LIST[i]['reg'].write_mask) == (data & REG_LIST[i]['reg'].write_mask):
                     matched = 1
-                    helper.pinfo(f"FSP read out {REG_LIST[i]['reg']} {hex(rd)}")
+                    helper.pinfo(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value)}")
             if matched == 0:
                 helper.perror(f"FSP read out {REG_LIST[i]['reg']} {hex(rd.value & REG_LIST[i]['reg'].write_mask)} but expect {hex(data & REG_LIST[i]['reg'].write_mask)}")           
 
