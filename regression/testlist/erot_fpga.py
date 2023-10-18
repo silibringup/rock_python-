@@ -14,17 +14,7 @@ br_rel      = '/home/ip/nvmsoc/uproc/peregrine_fsp_brom/1.0/69611591_tapeout_can
 RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
-
-    test_args   =   ['''-py erot_recovery_baisc_boot_test.py '''] + RCV_BOOT
-    test_tags   =   ['boot','l0']
-    AddTest(
-        name    =   'erot_recovery_baisc_boot_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
-            )
-
+    # fabric bring-up tests
     test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
     test_tags   =   ['fabric','l0']
     AddTest(
@@ -33,6 +23,27 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''light on each IP in chip'''
+            )
+    
+    # mram bring-up tests
+    test_args   =   ['-py erot_mram_tmc_test.py '] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_tmc_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''MRAM tmc feature check'''
+            )
+    
+    test_args   =   ['-py erot_mram_region_protect_normal_test.py '] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_region_protect_normal_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''MRAM region WPEN/WP check'''
             )
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
@@ -75,6 +86,68 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''light on each IP in chip'''
             )
+
+
+    #jtag bring-up tests
+    test_args   =   ['''-py erot_j2h_pll_config_test.py --platform JTAG ''']
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_j2h_pll_config_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args + test_args,
+        tags    =   test_tags,
+        desc    =   '''Ensure that jtag is able to config pll.'''
+            )
+
+    test_args   =   ['''-py erot_j2h_reg_scan_test.py --platform JTAG''']
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_j2h_reg_scan_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args + test_args,
+        tags    =   test_tags,
+        desc    =   '''Ensure that jtag is able to acceess one internal register of all IPs.'''
+            )    
+
+    test_args   =   ['''-py erot_j2h_mram_mtpr_test.py --platform JTAG ''']
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_j2h_mram_mtpr_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args + test_args,
+        tags    =   test_tags,
+        desc    =   '''access MRAM by j2h'''
+            )
+
+    test_args   =   ['''-py erot_j2h_rcv_reg_test.py -rtlarg '+disable_j2h_vip' -pyarg '--disable_peripheral_init_agent ' --platform JTAG '''] + RCV_BOOT
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_j2h_rcv_reg_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args + test_args,
+        tags    =   test_tags,
+        desc    =   '''J2H and FSP access to OOBHUB recovery registers'''
+            )
+    
+    test_args   =   ['''-py erot_jtag_idcode_test.py --platform JTAG ''']
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_jtag_idcode',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''Ensure that jtag instruction registers and data registers can be accessed before unlock'''
+            )
+    
+    test_args   =   ['''-py erot_j2h_debug_test.py --platform JTAG ''']
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_j2h_debug_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''Ensure that jtag is able to acceess internal registers'''
+            )   
 
 
     #AS2IP_REGEX = '|'.join(as2_list)

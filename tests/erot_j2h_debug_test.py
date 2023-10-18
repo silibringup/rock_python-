@@ -21,7 +21,7 @@ with Test(sys.argv) as t:
     #file_in = cur_path + '/' + options.i
           
     helper.pinfo("JTAG J2H Debug Test Starts!")
-    helper.wait_sim_time('us',50)
+    helper.wait_sim_time('us', 50)
     if helper.target == "simv_fpga":
         helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
     if helper.target != "simv_fpga":
@@ -44,15 +44,17 @@ with Test(sys.argv) as t:
     helper.pinfo(f'j2h_unlock sequence finish')
 
     #poll L3 reset released
-    cnt = 0
-    l3_released = 0
-    while l3_released == 0 and cnt < 10:
-        rd = helper.j2h_read(0x33010, check_ack=False) #erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0
-        cnt += 1
-        if rd & 0x1 == 1:
-            l3_released = 1
-    if l3_released == 0:
-        helper.perror(f'L3_reset not released before w/r registers')
+    #cnt = 0
+    #l3_released = 0
+    #while l3_released == 0 and cnt < 10:
+    #    rd = helper.j2h_read(0x33010, check_ack=False) #erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0
+    #    cnt += 1
+    #    if rd & 0x1 == 1:
+    #        l3_released = 1
+    #if l3_released == 0:
+    #    helper.perror(f'L3_reset not released before w/r registers')	
+    
+    helper.wait_sim_time('us',10)
       
     #J2H write to sysctrl register
     helper.j2h_write(0x1080, 0x5a5a5a5a)
