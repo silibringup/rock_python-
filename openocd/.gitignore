@@ -67,7 +67,6 @@ doxygen
 doxygen.log
 Doxyfile
 libtool
-Makefile
 !contrib/loaders/**/Makefile
 stamp-h1
 stamp-vti
