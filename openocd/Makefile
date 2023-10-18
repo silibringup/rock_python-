@@ -60,7 +60,14 @@
 
 # SPDX-License-Identifier: GPL-2.0-or-later
 
-
+#erot_pkg := /home/erot/dev/recovery_regression/openocd/src/erot_pkg_dev
+erot_pkg := /home/erot/dev/bak_groot_rock_python/openocd/src/erot_pkg_dev
+RoPy := $(erot_pkg)/tests/RoPy
+ROCK_ARGS += -I$(RoPy)/Pyst/cpp/include
+ROCK_ARGS += -I$(erot_pkg)/tests/SMDriver/ft4222h/src
+ROCK_ARGS += -L$(erot_pkg) -Wl,-rpath,$(erot_pkg) -lpyst
+ROCK_ARGS += -L$(erot_pkg)/tests/SMDriver/ft4222h -Wl,-rpath,$(erot_pkg)/tests/SMDriver/ft4222h -Wl,-rpath,/usr/local/lib -lutilft4222h -lft4222
+ROCK := $(ROCK_ARGS)
 
 
 am__is_gnu_make = { \
@@ -1299,13 +1306,13 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} '/home/erot/dev/groot_rock_python_bak/openocd/build-aux/missing' aclocal-1.16
+ACLOCAL = ${SHELL} '/home/erot/dev/openocd_golden/openocd/build-aux/missing' aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} '/home/erot/dev/groot_rock_python_bak/openocd/build-aux/missing' autoconf
-AUTOHEADER = ${SHELL} '/home/erot/dev/groot_rock_python_bak/openocd/build-aux/missing' autoheader
-AUTOMAKE = ${SHELL} '/home/erot/dev/groot_rock_python_bak/openocd/build-aux/missing' automake-1.16
+AUTOCONF = ${SHELL} '/home/erot/dev/openocd_golden/openocd/build-aux/missing' autoconf
+AUTOHEADER = ${SHELL} '/home/erot/dev/openocd_golden/openocd/build-aux/missing' autoheader
+AUTOMAKE = ${SHELL} '/home/erot/dev/openocd_golden/openocd/build-aux/missing' automake-1.16
 AWK = mawk
 CAPSTONE_CFLAGS = 
 CAPSTONE_LIBS = 
@@ -1381,10 +1388,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.12.0-rc2+dev
-abs_builddir = /home/erot/dev/groot_rock_python_bak/openocd
-abs_srcdir = /home/erot/dev/groot_rock_python_bak/openocd
-abs_top_builddir = /home/erot/dev/groot_rock_python_bak/openocd
-abs_top_srcdir = /home/erot/dev/groot_rock_python_bak/openocd
+abs_builddir = /home/erot/dev/openocd_golden/openocd
+abs_srcdir = /home/erot/dev/openocd_golden/openocd
+abs_top_builddir = /home/erot/dev/openocd_golden/openocd
+abs_top_srcdir = /home/erot/dev/openocd_golden/openocd
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -1415,7 +1422,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/erot/dev/groot_rock_python_bak/openocd/build-aux/install-sh
+install_sh = ${SHELL} /home/erot/dev/openocd_golden/openocd/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -3185,7 +3192,7 @@ src/main.$(OBJEXT): src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 
 src/openocd$(EXEEXT): $(src_openocd_OBJECTS) $(src_openocd_DEPENDENCIES) $(EXTRA_src_openocd_DEPENDENCIES) src/$(am__dirstamp)
 	@rm -f src/openocd$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(src_openocd_OBJECTS) $(src_openocd_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) $(src_openocd_OBJECTS) $(src_openocd_LDADD) $(LIBS) $(ROCK)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -4029,7 +4036,7 @@ src/libopenocd_la-hello.lo: src/hello.c
 #	$(AM_V_CC_no)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libopenocd_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/libopenocd_la-hello.lo `test -f 'src/hello.c' || echo '$(srcdir)/'`src/hello.c
 
 src/libopenocd_la-openocd.lo: src/openocd.c
-	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libopenocd_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/libopenocd_la-openocd.lo -MD -MP -MF src/$(DEPDIR)/libopenocd_la-openocd.Tpo -c -o src/libopenocd_la-openocd.lo `test -f 'src/openocd.c' || echo '$(srcdir)/'`src/openocd.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(ROCK) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(src_libopenocd_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/libopenocd_la-openocd.lo -MD -MP -MF src/$(DEPDIR)/libopenocd_la-openocd.Tpo -c -o src/libopenocd_la-openocd.lo `test -f 'src/openocd.c' || echo '$(srcdir)/'`src/openocd.c
 	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libopenocd_la-openocd.Tpo src/$(DEPDIR)/libopenocd_la-openocd.Plo
 #	$(AM_V_CC)source='src/openocd.c' object='src/libopenocd_la-openocd.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
