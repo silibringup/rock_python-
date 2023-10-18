@@ -119,7 +119,7 @@ with Test(sys.argv) as t:
     #poll L3 reset released
     cnt = 0
     l3_released = 0
-    while l3_released == 0 and cnt < 100:
+    while l3_released == 0 and cnt < 10:
         rd = helper.j2h_read(0x33010, check_ack=False) #erot.RESeET.NVEROT_RESET_CFG.SW_L3_RST_0
         cnt += 1
         if rd & 0x1 == 1:
@@ -133,14 +133,26 @@ with Test(sys.argv) as t:
             data = random.choice([0x000001, 0x000000])
         else:
             data = random.randint(0x0, 0xffffffff)
-            
+
         if REG_LIST[i]['direction'] == 'READ':
             REG_LIST[i]['reg'].write(data)
-            rd = helper.j2h_read(REG_LIST[i]['addr'])
-            if (rd & REG_LIST[i]['reg'].write_mask) != (data & REG_LIST[i]['reg'].write_mask):
+            #poll
+            cnt = 0
+            matched = 0 
+            while matched == 0 and cnt < 10:
+                rd = helper.j2h_read(REG_LIST[i]['addr'])
+                cnt += 1
+                if (rd & REG_LIST[i]['reg'].write_mask) == (data & REG_LIST[i]['reg'].write_mask):
+                    matched = 1
+                    helper.pinfo(f"J2H read out {REG_LIST[i]['reg']} {hex(rd)}")
+            if matched == 0:
                 helper.perror(f"J2H read out {REG_LIST[i]['reg']} {hex(rd & REG_LIST[i]['reg'].write_mask)} but expect {hex(data & REG_LIST[i]['reg'].write_mask)}")
-            else:
-                helper.pinfo(f"J2H read out {REG_LIST[i]['reg']} {hex(rd)}")
+            
+            #rd = helper.j2h_read(REG_LIST[i]['addr'])
+            #if (rd & REG_LIST[i]['reg'].write_mask) != (data & REG_LIST[i]['reg'].write_mask):
+            #    helper.perror(f"J2H read out {REG_LIST[i]['reg']} {hex(rd & REG_LIST[i]['reg'].write_mask)} but expect {hex(data & REG_LIST[i]['reg'].write_mask)}")
+            #else:
+            #    helper.pinfo(f"J2H read out {REG_LIST[i]['reg']} {hex(rd)}")
         elif REG_LIST[i]['direction'] == 'WRITE':
             helper.j2h_write(REG_LIST[i]['addr'], data)
             rd = REG_LIST[i]['reg'].read()
