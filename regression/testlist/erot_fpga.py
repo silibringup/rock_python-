@@ -116,6 +116,18 @@ with feature('erot_fpga/lighton'):
         desc    =   '''mram mtpr test'''
             )
     # mram bring-up tests END
+    
+    # fuse api test
+    test_args   =   ['-py erot_fuse_override_api_test.py ']
+    test_tags   =   ['fuse_test']
+    AddTest(
+        name    =   'erot_fuse_override_api_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''test fuse api function'''
+            )
+    # mram bring-up tests END
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
     test_tags   =   ['reset','as2']
