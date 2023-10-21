@@ -305,6 +305,7 @@ COMMAND_HANDLER(handle_init_command)
 
 	uint8_t SMBus_read_command = 0;
     uint32_t SMBus_read_address = 0;
+
 	// BMC i2c init
 	FT_HANDLE ftHandle = NULL;
     if(!SMBus_init(20, &ftHandle)){
@@ -312,6 +313,15 @@ COMMAND_HANDLER(handle_init_command)
         return 1;
     } else {
 		LOG_USER("BMC I2C initialization Succeeded\n");
+	}
+
+	//AP0 SPI init
+	FT_HANDLE fthandle_spi = NULL;
+	if(!SPI_init(&fthandle_spi)){
+		LOG_USER("SPI initialization failed\n");
+        return 1;
+	}else{
+		LOG_USER("SPI initialization Succeeded\n");
 	}
 
     pyst_service_start(1, ports, 1);
@@ -575,6 +585,177 @@ COMMAND_HANDLER(handle_init_command)
 		  	break; // I2C component break
 		}
 
+		//case 7: //component 7, same as component 8, 9, leave it empty
+		//		// 7 -> AP0 SPI, 8 -> AP1 SPI, 9 -> OOB SPI
+		case 7: //component 7, same as component 8, leave it empty
+
+		case 8: {
+
+				uint32_t op_type    = p_in_pkt->fields[0][0];
+				uint32_t spi_id 	= p_in_pkt->fields[1][0];
+				uint32_t cs_id  	= p_in_pkt->fields[2][0];
+				uint8_t* data       = NULL;
+				uint32_t data_lane  = p_in_pkt->fields[3][0];
+				uint32_t data_size  = p_in_pkt->n_each_field_bytes[4];
+				uint32_t inst_lane  = 0;
+				uint32_t inst_bits  = 0;
+				uint32_t inst_size  = 0;
+				uint8_t* inst       = NULL;
+				uint32_t addr_lane  = 0;
+				uint32_t addr_bits  = 0;
+				uint32_t addr_size  = 0;
+				uint8_t* addr       = NULL;
+				uint32_t dummy_cycles = 0;
+
+				if(!SPI_config(fthandle_spi,CLK_DIV_512,cs_id)){
+					LOG_USER("\nSPI Trans : SPI config failed");
+				}else{
+					LOG_USER("\nSPI Trans : SPI config Succeeded");
+				}
+
+
+				LOG_USER("SPI Trans : op_type = %d (0 read, 1 write), spi_id = %d, cs_id = %d (2 spi target), iolane = %d",op_type,spi_id,cs_id,data_lane);
+				LOG_USER("SPI Trans : field size = %d",sizeof(p_in_pkt->n_each_field_bytes));
+				if (sizeof(p_in_pkt->n_each_field_bytes) > 3){
+					inst_lane = p_in_pkt->fields[5][0];
+					inst_bits = p_in_pkt->fields[6][0];
+					addr_lane = p_in_pkt->fields[8][0];
+					addr_bits = p_in_pkt->fields[9][0];
+					inst_size = inst_bits/8;
+					LOG_USER("SPI Trans : instruction info : inst_lane = %d, inst_bits = %d",inst_lane,inst_bits);
+					if (inst_size > 0){
+						inst = (uint8_t*)malloc(inst_bits/8);
+						for(uint32_t i=0;i<inst_bits/8;i++){
+							inst[i] = p_in_pkt->fields[7][i];
+							LOG_USER("SPI Trans : inst[%d] = %02x",i,inst[i]);
+						}
+					}
+					addr_size = addr_bits/8;
+					LOG_USER("SPI Trans : address info : addr_lane = %d, addr_bits = %d",addr_lane,addr_bits);
+					if (addr_size > 0){
+						addr = (uint8_t*)malloc(addr_bits/8);
+						for(uint32_t i=0;i<addr_bits/8;i++){
+							addr[i] = p_in_pkt->fields[10][i];
+							LOG_USER("SPI Trans : addr[%d] = %02x",i,addr[i]);
+						}
+					}
+					if (op_type == 0 && p_in_pkt->fields[11][0] != 0xff ){
+						dummy_cycles = bytes4_to_u32(p_in_pkt->fields[11]);
+					}
+					//for(uint32_t i=0;i<4;i++){
+					//	LOG_USER("SPI Trans : dummy_cycle[%d] = %02x",i,p_in_pkt->fields[11][i]);
+					//}
+
+				}
+					LOG_USER("SPI Trans : dummy_cycles = %d",dummy_cycles);
+
+				if (data_size == 0){
+					LOG_USER("Error: Data send size = %d is invalid. Should be >= 1 ", p_in_pkt->n_each_field_bytes[1]);
+				} else {
+					LOG_USER("SPI Trans : data_size = %d",data_size);
+				}
+
+				switch(op_type){
+					case 0 : { // spi read
+						uint32_t recvLen = 0; //bytes number
+						uint32_t sendLen = 0; //bytes number
+						uint32_t singleBytes = 0; //bytes number
+						uint8_t* sbuf;							
+						uint8_t* rbuf;							
+						
+						recvLen = data_size + data_lane*dummy_cycles;
+						sendLen = inst_size + addr_size; 
+						singleBytes = sendLen;
+						sbuf = (uint8_t*)malloc(sendLen);
+						LOG_USER("\nSPI Trans : SPI READ Transfer Begin\n");
+						for(uint32_t i=0;i<sendLen;i++){
+							if (i < inst_size){
+								sbuf[i] = inst[i];
+							} else if  (i >= inst_size && i < inst_size + addr_size){
+								sbuf[i] = addr[i - inst_size];
+							} else {
+								sbuf[i] = data[i - inst_size - addr_size];
+							}
+							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
+						}
+						rbuf = (uint8_t*)malloc(recvLen);
+						if(!SPI_read(fthandle_spi,data_lane,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
+							LOG_USER("Error: SPI read failed!\n");
+						}
+						for(uint32_t i=0;i<recvLen;i++){
+							LOG_USER("SPI Trans : rbuf[%d] = %02x",i,rbuf[i]);
+						}
+
+						uint8_t *rbuf2 = &rbuf[dummy_cycles*data_lane];
+						packet_copy(p_in_pkt, p_out_pkt);
+						p_out_pkt->n_fields = 4; // field number before return data
+						add_ret(p_out_pkt, (uint32_t*)&len, rbuf2, recvLen);
+						free(rbuf);
+						if (sbuf != NULL){
+							free(sbuf);
+						}
+						break;
+					}
+
+					case 1 : { // spi write
+						uint32_t send_size = data_size;
+						uint32_t sendLen = 0; //bytes number
+						uint32_t singleBytes = 0; //bytes number
+						uint8_t* sbuf;
+
+						LOG_USER("\nSPI Trans : SPI WRITE Transfer Begin\n");
+						data = (uint8_t*)malloc(send_size);
+						// meaningful in write
+						for(uint32_t i=0;i<send_size;i++){
+							data[i] = p_in_pkt->fields[4][i];
+							LOG_USER("SPI Trans : data[%d] = %02x",i,data[i]);
+						}
+
+						sendLen = inst_size + addr_size + send_size;
+						singleBytes = inst_size + addr_size;
+						sbuf = (uint8_t*)malloc(sendLen);
+						for(uint32_t i=0;i<sendLen;i++){
+							if (i < inst_size){
+								sbuf[i] = inst[i];
+							} else if  (i >= inst_size && i < inst_size + addr_size){
+								sbuf[i] = addr[i - inst_size];
+							} else {
+								sbuf[i] = data[i - inst_size - addr_size];
+							}
+							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
+						}
+
+						if(!SPI_write(fthandle_spi,data_lane,sendLen,sbuf,true,singleBytes)){
+							LOG_USER("Error: SPI write failed!\n");
+						}
+						packet_copy(p_in_pkt, p_out_pkt);
+						free(sbuf);
+						break;
+					}
+
+					case 2 : { // spi set sck frequency
+						break;
+					}
+
+					default: {
+						LOG_USER("Error: Unknown SPI routine");
+						break;
+					}
+				}
+
+				if(data != NULL){
+					free(data);
+				}
+				if(inst != NULL){
+					free(inst);
+				}
+				if(addr != NULL){
+					free(addr);
+				}
+				LOG_USER("\nSPI Trans : SPI Transfer END\n");
+				break;
+		}
+
         default: {
 			if(p_in_pkt->component != 0 && p_in_pkt->routine != 0){ // not "DONE" routine
 				LOG_USER("Warning: Unsupported component %d, routine %d for FPGA", p_in_pkt->component, p_in_pkt->routine);
@@ -594,6 +775,7 @@ COMMAND_HANDLER(handle_init_command)
     packet_free(p_in_pkt);
     packet_free(p_out_pkt);
 	SMBus_close(ftHandle);
+	SPI_close(fthandle_spi);
     pyst_service_stop();
 
   }
