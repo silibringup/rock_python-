@@ -232,6 +232,37 @@ with feature('erot_fpga/lighton'):
         desc    =   '''Ensure that jtag is able to acceess internal registers'''
             )   
 
+    ## OOBHUB test
+
+    test_args   =   ['''-py erot_oobhub_cms_queriable_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_cms_queriable',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''check CMS registers'''
+            )
+
+    test_args   =   ['''-py erot_oobhub_pmb_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_pmb',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''OOBHUB pmb'''
+    )
+
+    test_args   =   ['''-py erot_oobhub_cpu_boot.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_cpu_boot',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''OOBHUB peregrine boot'''
+            )
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
