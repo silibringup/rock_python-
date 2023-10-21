@@ -10,6 +10,7 @@ from driver.components.spi_mst import SPI_SCLK_FREQ_SEL
 from driver.components.JTAG import JTAG
 from driver.helpers.PrgnRiscV  import PrgnRiscV, FSP, OOB
 from RoPy import RPCommon, rpinfo, rpdebug, rperror, rpwarning, rpfatal
+import time
 
 class Helper:
     __instance = None
@@ -86,19 +87,41 @@ class Helper:
                   n_instruction_lane, n_instruction_bits, instruction, 
                   n_address_lane, n_address_bits, address, 
                   n_data_lane, data):
+
+        CS_PIN = 25 # RPi Pin : Apx_QSPI_EROT_CS_N
+        if cs_id == 2 and Helper.target == 'fpga' : #spi_target cs
+            self.GPIO.setup(CS_PIN,self.GPIO.OUT)
+            self.GPIO.output(CS_PIN, self.GPIO.HIGH)
+            time.sleep(1)
+            self.GPIO.output(CS_PIN, self.GPIO.LOW)
         self.__spi_mst.write(self.__link, spi_port, cs_id, 
                              n_instruction_lane, n_instruction_bits, instruction, 
                              n_address_lane, n_address_bits, address, 
                              n_data_lane, data)
-    
+        if cs_id == 2 and Helper.target == 'fpga' : #spi_target cs
+            self.GPIO.output(CS_PIN, self.GPIO.HIGH)
+            time.sleep(1)   
     def spi_read(self, spi_port, cs_id, 
                  n_instruction_lane, n_instruction_bits, instruction, 
                  n_address_lane, n_address_bits, address, 
                  n_data_lane, nbr_rd_bytes, dummy_cycles=0xFFFFFFFF):
-        return self.__spi_mst.read(self.__link, spi_port, cs_id, 
+
+        CS_PIN = 25 # RPi Pin : Apx_QSPI_EROT_CS_N
+        if cs_id == 2 and Helper.target == 'fpga' : #spi_target cs
+            self.GPIO.setup(CS_PIN,self.GPIO.OUT)
+            self.GPIO.output(CS_PIN, self.GPIO.HIGH)
+            time.sleep(1)
+            self.GPIO.output(CS_PIN, self.GPIO.LOW)                
+        rd = self.__spi_mst.read(self.__link, spi_port, cs_id, 
                                    n_instruction_lane, n_instruction_bits, instruction, 
                                    n_address_lane, n_address_bits, address, 
                                    n_data_lane, nbr_rd_bytes, dummy_cycles)
+
+        if cs_id == 2 and Helper.target == 'fpga' : #spi_target cs
+            self.GPIO.output(CS_PIN, self.GPIO.HIGH)
+            time.sleep(1)  
+
+        return rd 
 
     def spi_set_sclk_frequency(self, spi_port, freq_sel: SPI_SCLK_FREQ_SEL):
         self.__spi_mst.set_sclk_frequency(self.__link, spi_port, freq_sel)
