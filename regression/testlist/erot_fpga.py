@@ -84,6 +84,25 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck test for L2 part2'''
             )
+    
+    test_args   =   ['''-py erot_fab_blf_lck_err_code_test.py  -pyarg ' --Fabric L1' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_err_code_test_l1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck error check l1 part'''
+            )
+    
+    test_args   =   ['''-py erot_fab_blf_lck_err_code_test.py  -pyarg ' --Fabric L2' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_lck_err_code_test_l2',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf lck error check l2 part'''
     # fabric bring-up tests END
     
     # mram bring-up tests
@@ -127,7 +146,7 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''test fuse api function'''
             )
-    # mram bring-up tests END
+    # fuse api bring-up tests END
 
     test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
     test_tags   =   ['reset','as2']
