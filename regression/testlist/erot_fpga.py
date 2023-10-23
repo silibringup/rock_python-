@@ -103,6 +103,7 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
+            )
     # fabric bring-up tests END
     
     # mram bring-up tests
