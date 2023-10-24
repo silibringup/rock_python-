@@ -9,6 +9,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <wiringPi.h>
 
 #define SLAVE_SELECT(x) (1 << (x))
 
@@ -65,6 +66,35 @@ int SPI_init(FT_HANDLE* ftHandle){
             break;
         }
     }
+
+    FT4222_ClockRate clk;
+    FT4222_STATUS ft4222Status;
+
+    ft4222Status = FT4222_SetClock(*ftHandle,SYS_CLK_24);
+    if (FT4222_OK != ft4222Status){
+        std::cerr << "FT4222 clock set failed! Status :" << FT4222_STATUS(ft4222Status) << std::endl;
+        return 0;
+    } else {
+        std::cout << "FT4222 Set Core Clock succeeded " << std::endl;
+    }   
+    
+    ft4222Status = FT4222_GetClock(*ftHandle,&clk);
+
+    if (FT4222_OK != ft4222Status){
+        std::cerr << "FT4222 clock get failed! Status :" << FT4222_STATUS(ft4222Status) << std::endl;
+        return 0;
+    } else {
+        std::cout << "FT4222 Core Clock : "<< clk << "  (0 : 60, 1 : 24, 2 : 48, 3 : 80MHZ)" << std::endl;
+    }
+
+
+	//GPIO init
+	if(wiringPiSetupGpio() == -1){
+        std::cerr << "GPIO initialization Succeeded" << std::endl;
+        return 0;
+	}else{
+        std::cout << "GPIO initialization Succeeded" << std::endl;
+	}
     return 1;
     //ftStatus = FT_Open(4, ftHandle);
     //if (FT_OK != ftStatus){
@@ -81,10 +111,13 @@ int SPI_config(FT_HANDLE ftHandle,FT4222_SPIClock clock,uint32_t cs_id){
     FT4222_STATUS ft4222Status;
     FT_STATUS     ftStatus;
     uint8_t       csMap;
+    int           cs_pin = 25; //apx_qspi_erot_cs_n
+
     // initial SPI master 
 
     if (cs_id == 2){
         csMap = SLAVE_SELECT(0);
+        pinMode (cs_pin, OUTPUT); 
     } else {
         csMap = SLAVE_SELECT(cs_id);
     }
@@ -104,6 +137,27 @@ int SPI_config(FT_HANDLE ftHandle,FT4222_SPIClock clock,uint32_t cs_id){
     } else {
         std::cout << "SPI master int succeeded!" << std::endl;
     }
+
+    ft4222Status = FT4222_SPI_ResetTransaction(ftHandle,0);
+    //ft4222Status = FT4222_SPI_Reset(ftHandle);
+    if (FT4222_OK != ft4222Status){
+        std::cerr << "SPI master trans reset failed! Status :" << FT4222_STATUS(ft4222Status) << std::endl;
+        return 0;
+    } else {
+        std::cout << "SPI master trans reset succeeded!" << std::endl;
+    }
+    
+    //ft4222Status = FT4222_SPI_SetDrivingStrength(ftHandle,
+    //                                             DS_16MA,
+    //                                             DS_16MA,
+    //                                             DS_16MA);
+    //if (FT4222_OK != ft4222Status){
+    //    std::cerr << "SPI master drivingstrength failed! Status :" << FT4222_STATUS(ft4222Status) << std::endl;
+    //    return 0;
+    //}else{
+    //    std::cout << "SPI master drivingstrength succeeded!" << std::endl;
+    //}
+
     return 1;
 }
 
@@ -113,13 +167,21 @@ void SPI_close(FT_HANDLE ftHandle){
     FT_Close(ftHandle);
 }
 
-int SPI_read(FT_HANDLE ftHandle,int spiMode, int sendLen, uint8_t* sbuf,int recvLen, uint8_t* rbuf,bool deassert, int singleBytes){
+int SPI_read(FT_HANDLE ftHandle,uint32_t cs_id,int spiMode, int sendLen, uint8_t* sbuf,int recvLen, uint8_t* rbuf,bool deassert, int singleBytes){
     FT4222_STATUS status{};
+    int           cs_pin = 25; //apx_qspi_erot_cs_n
 
     // Single mode
     if (spiMode == SPI_IO_SINGLE) {
         uint16_t sizeTransferred=0;
+		if (cs_id == 2){ //spi target cs control 
+			digitalWrite(cs_pin, LOW);
+		}
         status = FT4222_SPIMaster_SingleRead(ftHandle, rbuf, recvLen, &sizeTransferred, deassert);
+        if (cs_id == 2){ //spi target cs control 
+            delay(500);
+			digitalWrite(cs_pin, HIGH);
+		}
         if (FT4222_OK == status){
         }
         else{
@@ -143,11 +205,16 @@ int SPI_read(FT_HANDLE ftHandle,int spiMode, int sendLen, uint8_t* sbuf,int recv
         }
         sendLen -= singleBytes;
         uint32_t sizeTransferred=0;
-
+		if (cs_id == 2){ //spi target cs control 
+			digitalWrite(cs_pin, LOW);
+		}
         status = FT4222_SPIMaster_MultiReadWrite(ftHandle, rbuf, sbuf, singleBytes,sendLen, recvLen,
                                                  &sizeTransferred);
+		if (cs_id == 2){ //spi target cs control 
+            delay(500);
+			digitalWrite(cs_pin, HIGH);
+		}
         if (FT4222_OK == status){
-
         }
         else{
             std::cerr << "SPI multi read failed!" << std::endl;
@@ -159,16 +226,23 @@ int SPI_read(FT_HANDLE ftHandle,int spiMode, int sendLen, uint8_t* sbuf,int recv
 }
 
 
-int SPI_write(FT_HANDLE ftHandle,int spiMode, int sendLen, uint8_t* sbuf,bool deassert, int singleBytes){
+int SPI_write(FT_HANDLE ftHandle,uint32_t cs_id,int spiMode, int sendLen, uint8_t* sbuf,bool deassert, int singleBytes){
     FT4222_STATUS status{};
-
+    int           cs_pin = 25; //apx_qspi_erot_cs_n
     
     // Single mode
     if (spiMode == SPI_IO_SINGLE) {
         uint16_t sizeTransferred=0;
+        if (cs_id == 2){ //spi target cs control 
+			digitalWrite(cs_pin, LOW);
+		}
         status = FT4222_SPIMaster_SingleWrite(ftHandle, sbuf, sendLen, &sizeTransferred, deassert);
+        if (cs_id == 2){ //spi target cs control 
+            delay(500);
+			digitalWrite(cs_pin, HIGH);
+		}
         if (FT4222_OK == status){
-            std::cout << "SPI single write succeeded!" << std::endl;
+            std::cout << "SPI single write succeeded! " << sizeTransferred << " bytes" << std::endl;
         }
         else{
             std::cerr << "SPI Single Write failed!" << std::endl;
@@ -194,9 +268,15 @@ int SPI_write(FT_HANDLE ftHandle,int spiMode, int sendLen, uint8_t* sbuf,bool de
         uint8_t* rbuf;
         int recvLen = 0;
         uint32_t sizeTransferred=0;
-
+        if (cs_id == 2){ //spi target cs control 
+			digitalWrite(cs_pin, LOW);
+		}
         status = FT4222_SPIMaster_MultiReadWrite(ftHandle, rbuf, sbuf, singleBytes,sendLen, recvLen,
-                                                 &sizeTransferred);
+                                             &sizeTransferred);
+        if (cs_id == 2){ //spi target cs control 
+            delay(500);
+			digitalWrite(cs_pin, HIGH);
+		}   
         if (FT4222_OK == status){
         }
         else{

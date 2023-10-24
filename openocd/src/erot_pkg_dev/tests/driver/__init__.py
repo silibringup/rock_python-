@@ -112,11 +112,6 @@ class Test:
             helper.pinfo(f"Replacing Boot Rom content completes")
 
         test_api.init(helper=helper)
-        if helper.target == 'fpga':
-            GPIO = importlib.import_module('RPi.GPIO')
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setwarnings(False)
-            helper.GPIO = GPIO       
         helper.pinfo("RockPY Initilized")
 
     def __enter__(self):

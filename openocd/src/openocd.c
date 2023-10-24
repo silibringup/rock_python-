@@ -41,7 +41,6 @@
 #include "PystForPureC.h"
 #include "local_util.h"
 
-
 #ifdef HAVE_STRINGS_H
 #include <strings.h>
 #endif
@@ -323,6 +322,7 @@ COMMAND_HANDLER(handle_init_command)
 	}else{
 		LOG_USER("SPI initialization Succeeded\n");
 	}
+
 
     pyst_service_start(1, ports, 1);
 
@@ -607,7 +607,7 @@ COMMAND_HANDLER(handle_init_command)
 				uint8_t* addr       = NULL;
 				uint32_t dummy_cycles = 0;
 
-				if(!SPI_config(fthandle_spi,CLK_DIV_512,cs_id)){
+				if(!SPI_config(fthandle_spi,CLK_DIV_128,cs_id)){
 					LOG_USER("\nSPI Trans : SPI config failed");
 				}else{
 					LOG_USER("\nSPI Trans : SPI config Succeeded");
@@ -663,7 +663,7 @@ COMMAND_HANDLER(handle_init_command)
 						uint8_t* sbuf;							
 						uint8_t* rbuf;							
 						
-						recvLen = data_size + data_lane*dummy_cycles;
+						recvLen = data_size + data_lane*dummy_cycles/8;
 						sendLen = inst_size + addr_size; 
 						singleBytes = sendLen;
 						sbuf = (uint8_t*)malloc(sendLen);
@@ -679,17 +679,20 @@ COMMAND_HANDLER(handle_init_command)
 							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
 						}
 						rbuf = (uint8_t*)malloc(recvLen);
-						if(!SPI_read(fthandle_spi,data_lane,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
+						if(!SPI_read(fthandle_spi,cs_id,data_lane,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
 							LOG_USER("Error: SPI read failed!\n");
 						}
 						for(uint32_t i=0;i<recvLen;i++){
 							LOG_USER("SPI Trans : rbuf[%d] = %02x",i,rbuf[i]);
 						}
 
-						uint8_t *rbuf2 = &rbuf[dummy_cycles*data_lane];
+						uint8_t *rbuf2 = &rbuf[dummy_cycles*data_lane/8];
+						for(uint32_t i=0;i<recvLen-(dummy_cycles*data_lane/8);i++){
+							LOG_USER("SPI Trans : rbuf2[%d] = %02x",i,rbuf2[i]);
+						}
 						packet_copy(p_in_pkt, p_out_pkt);
 						p_out_pkt->n_fields = 4; // field number before return data
-						add_ret(p_out_pkt, (uint32_t*)&len, rbuf2, recvLen);
+						add_ret(p_out_pkt, (uint32_t*)&len, rbuf2, recvLen-(dummy_cycles*data_lane/8));
 						free(rbuf);
 						if (sbuf != NULL){
 							free(sbuf);
@@ -702,6 +705,7 @@ COMMAND_HANDLER(handle_init_command)
 						uint32_t sendLen = 0; //bytes number
 						uint32_t singleBytes = 0; //bytes number
 						uint8_t* sbuf;
+						
 
 						LOG_USER("\nSPI Trans : SPI WRITE Transfer Begin\n");
 						data = (uint8_t*)malloc(send_size);
@@ -724,15 +728,13 @@ COMMAND_HANDLER(handle_init_command)
 							}
 							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
 						}
-
-						if(!SPI_write(fthandle_spi,data_lane,sendLen,sbuf,true,singleBytes)){
+						if(!SPI_write(fthandle_spi,cs_id,data_lane,sendLen,sbuf,true,singleBytes)){
 							LOG_USER("Error: SPI write failed!\n");
 						}
 						packet_copy(p_in_pkt, p_out_pkt);
 						free(sbuf);
 						break;
 					}
-
 					case 2 : { // spi set sck frequency
 						break;
 					}
