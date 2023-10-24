@@ -284,6 +284,35 @@ with feature('erot_fpga/lighton'):
         desc    =   '''OOBHUB peregrine boot'''
             )
 
+    test_args   =   ['''-py erot_spi_smoke_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_smoke_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            )
+    test_args   =   ['''-py erot_spi_target_slave_imr_dspi_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_imr_dspi_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            ) 
+
+    test_args   =   ['''-py erot_spi_target_slave_imr_tx_dspi_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_imr_tx_dspi_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            ) 
+
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
