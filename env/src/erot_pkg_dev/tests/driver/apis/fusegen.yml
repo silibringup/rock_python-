@@ -1,0 +1,3317 @@
+---
+NV_LITTER_USE_TOPGUN: 1
+dftPlandata:
+  floorsweeping:
+    logicFloorsweeping: 1
+  flowDirectives:
+    AutoCorrect: 0
+    BalanceClockGateInLPC: 0
+    CoreShiftUsingSerdesClock: 1
+    DisableFS: 1
+    GPULSIPrePostProcessing: 1
+    IDUScanEnable: 1
+    InsertLockupComb: 1
+    InsertSSNRtl: 1
+    PostlayoutEco: 0
+    PrelayoutEco: 0
+    UJResetFlow: 1
+    UseCgDriverInLPC: 0
+    UseTDFlopInCG: 1
+    VariableScanLink: 1
+    addBuffForPowerCrossingInMacroSI: 1
+    addTopChipletSuffixToSDPMods: 1
+    allGRIDClocking: 0
+    clockMacroLockup: 1
+    connectAsyncXCBToIDU: 0
+    createCKGGroup: 1
+    disableCompensationPipes: 1
+    doCodecEnEco: 1
+    enableGLMBasedControlability: 1
+    fixMTMNumInMacro: 1
+    fixOCCNumInMacro: 1
+    flattenInternalXtrModules: 0
+    flattenXtrCodec: 1
+    frozenSDPAtRTL: 1
+    frozenXtrAtRTL: 1
+    frozenXtrPipeAtRTL: 1
+    glitchLessClockMux: 1
+    hasSerdesClockDividerInEachPartition: 1
+    incrChainSegmentForPadletMacro: 0
+    insertDftSwitchForGLPC: 1
+    insertGlobalLPC: 1
+    insertLPC: 1
+    insertMbistAtRTL: 1
+    insertMoxie: 0
+    insertWBR: 1
+    insertXCB: 1
+    insertXtr: 1
+    insertXtrAtRTL: 1
+    keepMuxesInsteadOfAOIGates: 1
+    macroLevelLPC: 1
+    maxNumberTpForCG: 100
+    mtmInXTR: 1
+    newPadletClockSource: 1
+    padletTamRtl: 1
+    scanFlopsAllowed: 1
+    scanInFollowMisrRoute: 1
+    skipOneMoxieChainForECO: 0
+    splitDftModulesFlow: 1
+    trstInputFile: 0
+    useBiDirectionalPadForXtr: 0
+    useBufferForBypassedReconfigSDP: 1
+    useJtagPGReset: 0
+    usePadsFromOpenEdge: 0
+    useReconfigurableSDPs: 0
+    userFriendlyEdgeIndex: 0
+    xtrCodecEnConnectionsInRTL: 1
+    xtrCodecFsvalInvert: 1
+    xtrWideMode: 0
+    xtr_wide_mode: 1
+  fusegen:
+    reshift_enable: 1
+  in_system_dft:
+    host_mode: 1
+    isfi_mode: 1
+    ist_mode: 1
+    mtc_jtag: 1
+    vld_rdy_intf:
+      ist: 1
+  jtag:
+    chip_programming_file: 1
+    contactless_testing: 0
+    dft_buffers_file: 1
+    directAccess: 0
+    global_sha2_enable: 1
+    ieee1500: 1
+    ieee1687: 1
+    nodus_dft_buffers_file: ~
+    unsecure_ram_access: 1
+    useJtagRegXmlFlow: 1
+    use_cg_jtag_latch: 1
+  mbist:
+    Skip_DualTest: 1
+    add_clock_gate: 1
+    add_repair_err_status: 1
+    bottom_up_build: 1
+    create_ram_ctrl_regs: 1
+    distribute_top_chain: 0
+    enable_mbist_rtl_flow: 1
+    fast_sync: 0
+    isFinalNetlist: 0
+    local_chain_split: 1
+    mbist_bitmap: 1
+    mbist_burnin_override: 1
+    no_jtag_clk_buf_in_macro: 1
+    ram_access_split: 1
+    use_scan_share: 1
+  scan:
+    ISTlink: 1
+    daisyChains: 0
+    defaultLibraryGroup: tsmc5_T6
+    fabric_scan: 1
+    legacy: 0
+    lib_cell_file: ''
+    nvscanlink: 1
+    nvscanlink_clkmacro: 0
+    xtr: 1
+  tmc: {}
+ieee1500:
+  xclamp: 1
+paddata: {}
+partitioning:
+  replicated_chiplets: 1
+physdata:
+  fuse:
+    derived_fuse_chain_id:
+      '1': s0_0_TOP_FS
+      '2': s0_0_CHIPLET_LOGIC
+      '3': t0_0/GBA_T0_OTHER8_inst_HBM_LINK_REPAIR
+      '4': t0_0/GBA_T0_OTHER7_inst_HBM_LINK_REPAIR
+      '5': t0_0/GBA_T0_OTHER6_inst_HBM_LINK_REPAIR
+      '6': t0_0/GBA_T0_OTHER3_inst_HBM_LINK_REPAIR
+      '7': t0_0/GBA_T0_OTHER2_inst_HBM_LINK_REPAIR
+      '8': t0_0/GBA_T0_OTHER1_inst_HBM_LINK_REPAIR
+    derived_fuse_chain_id_chipletinst: 1
+    fuse_chain_id:
+      GBA_S0:
+        chiplet_logic:
+          id: 1
+        top_fs:
+          id: 0
+    fuse_src_check_in_genpads: 1
+    fuses:
+      NV_FUSE:
+        Chip_options:
+          FLW11:
+          - sw
+          - 1
+          - 6404
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - // opt_secure_apfw_keyblob_hash_*  - See FLW6
+          FLW6:
+          - sw
+          - 1
+          - 6184
+          - ecc:H6
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - // opt_fsp_ik_cert_sig - Used to Force a Large Weight (>2) on the associated
+            CRC if the CRC weight is too small, so that CRC != 0 implies CRC valid.
+          FLW7:
+          - sw
+          - 1
+          - 6188
+          - ecc:H7
+          - wp:opt_security_mode
+          - // opt_jsc_oem_public_key0_hash_0  - See FLW6
+          FLW8:
+          - sw
+          - 1
+          - 7136
+          - ecc:H8
+          - wp:(opt_pdi_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - // pdi keys  - See FLW6
+          FLW9:
+          - sw
+          - 1
+          - 6284
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_drbg_root_nonce_acc_dis)
+            & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nonce
+            | opt_zeroize_dis)
+          - ecc:H9
+          - // opt_drbg_root_nonce  - See FLW6
+          H11:
+          - sw
+          - 32
+          - 6400
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - // Hamming code information
+          H6:
+          - sw
+          - 32
+          - 6160
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - // Hamming code information
+          H7:
+          - sw
+          - 32
+          - 6176
+          - wp:opt_security_mode
+          - // Hamming code information
+          H8:
+          - sw
+          - 32
+          - 6208
+          - wp:(opt_pdi_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - // Hamming code information
+          H9:
+          - sw
+          - 32
+          - 6288
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_drbg_root_nonce_acc_dis)
+            & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nonce
+            | opt_zeroize_dis)
+          - // Hamming code information
+          disable_sw_override:
+          - en
+          - 1
+          - 136
+          - control
+          - reset:high
+          - noscan_hold
+          - byp:no
+          - "// !!! This fuse must be burned for all devices sent outside NVIDIA  !!!
+            Any exception must be explicitly approved by security team.  \n // Disable
+            the ability to write into chip option registers.  This is required to
+            allow the use of noscan_hold to make some fuses immune against scan based
+            modification.  \n"
+          opt_boot_device_disable:
+          - sw
+          - 2
+          - 5400
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - '// 2-bit for boot device disable (MRAM/BOOT_QSPI), (opt_boot_device_select==0)
+            && (opt_boot_device_disable[0]!=1) can boot from MRAM; (opt_boot_device_select==1)
+            && (opt_boot_device_disable[1]!=1) can boot from BOOT_QSPI.See Bug 3995063. '
+          opt_boot_device_select:
+          - sw
+          - 1
+          - 5396
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - '// This fuse bits are required to select between system boot from MRAM
+            or BOOT_QSPI. See Bug 3995063. '
+          opt_boot_qspi_addr_width:
+          - en
+          - 1
+          - 7452
+          - wp:opt_security_mode
+          - "// Used to select between 24-bit and 32-bit address width on the ROM.
+            We can support ROMs upto 16 MB size with 24-bit which is default option.
+            \n// If we need ROM with more than 16 MB size, we will need to burn this
+            fuse to support 32-bit address width. Based on the selection of this bit,
+            SPI transfer will have either 3-byte (24-bit) or 4-byte (32-bit) address
+            phase.\n// 0 = 24-bit address; 1 = 32-bit address. \n// see bug 3825774"
+          opt_boot_qspi_num_of_dummy_clk_cycles:
+          - en
+          - 8
+          - 7976
+          - wp:opt_security_mode
+          - |-
+            //These bits define the number of dummy clock cycles to be inserted between address and data phase of a SPI transfer for fast read commands. This value depends on the actual ROM device and the command used. Hence it needs to be defined on a platform basis.
+            // see bug 3825774.
+          opt_boot_qspi_opcode:
+          - en
+          - 3
+          - 7968
+          - wp:opt_security_mode
+          - "// These bits define the opcodes to be used during command phase of the
+            transfer. These opcodes define the SPI transfer characteristics such as
+            SDR/DDR mode, interface width (x1/x2), and actual command to be performed
+            such as fast read, DDR fast read etc. \n// We are going to support 5 commands
+            as in the following table, and that can work for most devices. \n// 3'b000
+            - Dual IO DDR Fast Read - x2 DDR mode - this will support the highest
+            BW, set as default option.\n// 3'b001 - Fast Read - x1 SDR mode.\n// 3'b010
+            - Dual Output Fast Read - x1 Address, x2 Data SDR mode.\n// 3'b011 - Dual
+            IO Fast Read - x2 Address, x2 Data SDR mode.\n// 3'b100 - Slow Read -
+            x1 SDR mode - this is the failsafe mode.\n// see bug 3825774"
+          opt_boot_qspi_rx_clk_tap_delay:
+          - en
+          - 8
+          - 7972
+          - wp:opt_security_mode
+          - "// These bits define the trimmer values for the IO trimmer used for the
+            RX clock path. These trimmer values will need to be derived during characterization
+            across PVT with the ROM parts supported. \n// The values flashed will
+            be used during BR phase. A single trimmer value may not be achievable
+            to support the POR max DDR frequency across PVT. As a result, we need
+            to find the highest DDR frequency that can be supported with a single
+            trimmer value and burn that trimmer value here.\n// This will also result
+            in the corresponding selection of clock settings via the clock fuses defined
+            at 3719574 .\n// see bug 3825774."
+          opt_bootfsm_ffl_firmware_instance_0_offset:
+          - fuseless
+          - 12
+          - 5144
+          - "// If non-zero, sets the value of NV_PMGR_ROM_ADDR_OFFSET_AMOUNT to the
+            value in the fuse and sets the value of NV_PMGR_ROM_ADDR_OFFSET_EN to
+            _ENABLED before FFL Primary image load.The registers are used by BootFSM
+            to know where to get the offsets of the firmware instances in the EEPROM
+            through PMGR, the fuse requires to be programmed to non-zero values on
+            the production part.// If fuse not burnt means NA for the BOOTFSM behavior,
+            and if IFF doesn't perform CYA for FFL firmware instance offset, it will
+            use the default value 0x001 for ffl_firmware_instance_0_offset and 0x100
+            for ffl_firmware_instance_1_offset.The priority of IFF will be higher
+            than that of FUSE because IFF is more mutable. \n// Bug 200666309"
+          opt_bootfsm_ffl_firmware_instance_1_offset:
+          - fuseless
+          - 12
+          - 5148
+          - "// If non-zero, sets the value of NV_PMGR_ROM_ADDR_OFFSET_AMOUNT to the
+            value in the fuse and sets the value of NV_PMGR_ROM_ADDR_OFFSET_EN to
+            _ENABLED before FFL Primary image load.The registers are used by BootFSM
+            to know where to get the offsets of the firmware instances in the EEPROM
+            through PMGR, the fuse requires to be programmed to non-zero values on
+            the production part.// If fuse not burnt means NA for the BOOTFSM behavior,
+            and if IFF doesn't perform CYA for FFL firmware instance offset, it will
+            use the default value 0x001 for ffl_firmware_instance_0_offset and 0x100
+            for ffl_firmware_instance_1_offset.These 2 fuses are CYA fuses. The priority
+            of IFF will be higher than that of FUSE because IFF is more mutable. \n//
+            Bug 200666309"
+          opt_brp_lock:
+          - en
+          - 1
+          - 6656
+          - force_internal
+          - byp_allow:high
+          - noscan_hold
+          - // when it is blown, all BRP related fuse bits (BRPs, BRPA_ENx, opt_brpa_dis,
+            etc) isn?t allowed to be blown anymore. see bug 3920803
+          opt_brpa_dis:
+          - en
+          - 1
+          - 6652
+          - control
+          - wp:(opt_brp_lock | ~opt_brpa_en1 | ~fuse_program_en)
+          - noscan_hold
+          - pri_mask:BRP_SW_FUSING
+          - force_internal
+          - // BootROM Patch de-activation to support update BRP after activating
+            for possible re-SKU use case. Update BRP section anymore. see bug 3920803
+          opt_brpa_en1:
+          - en
+          - 1
+          - 6644
+          - control
+          - wp:((~opt_brpa_secure_fusing_start | ~mutex_lock | NOT_FSP | ~priv_allow_brpa_blow_data
+            | jtag_controls_fuse_sync) & (~opt_brpa_secure_fusing_cya_en | opt_brpa_secure_fusing_cya_dis))
+            | (opt_brpa_secure_fusing_start & opt_brpa_secure_fusing_cya_en) | opt_brp_lock
+            | ~fuse_program_en
+          - noscan_hold
+          - pri_mask:BRP_SW_FUSING
+          - force_internal
+          - jtag_da_protect:((~opt_brpa_secure_fusing_cya_en) | opt_brpa_secure_fusing_cya_dis)
+          - // BootROM patch activation 1, BRP is executed only when it it blown.
+            see bug 3920803
+          opt_brpa_en2:
+          - en
+          - 1
+          - 6648
+          - control
+          - wp:((~opt_brpa_secure_fusing_start | ~mutex_lock | NOT_FSP | ~priv_allow_brpa_blow_data
+            | jtag_controls_fuse_sync) & (~opt_brpa_secure_fusing_cya_en | opt_brpa_secure_fusing_cya_dis))
+            | (opt_brpa_secure_fusing_start & opt_brpa_secure_fusing_cya_en) | (~opt_brpa_en1
+            | ~opt_brpa_dis) | opt_brp_lock | ~fuse_program_en
+          - noscan_hold
+          - pri_mask:BRP_SW_FUSING
+          - force_internal
+          - jtag_da_protect:((~opt_brpa_secure_fusing_cya_en) | opt_brpa_secure_fusing_cya_dis)
+          - // BootROM Patch activation 2, EN type fuse, re-enable BRP execution after
+            updating. When it is blown, no chance to update BRP section anymore. see
+            bug 3920803
+          opt_brpa_secure_fusing_cya_dis:
+          - en
+          - 1
+          - 6664
+          - force_internal
+          - wp:(~((opt_skate_secure_fusing_start & ~opt_skate_secure_fusing_end &
+            ~opt_skate_secure_fusing_cya_en) |(opt_brpa_secure_fusing_start & ~fuse2all_brpa_effective
+            & ~opt_brpa_secure_fusing_cya_en))) | ~mutex_lock | NOT_FSP | jtag_controls_fuse_sync
+            | opt_brp_lock | ~fuse_program_en
+          - noscan_hold
+          - pri_mask:BRP_SW_FUSING
+          - // BootROM patch secure flow start, EN type fuse, when it is blown and
+            BRPA_ENx is not blown, FSP BROM authenticates FMC using MFG FMC key, otherwise
+            using normal FMC key. see bug 3920803
+          opt_brpa_secure_fusing_cya_en:
+          - en
+          - 1
+          - 6660
+          - force_internal
+          - wp:(opt_brp_lock | opt_brpa_secure_fusing_start | ~fuse_program_en | fuse2all_brpa_effective  |
+            opt_brpa_secure_fusing_cya_dis)
+          - noscan_hold
+          - pri_mask:BRP_SW_FUSING
+          - // BootROM patch secure flow start, EN type fuse, when it is blown and
+            BRPA_ENx is not blown, FSP BROM authenticates FMC using MFG FMC key, otherwise
+            using normal FMC key. see bug 3920803
+          opt_brpa_secure_fusing_start:
+          - en
+          - 1
+          - 6640
+          - force_internal
+          - control
+          - wp:((opt_brpa_secure_fusing_cya_en & ~opt_brpa_secure_fusing_cya_dis)
+            | opt_brp_lock | ~fuse_program_en | fuse2all_brpa_effective)
+          - noscan_hold
+          - pri_mask:BRP_SW_FUSING
+          - // burning the fuse indicates the start of new flow to burn the brp fuse.
+            see bug 3920803
+          opt_ctrl_block_fuse_reset_jtag_override:
+          - en
+          - 1
+          - 2000
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - "// When burnt, disable the jtag override ability on fuse_reset_, it should
+            be burnt for \n// every production parts after ATE is done. Since Turing,
+            fuse_reset_ can be clamped by a\n// jtag bit on JTAG_FUSE_CTRL chain during
+            ATE stage, clamping it before doing whole chip\n// reset will save test
+            time on TM. See bug 200338377"
+          opt_debug_feature_sw_override_enable:
+          - en
+          - 1
+          - 328
+          - force_internal
+          - control
+          - noscan_hold
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - |-
+            // Used to enable SW override only for some fuses excluding PDI and keyglob fuses on debug parts when disable_sw_override fuse is burnt.
+            // See bug 2124005
+          opt_debug_sw_override_enable:
+          - en
+          - 1
+          - 3616
+          - force_internal
+          - control
+          - noscan_hold
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - |-
+            // Used to enable SW override only for PDI and keyglob fuses on debug parts when disable_sw_override fuse is burnt.
+            // See bug 200351652
+          opt_dft_access_monitor_en:
+          - en
+          - 1
+          - 400
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - "// We have a new nvjtag_sel/jtag_unlock monitor . During normal system
+            operation, nvjtag_sel is never expected to be asserted. Similarly, jtag
+            never needs to be unlocked. This new monitor fires when either of these
+            two conditions happen as part of system operation. it triggers reset in
+            the event the monitor fires. In order to not brick the chip incase of
+            issues with the monitor itself on silicon, the idea is to validate that
+            the feature is working as expected and then blow this fuse to enable this
+            feature. Until this fuse is blown, this new monitor will be disabled.
+            \n // see bug 3744090 "
+          opt_disable_fpf_fuse_programming:
+          - en
+          - 1
+          - 856
+          - force_internal
+          - control
+          - byp_allow:high
+          - wp:(~fuse_program_en)
+          - |-
+            // Used to disable the fpf section' burning.If burnt 1, the burnning for fpf will be disabled forever.
+            // See bug 200509361
+          opt_disable_nonfpf_fuse_programming:
+          - en
+          - 1
+          - 796
+          - force_internal
+          - control
+          - byp_allow:high
+          - wp:opt_disable_fpf_fuse_programming
+          - |-
+            // Used to disable the non-fpf sections' burning.If burnt 1, the burnning for non-fpf will be disabled forever.
+            // See bug 200509361
+          opt_drbg_root_nonce_0:
+          - info
+          - 32
+          - 6292
+          - ecc:H9
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_drbg_root_nonce_acc_dis)
+            & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nonce
+            | opt_zeroize_dis)
+          - "// First, SE HW will support HW CTR_DRBG with df() function for supporting
+            the derivation of ECC private key from deterministic seeds. \n// Second,
+            these fuses will be loaded by HSM with 128 bit entropy and used by FSP/GSP/SEC2
+            for nonce generation for Deterministic ECC Key generation (DICE). They
+            shall be zeroizable. \n// Third, Boot ROM shall read the fuses and load
+            into SE and run KDF to generate nonce for each additional layer (DICE).\n//
+            See bug 3751163."
+          opt_drbg_root_nonce_1:
+          - info
+          - 32
+          - 6296
+          - ecc:H9
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_drbg_root_nonce_acc_dis)
+            & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nonce
+            | opt_zeroize_dis)
+          - "// First, SE HW will support HW CTR_DRBG with df() function for supporting
+            the derivation of ECC private key from deterministic seeds. \n// Second,
+            these fuses will be loaded by HSM with 128 bit entropy and used by FSP/GSP/SEC2
+            for nonce generation for Deterministic ECC Key generation (DICE). They
+            shall be zeroizable. \n// Third, Boot ROM shall read the fuses and load
+            into SE and run KDF to generate nonce for each additional layer (DICE).\n//
+            See bug 3751163."
+          opt_drbg_root_nonce_2:
+          - info
+          - 32
+          - 6300
+          - ecc:H9
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_drbg_root_nonce_acc_dis)
+            & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nonce
+            | opt_zeroize_dis)
+          - "// First, SE HW will support HW CTR_DRBG with df() function for supporting
+            the derivation of ECC private key from deterministic seeds. \n// Second,
+            these fuses will be loaded by HSM with 128 bit entropy and used by FSP/GSP/SEC2
+            for nonce generation for Deterministic ECC Key generation (DICE). They
+            shall be zeroizable. \n// Third, Boot ROM shall read the fuses and load
+            into SE and run KDF to generate nonce for each additional layer (DICE).\n//
+            See bug 3751163."
+          opt_drbg_root_nonce_3:
+          - info
+          - 32
+          - 6304
+          - ecc:H9
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_drbg_root_nonce_acc_dis)
+            & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nonce
+            | opt_zeroize_dis)
+          - "// First, SE HW will support HW CTR_DRBG with df() function for supporting
+            the derivation of ECC private key from deterministic seeds. \n// Second,
+            these fuses will be loaded by HSM with 128 bit entropy and used by FSP/GSP/SEC2
+            for nonce generation for Deterministic ECC Key generation (DICE). They
+            shall be zeroizable. \n// Third, Boot ROM shall read the fuses and load
+            into SE and run KDF to generate nonce for each additional layer (DICE).\n//
+            See bug 3751163."
+          opt_drbg_root_nonce_acc_dis:
+          - en
+          - 1
+          - 7228
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - byp_allow:high
+          - noscan_hold
+          - force_internal
+          - reset:high
+          - |-
+            // the fuse is used as burn protection of opt_drbg_root_nonce.
+            // see bug 3939575
+          opt_empd_calib:
+          - fuseless
+          - 16
+          - 4140
+          - // FSP EMPD cells calibration.
+          opt_empd_calib_rev:
+          - fuseless
+          - 3
+          - 4144
+          - // Identifies the version of the ATE program used for calibration of EMPD.
+          opt_en_reserved_0:
+          - en
+          - 32
+          - 5404
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Reserved for 'en' type fuse.
+          opt_en_reserved_1:
+          - en
+          - 32
+          - 5408
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Reserved for 'en' type fuse.
+          opt_en_reserved_2:
+          - en
+          - 32
+          - 5428
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Reserved for 'en' type fuse.
+          opt_en_reserved_3:
+          - en
+          - 32
+          - 5432
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Reserved for 'en' type fuse.
+          opt_enable_cr_jtag_security:
+          - en
+          - 1
+          - 1580
+          - wp:opt_security_mode
+          - reset:high
+          - force:low:opt_fa_mode
+          - noscan_hold
+          - "// When the fuse is burned, jtag unlock will use challenge response,
+            which will require a unique token every time jtag is unlocked.\n// When
+            the fuse is not burned, multi-use, unique per part tokens are generated
+            for unlocking JTAG. \n// We expect the OEM to burn this fuse and the details
+            can be found in http://nvbugs/3215453/16. Fuse requst see Bug 2540071"
+          opt_enable_hw_flop_clear:
+          - en
+          - 1
+          - 4788
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - xclamp:no
+          - noscan_hold
+          - "// This fuse should be blown at the end of SLT test, along with opt_priv_sec_en.
+            Once blown, it mainly to clear the chain data when PUF switches to prod-SRAM.
+            \n// see bug 200650253"
+          opt_enable_hw_flop_clear_shadow:
+          - en
+          - 1
+          - 7592
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - force_internal
+          - xclamp:no
+          - noscan_hold
+          - "// This fuse should be blown at the end of SLT test, along with opt_priv_sec_en.
+            Once blown, it enforces HW-based flop-clear mechanism to be executed to
+            be able to extract scan chain outputs in MATHS mode. \n// see bug 200650253"
+          opt_fa_mode:
+          - en
+          - 1
+          - 5472
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - control
+          - noscan_hold
+          - nomanualsense
+          - "// NVSEC - Failure analysis: enables observation bus, USB UART, DDS,
+            and ARM debug when blown. \n// Can only be blown via secure JTAG// See
+            bug 200671188"
+          opt_fa_mode_shadow:
+          - en
+          - 1
+          - 7464
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - force_internal
+          - noscan_hold
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_fab_code:
+          - ecid
+          - 6
+          - 608
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_fab_id:
+          - fuseless
+          - 2
+          - 704
+          - // Overrides FAB id in BOOT_2 Register. On the other hand, it may be mirrored
+            in other modules and then be sent to modules that don't have access permission
+            for this fuse
+          opt_feature_override_spare:
+          - en/dis
+          - 1
+          - 4228
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// add this spare feature override fuse which allows us to do ECO easily
+            and no impact on existing real feature override registers. \n // See bug
+            200651554"
+          opt_fmon_fault_enable:
+          - en
+          - 1
+          - 4136
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Enable FMON fault output
+          opt_fpf_apfw0_code_rev_0:
+          - sw
+          - 32
+          - 6248
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 code revocation
+          opt_fpf_apfw0_code_rev_1:
+          - sw
+          - 32
+          - 5388
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 code revocation
+          opt_fpf_apfw0_code_rev_2:
+          - sw
+          - 32
+          - 6256
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 code revocation
+          opt_fpf_apfw0_code_rev_3:
+          - sw
+          - 32
+          - 6260
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 code revocation
+          opt_fpf_apfw0_key_rev_0:
+          - sw
+          - 32
+          - 6232
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 key revocation
+          opt_fpf_apfw0_key_rev_1:
+          - sw
+          - 32
+          - 6236
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 key revocation
+          opt_fpf_apfw0_key_rev_2:
+          - sw
+          - 32
+          - 6240
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 key revocation
+          opt_fpf_apfw0_key_rev_3:
+          - sw
+          - 32
+          - 6244
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP0 key revocation
+          opt_fpf_apfw1_code_rev_0:
+          - sw
+          - 32
+          - 6308
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 code revocation
+          opt_fpf_apfw1_code_rev_1:
+          - sw
+          - 32
+          - 6312
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 code revocation
+          opt_fpf_apfw1_code_rev_2:
+          - sw
+          - 32
+          - 6324
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 code revocation
+          opt_fpf_apfw1_code_rev_3:
+          - sw
+          - 32
+          - 6328
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 code revocation
+          opt_fpf_apfw1_key_rev_0:
+          - sw
+          - 32
+          - 6264
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 key revocation
+          opt_fpf_apfw1_key_rev_1:
+          - sw
+          - 32
+          - 6268
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 key revocation
+          opt_fpf_apfw1_key_rev_2:
+          - sw
+          - 32
+          - 6272
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 key revocation
+          opt_fpf_apfw1_key_rev_3:
+          - sw
+          - 32
+          - 6276
+          - wp:opt_disable_fpf_fuse_programming
+          - //128-bit fpf bits for AP1 key revocation
+          opt_fpf_fsp_riscv_br_error_info_en:
+          - en/dis
+          - 1
+          - 7844
+          - wp:opt_disable_fpf_fuse_programming
+          - noscan_hold
+          - |-
+            // FSP RISCV BROM Error Info Enable.
+            // not blown (0x0) - RISCV BROM will not expose detailed error information in register, only success for failure is indicated.
+            // blown (0x1) - RISCV BROM will expose detailed error information in register.
+            // This FPF fuse is used in production, default is 0. SW burn it to 1 when production debug is required and burn it to 0 again once production debug is done.
+            // See bug 200679966.
+          opt_fpf_fsp_riscv_pl3_disable:
+          - en
+          - 1
+          - 16452
+          - wp:opt_disable_fpf_fuse_programming
+          - noscan_hold
+          - |-
+            // FSP RISCV max privilege restriction fuse. It restricts the maximum PRIV level inside mspm CSR..
+            // not blown (0x0) - mspm's MPLM[3] bit is writable, i.e., RISCV core is able to issue PL3 requests (if the manifest allows).
+            // blown (0x1) - mspm's MPLM[3] bit is tied off to 0x0, i.e., RISCV core is not able to issue PL3 requests.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode10_version:
+          - info_r
+          - 16
+          - 16420
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode11_version:
+          - info_r
+          - 16
+          - 16424
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode12_version:
+          - info_r
+          - 16
+          - 16428
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode13_version:
+          - info_r
+          - 16
+          - 16432
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode14_version:
+          - info_r
+          - 16
+          - 16436
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode15_version:
+          - info_r
+          - 16
+          - 16440
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode16_version:
+          - info_r
+          - 16
+          - 16444
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode1_version:
+          - info_r
+          - 16
+          - 16384
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode2_version:
+          - info_r
+          - 16
+          - 16388
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode3_version:
+          - info_r
+          - 16
+          - 16392
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode4_version:
+          - info_r
+          - 16
+          - 16396
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode5_version:
+          - info_r
+          - 16
+          - 16400
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode6_version:
+          - info_r
+          - 16
+          - 16404
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode7_version:
+          - info_r
+          - 16
+          - 16408
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode8_version:
+          - info_r
+          - 16
+          - 16412
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fpf_fsp_ucode9_version:
+          - info_r
+          - 16
+          - 16416
+          - wp:opt_disable_fpf_fuse_programming
+          - fpf
+          - |-
+            // These FPF are used for FSP RISCV FMC revocation. If there are bugs of one ucode or there are some security issue of it. SW can update the corresponding FPF version by a special binary FUB (Fuse Update Binary). This FPF version is an input of authentication algorithm, so only the HS ucode whose version == corresponding fuse version can pass authentication.
+            // See bug 200679966.
+          opt_fs_dummy_defective:
+          - sw
+          - 1
+          - 12544
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// Used to indicate fs dummy region is defective. The fuse gets burnt
+            means dummy region is defective. \n// Fs dummy region is defective. Those
+            fuses are burnt at FT stage. see bug: 200672937"
+          opt_fs_dummy_disable:
+          - fuseless
+          - 1
+          - 12536
+          - "// floorsweeping fuse for fs dummy region: 1=disable 0=enable\n// Details
+            in bug 200672937. \n"
+          opt_fs_dummy_disable_cp:
+          - fuseless
+          - 1
+          - 12540
+          - force_internal
+          - // Wafer sort floor sweep fs dummy region
+          opt_fs_reserved_0:
+          - fuseless
+          - 32
+          - 5412
+          - // Reserved for 'fuseless' type fuse.
+          opt_fs_reserved_1:
+          - fuseless
+          - 32
+          - 5416
+          - // Reserved for 'fuseless' type fuse.
+          opt_fs_reserved_2:
+          - fuseless
+          - 32
+          - 5420
+          - // Reserved for 'fuseless' type fuse.
+          opt_fs_reserved_3:
+          - fuseless
+          - 32
+          - 5424
+          - // Reserved for 'fuseless' type fuse.
+          opt_fsp_ak_sel:
+          - en
+          - 1
+          - 5496
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // FSP NV Authentication Key Selection.
+            // FSP RISCV BROM could use NV authentication key either embedded in Keystore-KROM or passed from SW to verify FMC manifest signature. This is to add flexibility to use public key from SW in case public keys in Keystore-KROM are compromised. It's routed to Peregrine local register RISCV_BCR_CTRL.STAGE1_PK_SEL.
+            // not blown (0x0) - FSP RISCV BROM uses public key embedded in Keystore-KROM.
+            // blown (0x1) - FSP RISCV BROM uses public key provided by SW.
+            // See bug 200679966.
+          opt_fsp_ecc_en:
+          - en
+          - 1
+          - 6432
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // Enables parity/ecc within FSP. see bug 4046146
+          opt_fsp_ecc_en_shadow:
+          - en
+          - 1
+          - 7616
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - force_internal
+          - // Enables parity/ecc within FSP. see bug 4046146
+          opt_fsp_error_containment_en:
+          - en
+          - 1
+          - 6436
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // Enables parity/ecc within FSP. see bug 4046146
+          opt_fsp_error_containment_en_shadow:
+          - en
+          - 1
+          - 7620
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - force_internal
+          - // Enables parity/ecc within FSP. see bug 4046146
+          opt_fsp_fmc_prod_to_debug_dis:
+          - sw
+          - 1
+          - 6336
+          - wp:opt_disable_fpf_fuse_programming
+          - noscan_hold
+          - // This fuse is used to permanently disable GR-080 feature. When this
+            fuse is burnt, the value of opt_fsp_fmc_prod_to_debug_en becomes irrelevant.
+            See description of opt_fsp_fmc_prod_to_debug_en for more.
+          opt_fsp_fmc_prod_to_debug_en:
+          - sw
+          - 1
+          - 6332
+          - wp:opt_disable_fpf_fuse_programming
+          - noscan_hold
+          - '//This fuse is used to enable GR-080 feature in FSP BROM. When the fuse
+            is not burnt, the feature is off and this fuse is required to be burnt
+            to enable it. Once the feature is enabled, BROM permits usage of debug
+            signed FMC on prod fused chips via normal boot path (but not via recovery
+            path which is forced to always use prod signed FMC on prod fused chips).
+            See also: https://confluence.nvidia.com/display/FalconSecurityIPUserSpace/8.9.+Debug-signed+FW+on+Production+silicon'
+          opt_fsp_ik_cert_sig_0:
+          - sw
+          - 32
+          - 5528
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - |-
+            // FSP Device Identity Public Key Certificate Signature. FSP IK's X.509 certificate's signature, accessed via NV_FUSE_OPT_* regsiters.
+            // See bug 200679966.
+          opt_fsp_ik_cert_sig_1:
+          - sw
+          - 32
+          - 5532
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_10:
+          - sw
+          - 32
+          - 5568
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_11:
+          - sw
+          - 32
+          - 5572
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_12:
+          - sw
+          - 32
+          - 5576
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_13:
+          - sw
+          - 32
+          - 5580
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_14:
+          - sw
+          - 32
+          - 5584
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_15:
+          - sw
+          - 32
+          - 5588
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_16:
+          - sw
+          - 32
+          - 5592
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_17:
+          - sw
+          - 32
+          - 5596
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_18:
+          - sw
+          - 32
+          - 5600
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_19:
+          - sw
+          - 32
+          - 5604
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_2:
+          - sw
+          - 32
+          - 5536
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - |-
+            // FSP Device Identity Public Key Certificate Signature. FSP IK's X.509 certificate's signature, accessed via NV_FUSE_OPT_* regsiters
+            // See bug 200679966.
+          opt_fsp_ik_cert_sig_20:
+          - sw
+          - 32
+          - 5608
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_21:
+          - sw
+          - 32
+          - 5612
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_22:
+          - sw
+          - 32
+          - 5616
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_23:
+          - sw
+          - 32
+          - 5620
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_3:
+          - sw
+          - 32
+          - 5540
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_4:
+          - sw
+          - 32
+          - 5544
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - |-
+            // FSP Device Identity Public Key Certificate Signature. FSP IK's X.509 certificate's signature, accessed via NV_FUSE_OPT_* regsiters
+            // See bug 200679966.
+          opt_fsp_ik_cert_sig_5:
+          - sw
+          - 32
+          - 5548
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_6:
+          - sw
+          - 32
+          - 5552
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_7:
+          - sw
+          - 32
+          - 5556
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_8:
+          - sw
+          - 32
+          - 5560
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_ik_cert_sig_9:
+          - sw
+          - 32
+          - 5564
+          - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H6
+          - "// FSP Device Identity Public Key Certificate Signature. FSP IK's X.509
+            certificate's signature, accessed via NV_FUSE_OPT_* regsiters \n// See
+            bug 200679966."
+          opt_fsp_mbist_monitor_en:
+          - en
+          - 1
+          - 6220
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - reset:high
+          - byp_allow:high
+          - // Enables MBIST monitor trigger in FSP. see bug 4046146
+          opt_fsp_mbist_monitor_en_shadow:
+          - en
+          - 1
+          - 7608
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - reset:high
+          - byp_allow:high
+          - force_internal
+          - // Enables MBIST monitor trigger in FSP. see bug 4046146
+          opt_fsp_oaa_sel:
+          - en
+          - 3
+          - 5756
+          - wp:opt_security_mode
+          - |-
+            // FSP Owner Authentication Algorithm Selection.
+            // not blown (0x0) - Owner authentication is disabled.
+            // blown (0x1) - RSASSA3K-PSS.
+            // It selects which owner authentication algorithm is enabled. Currently only disabled and RSASSA3K-PSS are supported. The 2 higher bits are for future extensions. It's routed to Peregrine local register RISCV_BCR_CTRL.STAGE2_AUTH_ALGO.
+            // See bug 200679966.
+          opt_fsp_peregrine_reserved:
+          - en
+          - 8
+          - 7932
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Fuses reserved for possible feature control after PFNL, see bug 200614208
+          opt_fsp_prod_sym_key_en:
+          - en
+          - 1
+          - 5500
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - |-
+            // Peregrine Production Symmetric Key Enable.
+            // not blown (0x0) - Prod mode values are hidden inside Keystore-RTL on pre-production silicon; dev mode values are used instead.
+            // blown (0x1) - Prod mode values are available inside Keystore-RTL on pre-production silicon; there are further SW-controllable inputs to select between dev/prod keys.
+            // See bug 200679966.
+          opt_fsp_prod_sym_key_en_shadow:
+          - en
+          - 1
+          - 7564
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - noscan_hold
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_fsp_skate_acc_dis:
+          - en
+          - 1
+          - 7164
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - byp_allow:high
+          - noscan_hold
+          - force_internal
+          - reset:high
+          - |-
+            // the fuse is used as burn protection of FSP SKATE keys which not proteced by BW-293 secure fusing flow.
+            // see bug 3939575
+          opt_fsp_testmode_monitor_en:
+          - en
+          - 1
+          - 6224
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - reset:high
+          - byp_allow:high
+          - // Enables test mode monitor trigger in FSP. see bug 4046146
+          opt_fsp_testmode_monitor_en_shadow:
+          - en
+          - 1
+          - 7612
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - reset:high
+          - byp_allow:high
+          - force_internal
+          - // Enables test mode monitor trigger in FSP. see bug 4046146
+          opt_iddq:
+          - fuseless
+          - 12
+          - 724
+          - force_internal
+          - pri_mask:IDDQINFO
+          - // holds leakage information and blown at FT stage
+          opt_iddq_cp:
+          - fuseless
+          - 12
+          - 1400
+          - force_internal
+          - pri_mask:IDDQINFO
+          - '// holds leakage information and blown at CP2 stage. See bug: 1019960'
+          opt_iddq_rev:
+          - fuseless
+          - 3
+          - 1188
+          - force_internal
+          - // Indicates the fuse revision of opt_iddq. A non-zero value implies the
+            iddq is correlated and valid
+          opt_ik_provisioner_cert_id:
+          - sw
+          - 4
+          - 5692
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // Identifier for the Provisioner certificate. The Provisioner is the HSM that issues the Identity Key certificate (opt_fsp_ik_cert_sig and opt_non_fsp_ik_cert_sig).
+            // See bug 200720368.
+          opt_int_ts_a:
+          - fuseless
+          - 10
+          - 640
+          - |-
+            // thermal sensor a cal value:
+            // see: https://sc-libola.nvidia.com/reports/libs/common/analog/nvidia/doc/TSENSE_U2_A.doc
+          opt_int_ts_b:
+          - fuseless
+          - 10
+          - 644
+          - |-
+            // thermal sensor b cal value:
+            // see: https://sc-libola.nvidia.com/reports/libs/common/analog/nvidia/doc/TSENSE_U2_A.doc
+          opt_int_ts_otob_en:
+          - fuseless
+          - 1
+          - 636
+          - '// Enable over temp on boot: '
+          opt_int_ts_valid:
+          - fuseless
+          - 1
+          - 656
+          - |-
+            // thermal sensor cal is valid:
+            // see: https://sc-libola.nvidia.com/reports/libs/tsmc16ffb/analog/nvidia/doc/TSENSE_C.doc.
+            // change fuse type back to info_r, see bug 3695726
+          opt_jsc_nv_public_key_sel:
+          - en
+          - 8
+          - 6704
+          - wp:opt_production_mode
+          - |-
+            // there are 8 jtag public keys in design, we use these fuse bits to select one jtag public key.  JTAG authentication with current key is required for burning the fuses to switch to the next key. A fresh set of 8 keys is generated per chip family.
+            // Different keys can be selected per product from the same family.  if these fuse bits didn't burned. all 0 for them, it will select engineering public key. 0 can be reserved for engineering use.
+            // see bug 3692111
+          opt_jsc_oem_key_hash_enable:
+          - en
+          - 1
+          - 6672
+          - wp:opt_security_mode
+          - noscan_hold
+          - force:low:opt_fa_mode | (opt_rma_enable & ~opt_rma_disable)
+          - |-
+            // the fuse is used to indicate wither oem key hash is burned.
+            // Because key hash can be calculated all 0s and all 0s is programmed into fuse macro blindly. Using a fuse to indicate whether the key hash is programmed is more accurate.
+            // see bug 3692111
+          opt_jsc_oem_public_key0_hash_0:
+          - en
+          - 32
+          - 6708
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_1:
+          - en
+          - 32
+          - 6712
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_2:
+          - en
+          - 32
+          - 6716
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_3:
+          - en
+          - 32
+          - 6720
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_4:
+          - en
+          - 32
+          - 6724
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_5:
+          - en
+          - 32
+          - 6728
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_6:
+          - en
+          - 32
+          - 6732
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jsc_oem_public_key0_hash_7:
+          - en
+          - 32
+          - 6736
+          - ecc:H7
+          - wp:opt_security_mode
+          - // to store OEM public key hash. Programming of the keys requires DFT
+            authentication with current keys post SECURITY_MODE=1 mode, If no key
+            is programmed, then NO OEM authentication. The feature allows reselling
+            the part to different OEM after RMA/refurbishment. see bug 3692111
+          opt_jtag_fuse_timeout_disable:
+          - en
+          - 1
+          - 4924
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - "// JTAG access of secured jtag registers requires fuse sensing to complete
+            to use some security fuse value and ECID. If fuse sensing process hangs
+            (due to defect of system failure), it will block JTAG from unlocking and
+            access secured registers. \n//  A fuse sensing timeout timer was built
+            in to allow jtag to unlock with a common security unlock key and allow
+            jtag clock to force switching to TCK.\n// This mitigates the risk of losing
+            debugability. It should only be a debugging usage for silicon bringup.
+            A production device should have a working Fuse and wouldn't need such
+            fuse timeout counter.  \n// The requested fuse will disable the timeout
+            counter. see bug 200670491. "
+          opt_kappa_info:
+          - fuseless
+          - 32
+          - 376
+          - force_internal
+          - pri_mask:KAPPAINFO
+          - "// The fuse will be used to measure Kappa of the chip. \n// Kappa is
+            a indicator of part to part variation (or speed measurement error), it
+            will be measured at system level (SLT or board production).\n// The fuse
+            will be consumed by SW to identify how much perf the chip can be boosted.
+            \n// See bug 2035450."
+          opt_kcp:
+          - fuseless
+          - 2
+          - 4168
+          - // Charge pump gain control.
+          opt_kvco:
+          - fuseless
+          - 1
+          - 4172
+          - // VCO gain control. Default value is zero.
+          opt_lot_code_0:
+          - ecid
+          - 32
+          - 612
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_lot_code_1:
+          - ecid
+          - 28
+          - 616
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_major_revision_id:
+          - fuseless
+          - 4
+          - 1232
+          - // Overrides major revision in BOOT 0 Register. Also known as Base Spin
+          opt_minor_ext_revision_id:
+          - fuseless
+          - 4
+          - 700
+          - // Overrides minor ext revision in BOOT_42 Register. May be sent to some
+            modules(such as link) to control falcon, which depends SKU details and
+            may vary from chip to chip. On the other hand, it may be mirrored in other
+            modules and then be sent to modules that don't have access permission
+            for this fuse. Such as, this fuse is mirrored in HOST and then sent to
+            ext_i2c for peripheral device configuration(such as fan)
+          opt_minor_revision_id:
+          - fuseless
+          - 4
+          - 1236
+          - // Overrides minor revision in BOOT 0 Register. Also known as Metal spin
+            to A02
+          opt_mitigation_fuse_override_0:
+          - en
+          - 1
+          - 4124
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // OR with MITIGATION[0]
+          opt_non_odgs_secure_fusing_lock:
+          - en
+          - 1
+          - 1972
+          - force_internal
+          - control
+          - wp:((~opt_skate_secure_fusing_start | opt_skate_secure_fusing_end | ~mutex_lock
+            | NOT_FSP | jtag_controls_fuse_sync) & ~opt_skate_secure_fusing_cya_en)
+            | opt_production_mode
+          - noscan_hold
+          - pri_mask:SKATE_SW_FUSING
+          - reset:high
+          - // the burn protection lock fuse for other key protected by secure fusing.
+            see bug 3744141
+          opt_nvjtag_protection_enable:
+          - en
+          - 2
+          - 2040
+          - wp:opt_security_mode
+          - noscan_hold
+          - "// This fuse is used by customes to disable the GPU JTAG port for physical
+            security at the expense of debug capability.\n// this fuse is expanded
+            to 2 bits and set out by feature override. Since this is a en/dis type
+            fuse, the meaning of each bit is:\n// 2'b1x: JTAG unlock is always disabled.
+            \ There is no way to unlock JTAG, and there is no way to recover that
+            on RMA part. \n// 2'b01: JTAG unlock is disabled by default after cold
+            boot.  PL3 could override the fuse value to allow JTAG unlock; This is
+            to recover debug ability on RMA part. \n// 2'b00: JTAG unlock is enabled
+            by default after cold boot.   PL3 can override the fuse value prevent
+            JTAG unlock.  This will allow stronger JTAG protections to be added by
+            VBIOS after boot if needed.\n// See bug: 200360829 2053697 3468887 3613174. "
+          opt_odgs_secure_fusing_lock:
+          - en
+          - 1
+          - 1968
+          - force_internal
+          - control
+          - wp:(~opt_skate_secure_fusing_start | opt_skate_secure_fusing_end | ~mutex_lock
+            | NOT_FSP | jtag_controls_fuse_sync) | opt_production_mode
+          - noscan_hold
+          - pri_mask:SKATE_SW_FUSING
+          - reset:high
+          - // the burn protection lock fuse for on-die-gen seed. see bug 3744141
+          opt_oobhub_peregrine_reserved:
+          - en
+          - 4
+          - 6316
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // Fuses reserved for possible feature control after PFNL. Use cases not defined yet.
+            // see bug 3920755
+          opt_ops_reserved:
+          - ecid
+          - 6
+          - 632
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_patch_jtag_unlock_bypass_en:
+          - en
+          - 1
+          - 5956
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            //  When we need to WAR jtag register through host2jtag interface, we will blow this fuse, then we can program IFFregister to do jtag unlock bypass, more detail in bug 3171620.
+            // If everything works well and we don't need to do WAR for jtag register, we won't burn this fuse.
+            // see bug 3747413.
+          opt_pdi_0:
+          - info
+          - 32
+          - 836
+          - wp:(opt_pdi_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H8
+          - dbg_sw_ovr_en:opt_debug_sw_override_enable
+          - // Unique per chip public identifier. Used to derive PDK. Bug 1498560.
+          opt_pdi_1:
+          - info
+          - 32
+          - 840
+          - wp:(opt_pdi_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+          - ecc:H8
+          - dbg_sw_ovr_en:opt_debug_sw_override_enable
+          - // Unique per chip public identifier. Used to derive PDK. Bug 1498560.
+          opt_pdi_acc_dis:
+          - en
+          - 1
+          - 7160
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - byp_allow:high
+          - noscan_hold
+          - force_internal
+          - reset:high
+          - |-
+            // the fuse is used as burn protection of PDI.
+            // see bug 3939575
+          opt_pll_calib_rev:
+          - fuseless
+          - 3
+          - 4196
+          - // Identifies the version of the ATE program used for calibration of PLL
+          opt_pnverot_clock_fmon_ref_window_count:
+          - fuseless
+          - 24
+          - 4208
+          - //  Set PLL FMON reference window count
+          opt_pnverot_clock_fmon_ref_window_dc_check_count:
+          - fuseless
+          - 24
+          - 4212
+          - '//  Set PLL FMON reference window for DC check count '
+          opt_pnverot_clock_fmon_threshold_high:
+          - fuseless
+          - 32
+          - 4200
+          - //  Set PLL FMON Threshold high
+          opt_pnverot_clock_fmon_threshold_low:
+          - fuseless
+          - 32
+          - 4204
+          - //  Set PLL FMON Threshold low
+          opt_pnverot_fmon_calib_rev:
+          - fuseless
+          - 3
+          - 4216
+          - '//  Identifies the version of the ATE program used for calibration of
+            PLL FMON. '
+          opt_priv_sec_en:
+          - en
+          - 1
+          - 1076
+          - byp_allow:high
+          - wp:(~fuse_program_en)
+          - noscan_hold
+          - force:high:((opt_skate_secure_fusing_start == 1) && (opt_skate_secure_fusing_end
+            == 0)) || ((opt_brpa_secure_fusing_start == 1) && ( fuse2all_brpa_effective
+            == 0))
+          - reset:high
+          - // Enable Priv Security Feature bug 800416. see bug 200098693, 2076773
+          opt_production_mode:
+          - en
+          - 1
+          - 5464
+          - wp:(~fuse_program_en)
+          - control
+          - noscan_hold
+          - reset:high
+          - byp_allow:high
+          - // None - AKA 'NV Production'. Burn-protects NVIDIA-controlled fuses.
+            Resets high for added protection.// See bug 200671188
+          opt_production_mode_shadow:
+          - en
+          - 1
+          - 7456
+          - wp:(~fuse_program_en)
+          - force_internal
+          - noscan_hold
+          - reset:high
+          - byp_allow:high
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_qspi0_addr_width:
+          - en
+          - 1
+          - 7436
+          - wp:opt_security_mode
+          - "// Used to select between 24-bit and 32-bit address width on the ROM.
+            We can support ROMs upto 16 MB size with 24-bit which is default option.
+            \n// If we need ROM with more than 16 MB size, we will need to burn this
+            fuse to support 32-bit address width. Based on the selection of this bit,
+            SPI transfer will have either 3-byte (24-bit) or 4-byte (32-bit) address
+            phase.\n// 0 = 24-bit address; 1 = 32-bit address. \n// see bug 3825774"
+          opt_qspi0_num_of_dummy_clk_cycles:
+          - en
+          - 8
+          - 7448
+          - wp:opt_security_mode
+          - |-
+            //These bits define the number of dummy clock cycles to be inserted between address and data phase of a SPI transfer for fast read commands. This value depends on the actual ROM device and the command used. Hence it needs to be defined on a platform basis.
+            // see bug 3825774.
+          opt_qspi0_opcode:
+          - en
+          - 3
+          - 7440
+          - wp:opt_security_mode
+          - "// These bits define the opcodes to be used during command phase of the
+            transfer. These opcodes define the SPI transfer characteristics such as
+            SDR/DDR mode, interface width (x1/x2), and actual command to be performed
+            such as fast read, DDR fast read etc. \n// We are going to support 5 commands
+            as in the following table, and that can work for most devices. \n// 3'b000
+            - Dual IO DDR Fast Read - x2 DDR mode - this will support the highest
+            BW, set as default option.\n// 3'b001 - Fast Read - x1 SDR mode.\n// 3'b010
+            - Dual Output Fast Read - x1 Address, x2 Data SDR mode.\n// 3'b011 - Dual
+            IO Fast Read - x2 Address, x2 Data SDR mode.\n// 3'b100 - Slow Read -
+            x1 SDR mode - this is the failsafe mode.\n// see bug 3825774"
+          opt_qspi0_rx_clk_tap_delay:
+          - en
+          - 8
+          - 7444
+          - wp:opt_security_mode
+          - "// These bits define the trimmer values for the IO trimmer used for the
+            RX clock path. These trimmer values will need to be derived during characterization
+            across PVT with the ROM parts supported. \n// The values flashed will
+            be used during BR phase. A single trimmer value may not be achievable
+            to support the POR max DDR frequency across PVT. As a result, we need
+            to find the highest DDR frequency that can be supported with a single
+            trimmer value and burn that trimmer value here.\n// This will also result
+            in the corresponding selection of clock settings via the clock fuses defined
+            at 3719574 .\n// see bug 3825774."
+          opt_qspi1_addr_width:
+          - en
+          - 1
+          - 7980
+          - wp:opt_security_mode
+          - "// Used to select between 24-bit and 32-bit address width on the ROM.
+            We can support ROMs upto 16 MB size with 24-bit which is default option.
+            \n// If we need ROM with more than 16 MB size, we will need to burn this
+            fuse to support 32-bit address width. Based on the selection of this bit,
+            SPI transfer will have either 3-byte (24-bit) or 4-byte (32-bit) address
+            phase.\n// 0 = 24-bit address; 1 = 32-bit address. \n// see bug 3825774"
+          opt_qspi1_num_of_dummy_clk_cycles:
+          - en
+          - 8
+          - 7992
+          - wp:opt_security_mode
+          - |-
+            //These bits define the number of dummy clock cycles to be inserted between address and data phase of a SPI transfer for fast read commands. This value depends on the actual ROM device and the command used. Hence it needs to be defined on a platform basis.
+            // see bug 3825774.
+          opt_qspi1_opcode:
+          - en
+          - 3
+          - 7984
+          - wp:opt_security_mode
+          - "// These bits define the opcodes to be used during command phase of the
+            transfer. These opcodes define the SPI transfer characteristics such as
+            SDR/DDR mode, interface width (x1/x2), and actual command to be performed
+            such as fast read, DDR fast read etc. \n// We are going to support 5 commands
+            as in the following table, and that can work for most devices. \n// 3'b000
+            - Dual IO DDR Fast Read - x2 DDR mode - this will support the highest
+            BW, set as default option.\n// 3'b001 - Fast Read - x1 SDR mode.\n// 3'b010
+            - Dual Output Fast Read - x1 Address, x2 Data SDR mode.\n// 3'b011 - Dual
+            IO Fast Read - x2 Address, x2 Data SDR mode.\n// 3'b100 - Slow Read -
+            x1 SDR mode - this is the failsafe mode.\n// see bug 3825774"
+          opt_qspi1_rx_clk_tap_delay:
+          - en
+          - 8
+          - 7988
+          - wp:opt_security_mode
+          - "// These bits define the trimmer values for the IO trimmer used for the
+            RX clock path. These trimmer values will need to be derived during characterization
+            across PVT with the ROM parts supported. \n// The values flashed will
+            be used during BR phase. A single trimmer value may not be achievable
+            to support the POR max DDR frequency across PVT. As a result, we need
+            to find the highest DDR frequency that can be supported with a single
+            trimmer value and burn that trimmer value here.\n// This will also result
+            in the corresponding selection of clock settings via the clock fuses defined
+            at 3719574 .\n// see bug 3825774."
+          opt_ram_svop_pdp_tm:
+          - fuseless
+          - 8
+          - 5392
+          - "// ROM uses 3 SVOP bits and default is 3'b000.\n// Bits 0 and 1 are used
+            to increase the WLCLK pulsewidth. \n// Bit 2 is used to go to phase mode
+            (otherwise we generate all signals from the rising clock edge to avoid
+            duty cycle issues).\n// see bug 200674616."
+          opt_recovery_behavior_en:
+          - en
+          - 1
+          - 6320
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - byp_allow:high
+          - "// This fuse is used to enable the recovery indication detection behavior
+            for Recovery FSM inside SYSCTRL. \n// If this fuse is burned, the recovery
+            indication detection behavior for Recovery FSM is enabled. If this fuse
+            is not burned, then this feature described before will be disabled, it
+            will not trigger an internal reset if we don't have FSP FW.\n// Besides,
+            if this fuse is not burned, sysctrl2xtl_enter_recovery will always be
+            1'b1. \n// see bug 3737242"
+          opt_retest_disable:
+          - en
+          - 1
+          - 6420
+          - control
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - force:low:opt_fa_mode
+          - "// When set to 1: disable retest. It will disable the enablement of opt_retest_enable
+            \n// When set to 0: see above \n// Bug 3993348 ,4036772"
+          opt_retest_disable_shadow:
+          - en
+          - 1
+          - 7604
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - force:low:opt_fa_mode
+          - force_internal
+          - "// When set to 1: disable RMA. It will disable the enablement of opt_rma_enable
+            \n// When set to 0: see above \n// Bug 200560021 , 3693959"
+          opt_retest_en:
+          - en
+          - 1
+          - 6416
+          - control
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - force:high:opt_fa_mode
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - "// When set to 1: enable retest. \n// When set to 0: see above \n// It
+            will be valid only when opt_retest_disable is unburnt. Fuse programming
+            is gated by JTAG HMAC unlock \n// Bug 3993348 ,4036772"
+          opt_retest_en_shadow:
+          - en
+          - 1
+          - 7600
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - force:high:opt_fa_mode
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - force_internal
+          - "// When set to 1: enable RMA. If this fuse is set, part/board shouldn't
+            leave outside NVIDIA. \n// When set to 0: see above \n// It will be valid
+            only when opt_rma_disable is unburnt. Fuse programming is gated by JTAG
+            HMAC unlock \n// Bug 200560021 , 3693959"
+          opt_riscv_dcls_en:
+          - en/dis
+          - 1
+          - 5972
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// Fuse option to control whether DCSL mechanism is enabled or not.1:enable;0:disable\n//
+            when the fuse is disabled,  dcls_en will be decided by dcls enable register
+            bit.DCLS_EN = opt_riscv_dcls_en | register configuration in Peregrine
+            \  \n// Note, this fuse is shared between all RISC-V core. In GA10x there
+            are PMU, SEC and GSP.\n// See bug 200521616."
+          opt_riscv_dcls_en_shadow:
+          - en/dis
+          - 1
+          - 7572
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - "// Fuse option to control whether DCSL mechanism is enabled or not.1:enable;0:disable\n//
+            when the fuse is disabled,  dcls_en will be decided by dcls enable register
+            bit.DCLS_EN = opt_riscv_dcls_en | register configuration in Peregrine
+            \  \n// Note, this fuse is shared between all RISC-V core. In GA10x there
+            are PMU, SEC and GSP.\n// See bug 200521616."
+          opt_riscv_dcls_security_action_assert:
+          - en/dis
+          - 1
+          - 6028
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // Fuse option to control the DCLS report action when dcls report error:  option to enable report DCLS fault to PRI_HUB by module interface
+            // opt_riscv_dcls_security_action_halt/assert/interrupt  are default value of these actions. relation registers in Peregrine can change these actions setting ONCE.
+            // Note, this fuse is shared between all RISC-V core. In GA10x there are PMU, SEC and GSP.
+            // See bug 200521616.
+          opt_riscv_dcls_security_action_assert_shadow:
+          - en/dis
+          - 1
+          - 7580
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - |-
+            // Fuse option to control the DCLS report action when dcls report error:  option to enable report DCLS fault to PRI_HUB by module interface
+            // opt_riscv_dcls_security_action_halt/assert/interrupt  are default value of these actions. relation registers in Peregrine can change these actions setting ONCE.
+            // Note, this fuse is shared between all RISC-V core. In GA10x there are PMU, SEC and GSP.
+            // See bug 200521616.
+          opt_riscv_dcls_security_action_halt:
+          - en/dis
+          - 1
+          - 6024
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// Fuse option to control the DCLS report action when dcls report error:
+            riscv will go halt \n// opt_riscv_dcls_security_action_halt/assert/interrupt
+            \ are default value of these actions. relation registers in Peregrine
+            can change these actions setting ONCE.\n// Note, this fuse is shared between
+            all RISC-V core. In GA10x there are PMU, SEC and GSP.\n// See bug 200521616."
+          opt_riscv_dcls_security_action_halt_shadow:
+          - en/dis
+          - 1
+          - 7576
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - "// Fuse option to control the DCLS report action when dcls report error:
+            riscv will go halt \n// opt_riscv_dcls_security_action_halt/assert/interrupt
+            \ are default value of these actions. relation registers in Peregrine
+            can change these actions setting ONCE.\n// Note, this fuse is shared between
+            all RISC-V core. In GA10x there are PMU, SEC and GSP.\n// See bug 200521616."
+          opt_riscv_dcls_security_action_interrupt:
+          - en/dis
+          - 1
+          - 6032
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// Fuse option to control the DCLS report action when dcls report error:
+            peregrine generate core_mismatch interrupt to host  \n// opt_riscv_dcls_security_action_halt/assert/interrupt
+            \ are default value of these actions. relation registers in Peregrine
+            can change these actions setting ONCE.\n// Note, this fuse is shared between
+            all RISC-V core. In GA10x there are PMU, SEC and GSP.\n// See bug 200521616."
+          opt_rma_disable:
+          - en
+          - 1
+          - 17328
+          - control
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - force:low:opt_fa_mode
+          - "// When set to 1: disable RMA/retest. It will disable the enablement
+            of opt_rma_enable \n// When set to 0: see above \n// Bug 200560021 , 3693959"
+          opt_rma_disable_shadow:
+          - en
+          - 1
+          - 7472
+          - force_internal
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - force:low:opt_fa_mode
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_rma_enable:
+          - en
+          - 1
+          - 17324
+          - control
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - force:high:opt_fa_mode
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - "// When set to 1: enable RMA/retest; jtag challenge response will be
+            disabled; jtag oem co-signing will be disabled. If this fuse is set, part/board
+            shouldn't leave outside NVIDIA. \n// When set to 0: see above \n// It
+            will be valid only when opt_rma_disable is unburnt. Fuse programming is
+            gated by JTAG HMAC unlock \n// Bug 200560021 , 3693959"
+          opt_rma_enable_shadow:
+          - en
+          - 1
+          - 7468
+          - force_internal
+          - wp:(~(en_fuse_secure & opt_secure_jtag_secureID_valid))
+          - noscan_hold
+          - force:high:opt_fa_mode
+          - dbg_sw_ovr_en:opt_debug_feature_sw_override_enable
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_rom_debug_dis:
+          - en
+          - 1
+          - 5684
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - reset:high
+          - noscan_hold
+          - |-
+            // When burnt, this fuse disables ROM dump for ROMs that are not critical for security.
+            // This fuse will not be burn on bringup and qual parts to allow for ROM characterization.  It will be burnt on PROD parts.
+            //  See bug 200697715.
+          opt_rom_svop_tm:
+          - fuseless
+          - 3
+          - 6252
+          - "// Starting GB100, we have 2 rams and a rom in testmaster. To provide
+            SVOPs to these rams/rom in test master, we can't use the new serial SVOP
+            distribution for the rams in test master because of mbist flow restriction.
+            \n// Instead, we plan to rely on the old style SVOP for the rams/rom in
+            testmaster. We will create the SVOP fuses needed for the test master rams/rom
+            in CHIPLET_LOGIC chain and will directly send them over to test master
+            where they will get connected.\n// (The connections will be similar to
+            how we make the connections for other functional fuse bits, don't need
+            to invoke the old svop connection flow). Post characterization, these
+            fuses should be blown to the exact same value as their counterparts in
+            other units. \n// see bug 3915871."
+          opt_scpm_calib_rev:
+          - fuseless
+          - 3
+          - 4132
+          - // Identifies the version of the ATE program used for calibration of SCPM.
+          opt_secure_apfw_keyblob_hash_0:
+          - sw
+          - 32
+          - 6340
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_1:
+          - sw
+          - 32
+          - 6344
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_10:
+          - sw
+          - 32
+          - 6384
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_11:
+          - sw
+          - 32
+          - 6388
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_2:
+          - sw
+          - 32
+          - 6348
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_3:
+          - sw
+          - 32
+          - 6352
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_4:
+          - sw
+          - 32
+          - 6356
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_5:
+          - sw
+          - 32
+          - 6360
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_6:
+          - sw
+          - 32
+          - 6364
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_7:
+          - sw
+          - 32
+          - 6368
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_8:
+          - sw
+          - 32
+          - 6372
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_apfw_keyblob_hash_9:
+          - sw
+          - 32
+          - 6380
+          - wp:(((~fuse_program_en) | opt_disable_nonfpf_fuse_programming) | opt_production_mode)
+          - ecc:H11
+          - //384-bit non-fpf bits
+          opt_secure_empd_sec_fault_en:
+          - en
+          - 1
+          - 4148
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // Enable EMPD Fault output
+          opt_secure_empd_sec_fault_en_shadow:
+          - en
+          - 1
+          - 7588
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - // Enable EMPD Fault output
+          opt_secure_fsp_debug_dis:
+          - en
+          - 1
+          - 5488
+          - force_internal
+          - jtag_ovr:or
+          - noscan_hold
+          - wp:(~fuse_program_en)
+          - reset:high
+          - |-
+            // FSP Debug Mode Disable.
+            // not blown (0x0) - FSP is in debug (pre-production) mode.
+            // blown (0x1) - FSP is in production mode.
+            // See bug 200679966.
+          opt_secure_fsp_debug_dis_shadow:
+          - en
+          - 1
+          - 7492
+          - force_internal
+          - jtag_ovr:or
+          - noscan_hold
+          - wp:(~fuse_program_en)
+          - reset:high
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_secure_fsp_phys_isolation_en:
+          - en
+          - 1
+          - 6228
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // 1-bit chip option fuse bit for controlling Fabric access to FSP's Peregrine
+            register space, for Bug 3852053.
+          opt_secure_fuse_ctrl_wr_secure:
+          - en
+          - 1
+          - 1460
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse is used to set reset value of write masks field in FUSE_CTRL
+            Priv Level Mask registers. When \n// not burned, it would use insecure
+            reset value. When burned, it would use secure reset value. The secure
+            \n// and insecure reset value are defined in NV_FUSE manual file. see
+            bug: 1329636"
+          opt_secure_fuse_debugctrl_wr_secure:
+          - en
+          - 1
+          - 2940
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse is used to set reset value of write masks field in FUSE_DEBUGCTRL
+            Priv Level Mask registers. When \n// not burned, it would use insecure
+            reset value. When burned, it would use secure reset value. The secure
+            \n// and insecure reset value are defined in NV_FUSE manual file. see
+            bug: 200341913"
+          opt_secure_fuse_iddqinfo_rd_secure:
+          - en
+          - 1
+          - 1464
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse is used to set reset value of read masks field in FUSE_IDDQINFO
+            Priv Level Mask registers. When \n// not burned, it would use insecure
+            reset value. When burned, it would use secure reset value. The secure
+            \n// and insecure reset value are defined in NV_FUSE manual file. see
+            bug: 1329636"
+          opt_secure_fuse_kappainfo_rd_secure:
+          - en
+          - 1
+          - 504
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse is used to set reset value of read masks field in FUSE_KAPPAINFO
+            Priv Level Mask registers. When \n// not burned, it would use insecure
+            reset value. When burned, it would use secure reset value. The secure
+            and \n// insecure reset value are defined in NV_FUSE manual file. see
+            bug: 2035450"
+          opt_secure_fuse_resense_disable:
+          - en
+          - 1
+          - 4184
+          - force_internal
+          - control
+          - wp:(~fuse_program_en)
+          - "// The fuse bit is used to disable the re-sense features triggered by
+            following fuse register bits: \n// NV_FUSE_DEBUGCTRL_RESENSE_CTRL, NV_FUSE_DEBUGCTRL_RESENSE_NORMAL,
+            NV_FUSE_DEBUGCTRL_RESENSE_RECORD, NV_FUSE_DEBUGCTRL_RESENSE_CTRL_KFUSE
+            and NV_FUSE_PRIV2INTFC. \n// Once burnt, any write to these registers
+            will be ignored by fuse controller; \n// If not burnt, using these registers
+            can trigger the re-sense of the corresponding area inside the fuse macro.
+            \n// The re-sense will update the chip option flops or the corresponding
+            pushing ram context, by sensing the corresponding area inside the fuse
+            macro. \n// It should be kept un-burnt for INT/VS SKUs for debug purpose,
+            and burnt to 1 on ES/PROD SKUs after checking with MODS/SLT team since
+            blowing this fuse prevents fuse resense after fuse buring. \n// See bug
+            200456393."
+          opt_secure_fuse_speedoinfo_rd_secure:
+          - en
+          - 1
+          - 1584
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse is used to set reset value of read masks field in FUSE_SPEEDOINFO
+            Priv Level Mask registers. When \n// not burned, it would use insecure
+            reset value. When burned, it would use secure reset value. The secure
+            and \n// insecure reset value are defined in NV_FUSE manual file. see
+            bug: 1329636"
+          opt_secure_fuse_wdata_wr_secure:
+          - en
+          - 1
+          - 1164
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// When priv security is enabled, burning this fuse will prevent you
+            from burning future fuses.\n// This fuse should be blown to 0x1 on all
+            production SKUs, but not on INT SKUs.  CS SKUs are undecided. \n// Behind
+            the scenes, the fuse controls the default value of register NV_FUSE_WDATA_PRIV_LEVEL_MASK_WRITE_PROTECTION.\n//
+            If this fuse isn't burnt, the default value is 0x7 which means all level
+            initiators can write this register \n// NV_FUSE_FUSEWDATA to burn fuse.
+            If this fuse is burnt, the default value is 0x0 which means no initiator
+            can\n// write NV_FUSE_FUSEWDATA to burn fuse. This request comes from
+            http://nvbugs/1532687/21. see bug: 200069765"
+          opt_secure_gin_intr_ctrl_wr_secure:
+          - en
+          - 1
+          - 4756
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// The fuse was recommended by security team in the bug http://nvbugs/2995754
+            \ The purpose of the fuse is to control the default for PLM protecting
+            \ INTR_CTRL register.\n// The INTR_CTRL registers contain routing information
+            for interrupts. Currently CPU SW controls this information so we cannot
+            blow  this fuse on GPU. \n// In future if the interrupt programming is
+            controlled by a secure software this fuse can be blown.\n// It will be
+            populated in LRCC PRI handler address space for interrupt message transfer.
+            See bug: 3590754\n// If the fuse is unburnt, the register allows all the
+            PL to access. If the fuse is burnt, only PL2/3 SW can access the register.
+            \n// See bug 200645063."
+          opt_secure_host2jtag_boundary_scan_disable:
+          - en
+          - 1
+          - 1804
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - reset:high
+          - |-
+            // When the fuse is not burned, host2jtag will have access to boundary scan.
+            // When the fuse is burned, host2jtag will NOT have access to boundary scan.
+            // This is for security reasons and the logical behavior is tracked in bug 1684514. See bug 1699860
+          opt_secure_host2jtag_sha2_en:
+          - en
+          - 1
+          - 1872
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - reset:high
+          - // When the fuse is not burnt, host2jtag access is available on most of
+            the Jtag chains without SHA2 unlock, expected for ram dump, scan dump,
+            jtag2falcon, boundary scan, jtag2host chains.// When it's burnt, SHA2
+            unlock is necessary for all the chains. Note that the value of opt_secure_host2jtag_standard_mode
+            might change the condition when opt_secure_host2jtag_sha2_en is burnt//
+            See bug 1747588 and 1747452.
+          opt_secure_host2jtag_standard_mode:
+          - en
+          - 1
+          - 1884
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - // When burnt, this fuse will make HOST2JTAG startup in the standard mode,
+            instead of the ISM only mode./n// The fuse is intended as a CYA in case
+            ISM only mode doesn't work out of the box. For more info, see bug 1888302
+          opt_secure_iff_cmd_format_error_en:
+          - en
+          - 1
+          - 5056
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // used to enable the chip lockdown if IFF (init-from-fuse) command has command format error which may be caused by attack. This fuse should be burnt on all SKUs with production keys, and not burnt on SKUs with debug keys to allow us to verify the error reporting features on silicon.
+            // Bug 200666525
+          opt_secure_iff_crc_check:
+          - fuseless
+          - 17
+          - 5140
+          - "// It should be divided to two fields. One is for iff_expected_crc_value(16
+            bits, it is opt_secure_iff_crc_check[15:0]) and the other is for iff_crc_mismatch_stop_iff(1
+            bit, it is opt_secure_iff_crc_check[16]). the iff_expected_crc_value stands
+            for the expected CRC value of IFF record image, MODS will calculate its
+            value and burn it, then it is sensed to sysctrl before IFF record pushing.
+            Then it can be used for the golden value of CRC check. And after iff_crc_mismatch_stop_iff
+            is burned, IFF execution will stop when CRC check fail. We burn them after
+            we validate IFF and CRC HW is correct. If we want to do re-SKU, we need
+            to firstly invalidate iff_expected_crc_value and iff_crc_mismatch_stop_iff,
+            burn a new one. \n// Bug 200666525"
+          opt_secure_iff_ecc_uncorrectable_error_en:
+          - en
+          - 1
+          - 5068
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// used to enable the chip lockdown if double bits error in each record
+            parsed from IFF sequence RAM. This fuse should be burnt on all SKUs with
+            production keys, and not burnt on SKUs with debug keys to allow us to
+            verify the error reporting features on silicon. \n// Bug 200666525"
+          opt_secure_iff_exec_disable:
+          - en
+          - 1
+          - 6216
+          - wp:opt_production_mode
+          - |-
+            // When this fuse is burned, we will skip the IFF execution, that is IFF state-machine will still work for the boot sequence (e.g. waiting for PRI auto init done), but doesn't run any IFF command.
+            // see bug 3614648
+          opt_secure_iff_pri_error_en:
+          - en
+          - 1
+          - 5072
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// used to enable the chip lockdown if SYSCTRL PRI initiator receive
+            a PRI error during IFF execution. This fuse should be burnt on all SKUs
+            with production keys, and not burnt on SKUs with debug keys to allow us
+            to verify the error reporting features on silicon. \n// Bug 200666525"
+          opt_secure_iff_scrubber_en:
+          - en
+          - 1
+          - 5136
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "//  After we verify scrubber works well, we will burn this bit to enable
+            scrubber. \n// Bug 200666525"
+          opt_secure_iff_sequence_too_big_en:
+          - en
+          - 1
+          - 5076
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// used to enable the chip lockdown if FUSE push more records than IFF
+            sequence RAM can accept, that is in GB100, IFF sequence RAM size is 128
+            row, so FUSE can at most push 128 IFF record to SYSCTRL. This fuse should
+            be burnt on all SKUs with production keys, and not burnt on SKUs with
+            debug keys to allow us to verify the error reporting features on silicon.
+            \ \n// Bug 200666525"
+          opt_secure_jtag_secureID_valid:
+          - en
+          - 1
+          - 1592
+          - reset:high
+          - control
+          - wp:(~fuse_program_en)
+          - byp_allow:high
+          - noscan_hold
+          - |-
+            // This fuse is used to enable the SHA2 based jtag security engine from DFT team.
+            // Default value is to disable the engine. See bug: 1381146
+          opt_secure_jtag_secureID_valid_shadow:
+          - en
+          - 1
+          - 7484
+          - force_internal
+          - reset:high
+          - wp:(~fuse_program_en)
+          - byp_allow:high
+          - noscan_hold
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_secure_oobhub_device_reset_wr_secure:
+          - en
+          - 1
+          - 6992
+          - wp:opt_security_mode
+          - // This fuse changes the default PLM value of DEVICE_RESET related recovery
+            registers in OOBHUB to allow only FSP the write access in production.
+            see bug 3758418.
+          opt_secure_pjtag_access_wr_secure:
+          - en
+          - 1
+          - 368
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse sets the HW reset value for the NV_PJTAG_ACCESS_PRIV_LEVEL_MASK
+            \n// Burned means elevated security on NV_PJTAG_ACCESS registers;\n//
+            Not burned means lowered security on NV_PJTAG_ACCESS registers. See bug
+            1767669"
+          opt_secure_pmc_iff_debug_rd_secure:
+          - en
+          - 1
+          - 5364
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "//  This fuse bit is to control read protection priv level mask value
+            of IFF debug registers. \n// See bug 200673785 "
+          opt_secure_pmc_iff_debug_wr_secure:
+          - en
+          - 1
+          - 5360
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "//  This fuse bit is to control write protection priv level mask value
+            of IFF debug registers. \n// See bug 200673785 "
+          opt_secure_post_iff_crc_check_failed_en:
+          - en
+          - 1
+          - 5064
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // used to enable the chip lockdown if IFF record image has data flip during IFF execution, it is detected by CRC check after IFF execution. This fuse should be burnt on all SKUs with production keys, and not burnt on SKUs with debug keys to allow us to verify the error reporting features on silicon.
+            // Bug 200666525
+          opt_secure_pre_iff_crc_check_failed_en:
+          - en
+          - 1
+          - 5060
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // used to enable the chip lockdown if IFF record image has data flip during fuse pushing, or the data in fuse macro is unexpectedly modified. That will be detected by CRC check before IFF execution. This fuse should be burnt on all SKUs with production keys, and not burnt on SKUs with debug keys to allow us to verify the error reporting features on silicon.
+            // Bug 200666525
+          opt_secure_pri_source_isolation_en:
+          - en
+          - 1
+          - 1040
+          - byp_allow:high
+          - wp:(~fuse_program_en)
+          - noscan_hold
+          - force:high:((opt_skate_secure_fusing_start == 1) && (opt_skate_secure_fusing_end
+            == 0)) || ((opt_brpa_secure_fusing_start == 1) && ( fuse2all_brpa_effective
+            == 0))
+          - reset:high
+          - "// Enable PRI source isolation. See bug 1992767, 2076773. \n// When this
+            fuse is burned, each PRI source has a source_ID, and each PRIV_LEVEL_MASK
+            has a SOURCE_ENABLE field that can allow only certain sources to access
+            the register."
+          opt_secure_pwrclk_scpm_sec_fault_en:
+          - en
+          - 1
+          - 5656
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // When burnt, opt_secure_pwrclk_scpm_sec_fault_en allows security faults from the pwrclk SCPM to trigger PRI_HUB+MMU lockup.
+            // Bug 200637480
+          opt_secure_pwrclk_scpm_sec_fault_en_shadow:
+          - en
+          - 1
+          - 7584
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - |-
+            // When burnt, opt_secure_pwrclk_scpm_sec_fault_en allows security faults from the pwrclk SCPM to trigger PRI_HUB+MMU lockup.
+            // Bug 200637480
+          opt_secure_qspi_cmn_cmd_addr_filt_wr_secure:
+          - en
+          - 1
+          - 4676
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // see fuse opt_secure_qspi_cmn_core_wr_secure.
+            // see bug 3913054
+          opt_secure_qspi_cmn_core_wr_secure:
+          - en
+          - 1
+          - 4672
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// These fuses are needed for the new PRIV_LEVEL_MASK registers being
+            added to QSPI. There is 1 fuse for each PRIV_LEVEL_MASK register being
+            added. \n// The fuses will protect the WRITE_PROTECTION and SOURCE_ENABLE
+            fields according to following values, \n// #define QSPI_<FEATURE>_PRIV_LEVEL_MASK_WRITE_PROTECTION
+            \                                                      7:4 /* RWEVF */
+            .\n// #define QSPI_<FEATURE>_PRIV_LEVEL_MASK_WRITE_PROTECTION__FUSE_SIGNAL
+            \           opt_secure_qspi_feature_wr_secure /*       */ .\n// #define
+            QSPI_<FEATURE>_PRIV_LEVEL_MASK_WRITE_PROTECTION_ALL_LEVELS_ENABLED_FUSE0
+            \                      0x0000000F /* RWE-V */ .\n// #define QSPI_<FEATURE>_PRIV_LEVEL_MASK_WRITE_PROTECTION_PL3_ONLY_FUSE1
+            \                                0x00000008 /* RW--V */ .\n// #define
+            QSPI_<FEATURE>_PRIV_LEVEL_MASK_SOURCE_ENABLE                                                        31:12
+            /* RWEVF */ .\n// #define QSPI_<FEATURE>_PRIV_LEVEL_MASK_SOURCE_ENABLE__FUSE_SIGNAL
+            \              opt_secure_qspi_feature_wr_secure /*       */ .\n// #define
+            QSPI_<FEATURE>_PRIV_LEVEL_MASK_SOURCE_ENABLE_ALL_ENABLE_FUSE0                                  0x000FFFFF
+            /* RWE-V */ .\n// #define QSPI_<FEATURE>_PRIV_LEVEL_MASK_SOURCE_ENABLE_CPU_ONLY_FUSE1
+            \                        PRI_SOURCE_ID_MAP_FSP /* RWE-V */ .\n// No fuse
+            protection added for READ_PROTECTION, SOURCE_READ_CONTROL (default LOWERED)
+            and SOURCE_WRITE_CONTROL (default BLOCKED) fields.\n// For PLM to register
+            mapping, can check table 26 (QSPI AMAP) in Blackwell-317 FD. It lists
+            the PLM registers mapped to various regions in QSPI AMAP. See bug 3913054"
+          opt_secure_qspi_cmn_mutex_override_wr_secure:
+          - en
+          - 1
+          - 4684
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // see fuse opt_secure_qspi_cmn_core_wr_secure.
+            // see bug 3913054
+          opt_secure_qspi_cmn_rbi_wr_secure:
+          - en
+          - 1
+          - 4680
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // see fuse opt_secure_qspi_cmn_core_wr_secure.
+            // see bug 3913054
+          opt_secure_qspi_cmn_secure_wr_secure:
+          - en
+          - 1
+          - 4688
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // see fuse opt_secure_qspi_cmn_core_wr_secure.
+            // see bug 3913054
+          opt_secure_reshift_gpc_rail_wr_secure:
+          - en
+          - 1
+          - 4288
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - |-
+            // This fuse is used to set the initial value of NV_FUSE_RESHIFT_GPC_RAIL_PRIV_LEVEL_MASK which is used to control the priv level of gpc reshift control registers.
+            // If burned, the PLM is 2; if not burn, the PLM is 0, see bug 200508105
+          opt_secure_scandebug_access_disable:
+          - en
+          - 1
+          - 736
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - jtag_ovr:or
+          - reset:high
+          - noscan_hold
+          - scan_dbg_byp
+          - byp:no
+          - "// We put security releated flops on scan debug chain. \n// On fresh
+            chips (without this fuse burnned), these secured flop/segment can be accessed.
+            \n// When the fuse bit is burned, the access to these secured flops/segment
+            is disabled. \n// The reason to request this fuse is described in http://nvbugs/1383416
+            and http://nvbugs/1387576. "
+          opt_secure_scc_dis:
+          - en
+          - 1
+          - 572
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - "// This fuse is used to disable the Side-Channel-Countermeasures feature.
+            This feature is used to block the side channel attacks since GP100/GP10X/T186.
+            \n// The feature is enable by default, we only need to burn this fuse
+            to disable the feature if we're facing intellectual property disputes.
+            \n// See bug 200022833."
+          opt_secure_sec_fault_config_wr_secure:
+          - en
+          - 1
+          - 6168
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse determines the reset value of PLMs used to protect PRIV
+            registers that configure security sensors that can generate sec_faults:
+            POD, SCPM, etc..\n// Bug 2695336 "
+          opt_secure_sec_fault_lockdown_enable_by_default:
+          - en
+          - 1
+          - 7744
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - "// This fuse is used to change the reset value for the sec_fault config
+            registers(NV_PMC_SEC_FAULT_CONFIG_FUNCTION_LOCKDOWN and NV_PMC_SEC_FAULT_CONFIG_DEVICE_LOCKDOWN).\n//
+            If the fuse is not burned(used in bring up), the default value of the
+            NV_PMC_SEC_FAULT_CONFIG_FUNCTION_LOCKDOWN  and NV_PMC_SEC_FAULT_CONFIG_DEVICE_LOCKDOWN
+            will all be 32'h0, which means no security sensors will trigger lockdown
+            in this case, only triggering an interrupt.\n// If the fuse is burned(used
+            in production),  the default value for some bits of the NV_PMC_SEC_FAULT_CONFIG_FUNCTION_LOCKDOWN
+            and NV_PMC_SEC_FAULT_CONFIG_DEVICE_LOCKDOWN will be changed to 1'b1, which
+            means the corresponding security sensor will trigger device lockdown or
+            function lockdown when it happens.// Bug 3592395 "
+          opt_secure_sec_fault_lockdown_enable_by_default_shadow:
+          - en
+          - 1
+          - 7568
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - "// This fuse is used to change the reset value for the sec_fault config
+            registers(NV_PMC_SEC_FAULT_CONFIG_FUNCTION_LOCKDOWN and NV_PMC_SEC_FAULT_CONFIG_DEVICE_LOCKDOWN).\n//
+            If the fuse is not burned(used in bring up), the default value of the
+            NV_PMC_SEC_FAULT_CONFIG_FUNCTION_LOCKDOWN  and NV_PMC_SEC_FAULT_CONFIG_DEVICE_LOCKDOWN
+            will all be 32'h0, which means no security sensors will trigger lockdown
+            in this case, only triggering an interrupt.\n// If the fuse is burned(used
+            in production),  the default value for some bits of the NV_PMC_SEC_FAULT_CONFIG_FUNCTION_LOCKDOWN
+            and NV_PMC_SEC_FAULT_CONFIG_DEVICE_LOCKDOWN will be changed to 1'b1, which
+            means the corresponding security sensor will trigger device lockdown or
+            function lockdown when it happens.// Bug 3592395 "
+          opt_security_mode:
+          - en
+          - 1
+          - 5468
+          - control
+          - noscan_hold
+          - reset:high
+          - "// None - AKA ODM Production. Write-protects customer-controlled fuses,
+            resulting in hiding some keys (via Boot ROM). \n// Reset high until control
+            fuse outputs are valid to disable fuse programming until after the first
+            fuse sense is complete// See bug 200671188"
+          opt_security_mode_shadow:
+          - en
+          - 1
+          - 7460
+          - force_internal
+          - noscan_hold
+          - reset:high
+          - '// See corresponding non shadow version, the shadow version drives a
+            signal with the inverted polarity to protect against glitch attacks. '
+          opt_sensitive_rom_debug_dis:
+          - en
+          - 1
+          - 5680
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - force_internal
+          - reset:high
+          - noscan_hold
+          - |-
+            // Similar to RAM, we want to test the ROM in the chip to guarantee the test coverage in DFT since the ROM number and size grow.
+            // When burnt, this fuse disables ROM dump for security critical ROMs.
+            // This fuse will always be burnt except for one off SKUs in the case of ROM systemic ROM failures in critical ROMs. See bug 200697715.
+          opt_setup_21_14:
+          - fuseless
+          - 8
+          - 4192
+          - // Debug control bits(21:14) Default value is 0.
+          opt_setup_7_0:
+          - fuseless
+          - 8
+          - 4188
+          - // Debug control bits(7:0) Default value is 0.
+          opt_skate_and_brp_dev_mode_en:
+          - en
+          - 1
+          - 6668
+          - wp:(opt_skate_secure_fusing_start | opt_brpa_secure_fusing_start | opt_skate_secure_fusing_cya_en
+            | opt_brpa_secure_fusing_cya_en)
+          - byp:no
+          - noscan_hold
+          - |-
+            // When opt_skate_and_brp_dev_mode_en is blown, BRP related SW fusing capability is enabled. Once SKATE keys or BRPs (including activation fuses) have been burnt, it should not be possible to blow opt_skate_and_brp_dev_mode.
+            // After this fuse is blown, BROM will send its value to HSM and HSM reject the CSR for this chip.
+            // see bug 3943016
+          opt_skate_secure_fusing_cya_en:
+          - en
+          - 1
+          - 1960
+          - control
+          - wp:(opt_skate_secure_fusing_start | opt_skate_secure_fusing_end | opt_production_mode)
+          - noscan_hold
+          - pri_mask:SKATE_SW_FUSING
+          - // the cya enable fuse to revert to the old flow, when enabled, the jtag
+            can burn SKATE fuses. see bug 3744141
+          opt_skate_secure_fusing_end:
+          - en
+          - 1
+          - 1964
+          - force_internal
+          - control
+          - wp:(~opt_skate_secure_fusing_start | opt_skate_secure_fusing_cya_en |
+            ~mutex_lock | NOT_FSP | jtag_controls_fuse_sync | opt_production_mode)
+          - noscan_hold
+          - pri_mask:SKATE_SW_FUSING
+          - // indicate the end of the new flow to burn the SKATE fuses. see bug 3744141
+          opt_skate_secure_fusing_start:
+          - en
+          - 1
+          - 1956
+          - control
+          - wp:opt_skate_secure_fusing_cya_en | opt_production_mode
+          - noscan_hold
+          - pri_mask:SKATE_SW_FUSING
+          - // burning the fuse indicates the start of new flow to burn the SKATE
+            fuse,  the new flow generates on-die-gen seed, and require the fuse blob
+            be authenticated before burning. see bug 3744141
+          opt_speedo0:
+          - fuseless
+          - 12
+          - 1192
+          - force_internal
+          - pri_mask:SPEEDOINFO
+          - // holds speedo0 information, bug 658070
+          opt_speedo1:
+          - fuseless
+          - 12
+          - 1196
+          - force_internal
+          - pri_mask:SPEEDOINFO
+          - // holds speedo1 information, bug 658070
+          opt_speedo2:
+          - fuseless
+          - 12
+          - 1200
+          - force_internal
+          - pri_mask:SPEEDOINFO
+          - // holds speedo2 information, bug 658070
+          opt_speedo_adj:
+          - sw
+          - 1
+          - 4988
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - pri_mask:SPEEDOINFO
+          - // Speedo adjustment indication fuse.  If the fuse is burned it indicates
+            a speedo adjustment should have happened but we did not adjust the speedo
+            because it would put it outside of the lower speedo limit for the catch
+            all SKU bin definition. see bug:2597378
+          opt_speedo_freq_offset:
+          - fuseless
+          - 16
+          - 2972
+          - force_internal
+          - pri_mask:SPEEDOINFO
+          - |-
+            // On GA10x this fuse was implemented by re-purposing opt_usb2_cal.  http://nvbugs/2761983.  The fuse for this bug can be either a new fuse, or officially re-name opt_usb2_cal.
+            // This fuse is requested to capture ATE level binning information per part - to capture CP/FT values and revision number. The information stored will be similar to Speedo and hence needs to be read protected (tracked separately with Security team in bug 2791335)
+            // See bug  200706466
+          opt_speedo_rev:
+          - fuseless
+          - 3
+          - 1184
+          - force_internal
+          - // Indicates the fuse revision of opt_speedo. A non-zero value implies
+            the speed is correlated and valid
+          opt_ts_cal_avg:
+          - fuseless
+          - 8
+          - 4104
+          - |-
+            // Rounded average calcode for all GPC TSENSE instances, except the sys_Tsense.
+            // [7:0] for a value <256.
+            // See bug 200437715
+          opt_ts_cal_offset_0:
+          - fuseless
+          - 5
+          - 4108
+          - |-
+            // For Tsense_U2_A in each GPC, signed 5bits each.
+            // See bug 200437715
+          opt_ts_rev:
+          - fuseless
+          - 3
+          - 4112
+          - // calibration fuses added in sr01
+          opt_ts_tc:
+          - fuseless
+          - 3
+          - 1216
+          - |-
+            // temperature coefficient fuse. Bug 672483.
+            // https://sc-libola.nvidia.com/reports/libs/common/analog/nvidia/doc/TSENSE_U2_A.doc
+          opt_vendor_code:
+          - ecid
+          - 4
+          - 604
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_vmon_plus_threshold:
+          - fuseless
+          - 32
+          - 4116
+          - |-
+            // - [31:16] Reserved.
+            // - [13: 8] upper threshold, to detect overvoltage at both Boot and Run Time.
+            // - [ 5: 0] lower threshold, to detect undervoltage at both Boot and Run Time.
+            // Update value if (fuse2all_fuse_outputs_valid) &&  ( opt_vmon_plus_threshold_rev > 0 ) ?  Else defaultcalibration fuses added in sr01
+          opt_vmon_plus_threshold_rev:
+          - fuseless
+          - 3
+          - 4120
+          - // see opt_vmon_plus_threshold
+          opt_vrefro_calib_rev:
+          - fuseless
+          - 3
+          - 4164
+          - // Identifies the version of the ATE program used for calibration of vrefro
+          opt_vrefro_freqadj_calib:
+          - fuseless
+          - 6
+          - 4152
+          - // RO calibration. Default=6`b100000
+          opt_vrefro_schmitt_calib:
+          - fuseless
+          - 2
+          - 4160
+          - // Core power level input, control hysteresis window
+          opt_vrefro_spare_calib:
+          - fuseless
+          - 8
+          - 4156
+          - // PTAT enable and configuration
+          opt_vreg10v_ctrl:
+          - fuseless
+          - 2
+          - 4180
+          - // Voltage regulator voltage level control. Default value is zero.
+          opt_vreg14v_ctrl:
+          - fuseless
+          - 2
+          - 4176
+          - // Voltage regulator voltage level control. Default value is zero.
+          opt_wafer_id:
+          - ecid
+          - 6
+          - 620
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_x_coordinate:
+          - ecid
+          - 9
+          - 624
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_xtal_soc_skew_0:
+          - fuseless
+          - 24
+          - 4128
+          - |-
+            // -[23:20] Reserved.
+            // -[19:16] Mask any critical timing path.
+            // -[15: 0] Datapath delay select.
+            // Update value if ( opt_scpm_calib_rev> 0 ) ?  Else default
+          opt_xtl_dev_serial_num_val_0:
+          - fuseless
+          - 32
+          - 4928
+          - |-
+            // To update the 40 bits in device serial number cap.
+            // see bug: 200651546
+          opt_xtl_dev_serial_num_val_1:
+          - fuseless
+          - 32
+          - 4932
+          - |-
+            // To update the 40 bits in device serial number cap.
+            // see bug: 200651546
+          opt_y_coordinate:
+          - ecid
+          - 9
+          - 628
+          - wp:((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+          - noscan_hold
+          - // see ecid_info https://wiki.nvidia.com/testengmethod/index.php/SW#ECID_Definitions
+          opt_zeroize_dis:
+          - sw
+          - 1
+          - 5676
+          - wp:opt_security_mode
+          - control
+          - "// ODM - Used to support key zeroization as part of FIPS compliance,
+            when this fuse is burned, zeroization is not allowed, \n// i.e. the keys
+            that are identified as zeroizable otherwise cannot be burned in the field:
+            FKDD_{A,S}K PSC_{KD,E}K. \n// This fuse can be used by an ODM that worries
+            about the DOS possibility coming from key zeroization\n // see bug  200698675 "
+          opt_zeroize_status:
+          - sw
+          - 2
+          - 5688
+          - wp:opt_production_mode & (~opt_production_mode | NOT_FSP | ~mutex_lock
+            | opt_zeroize_dis)
+          - "// NVPSCZ - Status bits for zeroization, bit 0 is START_Z, bit 1 is END_Z.
+            \n // see bug  200698675 "
+        Outputs:
+          fuse2all_brpa_effective: (opt_brpa_en1 && !opt_brpa_dis) || opt_brpa_en2
+          fuse2all_j_type_romdump_en:secure_val:low: (~opt_rom_debug_dis && opt_secure_jtag_secureID_valid
+            && ~opt_production_mode) && en_fuse_secure
+          fuse2all_sensitive_j_type_romdump_en:secure_val:low: (~opt_sensitive_rom_debug_dis
+            && opt_secure_jtag_secureID_valid && ~opt_production_mode) && en_fuse_secure
+          jtag2unit_disable:secure_val:high: opt_security_mode & ~((opt_rma_enable
+            & ~opt_rma_disable) | opt_fa_mode)
+          opt_enable_hw_flop_clear_inv: ~opt_enable_hw_flop_clear_shadow
+          opt_fa_mode_inv: ~opt_fa_mode_shadow
+          opt_fsp_ecc_en_inv: ~opt_fsp_ecc_en_shadow
+          opt_fsp_error_containment_en_inv: ~opt_fsp_error_containment_en_shadow
+          opt_fsp_mbist_monitor_en_inv: ~opt_fsp_mbist_monitor_en_shadow
+          opt_fsp_prod_sym_key_en_inv: ~opt_fsp_prod_sym_key_en_shadow
+          opt_fsp_testmode_monitor_en_inv: ~opt_fsp_testmode_monitor_en_shadow
+          opt_production_mode_inv: ~opt_production_mode_shadow
+          opt_retest_disable_inv: ~opt_retest_disable_shadow
+          opt_retest_en_inv: ~opt_retest_en_shadow
+          opt_riscv_dcls_en_inv: ~opt_riscv_dcls_en_shadow
+          opt_riscv_dcls_security_action_assert_inv: ~opt_riscv_dcls_security_action_assert_shadow
+          opt_riscv_dcls_security_action_halt_inv: ~opt_riscv_dcls_security_action_halt_shadow
+          opt_rma_disable_inv: ~opt_rma_disable_shadow
+          opt_rma_enable_inv: ~opt_rma_enable_shadow
+          opt_secure_empd_sec_fault_en_inv: ~opt_secure_empd_sec_fault_en_shadow
+          opt_secure_fsp_debug_en: ~opt_secure_fsp_debug_dis_final
+          opt_secure_fsp_debug_en_inv: opt_secure_fsp_debug_dis_shadow_final
+          opt_secure_jtag_secureID_valid_inv: ~opt_secure_jtag_secureID_valid_shadow
+          opt_secure_pwrclk_scpm_sec_fault_en_inv: ~opt_secure_pwrclk_scpm_sec_fault_en_shadow
+          opt_secure_sec_fault_lockdown_enable_by_default_inv: ~opt_secure_sec_fault_lockdown_enable_by_default_shadow
+          opt_security_mode_inv: ~opt_security_mode_shadow
+          qualified_security_mode:secure_val:high: opt_security_mode & ~((opt_rma_enable
+            & ~opt_rma_disable) | opt_fa_mode)
+        async_reshift: 1
+        base_address: 0
+        burn_and_check: 1
+        bypass_fuse_is_endis: 1
+        chipdev2fuse_mcp: 8
+        clamp_mcpsignals_in_testmode: 0
+        disable_fuse_reset_override_fuse: opt_ctrl_block_fuse_reset_jtag_override
+        disable_priv_floorsweeping: 0
+        dynamic_record_boundary: 1
+        enable_redundancy_read: 0
+        enable_skip_fuse_sense: 1
+        enable_software_override: 1
+        enhanced_fuseless_fuses: 1
+        external_fuse_macro: 1
+        external_priv_block: 1
+        external_ps_switch: 1
+        fast_mode_qualifier_fuse: opt_production_mode
+        feature_override_fuses:
+        - opt_nvjtag_protection_enable
+        - opt_feature_override_spare
+        fetch_fifo_depth: 2
+        fls_chain_ovr_specs:
+          chiplet_logic:
+          - - opt_iddq
+          - - opt_iddq_cp
+          - - opt_iddq_rev
+          - - opt_speedo_rev
+          - - opt_speedo_freq_offset
+          - - opt_speedo0
+          - - opt_speedo1
+          - - opt_speedo2
+          - - opt_kappa_info
+          - - opt_int_ts_valid
+          - - opt_xtl_dev_serial_num_val_0
+          - - opt_xtl_dev_serial_num_val_1
+          - - opt_int_ts_a
+          - - opt_int_ts_b
+          - - opt_ts_tc
+          - - opt_ts_cal_avg
+          - - opt_ts_cal_offset_0
+          - - opt_int_ts_otob_en
+          - - opt_ts_rev
+          - - opt_vmon_plus_threshold
+          - - opt_vmon_plus_threshold_rev
+          - - opt_xtal_soc_skew_0
+          - - opt_scpm_calib_rev
+          - - opt_empd_calib
+          - - opt_empd_calib_rev
+          - - opt_vrefro_freqadj_calib
+          - - opt_vrefro_spare_calib
+          - - opt_vrefro_schmitt_calib
+          - - opt_vrefro_calib_rev
+          - - opt_fs_dummy_disable_cp
+          - - opt_secure_iff_crc_check
+          - - opt_rom_svop_tm
+          - - opt_ram_svop_pdp_tm
+          - - opt_bootfsm_ffl_firmware_instance_0_offset
+          - - opt_bootfsm_ffl_firmware_instance_1_offset
+          - - opt_fab_id
+          - - opt_major_revision_id
+          - - opt_minor_revision_id
+          - - opt_minor_ext_revision_id
+          - - opt_kcp
+          - - opt_kvco
+          - - opt_vreg14v_ctrl
+          - - opt_vreg10v_ctrl
+          - - opt_setup_7_0
+          - - opt_setup_21_14
+          - - opt_pll_calib_rev
+          - - opt_pnverot_clock_fmon_threshold_high
+          - - opt_pnverot_clock_fmon_threshold_low
+          - - opt_pnverot_clock_fmon_ref_window_count
+          - - opt_pnverot_clock_fmon_ref_window_dc_check_count
+          - - opt_pnverot_fmon_calib_rev
+          - - opt_fs_reserved_0
+          - - opt_fs_reserved_1
+          - - opt_fs_reserved_2
+          - - opt_fs_reserved_3
+          top_fs:
+          - - opt_fs_dummy_disable
+            - ovr_type:1
+            - op_rename:fs2all_fs_dummy_disable
+        fls_priv_specs:
+          opt_fs_dummy_disable:
+            force_reg_size: 16
+            ofs_ctrl: 8516
+            ofs_status: 10820
+            priv_reg_idx_entries: 1
+        fuse_clk_period:
+        - 14.285714285714
+        - 14.285714285714
+        fuse_encoding_rev: 7
+        fuse_macro: HDEFUSE_1024X32_E2F2R2_L2_D2
+        fuse_macro_details:
+        - HDEFUSE_256X32_E2F2R2_L2_D2
+        - HDEFUSE_256X32_E2F2R2_L2_D2
+        - HDEFUSE_256X32_E2F2R2_L2_D2
+        - HDEFUSE_256X32_E2F2R2_L2_D2
+        fuse_segments_info:
+          identical_segment_ids:
+          - primary_segment_id: 161
+            replicated_segment_ids:
+            - 3
+          predefined_segment_ids:
+            chiplet_logic: 2
+            svop:
+              default: 161
+            top_fs: 1
+          reshift_segment_ids:
+          - 3
+        fuse_sub_sections_options:
+          control_section:
+            resense_dis: opt_secure_fuse_resense_disable | fuse_resense_disable_sticky
+            sense_order: 0
+            sub_segments:
+            - - // these are control section options
+          fpf_section:
+            has_resense: 1
+            sense_order: 2
+            sub_segments:
+            - - // these are fpf section options
+          fsp_section:
+            push_interface: 1
+            sense_before_fuse_valid: 0
+            sense_order: 5
+            sub_segments:
+            - - '// fsp sub-segment 0: fsp_brom_patch_section'
+              - sub_segment_name:fsp_brom_patch_section
+              - size_num_of_rows:192
+              - hide_priv:high:fuse2all_brpa_effective
+              - hide_jtag:high:1
+              - wp:(fuse2all_brpa_effective | opt_brp_lock | ~fuse_program_en)
+              - byp_enable_cond:(en_sw_override & opt_skate_and_brp_dev_mode_en)
+              - dump_as_chip_option
+              - has_redundancy:0
+            - - '// fsp sub-segment 1: nv_field'
+              - sub_segment_name:fsp_nv_field
+              - size_num_of_rows:2
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - dump_as_chip_option
+              - has_redundancy:1
+            - - '//fsp sub-segment 2: nv_static'
+              - sub_segment_name:fsp_nv_static
+              - size_num_of_rows:2
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - wp:opt_production_mode
+              - dump_as_chip_option
+              - has_redundancy:1
+            - - '// fsp sub-segment 3: nv_other_key, which doesn''t need secure fusing'
+              - sub_segment_name:fsp_non_secure_fusing_key
+              - size_num_of_rows:69
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - wp:(opt_fsp_skate_acc_dis | ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming))
+                & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nv_fsp
+                | opt_zeroize_dis)
+              - dump_as_chip_option
+              - has_redundancy:0
+            - - '//fsp sub-segment 4: nv_non_odgs key'
+              - sub_segment_name:fsp_nv_non_odgs_key
+              - size_num_of_rows:24
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - wp:((((~opt_skate_secure_fusing_start | opt_skate_secure_fusing_end
+                | ~mutex_lock | NOT_FSP | jtag_controls_fuse_sync) &~opt_skate_secure_fusing_cya_en)
+                | opt_non_odgs_secure_fusing_lock | opt_production_mode | (opt_skate_secure_fusing_start
+                & opt_skate_secure_fusing_cya_en)) & (~opt_production_mode | NOT_FSP
+                | ~mutex_lock | field_burn_disable_nv_fsp | opt_zeroize_dis))
+              - jtag_da_protect:~opt_skate_secure_fusing_cya_en
+              - byp_enable_cond:(en_sw_override & opt_skate_and_brp_dev_mode_en)
+              - dump_as_chip_option
+              - has_redundancy:0
+            - - '//fsp sub-segment 5: PUF help data'
+              - sub_segment_name:puf_ac
+              - size_num_of_rows:214
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - wp:((~opt_skate_secure_fusing_start | opt_skate_secure_fusing_end
+                | ~mutex_lock | NOT_FSP | jtag_controls_fuse_sync) | opt_odgs_secure_fusing_lock
+                | opt_production_mode | (opt_skate_secure_fusing_start & opt_skate_secure_fusing_cya_en))
+                & (~opt_production_mode | NOT_FSP | ~mutex_lock | field_burn_disable_nv_fsp
+                | opt_zeroize_dis)
+              - byp_enable_cond:(en_sw_override & opt_skate_and_brp_dev_mode_en)
+              - jtag_da_protect:~opt_skate_secure_fusing_cya_en
+              - dump_as_chip_option
+              - has_redundancy:0
+            - - '//fsp sub-segment 6: oem_field'
+              - sub_segment_name:fsp_oem_field
+              - size_num_of_rows:2
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - dump_as_chip_option
+              - has_redundancy:1
+            - - '// fsp sub-segment 7: oem static'
+              - sub_segment_name:fsp_oem_static
+              - size_num_of_rows:2
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - wp:opt_security_mode
+              - dump_as_chip_option
+              - has_redundancy:1
+            - - '// fsp sub-segment 8: oem key'
+              - sub_segment_name:fsp_oem_key
+              - size_num_of_rows:13
+              - hide_priv:high:1
+              - hide_jtag:high:1
+              - wp:opt_security_mode & (~opt_production_mode | NOT_FSP | ~mutex_lock
+                | field_burn_disable_odm_fsp | opt_zeroize_dis)
+              - dump_as_chip_option
+              - has_redundancy:0
+          iff_section:
+            push_interface: 1
+            sense_before_fuse_valid: 0
+            sense_order: 4
+            sub_segments:
+            - - // these are iff section options
+              - sub_segment_name:iff_subsection
+              - byp:no
+              - wp:opt_production_mode
+          normal_section:
+            has_resense: 0
+            resense_dis: opt_secure_fuse_resense_disable | fuse_resense_disable_sticky
+            sense_order: 1
+            sub_segments:
+            - - // these are normal section options
+          record_section:
+            sense_order: 3
+            sub_segments:
+            - - // these are record section options
+              - wp:(((priv_fusectrl_wdata[5] | jtag_fusectrl_wdata[5]) & opt_production_mode)
+                | (~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+        generate_fuse_reset_override_logic: 1
+        has_fuse_to_1500: 0
+        has_jtag_fuse_nonsecure_reg: 1
+        has_ps18_sr_latch: 1
+        iff_sw_fusing_present: 0
+        init_from_fuse: 1
+        jtag_autosense: 0
+        jtag_global_fuse_mask: 1
+        keep_legacy_fuse_bypass_fuses: 0
+        keep_legacy_fuse_disable_fuse_program: 0
+        kfuse_present_same_macro: 0
+        kfuse_size_total_bits: 128
+        max_flops_per_reshift_segment: 11000
+        max_num_rams_to_repair: 10
+        min_spare_bits: 40
+        need_jtag_secure_top_fs: 1
+        nominal_fuse_clk_period:
+        - 20
+        number_endis_spares: 5
+        pri_fuse_addr_space_in_kbytes: 32
+        pri_interface: 1
+        pri_mask_registers:
+          ALLOW_BRPA_BLOW:
+            addr: 15168
+            comment: 'Used to protect registers: NV_FUSE_ZB_ALLOW_BRPA_BLOW'
+            read_mask_reset_value: 15
+            source_enable_value: 2048
+            write_mask_reset_value: 8
+          BRP_SW_FUSING:
+            addr: 15164
+            comment: Used to protect bootrom patch related chip option registers
+            read_mask_reset_value: 15
+            write_mask_reset_value:
+              fuse: opt_skate_and_brp_dev_mode_en
+              fuse0_reset: 15
+              fuse1_reset: 0
+          DEBUGCTRL:
+            addr: 224
+            comment: 'Used to protect following fuse control registers: PRIV2INTFC,
+              DEBUGCTRL. The reset value of write mask field can be selected by fuse:
+              opt_secure_fuse_debugctrl_wr_secure, See bug: 200118791, 200341913'
+            read_mask_reset_value: 15
+            source_enable_value:
+              fuse: opt_secure_fuse_debugctrl_wr_secure
+              fuse0_reset: 1048575
+              fuse1_reset: 2048
+            write_mask_reset_value:
+              fuse: opt_secure_fuse_debugctrl_wr_secure
+              fuse0_reset: 15
+              fuse1_reset: 8
+          FEATURE_OVERRIDE_SPARE_BIT:
+            addr: 15140
+            comment: 'Used to protect registers: NV_FUSE_FEATURE_OVERRIDE_SPARE_BIT_* '
+            read_mask_reset_value: 15
+            write_mask_reset_value:
+              fuse: feature_override_spare_bit
+              fuse0_reset: 15
+              fuse1_reset: 8
+          FUSECTRL:
+            addr: 248
+            comment: 'Used to protect all the fuse control registers except FUSEWDATA,
+              DEBUGCTRL, PRIV2INTFC and FUSETIME_* related registers. The reset value
+              of write mask field can be selected by fuse: opt_secure_fuse_ctrl_wr_secure.'
+            read_mask_reset_value: 15
+            source_enable_value:
+              fuse: opt_secure_fuse_ctrl_wr_secure
+              fuse0_reset: 1048575
+              fuse1_reset: 2048
+            write_mask_reset_value:
+              fuse: opt_secure_fuse_ctrl_wr_secure
+              fuse0_reset: 15
+              fuse1_reset: 8
+          FUSETIME:
+            addr: 228
+            comment: 'Used to protect all the fuse timing registers. See bug: 200118791.'
+            read_mask_reset_value: 15
+            source_enable_value: 2048
+            write_mask_reset_value: 8
+          IDDQINFO:
+            addr: 240
+            comment: 'Used to protect opt registers of following fuses: opt_iddq,
+              opt_iddq_cp. See bug: 953092, 1355148. The reset value of read mask
+              field can be selected by fuse: opt_secure_fuse_iddqinfo_rd_secure '
+            read_mask_reset_value:
+              fuse: fuse_iddqinfo
+              fuse0_reset: 15
+              fuse1_reset: 12
+            write_mask_reset_value: 15
+          KAPPAINFO:
+            addr: 212
+            comment: 'Used to protect opt registers of following fuses: opt_kappa_info.
+              See bug: 2035450. The reset value of read mask field can be selected
+              by fuse: opt_secure_fuse_kappainfo_rd_secure'
+            read_mask_reset_value:
+              fuse: fuse_kappainfo
+              fuse0_reset: 15
+              fuse1_reset: 12
+            write_mask_reset_value: 15
+          NVJTAG:
+            addr: 15144
+            comment: 'Used to protect registers: NV_FUSE_ZB_FEATURE_OVERRIDE_NVJTAG_PROTECTION_ENABLE
+              and NV_FUSE_ZB_DFT_ACCESS_ALLOWED'
+            read_mask_reset_value: 15
+            source_enable_value: 2048
+            write_mask_reset_value: 8
+          OPT:
+            addr: 252
+            comment: Used to protect the fuse opt registers (except those chip options
+              that have a separate priv mask register defined in chip config) including
+              spare bits and fuseless fuse opt registers.
+            read_mask_reset_value: 15
+            write_mask_reset_value: 15
+          RESHIFT_GPC_RAIL:
+            addr: 15116
+            comment: 'Used to protect reshift related registers: NV_FUSE_RESHIFT_GPC_RAIL,
+              NV_FUSE_RESHIFT_TRIGGER_CHAIN<chain_id>, NV_FUSE_RESHIFT_STATUS_CHAIN<chain_id>'
+            read_mask_reset_value: 15
+            write_mask_reset_value:
+              fuse: reshift_gpc_rail
+              fuse0_reset: 15
+              fuse1_reset: 12
+          SKATE_SW_FUSING:
+            addr: 15160
+            comment: Used to protect secure fusing related chip option registers
+            read_mask_reset_value: 15
+            write_mask_reset_value:
+              fuse: opt_skate_and_brp_dev_mode_en
+              fuse0_reset: 15
+              fuse1_reset: 0
+          SPEEDOINFO:
+            addr: 236
+            comment: 'Used to protect opt registers of following fuses: opt_speedo0,
+              opt_speedo1, opt_speedo2, see bug: 953092. and opt_cpm0, opt_cpm1, opt_cpm2,
+              see bug: 2066100. The reset value of read mask field can be selected
+              by fuse: opt_secure_fuse_speedoinfo_rd_secure'
+            read_mask_reset_value:
+              fuse: fuse_speedoinfo
+              fuse0_reset: 15
+              fuse1_reset: 12
+            write_mask_reset_value: 15
+          WDATA:
+            addr: 244
+            comment: Used to protect NV_FUSE_FUSEWDATA and SLAM register
+            read_mask_reset_value: 15
+            source_enable_value:
+              fuse: opt_secure_fuse_wdata_wr_secure
+              fuse0_reset: 1048575
+              fuse1_reset: 2048
+            write_mask_reset_value:
+              fuse: opt_secure_fuse_wdata_wr_secure
+              fuse0_reset: 15
+              fuse1_reset: 8
+        read_before_write_check: 1
+        reshift_pipestages_count: 60
+        segment_share_fsm_num: 1
+        sense_at_reset: 1
+        shared_record_iff_section: 1
+        skip_fuse_sense_qualifier_fuse: opt_production_mode
+        skip_ram_repair_for_ate: 1
+        skip_ram_repair_qualifier_fuse: opt_production_mode
+        start_offset_reshift_regs: 22560
+        switch_fuse_to_syncreset: 0
+        use_crc_for_ecc: 1
+        use_mkprivblk: 1
+        verilog_name: NV_FUSE_fusegen
+        wp_for_spare_fpf: opt_disable_fpf_fuse_programming
+        wp_for_spare_normal: ((~fuse_program_en) | opt_disable_nonfpf_fuse_programming)
+  kfuse:
+    clk_period: 10ns
+    enable_redundancy_read: 0
+    external_fuse_macro: 1
+    external_ps_switch: 1
+    fuse_macro: HDEFUSE_192X32_E2F2R2_L2_D2
+    has_ps18_sr_latch: 0
+    pwrgd_level_shifter: 0
+ramgen: {}
