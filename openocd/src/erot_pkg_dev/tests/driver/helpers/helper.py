@@ -98,10 +98,12 @@ class Helper:
                  n_address_lane, n_address_bits, address, 
                  n_data_lane, nbr_rd_bytes, dummy_cycles=0xFFFFFFFF):
 
+              
         return self.__spi_mst.read(self.__link, spi_port, cs_id, 
                                    n_instruction_lane, n_instruction_bits, instruction, 
                                    n_address_lane, n_address_bits, address, 
                                    n_data_lane, nbr_rd_bytes, dummy_cycles)
+
 
     def spi_set_sclk_frequency(self, spi_port, freq_sel: SPI_SCLK_FREQ_SEL):
         self.__spi_mst.set_sclk_frequency(self.__link, spi_port, freq_sel)
@@ -213,7 +215,7 @@ class Helper:
         START_READ_DR = 0x1<<(118+4) | addr<<(12+4) | 0xfa2<<(0+4) | 0
         END_READ_DR = addr<<(12+4) | 0xfa2<<(0+4) | 0
         self.pdebug("J2H read start")
-        ir_scan_out = self.jtag_IRScan(10, 0x0140)
+        # ir_scan_out = self.jtag_IRScan(10, 0x0140)
         ir_scan_out = self.jtag_IRScan(16, 0x0520)
         ir_scan_out = self.jtag_IRScan(25, 0x00a10a0)
         dr_scan_out = self.jtag_DRScan(11, 0x220)
