@@ -104,6 +104,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
             )
+    
+    test_args   =   ['''-py erot_fab_IP_AddrUpperBoundary_cov_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
+    test_tags   =   ['fabric','l2']
+    AddTest(
+        name    =   'erot_fab_IP_AddrUpperBoundary_cov_test_l1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''check fabric csr and other IP upper and lower address boundary'''
+            )
     # fabric bring-up tests END
     
     # mram bring-up tests
