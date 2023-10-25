@@ -157,18 +157,48 @@ with feature('erot_fpga/lighton'):
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''EROT HW boot test'''
+        desc    =   '''EROT HW boot'''
             )
 
-    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
-    test_tags   =   ['reset','as2']
+    test_args   =   ['''-py erot_reset_l1_rst_domain_test_fpga.py ''']
+    test_tags   =   ['reset','l1']
     AddTest(
-        name    =   'erot_reset_l3_light_on',
+        name    =   'erot_reset_l1_rst_domain_test_fpga',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
+        desc    =   '''EROT L1 reset'''
             )
+
+    test_args   =   ['''-py erot_reset_l3_rst_domain_test_fpga.py ''']
+    test_tags   =   ['reset','l1']
+    AddTest(
+        name    =   'erot_reset_l3_rst_domain_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT L3 reset'''
+            )
+
+    test_args   =   ['''-py erot_reset_sw_rst_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['reset','l2']
+    AddTest(
+        name    =   'erot_reset_sw_rst_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT SW reset'''
+            )
+
+#    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
+#    test_tags   =   ['reset','as2']
+#    AddTest(
+#        name    =   'erot_reset_l3_light_on',
+#        config  =   ['erot_fpga'],
+#        args    =   common_args+test_args,
+#        tags    =   test_tags,
+#        desc    =   '''light on each IP in chip'''
+#            )
     # reset bring-up tests END
 
     test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
