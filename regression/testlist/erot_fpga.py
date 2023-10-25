@@ -160,16 +160,16 @@ with feature('erot_fpga/lighton'):
         desc    =   '''EROT HW boot test'''
             )
 
-#    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
-#    test_tags   =   ['reset','as2']
-#    AddTest(
-#        name    =   'erot_reset_l3_light_on',
-#        config  =   ['erot_fpga'],
-#        args    =   common_args+test_args,
-#        tags    =   test_tags,
-#        desc    =   '''light on each IP in chip'''
-#            )
-    # reset api bring-up tests END
+    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
+    test_tags   =   ['reset','as2']
+    AddTest(
+        name    =   'erot_reset_l3_light_on',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''light on each IP in chip'''
+            )
+    # reset bring-up tests END
 
     test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
     test_tags   =   ['boot','l0']
