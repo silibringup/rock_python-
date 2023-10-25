@@ -119,6 +119,7 @@ with Test(sys.argv) as t:
     helper.wait_sim_time("us", 5)
    
     erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_write(RESET_LEVEL3=0)
+    helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
 
     helper.wait_sim_time("us", 50)
 
