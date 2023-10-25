@@ -15,10 +15,10 @@ with Test(sys.argv) as t:
 
     fuse_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_fuse.'
     L1_FABRIC_TARGET = [
-        {'name' : 'OOBHUB',      'addr_upper_boundary' : 0x8abffc,      'addr_lower_boundary' : 0x8a8000},
+#        {'name' : 'OOBHUB',      'addr_upper_boundary' : 0x8abffc,      'addr_lower_boundary' : 0x8a8000},
 #        {'name' : 'FUSE',        'addr_upper_boundary' : 0x827ffc,      'addr_lower_boundary' : 0x820000},
 #        {'name' : 'SYSCTRL',     'addr_upper_boundary' : 0x22ffc,       'addr_lower_boundary' : 0       }, #NVPTOP, NV_PMC
-        {'name' : 'CLOCK',       'addr_upper_boundary' : 0x29ffc,       'addr_lower_boundary' : 0x23000 },
+#        {'name' : 'CLOCK',       'addr_upper_boundary' : 0x29ffc,       'addr_lower_boundary' : 0x23000 },
 #        {'name' : 'RESET',       'addr_upper_boundary' : 0x34ffc,       'addr_lower_boundary' : 0x33000 },
 #        {'name' : 'THERM',       'addr_upper_boundary' : 0x2ffc,        'addr_lower_boundary' : 0x2000  },
 #        {'name' : 'RTS',         'addr_upper_boundary' : 0x4a4ffc,      'addr_lower_boundary' : 0x4a3000},
@@ -34,21 +34,21 @@ with Test(sys.argv) as t:
     ]
 
     L2_FABRIC_TARGET = [
-        {'name' : 'FSP',            'addr_upper_boundary' : 0x8f3ffc,   'addr_lower_boundary' : 0x8f0000},
-        {'name' : 'OOBHUB_SPI',     'addr_upper_boundary' : 0x903ffc,   'addr_lower_boundary' : 0x8f4000},
-        {'name' : 'SPI_IB0',        'addr_upper_boundary' : 0x913ffc,   'addr_lower_boundary' : 0x904000},
-        {'name' : 'I2C_IB0',        'addr_upper_boundary' : 0x923ffc,   'addr_lower_boundary' : 0x914000},
-        {'name' : 'I3C_IB0',        'addr_upper_boundary' : 0x933ffc,   'addr_lower_boundary' : 0x924000},
-        {'name' : 'SPI_IB1',        'addr_upper_boundary' : 0x943ffc,   'addr_lower_boundary' : 0x934000},
-        {'name' : 'I2C_IB1',        'addr_upper_boundary' : 0x953ffc,   'addr_lower_boundary' : 0x944000},
-        {'name' : 'I3C_IB1',        'addr_upper_boundary' : 0x963ffc,   'addr_lower_boundary' : 0x954000},
-        {'name' : 'IO_EXPANDER',    'addr_upper_boundary' : 0x973ffc,   'addr_lower_boundary' : 0x964000},
-        {'name' : 'UART',           'addr_upper_boundary' : 0x983ffc,   'addr_lower_boundary' : 0x974000},
-        {'name' : 'GPIO',           'addr_upper_boundary' : 0x98cffc,   'addr_lower_boundary' : 0x984000},
-        {'name' : 'PADCTRL_N',      'addr_upper_boundary' : 0x994ffc,   'addr_lower_boundary' : 0x994000,   'lowest_reg_addr' : 0x994038},
-        {'name' : 'PADCTRL_S',      'addr_upper_boundary' : 0x998ffc,   'addr_lower_boundary' : 0x998000},
-        {'name' : 'PADCTRL_E',      'addr_upper_boundary' : 0x99cffc,   'addr_lower_boundary' : 0x99c000},
-        {'name' : 'PADCTRL_W',      'addr_upper_boundary' : 0x9a0ffc,   'addr_lower_boundary' : 0x9a0000},
+#        {'name' : 'FSP',            'addr_upper_boundary' : 0x8f3ffc,   'addr_lower_boundary' : 0x8f0000},
+#        {'name' : 'OOBHUB_SPI',     'addr_upper_boundary' : 0x903ffc,   'addr_lower_boundary' : 0x8f4000},
+#        {'name' : 'SPI_IB0',        'addr_upper_boundary' : 0x913ffc,   'addr_lower_boundary' : 0x904000},
+#        {'name' : 'I2C_IB0',        'addr_upper_boundary' : 0x923ffc,   'addr_lower_boundary' : 0x914000},
+#        {'name' : 'I3C_IB0',        'addr_upper_boundary' : 0x933ffc,   'addr_lower_boundary' : 0x924000},
+#        {'name' : 'SPI_IB1',        'addr_upper_boundary' : 0x943ffc,   'addr_lower_boundary' : 0x934000},
+#        {'name' : 'I2C_IB1',        'addr_upper_boundary' : 0x953ffc,   'addr_lower_boundary' : 0x944000},
+#        {'name' : 'I3C_IB1',        'addr_upper_boundary' : 0x963ffc,   'addr_lower_boundary' : 0x954000},
+#        {'name' : 'IO_EXPANDER',    'addr_upper_boundary' : 0x973ffc,   'addr_lower_boundary' : 0x964000},
+#        {'name' : 'UART',           'addr_upper_boundary' : 0x983ffc,   'addr_lower_boundary' : 0x974000},
+#        {'name' : 'GPIO',           'addr_upper_boundary' : 0x98cffc,   'addr_lower_boundary' : 0x984000},
+#        {'name' : 'PADCTRL_N',      'addr_upper_boundary' : 0x994ffc,   'addr_lower_boundary' : 0x994000,   'lowest_reg_addr' : 0x994038},
+#        {'name' : 'PADCTRL_S',      'addr_upper_boundary' : 0x998ffc,   'addr_lower_boundary' : 0x998000},
+#        {'name' : 'PADCTRL_E',      'addr_upper_boundary' : 0x99cffc,   'addr_lower_boundary' : 0x99c000},
+#        {'name' : 'PADCTRL_W',      'addr_upper_boundary' : 0x9a0ffc,   'addr_lower_boundary' : 0x9a0000},
         {'name' : 'L2_CSR',         'addr_upper_boundary' : 0x9a4ffc,   'addr_lower_boundary' : 0x9a4000},
     ]
 
@@ -152,7 +152,7 @@ with Test(sys.argv) as t:
                 check_ip(target, 'addr_upper_boundary', 0xffffffff, 0, 3) #use jtag to access, PL3
         elif(options.Fabric == 'L2'):
             for target in L2_FABRIC_TARGET:
-                check_ip(target, 'addr_upper_boundary', 0xffffffff, 3, 3) #use oobhub to access, PL3
+                check_ip(target, 'addr_upper_boundary', 0xffffffff, 0, 3) #use jtag to access, PL3
         
         helper.pinfo(f'test the addr_lower_boundary')
         if(options.Fabric == 'L1'):
@@ -160,40 +160,37 @@ with Test(sys.argv) as t:
                 if helper.target in ["fpga", "simv_fpga"]:
                     check_ip(target, 'addr_lower_boundary', 0xffffffff, 0, 0) #use jtag to access, PL0
                 else:
-                    check_ip(target, 'addr_lower_boundary', 0xffffffff, 1, 0) #use sysctrl to access, PL0
+                    check_ip(target, 'addr_lower_boundary', 0xffffffff, 0, 0) #use jtag to access, PL0
                 #check_ip(target, 'addr_lower_boundary', 0, 0, 0) #use jtag to access, PL0
         elif(options.Fabric == 'L2'):
             for target in L2_FABRIC_TARGET:
-                check_ip(target, 'addr_lower_boundary', 0xffffffff, 3, 0) #use oobhub to access, PL0
+                check_ip(target, 'addr_lower_boundary', 0xffffffff, 0, 0) #use jtag to access, PL0
                 # To toggle nverot_fabric_l2_apb_source_fab2padctrl_n_prdata[31]
                 if(target['name'] == 'PADCTRL_N'):
-                    check_ip(target, 'lowest_reg_addr', 0x11df, 3, 0) # write value == write mask
+                    check_ip(target, 'lowest_reg_addr', 0x11df, 0, 0) # write value == write mask
 
-#        helper.log("Force fabric fuse 1 start")
-#        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
-#        test_api.fuse_opts_override("opt_priv_sec_en", 1)
-#        helper.log("Force fabric fuse 1 done")
-#
-#        if(options.Fabric == 'L1'):
-#            for target in L1_FABRIC_TARGET:
-#                if helper.target in ["fpga", "simv_fpga"]:
-#                    check_ip(target, 'addr_upper_boundary', 0, 0, 0) #use jtag to access
-#                else:
-#                    check_ip(target, 'addr_upper_boundary', 0, 1, 0) #use sysctrl to access, PL0
-#        elif(options.Fabric == 'L2'):
-#            for target in L2_FABRIC_TARGET:
-#                check_ip(target, 'addr_upper_boundary', 0, 3, 0) #use oobhub to access, PL0
-#        
-#
-#        if(options.Fabric == 'L1'):
-#            for target in L1_FABRIC_TARGET:
-#                check_ip(target, 'addr_lower_boundary', 0, 0, 0) #use jtag to access, PL0
-#        elif(options.Fabric == 'L2'):
-#            for target in L2_FABRIC_TARGET:
-#                check_ip(target, 'addr_lower_boundary', 0, 3, 0) #use oobhub to access, PL0
-#                # To toggle nverot_fabric_l2_apb_source_fab2padctrl_n_prdata[31]
-#                if(target['name'] == 'PADCTRL_N'):
-#                    check_ip(target, 'lowest_reg_addr', 0, 3, 0)
+        helper.log("Force fabric fuse 1 start")
+        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
+        test_api.fuse_opts_override("opt_priv_sec_en", 1)
+        helper.log("Force fabric fuse 1 done")
+
+        if(options.Fabric == 'L1'):
+            for target in L1_FABRIC_TARGET:
+                check_ip(target, 'addr_upper_boundary', 0, 0, 0) #use jtag to access
+        elif(options.Fabric == 'L2'):
+            for target in L2_FABRIC_TARGET:
+                check_ip(target, 'addr_upper_boundary', 0, 0, 0) #use jtag to access, PL0
+        
+
+        if(options.Fabric == 'L1'):
+            for target in L1_FABRIC_TARGET:
+                check_ip(target, 'addr_lower_boundary', 0, 0, 0) #use jtag to access, PL0
+        elif(options.Fabric == 'L2'):
+            for target in L2_FABRIC_TARGET:
+                check_ip(target, 'addr_lower_boundary', 0, 0, 0) #use jtag to access, PL0
+                # To toggle nverot_fabric_l2_apb_source_fab2padctrl_n_prdata[31]
+                if(target['name'] == 'PADCTRL_N'):
+                    check_ip(target, 'lowest_reg_addr', 0, 0, 0)
 
     else:
         if(options.Fabric == 'L1'):

@@ -112,7 +112,17 @@ with feature('erot_fpga/lighton'):
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''check fabric csr and other IP upper and lower address boundary'''
+        desc    =   '''check fabric csr upper and lower address boundary'''
+            )
+    
+    test_args   =   ['''-py erot_fab_IP_AddrUpperBoundary_cov_test.py  -pyarg ' --Fabric L2' '''] + RCV_BOOT
+    test_tags   =   ['fabric','l2']
+    AddTest(
+        name    =   'erot_fab_IP_AddrUpperBoundary_cov_test_l2',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''check fabric csr upper and lower address boundary'''
             )
     # fabric bring-up tests END
     
