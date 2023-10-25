@@ -59,7 +59,8 @@ with Test(sys.argv) as t:
                 send_write_1_1_x_cmd(master,0x32,addr,24,2)
             elif qspi_rbi == 0 :
                 send_write_1_1_x_cmd(master,0xa2,addr,24,1)               
-            test_api.wait_socv_flash_write_done(flash)
+            #test_api.wait_socv_flash_write_done(flash)
+            time.sleep(10)
             addr = addr + 0x100
 
     def check_rbi_data(addr,read_value):
