@@ -118,7 +118,7 @@ with Test(sys.argv) as t:
     reg_cfg()
     helper.wait_sim_time("us", 5)
    
-    erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_write(False)
+    erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_write(0,False)
 
     helper.wait_sim_time("us", 50)
 
