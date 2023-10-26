@@ -263,7 +263,15 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''check CMS registers'''
             )
-
+    test_args   =   ['''-py erot_oobhub_cmd_rcv_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_cmd_rcv_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''check CMS registers'''
+            )
     test_args   =   ['''-py erot_oobhub_pmb_test.py  '''] + RCV_BOOT
     test_tags   =   ['oobhub']
     AddTest(
