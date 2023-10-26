@@ -222,7 +222,7 @@ with Test(sys.argv) as t:
                         helper.j2h_write(ip['CTL'].abs_addr, 0x0)
                     elif (source_id == 0xfffffeff):
                         helper.write(ip['CTL'].abs_addr, 0x0)
-                        ip['CTL'].poll(BLF_LCK=0,WEN=0.REN=0)
+                        ip['CTL'].poll(BLF_LCK=0,WEN=0,REN=0)
                     else:
                         helper.perror("FPGA will not use source %s" % (source))
                 else:
