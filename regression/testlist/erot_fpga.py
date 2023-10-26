@@ -313,7 +313,25 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   'spi target smoke test'
             ) 
+    test_args   =   ['''-py erot_spi_target_slave_imr_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_imr_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            ) 
 
+    test_args   =   ['''-py erot_spi_target_slave_imr_tx_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_imr_tx_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            ) 
     #QSPI bring-up testplan 
     for i in range(3):
         

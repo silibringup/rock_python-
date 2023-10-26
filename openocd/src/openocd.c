@@ -662,10 +662,21 @@ COMMAND_HANDLER(handle_init_command)
 						uint32_t singleBytes = 0; //bytes number
 						uint8_t* sbuf;							
 						uint8_t* rbuf;							
+						uint32_t spiMode;
+						uint32_t dummy_size = 0;
 						
-						recvLen = data_size + data_lane*dummy_cycles/8;
 						sendLen = inst_size + addr_size; 
 						singleBytes = sendLen;
+						if (singleBytes > 0 && data_lane == 1){ // IMR read single lane, read data in IO1
+							dummy_size = 2*data_lane*dummy_cycles/8;
+							recvLen = data_size*2 + dummy_size;
+							spiMode = 2;
+							//spiMode = 1;
+						} else{
+							dummy_size = data_lane*dummy_cycles/8;
+							recvLen = data_size + dummy_size;
+							spiMode = data_lane;
+						}
 						sbuf = (uint8_t*)malloc(sendLen);
 						LOG_USER("\nSPI Trans : SPI READ Transfer Begin\n");
 						for(uint32_t i=0;i<sendLen;i++){
@@ -679,21 +690,51 @@ COMMAND_HANDLER(handle_init_command)
 							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
 						}
 						rbuf = (uint8_t*)malloc(recvLen);
-						if(!SPI_read(fthandle_spi,cs_id,data_lane,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
+						if(!SPI_read(fthandle_spi,cs_id,spiMode,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
 							LOG_USER("Error: SPI read failed!\n");
 						}
 						for(uint32_t i=0;i<recvLen;i++){
 							LOG_USER("SPI Trans : rbuf[%d] = %02x",i,rbuf[i]);
 						}
-
-						uint8_t *rbuf2 = &rbuf[dummy_cycles*data_lane/8];
-						for(uint32_t i=0;i<recvLen-(dummy_cycles*data_lane/8);i++){
+						//uint8_t *rbuf2 = &rbuf[dummy_cycles*data_lane/8];
+						uint8_t *rbuf2 = &rbuf[dummy_size];
+						for(uint32_t i=0;i<recvLen-dummy_size;i++){
 							LOG_USER("SPI Trans : rbuf2[%d] = %02x",i,rbuf2[i]);
+						}
+						uint8_t *rbuf3;
+						rbuf3 = (uint8_t*)malloc(data_size);
+						if (singleBytes > 0 && data_lane == 1){
+							int size = recvLen - dummy_size;
+
+							for (int i = 0; i < size/2; ++i) {
+                                uint8_t byte0 = rbuf2[i*2];
+								uint8_t byte1 = rbuf2[i*2+1];
+								uint8_t new_half_byte0 = 0;
+								uint8_t new_half_byte1 = 0;
+                                uint8_t new_byte = 0;
+
+								for (int j = 0; j < 4; ++j) {
+                                    new_half_byte0 |= ((byte0 & (1<<(j*2+1))) >> (j+1));
+									new_half_byte1 |= ((byte1 & (1<<(j*2+1))) >> (j+1));
+								}
+                                //new_byte = new_half_byte0 | (new_half_byte1 << 4);                                
+                                new_byte = (new_half_byte0<<4) | new_half_byte1 ;                                
+								rbuf3[i] = new_byte;
+							}
+
+						}else{
+							for (uint32_t i = 0; i < data_size; ++i){
+								rbuf3[i] = rbuf2[i];
+							}
+						}
+						for(uint32_t i=0;i<data_size;i++){
+							LOG_USER("SPI Trans : rbuf3[%d] = %02x",i,rbuf3[i]);
 						}
 						packet_copy(p_in_pkt, p_out_pkt);
 						p_out_pkt->n_fields = 4; // field number before return data
-						add_ret(p_out_pkt, (uint32_t*)&len, rbuf2, recvLen-(dummy_cycles*data_lane/8));
+						add_ret(p_out_pkt, (uint32_t*)&len, rbuf3, data_size);
 						free(rbuf);
+						free(rbuf3);
 						if (sbuf != NULL){
 							free(sbuf);
 						}
