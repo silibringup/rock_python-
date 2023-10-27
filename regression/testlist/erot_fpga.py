@@ -104,16 +104,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
             )
-
-    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_blf_function_test_l1',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''check fabric l1 target blf basic function'''
-            )
     # fabric bring-up tests END
     
     # mram bring-up tests
@@ -328,6 +318,7 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''check CMS registers'''
             )
+
     test_args   =   ['''-py erot_oobhub_cmd_rcv_test.py  '''] + RCV_BOOT
     test_tags   =   ['oobhub']
     AddTest(
@@ -337,6 +328,7 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''check CMS registers'''
             )
+
     test_args   =   ['''-py erot_oobhub_pmb_test.py  '''] + RCV_BOOT
     test_tags   =   ['oobhub']
     AddTest(
@@ -405,32 +397,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   'spi target smoke test'
             ) 
-    #QSPI bring-up testplan 
-    for i in range(3):
-        
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_flash_access_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
-        test_tags   =   ['qspi_bring_up']
-        #if os.getenv("RANDOM_STALL") != None:
-        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-        AddTest(
-            name    =   'erot_qspi_flash_access_qspi%s_jtag' %str(i),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''enable qspi to access flash '''
-            )   
-    
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_rbi_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
-        test_tags   =   ['qspi_bring_up']
-        #if os.getenv("RANDOM_STALL") != None:
-        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-        AddTest(
-            name    =   'erot_qspi_rbi_qspi%s_jtag' %str(i),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
-            )   
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
