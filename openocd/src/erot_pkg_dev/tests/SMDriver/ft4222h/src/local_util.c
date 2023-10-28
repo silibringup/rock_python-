@@ -25,7 +25,7 @@ std::string bytes_stringfy(uint8_t* data, uint32_t len){
 }
 
 
-int SPI_init(FT_HANDLE* ftHandle){
+int SPI_init(FT_HANDLE* ftHandle,char dev_type){
     FT_STATUS ftStatus;
     uint32_t num_devs = 0;
     uint8_t index = 0;
@@ -51,7 +51,7 @@ int SPI_init(FT_HANDLE* ftHandle){
     {   
         size_t descLen = strlen(dev_info[index].Description);
         printf("device_index %0d, type %0d,Locid %d, desc %s\n",index,dev_info[index].Type,dev_info[index].LocId,dev_info[index].Description);
-        if(FT_DEVICE_4222H_1_2 == dev_info[index].Type && 'C' == dev_info[index].Description[descLen - 1])
+        if(FT_DEVICE_4222H_1_2 == dev_info[index].Type && dev_type == dev_info[index].Description[descLen - 1])
         {
             printf("Find FT4222 location ID is %d\n", dev_info[index].LocId);
             ftStatus = FT_OpenEx((PVOID)(uintptr_t)dev_info[index].LocId, 
@@ -119,7 +119,7 @@ int SPI_config(FT_HANDLE ftHandle,FT4222_SPIClock clock,uint32_t cs_id){
         csMap = SLAVE_SELECT(0);
         pinMode (cs_pin, OUTPUT); 
     } else {
-        csMap = SLAVE_SELECT(cs_id);
+        csMap = SLAVE_SELECT(1<<cs_id);
     }
 
 

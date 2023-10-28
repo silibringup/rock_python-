@@ -316,13 +316,28 @@ COMMAND_HANDLER(handle_init_command)
 
 	//AP0 SPI init
 	FT_HANDLE fthandle_spi = NULL;
-	if(!SPI_init(&fthandle_spi)){
-		LOG_USER("SPI initialization failed\n");
+	FT_HANDLE fthandle_spimon_0 = NULL; //cs 0
+	FT_HANDLE fthandle_spimon_1 = NULL; //cs 1
+	if(!SPI_init(&fthandle_spi,'C')){
+		LOG_USER("SPI target initialization failed\n");
         return 1;
 	}else{
-		LOG_USER("SPI initialization Succeeded\n");
+		LOG_USER("SPI target initialization Succeeded\n");
 	}
 
+	if(!SPI_init(&fthandle_spimon_0,'A')){
+		LOG_USER("SPI MON cs 0 initialization failed\n");
+        return 1;
+	}else{
+		LOG_USER("SPI MON cs 0 initialization Succeeded\n");
+	}
+
+	if(!SPI_init(&fthandle_spimon_1,'B')){
+		LOG_USER("SPI MON cs 1 initialization failed\n");
+        return 1;
+	}else{
+		LOG_USER("SPI MON cs 1 initialization Succeeded\n");
+	}
 
     pyst_service_start(1, ports, 1);
 
@@ -606,8 +621,17 @@ COMMAND_HANDLER(handle_init_command)
 				uint32_t addr_size  = 0;
 				uint8_t* addr       = NULL;
 				uint32_t dummy_cycles = 0;
+				FT_HANDLE fthandle;
 
-				if(!SPI_config(fthandle_spi,CLK_DIV_128,cs_id)){
+				if (cs_id == 0){
+					fthandle = fthandle_spimon_0;
+				}else if(cs_id == 1){
+					fthandle = fthandle_spimon_1;
+				}else{
+					fthandle = fthandle_spi;
+				}
+
+				if(!SPI_config(fthandle,CLK_DIV_128,cs_id)){
 					LOG_USER("\nSPI Trans : SPI config failed");
 				}else{
 					LOG_USER("\nSPI Trans : SPI config Succeeded");
@@ -690,7 +714,7 @@ COMMAND_HANDLER(handle_init_command)
 							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
 						}
 						rbuf = (uint8_t*)malloc(recvLen);
-						if(!SPI_read(fthandle_spi,cs_id,spiMode,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
+						if(!SPI_read(fthandle,cs_id,spiMode,sendLen,sbuf,recvLen,rbuf,true,singleBytes)){
 							LOG_USER("Error: SPI read failed!\n");
 						}
 						for(uint32_t i=0;i<recvLen;i++){
@@ -769,7 +793,7 @@ COMMAND_HANDLER(handle_init_command)
 							}
 							LOG_USER("SPI Trans : sbuf[%d] = %02x",i,sbuf[i]);
 						}
-						if(!SPI_write(fthandle_spi,cs_id,data_lane,sendLen,sbuf,true,singleBytes)){
+						if(!SPI_write(fthandle,cs_id,data_lane,sendLen,sbuf,true,singleBytes)){
 							LOG_USER("Error: SPI write failed!\n");
 						}
 						packet_copy(p_in_pkt, p_out_pkt);
@@ -819,6 +843,8 @@ COMMAND_HANDLER(handle_init_command)
     packet_free(p_out_pkt);
 	SMBus_close(ftHandle);
 	SPI_close(fthandle_spi);
+	SPI_close(fthandle_spimon_0);
+	SPI_close(fthandle_spimon_1);
     pyst_service_stop();
 
   }
