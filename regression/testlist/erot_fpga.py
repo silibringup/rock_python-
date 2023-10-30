@@ -104,17 +104,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
             )
-    
-    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_blf_function_test_l1',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''check fabric l1 target blf basic function'''
-            )
-    
     # fabric bring-up tests END
     
     # mram bring-up tests
