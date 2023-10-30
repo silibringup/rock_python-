@@ -11,39 +11,39 @@ with Test(sys.argv) as t:
     L1_FABRIC_TARGET = [
         {'name' : 'l1_csr',                   'reg' : erot.L1_CSR,                           'addr_low_boundary' : 0x13000,      'CTL' : erot.L1_CSR.L1_CSR_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.L1_CSR_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.L1_CSR_BLF_READ_CTL_0},
         {'name' : 'clock_vrefro_ctl',         'reg' : erot.CLOCK.NVEROT_CLOCK_VREFRO_CTL,    'addr_low_boundary' : 0x23000,      'CTL' : erot.L1_CSR.CLOCK_VREFRO_CTL_BLF_CTL_0,            'WRITE' : erot.L1_CSR.CLOCK_VREFRO_CTL_BLF_WRITE_CTL_0,           'READ' : erot.L1_CSR.CLOCK_VREFRO_CTL_BLF_READ_CTL_0},
-#        {'name' : 'clock_sys_ctl',            'reg' : erot.CLOCK.NVEROT_CLOCK_SYS_CTL,       'addr_low_boundary' : 0x24000,      'CTL' : erot.L1_CSR.CLOCK_SYS_CTL_BLF_CTL_0,               'WRITE' : erot.L1_CSR.CLOCK_SYS_CTL_BLF_WRITE_CTL_0,              'READ' : erot.L1_CSR.CLOCK_SYS_CTL_BLF_READ_CTL_0},
-#        {'name' : 'clock_io_ctl',             'reg' : erot.CLOCK.NVEROT_CLOCK_IO_CTL,        'addr_low_boundary' : 0x25000,      'CTL' : erot.L1_CSR.CLOCK_IO_CTL_BLF_CTL_0,                'WRITE' : erot.L1_CSR.CLOCK_IO_CTL_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.CLOCK_IO_CTL_BLF_READ_CTL_0},
-#        {'name' : 'clock_status',             'reg' : erot.CLOCK.NVEROT_CLOCK_STATUS,        'addr_low_boundary' : 0x26000,      'CTL' : erot.L1_CSR.CLOCK_STATUS_BLF_CTL_0,                'WRITE' : erot.L1_CSR.CLOCK_STATUS_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.CLOCK_STATUS_BLF_READ_CTL_0},
-#        {'name' : 'clock_cmn_pad_ctl',        'reg' : erot.CLOCK.NVEROT_CLOCK_CMN_PAD_CTL,   'addr_low_boundary' : 0x27000,      'CTL' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_CTL_0,           'WRITE' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0,          'READ' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0},
-#        {'name' : 'clock_podvmon',            'reg' : erot.CLOCK.NVEROT_CLOCK_PODVMON,       'addr_low_boundary' : 0x28000,      'CTL' : erot.L1_CSR.CLOCK_PODVMON_BLF_CTL_0,               'WRITE' : erot.L1_CSR.CLOCK_PODVMON_BLF_WRITE_CTL_0,              'READ' : erot.L1_CSR.CLOCK_PODVMON_BLF_READ_CTL_0},
-#        {'name' : 'clock_fmon',               'reg' : erot.CLOCK.NVEROT_CLOCK_FMON,          'addr_low_boundary' : 0x29000,      'CTL' : erot.L1_CSR.CLOCK_FMON_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.CLOCK_FMON_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.CLOCK_FMON_BLF_READ_CTL_0},
-#        {'name' : 'boot_qspi_nv_prom_data',   'reg' : 'none',                                'addr_low_boundary' : 0x45000,      'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0,      'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0,     'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0},
-#        {'name' : 'boot_qspi_nv_prom_2_data', 'reg' : 'none',                                'addr_low_boundary' : 0x145000,     'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0,    'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0,   'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0},
-#        {'name' : 'fuse',                     'reg' : erot.FUSE,                             'addr_low_boundary' : 0x820000,     'CTL' : erot.L1_CSR.FUSE_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.FUSE_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.FUSE_BLF_READ_CTL_0},
-#        {'name' : 'jtag',                     'reg' : 'none',                                'addr_low_boundary' : 0x4a6000,     'CTL' : erot.L1_CSR.JTAG_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.JTAG_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.JTAG_BLF_READ_CTL_0},
-#        {'name' : 'mram_cfg',                 'reg' : 'none',                                'addr_low_boundary' : 0xfc0000,     'CTL' : erot.L1_CSR.MRAM_CFG_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_CFG_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_CFG_BLF_READ_CTL_0},
-#        {'name' : 'mram_tmc',                 'reg' : 'none',                                'addr_low_boundary' : 0xfd0000,     'CTL' : erot.L1_CSR.MRAM_TMC_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_TMC_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_TMC_BLF_READ_CTL_0},
-#        {'name' : 'mram_otp',                 'reg' : 'none',                                'addr_low_boundary' : 0xfe0000,     'CTL' : erot.L1_CSR.MRAM_OTP_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_OTP_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_OTP_BLF_READ_CTL_0},
-#        {'name' : 'mram_mtp',                 'reg' : 'none',                                'addr_low_boundary' : 0xff0000,     'CTL' : erot.L1_CSR.MRAM_MTP_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_MTP_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_MTP_BLF_READ_CTL_0},
-#        {'name' : 'mram_mtpr',                'reg' : 'none',                                'addr_low_boundary' : 0x1000000,    'CTL' : erot.L1_CSR.MRAM_MTPR_BLF_CTL_0,                   'WRITE' : erot.L1_CSR.MRAM_MTPR_BLF_WRITE_CTL_0,                  'READ' : erot.L1_CSR.MRAM_MTPR_BLF_READ_CTL_0},
-#        {'name' : 'oobhub',                   'reg' : erot.OOBHUB,                           'addr_low_boundary' : 0x8a8000,     'CTL' : erot.L1_CSR.OOBHUB_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.OOBHUB_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.OOBHUB_BLF_READ_CTL_0},
-#        {'name' : 'puf_dbg',                  'reg' : erot.PUF_DBG,                          'addr_low_boundary' : 0x4a5000,     'CTL' : erot.L1_CSR.PUF_DBG_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.PUF_DBG_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.PUF_DBG_BLF_READ_CTL_0},
-#        {'name' : 'qspi0_nv_prom_data',       'reg' : 'none',                                'addr_low_boundary' : 0x148000,     'CTL' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_CTL_0,          'WRITE' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0,         'READ' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_READ_CTL_0},
-#        {'name' : 'qspi0_nv_prom_2_data',     'reg' : 'none',                                'addr_low_boundary' : 0x248000,     'CTL' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_CTL_0,        'WRITE' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0,       'READ' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0},
-#        {'name' : 'qspi0_core',               'reg' : 'none',                                'addr_low_boundary' : 0x146000,     'CTL' : erot.L1_CSR.QSPI0_CORE_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.QSPI0_CORE_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.QSPI0_CORE_BLF_READ_CTL_0},
-#        {'name' : 'qspi1_nv_prom_data',       'reg' : 'none',                                'addr_low_boundary' : 0x24b000,     'CTL' : erot.L1_CSR.QSPI1_NV_PROM_DATA_BLF_CTL_0,          'WRITE' : erot.L1_CSR.QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0,         'READ' : erot.L1_CSR.QSPI1_NV_PROM_DATA_BLF_READ_CTL_0},
-#        {'name' : 'qspi1_nv_prom_2_data',     'reg' : 'none',                                'addr_low_boundary' : 0x34b000,     'CTL' : erot.L1_CSR.QSPI1_NV_PROM_2_DATA_BLF_CTL_0,        'WRITE' : erot.L1_CSR.QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0,       'READ' : erot.L1_CSR.QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0},
-#        {'name' : 'qspi1_core',               'reg' : 'none',                                'addr_low_boundary' : 0x249000,     'CTL' : erot.L1_CSR.QSPI1_CORE_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.QSPI1_CORE_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.QSPI1_CORE_BLF_READ_CTL_0},
-#        {'name' : 'boot_qspi_core',           'reg' : 'none',                                'addr_low_boundary' : 0x43000,      'CTL' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_CTL_0,              'WRITE' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_WRITE_CTL_0,             'READ' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_READ_CTL_0},
-#        {'name' : 'reset_reg',                'reg' : erot.RESET.NVEROT_RESET_CFG,           'addr_low_boundary' : 0x33000,      'CTL' : erot.L1_CSR.RESET_REG_BLF_CTL_0,                   'WRITE' : erot.L1_CSR.RESET_REG_BLF_WRITE_CTL_0,                  'READ' : erot.L1_CSR.RESET_REG_BLF_READ_CTL_0},
-#        {'name' : 'reset_status',             'reg' : erot.RESET.NVEROT_RESET_STATUS,        'addr_low_boundary' : 0x34000,      'CTL' : erot.L1_CSR.RESET_STATUS_BLF_CTL_0,                'WRITE' : erot.L1_CSR.RESET_STATUS_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.RESET_STATUS_BLF_READ_CTL_0},
-#        {'name' : 'rts',                      'reg' : erot.RTS,                              'addr_low_boundary' : 0x4a3000,     'CTL' : erot.L1_CSR.RTS_BLF_CTL_0,                         'WRITE' : erot.L1_CSR.RTS_BLF_WRITE_CTL_0,                        'READ' : erot.L1_CSR.RTS_BLF_READ_CTL_0},
-#        {'name' : 'spi_mon0',                 'reg' : erot.SPI_MON0,                         'addr_low_boundary' : 0x463000,     'CTL' : erot.L1_CSR.SPI_MON0_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON0_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON0_BLF_READ_CTL_0},
-#        {'name' : 'spi_mon1',                 'reg' : erot.SPI_MON1,                         'addr_low_boundary' : 0x483000,     'CTL' : erot.L1_CSR.SPI_MON1_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON1_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON1_BLF_READ_CTL_0},
-#        {'name' : 'nv_pmc',                   'reg' : erot.NV_PMC,                           'addr_low_boundary' : 0,            'CTL' : erot.L1_CSR.NV_PMC_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.NV_PMC_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.NV_PMC_BLF_READ_CTL_0},
-#        {'name' : 'nv_pbus',                  'reg' : erot.NV_PBUS,                          'addr_low_boundary' : 0x1000,       'CTL' : erot.L1_CSR.NV_PBUS_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PBUS_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PBUS_BLF_READ_CTL_0},
-#        {'name' : 'nv_ptop',                  'reg' : erot.NV_PTOP,                          'addr_low_boundary' : 0x22000,      'CTL' : erot.L1_CSR.NV_PTOP_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PTOP_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PTOP_BLF_READ_CTL_0},
-#        {'name' : 'therm',                    'reg' : erot.THERM,                            'addr_low_boundary' : 0x2000,       'CTL' : erot.L1_CSR.THERM_BLF_CTL_0,                       'WRITE' : erot.L1_CSR.THERM_BLF_WRITE_CTL_0,                      'READ' : erot.L1_CSR.THERM_BLF_READ_CTL_0},
+        {'name' : 'clock_sys_ctl',            'reg' : erot.CLOCK.NVEROT_CLOCK_SYS_CTL,       'addr_low_boundary' : 0x24000,      'CTL' : erot.L1_CSR.CLOCK_SYS_CTL_BLF_CTL_0,               'WRITE' : erot.L1_CSR.CLOCK_SYS_CTL_BLF_WRITE_CTL_0,              'READ' : erot.L1_CSR.CLOCK_SYS_CTL_BLF_READ_CTL_0},
+        {'name' : 'clock_io_ctl',             'reg' : erot.CLOCK.NVEROT_CLOCK_IO_CTL,        'addr_low_boundary' : 0x25000,      'CTL' : erot.L1_CSR.CLOCK_IO_CTL_BLF_CTL_0,                'WRITE' : erot.L1_CSR.CLOCK_IO_CTL_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.CLOCK_IO_CTL_BLF_READ_CTL_0},
+        {'name' : 'clock_status',             'reg' : erot.CLOCK.NVEROT_CLOCK_STATUS,        'addr_low_boundary' : 0x26000,      'CTL' : erot.L1_CSR.CLOCK_STATUS_BLF_CTL_0,                'WRITE' : erot.L1_CSR.CLOCK_STATUS_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.CLOCK_STATUS_BLF_READ_CTL_0},
+        {'name' : 'clock_cmn_pad_ctl',        'reg' : erot.CLOCK.NVEROT_CLOCK_CMN_PAD_CTL,   'addr_low_boundary' : 0x27000,      'CTL' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_CTL_0,           'WRITE' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0,          'READ' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0},
+        {'name' : 'clock_podvmon',            'reg' : erot.CLOCK.NVEROT_CLOCK_PODVMON,       'addr_low_boundary' : 0x28000,      'CTL' : erot.L1_CSR.CLOCK_PODVMON_BLF_CTL_0,               'WRITE' : erot.L1_CSR.CLOCK_PODVMON_BLF_WRITE_CTL_0,              'READ' : erot.L1_CSR.CLOCK_PODVMON_BLF_READ_CTL_0},
+        {'name' : 'clock_fmon',               'reg' : erot.CLOCK.NVEROT_CLOCK_FMON,          'addr_low_boundary' : 0x29000,      'CTL' : erot.L1_CSR.CLOCK_FMON_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.CLOCK_FMON_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.CLOCK_FMON_BLF_READ_CTL_0},
+        {'name' : 'boot_qspi_nv_prom_data',   'reg' : 'none',                                'addr_low_boundary' : 0x45000,      'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0,      'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0,     'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0},
+        {'name' : 'boot_qspi_nv_prom_2_data', 'reg' : 'none',                                'addr_low_boundary' : 0x145000,     'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0,    'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0,   'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0},
+        {'name' : 'fuse',                     'reg' : erot.FUSE,                             'addr_low_boundary' : 0x820000,     'CTL' : erot.L1_CSR.FUSE_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.FUSE_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.FUSE_BLF_READ_CTL_0},
+        {'name' : 'jtag',                     'reg' : 'none',                                'addr_low_boundary' : 0x4a6000,     'CTL' : erot.L1_CSR.JTAG_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.JTAG_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.JTAG_BLF_READ_CTL_0},
+        {'name' : 'mram_cfg',                 'reg' : 'none',                                'addr_low_boundary' : 0xfc0000,     'CTL' : erot.L1_CSR.MRAM_CFG_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_CFG_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_CFG_BLF_READ_CTL_0},
+       {'name' : 'mram_tmc',                 'reg' : 'none',                                'addr_low_boundary' : 0xfd0000,     'CTL' : erot.L1_CSR.MRAM_TMC_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_TMC_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_TMC_BLF_READ_CTL_0},
+        {'name' : 'mram_otp',                 'reg' : 'none',                                'addr_low_boundary' : 0xfe0000,     'CTL' : erot.L1_CSR.MRAM_OTP_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_OTP_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_OTP_BLF_READ_CTL_0},
+        {'name' : 'mram_mtp',                 'reg' : 'none',                                'addr_low_boundary' : 0xff0000,     'CTL' : erot.L1_CSR.MRAM_MTP_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_MTP_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_MTP_BLF_READ_CTL_0},
+        {'name' : 'mram_mtpr',                'reg' : 'none',                                'addr_low_boundary' : 0x1000000,    'CTL' : erot.L1_CSR.MRAM_MTPR_BLF_CTL_0,                   'WRITE' : erot.L1_CSR.MRAM_MTPR_BLF_WRITE_CTL_0,                  'READ' : erot.L1_CSR.MRAM_MTPR_BLF_READ_CTL_0},
+        {'name' : 'oobhub',                   'reg' : erot.OOBHUB,                           'addr_low_boundary' : 0x8a8000,     'CTL' : erot.L1_CSR.OOBHUB_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.OOBHUB_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.OOBHUB_BLF_READ_CTL_0},
+        {'name' : 'puf_dbg',                  'reg' : erot.PUF_DBG,                          'addr_low_boundary' : 0x4a5000,     'CTL' : erot.L1_CSR.PUF_DBG_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.PUF_DBG_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.PUF_DBG_BLF_READ_CTL_0},
+        {'name' : 'qspi0_nv_prom_data',       'reg' : 'none',                                'addr_low_boundary' : 0x148000,     'CTL' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_CTL_0,          'WRITE' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0,         'READ' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_READ_CTL_0},
+        {'name' : 'qspi0_nv_prom_2_data',     'reg' : 'none',                                'addr_low_boundary' : 0x248000,     'CTL' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_CTL_0,        'WRITE' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0,       'READ' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0},
+        {'name' : 'qspi0_core',               'reg' : 'none',                                'addr_low_boundary' : 0x146000,     'CTL' : erot.L1_CSR.QSPI0_CORE_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.QSPI0_CORE_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.QSPI0_CORE_BLF_READ_CTL_0},
+        {'name' : 'qspi1_nv_prom_data',       'reg' : 'none',                                'addr_low_boundary' : 0x24b000,     'CTL' : erot.L1_CSR.QSPI1_NV_PROM_DATA_BLF_CTL_0,          'WRITE' : erot.L1_CSR.QSPI1_NV_PROM_DATA_BLF_WRITE_CTL_0,         'READ' : erot.L1_CSR.QSPI1_NV_PROM_DATA_BLF_READ_CTL_0},
+        {'name' : 'qspi1_nv_prom_2_data',     'reg' : 'none',                                'addr_low_boundary' : 0x34b000,     'CTL' : erot.L1_CSR.QSPI1_NV_PROM_2_DATA_BLF_CTL_0,        'WRITE' : erot.L1_CSR.QSPI1_NV_PROM_2_DATA_BLF_WRITE_CTL_0,       'READ' : erot.L1_CSR.QSPI1_NV_PROM_2_DATA_BLF_READ_CTL_0},
+        {'name' : 'qspi1_core',               'reg' : 'none',                                'addr_low_boundary' : 0x249000,     'CTL' : erot.L1_CSR.QSPI1_CORE_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.QSPI1_CORE_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.QSPI1_CORE_BLF_READ_CTL_0},
+        {'name' : 'boot_qspi_core',           'reg' : 'none',                                'addr_low_boundary' : 0x43000,      'CTL' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_CTL_0,              'WRITE' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_WRITE_CTL_0,             'READ' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_READ_CTL_0},
+        {'name' : 'reset_reg',                'reg' : erot.RESET.NVEROT_RESET_CFG,           'addr_low_boundary' : 0x33000,      'CTL' : erot.L1_CSR.RESET_REG_BLF_CTL_0,                   'WRITE' : erot.L1_CSR.RESET_REG_BLF_WRITE_CTL_0,                  'READ' : erot.L1_CSR.RESET_REG_BLF_READ_CTL_0},
+        {'name' : 'reset_status',             'reg' : erot.RESET.NVEROT_RESET_STATUS,        'addr_low_boundary' : 0x34000,      'CTL' : erot.L1_CSR.RESET_STATUS_BLF_CTL_0,                'WRITE' : erot.L1_CSR.RESET_STATUS_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.RESET_STATUS_BLF_READ_CTL_0},
+        {'name' : 'rts',                      'reg' : erot.RTS,                              'addr_low_boundary' : 0x4a3000,     'CTL' : erot.L1_CSR.RTS_BLF_CTL_0,                         'WRITE' : erot.L1_CSR.RTS_BLF_WRITE_CTL_0,                        'READ' : erot.L1_CSR.RTS_BLF_READ_CTL_0},
+        {'name' : 'spi_mon0',                 'reg' : erot.SPI_MON0,                         'addr_low_boundary' : 0x463000,     'CTL' : erot.L1_CSR.SPI_MON0_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON0_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON0_BLF_READ_CTL_0},
+        {'name' : 'spi_mon1',                 'reg' : erot.SPI_MON1,                         'addr_low_boundary' : 0x483000,     'CTL' : erot.L1_CSR.SPI_MON1_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON1_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON1_BLF_READ_CTL_0},
+        {'name' : 'nv_pmc',                   'reg' : erot.NV_PMC,                           'addr_low_boundary' : 0,            'CTL' : erot.L1_CSR.NV_PMC_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.NV_PMC_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.NV_PMC_BLF_READ_CTL_0},
+        {'name' : 'nv_pbus',                  'reg' : erot.NV_PBUS,                          'addr_low_boundary' : 0x1000,       'CTL' : erot.L1_CSR.NV_PBUS_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PBUS_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PBUS_BLF_READ_CTL_0},
+        {'name' : 'nv_ptop',                  'reg' : erot.NV_PTOP,                          'addr_low_boundary' : 0x22000,      'CTL' : erot.L1_CSR.NV_PTOP_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PTOP_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PTOP_BLF_READ_CTL_0},
+        {'name' : 'therm',                    'reg' : erot.THERM,                            'addr_low_boundary' : 0x2000,       'CTL' : erot.L1_CSR.THERM_BLF_CTL_0,                       'WRITE' : erot.L1_CSR.THERM_BLF_WRITE_CTL_0,                      'READ' : erot.L1_CSR.THERM_BLF_READ_CTL_0},
     ]
 
     L2_FABRIC_TARGET = [
@@ -198,12 +198,21 @@ with Test(sys.argv) as t:
                             ip['READ'].write(source_id)
                             ip['CTL'].write(0x30000)
                 if helper.target in ["fpga", "simv_fpga"]:
-                    fpga_allowed_priv_id_list = [0, 2]
-                    if (ip['name'] == 'l1_csr' or ip['name'] == 'l2_csr'):
-                        helper.log("%s should be changed, so not to check the write" % (ip['name']))
+                    if (options.Fabric == 'L1'):
+                        fpga_allowed_priv_id_list = [0]
                     else:
-                        for priv_id in fpga_allowed_priv_id_list:
-                            helper.log("Write %s with priv_id %d" %(ip['name'], priv_id))
+                        fpga_allowed_priv_id_list = [0, 3]
+                    cannot_change_ip_list = ['clock_vrefro_ctl','clock_sys_ctl', 'clock_io_ctl', 'clock_status', 'clock_cmn_pad_ctl', 'clock_podvmon', 'clock_fmon', 'fuse', 'mram_tmc', 'puf_dbg']
+                    do_not_have_resp_ip_list = ['boot_qspi_nv_prom_data', 'boot_qspi_nv_prom_2_data', 'qspi0_nv_prom_data', 'qspi0_nv_prom_2_data', 'qspi1_nv_prom_data', 'qspi1_nv_prom_2_data', 'jtag']
+                    for priv_id in fpga_allowed_priv_id_list:
+                        helper.log("Write %s with priv_id %d" %(ip['name'], priv_id))
+                        if ((ip['name'] == 'l1_csr' or ip['name'] == 'l2_csr') and (priv_id != blocked_priv_id)):
+                            helper.log("%s should be changed, so not to check the write" % (ip['name']))
+                        elif ((ip['name'] in cannot_change_ip_list) and (priv_id != blocked_priv_id)):
+                            helper.log("%s cannot be changed, so not to check the write" % (ip['name']))
+                        elif ((ip['name'] in do_not_have_resp_ip_list)):
+                            helper.log("%s does not have response when use jtag to access, so not to check the write" % (ip['name']))
+                        else:
                             if(ip['reg'] != 'none'):
                                 write_with_err_code_checking(ip['reg'].base + ip['reg'].reg_list[0].offset, ip['reg'].reg_list[0].reset_val, blocked_priv_id, priv_id, 3)
                             else:
@@ -212,19 +221,20 @@ with Test(sys.argv) as t:
                     helper.log("Checking BLF read block of %s, blocked source: %s" %(ip['name'], source))
                     for priv_id in fpga_allowed_priv_id_list:
                         helper.log("Read %s with priv_id %d" %(ip['name'], priv_id))
-                        if(ip['reg'] != 'none'):
-                            read_with_err_code_checking(ip['reg'].base + ip['reg'].reg_list[0].offset, blocked_priv_id, priv_id, 3)
+                        if ((ip['name'] in do_not_have_resp_ip_list) and (priv_id != blocked_priv_id)):
+                            helper.log("%s does not have response when use jtag to access, so not to check the read" % (ip['name']))
                         else:
-                            read_with_err_code_checking(ip['addr_low_boundary'], blocked_priv_id, priv_id, 3)
+                            if(ip['reg'] != 'none'):
+                                read_with_err_code_checking(ip['reg'].base + ip['reg'].reg_list[0].offset, blocked_priv_id, priv_id, 3)
+                            else:
+                                read_with_err_code_checking(ip['addr_low_boundary'], blocked_priv_id, priv_id, 3)
                     
                     # reset the BLF config
-                    if (source_id == 0xfffff7ff):
-                        helper.j2h_write(ip['CTL'].abs_addr, 0x0)
-                    elif (source_id == 0xfffffeff):
+                    if (source_id == 0xfffffeff):
                         helper.write(ip['CTL'].abs_addr, 0x0)
                         ip['CTL'].poll(BLF_LCK=0,WEN=0,REN=0)
                     else:
-                        helper.perror("FPGA will not use source %s" % (source))
+                        helper.j2h_write(ip['CTL'].abs_addr, 0x0)
                 else:
                     for priv_id in range(1, 4): #jtag cannot call burst_operation to collect error
                         helper.log("Write %s with priv_id %d" %(ip['name'], priv_id))
@@ -421,7 +431,8 @@ with Test(sys.argv) as t:
         else:
             helper.log("Force fabric fuse 1 start")
             test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
-            test_api.fuse_opts_override("opt_priv_sec_en", 1)
+            # BLF does not care the PL
+            #test_api.fuse_opts_override("opt_priv_sec_en", 1)
             helper.log("Force fabric fuse 1 done")
     else:
         fuse_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_fuse.'
@@ -438,7 +449,7 @@ with Test(sys.argv) as t:
 
     if(options.Fabric == 'L1'):
         if helper.target in ["fpga", "simv_fpga"]:
-            source_id_list = [0xfffffeff, 0xfffff7ff] # JTAG, FSP
+            source_id_list = [0xffffffbf, 0xfffffeff, 0xfffff7ff] # JTAG, FSP
         else:
             source_id_list = [0xffffffbf, 0xfffffeff, 0xfffff7ff] # SYSCTRL, JTAG, FSP
         check_BLF_function(L1_FABRIC_TARGET, source_id_list)
