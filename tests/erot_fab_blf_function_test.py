@@ -202,8 +202,8 @@ with Test(sys.argv) as t:
                         fpga_allowed_priv_id_list = [0]
                     else:
                         fpga_allowed_priv_id_list = [0, 3]
-                    cannot_change_ip_list = ['clock_vrefro_ctl','clock_sys_ctl', 'clock_io_ctl', 'clock_status', 'clock_cmn_pad_ctl', 'clock_podvmon', 'clock_fmon', 'fuse', 'mram_tmc', 'puf_dbg', 'mram_cfg', 'mram_otp', 'mram_mtp', 'mram_mtpr']
-                    do_not_have_resp_ip_list = ['boot_qspi_nv_prom_data', 'boot_qspi_nv_prom_2_data', 'qspi0_nv_prom_data', 'qspi0_nv_prom_2_data', 'qspi1_nv_prom_data', 'qspi1_nv_prom_2_data', 'jtag']
+                    cannot_change_ip_list = ['clock_vrefro_ctl','clock_sys_ctl', 'clock_io_ctl', 'clock_status', 'clock_cmn_pad_ctl', 'clock_podvmon', 'clock_fmon', 'fuse', 'mram_tmc', 'puf_dbg', 'mram_cfg', 'mram_otp', 'mram_mtp', 'mram_mtpr', 'oobhub']
+                    do_not_have_resp_ip_list = ['boot_qspi_nv_prom_data', 'boot_qspi_nv_prom_2_data', 'qspi0_nv_prom_data', 'qspi0_nv_prom_2_data', 'qspi1_nv_prom_data', 'qspi1_nv_prom_2_data', 'jtag', 'spi_mon0', 'spi_mon1']
                     for priv_id in fpga_allowed_priv_id_list:
                         helper.log("Write %s with priv_id %d" %(ip['name'], priv_id))
                         if ((ip['name'] == 'l1_csr' or ip['name'] == 'l2_csr') and (priv_id != blocked_priv_id)):
