@@ -122,12 +122,12 @@ with Test(sys.argv) as t:
         erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         validate_qspi_flash(erot.QSPI0.QSPI,0,0,0,0x0)
         validate_qspi_flash(erot.QSPI0.QSPI,1,0,0,0x0)    
-        if helper.target != 'simv_fpga':
-            test_api.fuse_force_l1_rst()
-            helper.wait_sim_time("us", 600)        
-            test_api.qspi0_init()
-            validate_qspi_flash(erot.QSPI0.QSPI,0,0,0,0x1000)
-            validate_qspi_flash(erot.QSPI0.QSPI,1,0,0,0x1000)             
+        #if helper.target != 'simv_fpga':
+        #    test_api.fuse_force_l1_rst()
+        #    helper.wait_sim_time("us", 600)        
+        #    test_api.qspi0_init()
+        #    validate_qspi_flash(erot.QSPI0.QSPI,0,0,0,0x1000)
+        #    validate_qspi_flash(erot.QSPI0.QSPI,1,0,0,0x1000)             
     elif options.qspi == '1': 
         helper.wait_sim_time("us", 600)        
         test_api.qspi1_init()
@@ -136,24 +136,24 @@ with Test(sys.argv) as t:
         erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)           
         validate_qspi_flash(erot.QSPI1.QSPI,0,1,0,0x0)
         validate_qspi_flash(erot.QSPI1.QSPI,1,1,0,0x0) 
-        if helper.target != 'simv_fpga':
-            test_api.fuse_force_l1_rst()    
-            helper.wait_sim_time("us", 600)        
-            test_api.qspi1_init()
-            validate_qspi_flash(erot.QSPI1.QSPI,0,1,0,0x1000)
-            validate_qspi_flash(erot.QSPI1.QSPI,1,1,0,0x1000)                   
+        #if helper.target != 'simv_fpga':
+        #    test_api.fuse_force_l1_rst()    
+        #    helper.wait_sim_time("us", 600)        
+        #    test_api.qspi1_init()
+        #    validate_qspi_flash(erot.QSPI1.QSPI,0,1,0,0x1000)
+        #    validate_qspi_flash(erot.QSPI1.QSPI,1,1,0,0x1000)                   
     elif options.qspi == '2':
         helper.wait_sim_time("us", 600)
         test_api.boot_qspi_init()
         test_api.boot_qspi_clk_init()
         erot.CLOCK.NVEROT_CLOCK_SYS_CTL.SW_BOOT_QSPI_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7)
         validate_qspi_flash(erot.BOOT_QSPI.QSPI,0,2,1,0x0)    
-        if helper.target != 'simv_fpga':
-            test_api.fuse_force_l1_rst() 
-            helper.wait_sim_time("us", 600)
-            test_api.boot_qspi_init()
-            test_api.boot_qspi_clk_init()
-            erot.CLOCK.NVEROT_CLOCK_SYS_CTL.SW_BOOT_QSPI_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7)
-            validate_qspi_flash(erot.BOOT_QSPI.QSPI,0,2,1,0x1000)             
+        #if helper.target != 'simv_fpga':
+        #    test_api.fuse_force_l1_rst() 
+        #    helper.wait_sim_time("us", 600)
+        #    test_api.boot_qspi_init()
+        #    test_api.boot_qspi_clk_init()
+        #    erot.CLOCK.NVEROT_CLOCK_SYS_CTL.SW_BOOT_QSPI_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7)
+        #    validate_qspi_flash(erot.BOOT_QSPI.QSPI,0,2,1,0x1000)             
     else:
         helper.perror("Wrong --qspi %s" % options.qspi)

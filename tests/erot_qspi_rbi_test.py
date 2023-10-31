@@ -59,16 +59,28 @@ with Test(sys.argv) as t:
                 send_write_1_1_x_cmd(master,0x32,addr,24,2)
             elif qspi_rbi == 0 :
                 send_write_1_1_x_cmd(master,0xa2,addr,24,1)               
-            test_api.wait_socv_flash_write_done(flash)
+            #test_api.wait_socv_flash_write_done(flash)
+            time.sleep(60)
             addr = addr + 0x100
 
     def check_rbi_data(addr,read_value):
+        #exp_rdata_list = []
+        #fsp_addr =  addr +  FSP.GLOBAL_IO_ADDR_SPACE_OFFSET
+        #for i in range(256):
+        #    exp_rdata_list.append(read_value)
+        #    read_value = read_value + 4
+        #burst_read_check(fsp_addr, exp_rdata_list, is_posted=0)        
         exp_rdata_list = []
-        fsp_addr =  addr +  FSP.GLOBAL_IO_ADDR_SPACE_OFFSET
         for i in range(256):
             exp_rdata_list.append(read_value)
             read_value = read_value + 4
-        burst_read_check(fsp_addr, exp_rdata_list, is_posted=0)        
+        for i in range(256):
+            rd = helper.read(addr+i*4)
+            helper.pinfo(f'read out data : {rd}')
+            helper.pinfo(f'golden data : {exp_rdata_list[i]}')
+            if rd != exp_rdata_list[i]:
+                helper.perror(f"rbi read fail")
+            time.sleep(60)
 
     def validate_qspi_rbi(master,master_rbi,addr,flash,flash_addr,qspi_base_addr,qspi_rbi):
         master_rbi.PROM_ADDRESS_OFFSET_0.write(flash_addr)
@@ -89,11 +101,15 @@ with Test(sys.argv) as t:
     options = parse_args() 
     if options.qspi == '0' :
         test_api.qspi0_init()
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_QSPI0_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7) 
         validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x148000,0,0,0x148000,1)       
         validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x148000,0,0x10000,0x148000,1)
     elif options.qspi == '1': 
         test_api.qspi1_init()
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_QSPI1_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7) 
         validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24b000,2,0,0x24b000,1)
         validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24b000,2,0x10000,0x24b000,1)            
