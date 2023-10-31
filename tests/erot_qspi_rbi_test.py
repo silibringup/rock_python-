@@ -84,7 +84,7 @@ with Test(sys.argv) as t:
             elif qspi_rbi == 0 :
                 send_write_1_1_x_cmd(master,0xa2,addr,24,1)               
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(10)
+            time.sleep(120)
             addr = addr + 0x100
         
         
@@ -102,7 +102,7 @@ with Test(sys.argv) as t:
             helper.pinfo(f'golden data : {exp_rdata_list[i]}')
             if rd != exp_rdata_list[i]:
                 helper.perror(f"rbi read fail")
-        
+            time.sleep(60) 
 
     def validate_qspi_rbi(master,master_rbi,addr,flash,flash_addr,qspi_base_addr,qspi_rbi):
         master_rbi.PROM_ADDRESS_OFFSET_0.debug_write(flash_addr)
@@ -210,7 +210,7 @@ with Test(sys.argv) as t:
     elif options.qspi == '2':
         #test_api.boot_qspi_init()
         #test_api.boot_qspi_clk_init()
-        self.log('start to initialize BOOT_QSPI I/O')
+        helper.log('start to initialize BOOT_QSPI I/O')
         erot.PADCTRL_N.BOOT_QSPI_CLK_0.debug_update(TRISTATE=0)
         erot.PADCTRL_N.BOOT_QSPI_CS_N_0.debug_update(TRISTATE=0)
         erot.PADCTRL_N.BOOT_QSPI_IO0_0.debug_update(TRISTATE=0)
