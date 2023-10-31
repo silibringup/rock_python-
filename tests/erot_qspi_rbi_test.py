@@ -58,7 +58,7 @@ with Test(sys.argv) as t:
             if qspi_rbi == 1:
                 send_write_1_1_x_cmd(master,0x32,addr,24,2)
             elif qspi_rbi == 0 :
-                send_write_1_1_x_cmd(master,0xa2,addr,24,1)               
+                send_write_1_1_x_cmd(master,0x02,addr,24,1)               
             #test_api.wait_socv_flash_write_done(flash)
             time.sleep(60)
             addr = addr + 0x100
@@ -87,6 +87,9 @@ with Test(sys.argv) as t:
         if qspi_rbi == 1 :
             master_rbi.COMMAND_0.update(INTERFACE_WIDTH='QUAD')  
             master_rbi.CMB_SEQ_CMD_0.update(COMMAND_VALUE=0x6b)
+        elif qspi_rbi == 0:
+            master_rbi.COMMAND_0.update(INTERFACE_WIDTH='DUAL')  
+            master_rbi.CMB_SEQ_CMD_0.update(COMMAND_VALUE=0x3b)            
         qspi_send_data_to_flash(master,flash,flash_addr+addr-qspi_base_addr,qspi_rbi)    
         master.DMA_BLK_SIZE_0.write(255)
         check_rbi_data(addr,flash_addr+addr-qspi_base_addr)
