@@ -54,28 +54,28 @@ with Test(sys.argv) as t:
             #1-1-1 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x02,addr,24,0,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(10)
+            time.sleep(100)
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-2 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0xa2,addr+32,24,1,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)   
-            time.sleep(10)
+            time.sleep(100)
             send_1_0_0_cmd(master,cs,0x06,8) 
             #1-1-4 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x32,addr+64,24,2,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash) 
-            time.sleep(10)
+            time.sleep(100)
         elif boot == 1 :
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-1 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x02,addr,24,0,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(10)
+            time.sleep(100)
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-2 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0xa2,addr+32,24,1,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(10) 
+            time.sleep(100) 
 
     def validate_qspi_read(master,cs,addr,boot):
         if boot == 0 :
@@ -117,10 +117,9 @@ with Test(sys.argv) as t:
     if options.qspi == '0' :
         helper.wait_sim_time("us", 600)
         test_api.qspi0_init()
-        if helper.target == 'simv_fpga':
-            #test_api.qspi0_clk_init()
-            erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
-            erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
+        #test_api.qspi0_clk_init()
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         validate_qspi_flash(erot.QSPI0.QSPI,0,0,0,0x0)
         validate_qspi_flash(erot.QSPI0.QSPI,1,0,0,0x0)    
         if helper.target != 'simv_fpga':
@@ -132,10 +131,9 @@ with Test(sys.argv) as t:
     elif options.qspi == '1': 
         helper.wait_sim_time("us", 600)        
         test_api.qspi1_init()
-        if helper.target == 'simv_fpga':
-            #test_api.qspi1_clk_init()
-            erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
-            erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)           
+        #test_api.qspi1_clk_init()
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)           
         validate_qspi_flash(erot.QSPI1.QSPI,0,1,0,0x0)
         validate_qspi_flash(erot.QSPI1.QSPI,1,1,0,0x0) 
         if helper.target != 'simv_fpga':
