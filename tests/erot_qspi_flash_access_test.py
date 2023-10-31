@@ -73,7 +73,7 @@ with Test(sys.argv) as t:
             time.sleep(100)
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-2 write mode and 32byte for one command
-            send_write_1_1_x_cmd(master,cs,0xa2,addr+32,24,1,7,data_value_0,data_value_1,data_value_2,data_value_3)
+            send_write_1_1_x_cmd(master,cs,0x02,addr+32,24,0,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
             time.sleep(100) 
 

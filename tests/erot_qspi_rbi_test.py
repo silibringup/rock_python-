@@ -58,7 +58,7 @@ with Test(sys.argv) as t:
             if qspi_rbi == 1:
                 send_write_1_1_x_cmd(master,0x32,addr,24,2)
             elif qspi_rbi == 0 :
-                send_write_1_1_x_cmd(master,0x02,addr,24,1)               
+                send_write_1_1_x_cmd(master,0x02,addr,24,0)               
             #test_api.wait_socv_flash_write_done(flash)
             time.sleep(60)
             addr = addr + 0x100
@@ -85,11 +85,17 @@ with Test(sys.argv) as t:
     def validate_qspi_rbi(master,master_rbi,addr,flash,flash_addr,qspi_base_addr,qspi_rbi):
         master_rbi.PROM_ADDRESS_OFFSET_0.write(flash_addr)
         if qspi_rbi == 1 :
-            master_rbi.COMMAND_0.update(INTERFACE_WIDTH='QUAD')  
+            master_rbi.COMMAND_0.update(INTERFACE_WIDTH='QUAD',En_LE_Bit=0)  
             master_rbi.CMB_SEQ_CMD_0.update(COMMAND_VALUE=0x6b)
+            master_rbi.CMB_SEQ_ADDR_CFG_0.update(ADDRESS_EN_LE_Byte=1)
+            master_rbi.MISC_0.update(NUM_OF_DUMMY_CLK_CYCLES=8)
+
         elif qspi_rbi == 0:
-            master_rbi.COMMAND_0.update(INTERFACE_WIDTH='DUAL')  
-            master_rbi.CMB_SEQ_CMD_0.update(COMMAND_VALUE=0x3b)            
+            master_rbi.COMMAND_0.update(INTERFACE_WIDTH='DUAL',En_LE_Bit=0)  
+            master_rbi.CMB_SEQ_CMD_0.update(COMMAND_VALUE=0x3b)   
+            master_rbi.CMB_SEQ_ADDR_CFG_0.update(ADDRESS_EN_LE_Byte=1)
+            master_rbi.MISC_0.update(NUM_OF_DUMMY_CLK_CYCLES=8)
+
         qspi_send_data_to_flash(master,flash,flash_addr+addr-qspi_base_addr,qspi_rbi)    
         master.DMA_BLK_SIZE_0.write(255)
         check_rbi_data(addr,flash_addr+addr-qspi_base_addr)
