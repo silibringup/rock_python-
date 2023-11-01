@@ -165,7 +165,7 @@ with Test(sys.argv) as t:
             helper.perror("read data did not match write data")
 
 
-        enable_bypass_monitor(monitor)
+        block_bypass_monitor(monitor)
         helper.wait_sim_time("us", 5)
         time.sleep(1)
         LOG(f"================== enter no_pass mode ===================")
