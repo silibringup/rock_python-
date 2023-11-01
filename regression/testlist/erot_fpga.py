@@ -212,6 +212,16 @@ with feature('erot_fpga/lighton'):
         desc    =   '''EROT bypass monitor legal command bypass'''
             )
 
+    test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l1']
+    AddTest(
+        name    =   'erot_bypmon_illegal_rd_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor illegal read command block'''
+            )
+
     test_args   =   ['''-py erot_bypmon_locker_test_fpga.py '''] + RCV_BOOT
     test_tags   =   ['bypmon','l2']
     AddTest(
