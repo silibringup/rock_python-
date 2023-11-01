@@ -98,7 +98,7 @@ with Test(sys.argv) as t:
         LOG(f"================== enter monitor mode ===================")
         #helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
 
-    def validate_ap_access_flash(ap_id,bm_cs):
+    def validate_ap_access_flash(ap_id,bm_cs,monitor):
         ########################################################################
         ################################# MISC #################################
         ########################################################################
@@ -317,7 +317,7 @@ with Test(sys.argv) as t:
         helper.wait_sim_time("us", 15)
         time.sleep(2)
         helper.pinfo("begin to validate bypmon")
-        validate_ap_access_flash(ap,cs)
+        validate_ap_access_flash(ap,cs,monitor)
 
     def deassert_sw_reset_l1():
         erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.write(RESET_GPIO_CTRL=1)
