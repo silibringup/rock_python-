@@ -147,7 +147,7 @@ with Test(sys.argv) as t:
         helper.log("#1, Test the start addresses with wr_data/addr's configurations")
         exp_dict = {}
         wr_addr_list = []
-        for i in range(8):
+        for i in range(10):
             wr_addr = i*32
             wr_addr_list.append(wr_addr)
             wr_data_list = []
@@ -160,7 +160,7 @@ with Test(sys.argv) as t:
         helper.log("#2, Test the end addresses with wr_data/addr's configurations in order")
         exp_dict = {}
         wr_addr_list = []
-        for i in range(128*1024-5, 128*1024):
+        for i in range(128*1024-10, 128*1024):
             wr_addr = i*32+random.randint(0,31)
             wr_addr_list.append(wr_addr)
             wr_data_list = []
@@ -175,7 +175,7 @@ with Test(sys.argv) as t:
         helper.log("#3, Test the middle addresses with wr_data/addr's configurations in order")
         exp_dict = {}
         wr_addr_list = []
-        for i in range(64*1024-2, 64*1024+2):
+        for i in range(64*1024-5, 64*1024+5):
             wr_addr = i*32+random.randint(0,31)
             wr_addr_list.append(wr_addr)
             wr_data_list = []
@@ -190,7 +190,7 @@ with Test(sys.argv) as t:
         helper.log("#4, Test the middle addresses with wr_data/addr's configurations in order")
         exp_dict = {}
         wr_addr_list = []
-        for i in range(5):
+        for i in range(10):
             wr_addr = random.randint(0, (128*1024-1))*32
             wr_addr_list.append(wr_addr)
             wr_data_list = []
@@ -205,7 +205,7 @@ with Test(sys.argv) as t:
         helper.log("#5, access the same 256bits")
         exp_dict = {}
         wr_addr_list = []
-        for i in range(5):
+        for i in range(10):
             wr_addr = 0
             wr_addr_list.append(wr_addr)
             wr_data_list = []
@@ -219,7 +219,7 @@ with Test(sys.argv) as t:
         exp_dict = {}
         wr_addr_list = []
         wr_addr_256b = random.randint(0, (128*1024-1))
-        for i in range(5):
+        for i in range(10):
             wr_addr = wr_addr_256b*32
             wr_addr_list.append(wr_addr)
             wr_data_list = []
@@ -233,7 +233,7 @@ with Test(sys.argv) as t:
         helper.log("#6, access out of 4MB")
         exp_dict = {}
         wr_addr_list = []
-        for i in range(5):
+        for i in range(10):
             if i == 4:
                 wr_addr = (128*1024+32+i)*32+random.randint(0,31)
             else:
