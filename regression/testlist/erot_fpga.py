@@ -135,15 +135,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''mram mtpr test'''
             )
-    test_args   =   ['''-py erot_mram_mtp_test.py '''] + RCV_BOOT
-    test_tags   =   ['mram','l1']
-    AddTest(
-        name    =   'erot_mram_mtp_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''mram mtp test'''
-            )
     # mram bring-up tests END
     
     # fuse api test
@@ -158,15 +149,80 @@ with feature('erot_fpga/lighton'):
             )
     # fuse api bring-up tests END
 
-    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
-    test_tags   =   ['reset','as2']
+    # reset bring-up tests
+    test_args   =   ['''-py erot_reset_hw_boot_test_fpga.py ''']
+    test_tags   =   ['reset','as2','l0']
     AddTest(
-        name    =   'erot_reset_l3_light_on',
+        name    =   'erot_reset_hw_boot_test_fpga',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''light on each IP in chip'''
+        desc    =   '''EROT HW boot'''
             )
+
+    test_args   =   ['''-py erot_reset_l1_rst_domain_test_fpga.py ''']
+    test_tags   =   ['reset','l1']
+    AddTest(
+        name    =   'erot_reset_l1_rst_domain_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT L1 reset'''
+            )
+
+    test_args   =   ['''-py erot_reset_l3_rst_domain_test_fpga.py ''']
+    test_tags   =   ['reset','l1']
+    AddTest(
+        name    =   'erot_reset_l3_rst_domain_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT L3 reset'''
+            )
+
+    test_args   =   ['''-py erot_reset_sw_rst_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['reset','l2']
+    AddTest(
+        name    =   'erot_reset_sw_rst_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT SW reset'''
+            )
+
+#    test_args   =   ['''-py erot_reset_l3_rst_light_on.py ''']
+#    test_tags   =   ['reset','as2']
+#    AddTest(
+#        name    =   'erot_reset_l3_light_on',
+#        config  =   ['erot_fpga'],
+#        args    =   common_args+test_args,
+#        tags    =   test_tags,
+#        desc    =   '''light on each IP in chip'''
+#            )
+    # reset bring-up tests END
+
+    # bypass monitor bring-up tests
+    test_args   =   ['''-py erot_bypmon_legal_cmd_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l0']
+    AddTest(
+        name    =   'erot_bypmon_legal_cmd_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor legal command bypass'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_locker_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l2']
+    AddTest(
+        name    =   'erot_bypmon_locker_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor reg aperture lock'''
+            )
+
+    # bypass monitor bring-up tests END
 
     test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
     test_tags   =   ['boot','l0']
@@ -273,6 +329,16 @@ with feature('erot_fpga/lighton'):
         desc    =   '''check CMS registers'''
             )
 
+    test_args   =   ['''-py erot_oobhub_cmd_rcv_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_cmd_rcv_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''check CMS registers'''
+            )
+
     test_args   =   ['''-py erot_oobhub_pmb_test.py  '''] + RCV_BOOT
     test_tags   =   ['oobhub']
     AddTest(
@@ -322,33 +388,25 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   'spi target smoke test'
             ) 
+    test_args   =   ['''-py erot_spi_target_slave_imr_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_imr_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            ) 
 
-    #QSPI bring-up testplan 
-    for i in range(3):
-        
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_flash_access_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
-        test_tags   =   ['qspi_bring_up']
-        #if os.getenv("RANDOM_STALL") != None:
-        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-        AddTest(
-            name    =   'erot_qspi_flash_access_qspi%s_jtag' %str(i),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''enable qspi to access flash '''
-            )   
-    
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_rbi_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
-        test_tags   =   ['qspi_bring_up']
-        #if os.getenv("RANDOM_STALL") != None:
-        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-        AddTest(
-            name    =   'erot_qspi_rbi_qspi%s_jtag' %str(i),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
-            )   
+    test_args   =   ['''-py erot_spi_target_slave_imr_tx_test.py  '''] + RCV_BOOT
+    test_tags   =   ['spi']
+    AddTest(
+        name    =   'erot_spi_imr_tx_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   'spi target smoke test'
+            ) 
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
