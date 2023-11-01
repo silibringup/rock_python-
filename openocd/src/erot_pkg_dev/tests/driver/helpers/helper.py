@@ -3,6 +3,7 @@ import re
 import struct
 import subprocess
 from driver.components.priv import Priv
+from driver.components.gpio import Gpio
 from driver.components.bm_sim import Bm_sim
 from driver.components.i2c_mst import I2c_mst
 from driver.components.spi_mst import SPIMaster
@@ -32,6 +33,7 @@ class Helper:
         self.__regblk_top = regblk_top
         self.__failure = False
         self.__priv = Priv()
+        self.__gpio = Gpio()
         self.__bm_sim = Bm_sim()
         self.priv = self.__priv
         self.__i2c_mst = I2c_mst()
@@ -80,7 +82,16 @@ class Helper:
         self.__link.finish()
         if not self.__failure:
             rpinfo("TEST SUCCESS COMPLETED")
-        
+    
+    ##################### GPIO operations ################################
+    def gpio_write(self, intf_name, value):
+        self.__gpio.write_gpio(self.__link, intf_name, value)
+
+    def gpio_read(self, intf_name):
+        return self.__gpio.read_gpio(self.__link, intf_name)
+
+    def wait_rpi_time(self, value, wait_type=0):
+        self.__gpio.wait_rpi_time(self.__link, value, wait_type)
 
     ##################### SPI master access ##############################
     def spi_write(self, spi_port, cs_id, 
