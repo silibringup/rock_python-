@@ -24,8 +24,11 @@ with Test(sys.argv) as t:
         t.parser.add_argument("--monitor", action='store', help="Verify SPI_MON WITH QSPI VIP", default='0')
         return t.parser.parse_args(sys.argv[1:])
 
-    def enable_bypass_monitor(bm):
+    def block_bypass_monitor(bm):
         bm.bmon_cfg_0.update(mon_mode=0,ap_flash_acc_en=1)
+
+    def enable_bypass_monitor(bm):
+        bm.bmon_cfg_0.update(mon_mode=2,ap_flash_acc_en=1)
 
     def config_bm_filter(bm):
         bm.mem_permission_0.update(region_0=7,region_1=1)
@@ -92,6 +95,7 @@ with Test(sys.argv) as t:
         config_bm_filter(monitor)
         helper.pinfo("enable bypmon")
         enable_bypass_monitor(monitor)
+        LOG(f"================== enter monitor mode ===================")
         #helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
 
     def validate_ap_access_flash(ap_id,bm_cs):
@@ -138,6 +142,7 @@ with Test(sys.argv) as t:
                      n_instruction_lane=1, n_instruction_bits=8, instruction=[0x02],
                      n_address_lane=1, n_address_bits=24, address=addr_list_0, 
                      n_data_lane=1, data=list(write_data.to_bytes(8,"big")))
+        ap_wait_flash_write_done(ap_id,bm_cs)
         LOG(f"legal 1-1-1 write data to Flash address 0x01_2300 - 0x01_2307 : {hex(write_data)}")
 
 
@@ -156,8 +161,78 @@ with Test(sys.argv) as t:
                      n_data_lane=1, nbr_rd_bytes=8, dummy_cycles=0) 
         read_value = int.from_bytes(read_bytes, "big")
         LOG(f"legal 1-1-1 read data from Flash address 0x01_2300 - 0x01_2307 : {hex(read_value)}")
-        if read_value == write_data:
+        if read_value != write_data:
             helper.perror("read data did not match write data")
+
+
+        enable_bypass_monitor(monitor)
+        helper.wait_sim_time("us", 5)
+        time.sleep(1)
+        LOG(f"================== enter no_pass mode ===================")
+
+        ########################################################################
+        ################################# MISC #################################
+        ########################################################################
+        LOG(f"##################################################################")
+        LOG(f"############################## MISC ##############################")
+        LOG(f"##################################################################")
+        #Enable VIP to send legal rd: read ID
+        #1-0-1 read
+        read_id = helper.spi_read(spi_port=ap_id, cs_id=bm_cs, 
+                n_instruction_lane=1, n_instruction_bits=8, instruction=[0x9e],
+                n_address_lane=1, n_address_bits=0, address=[], 
+                n_data_lane=1, nbr_rd_bytes=1)
+        read_id_value = int.from_bytes(read_id, "big")
+        LOG(f"1-0-1 read ID from Flash: {hex(read_id_value)}")
+
+
+        ########################################################################
+        ########################## 1-0-0 LEGAL CFG #############################
+        ########################################################################
+        LOG(f"##################################################################")
+        LOG(f"######################## 1-0-0 LEGAL CFG #########################")
+        LOG(f"##################################################################")
+        #Enable VIP to send legal cfg: write enable 
+        #1-0-0 config
+        helper.spi_write(spi_port=ap_id, cs_id=bm_cs, 
+                     n_instruction_lane=1, n_instruction_bits=0, instruction=[],
+                     n_address_lane=1, n_address_bits=0, address=[], 
+                     n_data_lane=1, data=[0x06])
+        LOG(f"legal 1-0-0 write enable to Flash")
+
+
+        ########################################################################
+        ########################### 1-1-1 LEGAL WR #############################
+        ########################################################################
+        LOG(f"##################################################################")
+        LOG(f"######################## 1-1-1 LEGAL WR ##########################")
+        LOG(f"##################################################################")
+        #Enable VIP to send legal memory wr: 0x01_2300 - 0x01_2307(8 byte)
+        #1-1-1 write
+        helper.spi_write(spi_port=ap_id, cs_id=bm_cs, 
+                     n_instruction_lane=1, n_instruction_bits=8, instruction=[0x02],
+                     n_address_lane=1, n_address_bits=24, address=addr_list_0, 
+                     n_data_lane=1, data=list(write_data_1.to_bytes(8,"big")))
+        LOG(f"legal 1-1-1 write data to Flash address 0x01_2300 - 0x01_2307 : {hex(write_data_1)}")
+
+
+        ########################################################################
+        ########################### 1-1-1 LEGAL RD #############################
+        ########################################################################
+        LOG(f"##################################################################")
+        LOG(f"######################## 1-1-1 LEGAL RD ##########################")
+        LOG(f"##################################################################")
+        #Enable VIP to send legal memory rd: 0x01_2300 - 0x01_2307(8 byte)
+        #1-1-1 read
+        helper.wait_sim_time("us", 1)
+        read_bytes = helper.spi_read(spi_port=ap_id, cs_id=bm_cs, 
+                     n_instruction_lane=1, n_instruction_bits=8, instruction=[0x03],
+                     n_address_lane=1, n_address_bits=24, address=addr_list_0, 
+                     n_data_lane=1, nbr_rd_bytes=8, dummy_cycles=0) 
+        read_value = int.from_bytes(read_bytes, "big")
+        LOG(f"legal 1-1-1 read data from Flash address 0x01_2300 - 0x01_2307 : {hex(read_value)}")
+        if read_value == write_data or read_value == write_data_1:
+            helper.perror("read data match write data")
 
 
         ########################################################################
@@ -182,9 +257,34 @@ with Test(sys.argv) as t:
                      n_data_lane=1, data=list(erase_addr_1.to_bytes(3,"big")))
         LOG(f"legal 1-1-0 erase 4KB to Flash address 0x012300 - 0x012b00")
 
-        # FIXME, be reminded to check PAD CS=1/SCK=0 in no_pass mode, after AP_FLASH_ACC_EN = AP
-        LOG(f"FIXME, be reminded to check PAD CS=1/SCK=0 in no_pass mode, after AP_FLASH_ACC_EN = AP")
-        
+        # FIXME, be reminded to check PAD CS=1/SCK=0 in no_pass mode, after MON_MODE = 0
+        LOG(f"FIXME, be reminded to check PAD CS=1/SCK=0 in no_pass mode, after MON_MODE = 0")
+
+        enable_bypass_monitor(monitor)
+        helper.wait_sim_time("us", 5)
+        time.sleep(1)
+        LOG(f"================== enter monitor mode ===================")
+
+        ########################################################################
+        ########################### 1-1-1 LEGAL RD #############################
+        ########################################################################
+        LOG(f"##################################################################")
+        LOG(f"######################## 1-1-1 LEGAL RD ##########################")
+        LOG(f"##################################################################")
+        #Enable VIP to send legal memory rd: 0x01_2300 - 0x01_2307(8 byte)
+        #1-1-1 read
+        ap_wait_flash_write_done(ap_id,bm_cs)
+        helper.wait_sim_time("us", 1)
+        read_bytes = helper.spi_read(spi_port=ap_id, cs_id=bm_cs, 
+                     n_instruction_lane=1, n_instruction_bits=8, instruction=[0x03],
+                     n_address_lane=1, n_address_bits=24, address=addr_list_0, 
+                     n_data_lane=1, nbr_rd_bytes=8, dummy_cycles=0) 
+        read_value = int.from_bytes(read_bytes, "big")
+        LOG(f"legal 1-1-1 read data from Flash address 0x01_2300 - 0x01_2307 : {hex(read_value)}")
+        if read_value != write_data:
+            helper.perror("read data did not match write data")
+
+
         
     def validate_qspi_access_flash(qspi,cs):    
         #config QSPI to send write command to address 0x02_2300 to 0x02_2307(8 bytes)
