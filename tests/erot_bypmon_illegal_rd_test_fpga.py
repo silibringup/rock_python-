@@ -98,7 +98,7 @@ with Test(sys.argv) as t:
         enable_bypass_monitor(monitor)
         #helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
 
-    def validate_ap_access_flash(ap_id,bm_cs,monitor):
+    def validate_ap_access_flash(ap_id,bm_cs):
         ########################################################################
         ################################# MISC #################################
         ########################################################################
