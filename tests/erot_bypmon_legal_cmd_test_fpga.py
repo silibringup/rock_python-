@@ -1,6 +1,7 @@
 #!/home/utils/Python/3.8/3.8.6-20201005/bin/python3
 from driver import * 
 from driver.components.spi_mst import SPI_SCLK_FREQ_SEL
+import time
 
 with Test(sys.argv) as t:
 
@@ -87,9 +88,11 @@ with Test(sys.argv) as t:
                 break 
 
     def ini_bm(monitor):
+        helper.pinfo("config bypmon")
         config_bm_filter(monitor)
+        helper.pinfo("enable bypmon")
         enable_bypass_monitor(monitor)
-        helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
+        #helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
 
     def validate_ap_access_flash(ap_id,bm_cs):
         ########################################################################
@@ -220,8 +223,11 @@ with Test(sys.argv) as t:
             helper.perror("read data did not match write data")
 
     def validate_ap_socv(qspi,monitor,ap,cs):
+        helper.pinfo("begin to init bypmon")
         ini_bm(monitor)
-        helper.wait_sim_time("us", 15)    
+        helper.wait_sim_time("us", 15)
+        time.sleep(2)
+        helper.pinfo("begin to validate bypmon")
         validate_ap_access_flash(ap,cs)
 
     def deassert_sw_reset_l1():
@@ -247,6 +253,7 @@ with Test(sys.argv) as t:
     test_api.connect_to_micron_flash()
     test_api.enable_vip_connection()
     helper.wait_sim_time("us", 5)
+    time.sleep(1)
     options = parse_args() 
     if options.monitor == '0' :
         validate_ap_socv(erot.QSPI0.QSPI,erot.SPI_MON0,0,0)
