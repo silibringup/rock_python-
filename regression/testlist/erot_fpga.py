@@ -144,6 +144,15 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''mram mtp test for BS test'''
             )
+    test_args   =   ['''-py erot_mram_mtp_test.py '''] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_mtp_test' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''mram mtp test'''
+            )
     # mram bring-up tests END
     
     # fuse api test
