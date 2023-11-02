@@ -134,7 +134,6 @@ with Test(sys.argv) as t:
         test_api.connect_to_micron_flash()
         test_api.enable_vip_connection()
         helper.wait_sim_time("us", 5)
-        options = parse_args() 
         validate_ap_socv(erot.QSPI0.QSPI,erot.SPI_MON0,0,0)
 
     def checking_interrupt(ip_list, reg):
