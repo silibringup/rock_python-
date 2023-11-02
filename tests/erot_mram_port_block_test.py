@@ -378,7 +378,7 @@ with Test(sys.argv) as t:
             if rd_resp != real_data_dict[rd_addr][0]:
                 helper.perror("MTPR to out_region with mram_cfg_b_mtpr_acl_0_0.out_region = 1 should return an correct data, but now is %x, address is %x" % (rd_resp, rd_addr))
             else:
-                helper.log("MTPR with address %x return %x, the correct data is %x" % (rd_addr, rd_resp, real_data_dict[rd_addr][0])
+                helper.log("MTPR with address %x return %x, the correct data is %x" % (rd_addr, rd_resp, real_data_dict[rd_addr][0]))
         #mram.mram_cfg_b_mtp_rport_acl_0_0.update(out_region=0)
         mram.mram_cfg_b_mtpr_acl_0.update(out_region=0)
         rd = mram.mram_cfg_b_mtpr_acl_0.read()
