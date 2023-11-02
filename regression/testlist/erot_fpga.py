@@ -104,6 +104,36 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
             )
+    
+    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_function_test_l1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function check l1 part'''
+            )
+    
+    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint fuse_connection' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_plm_test_fuse_conn',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric plm check fuse connection'''
+            )
+    
+    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint SrcID' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_plm_test_srcid',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric plm check source id'''
+            )
     # fabric bring-up tests END
     
     # mram bring-up tests
@@ -126,6 +156,7 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''MRAM region WPEN/WP check'''
             )
+    
     test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + RCV_BOOT
     test_tags   =   ['mram','l0']
     AddTest(
@@ -135,7 +166,29 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''mram mtpr test'''
             )
+    
+    test_args   =   ['''-py erot_mram_mtp_test.py '''] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_mtp_test' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''mram mtp test'''
+            )
     # mram bring-up tests END
+    
+    # interrupt api test
+    test_args   =   ['-py erot_intr_bringup_test.py ']
+    test_tags   =   ['intr_test']
+    AddTest(
+        name    =   'erot_intr_bringup_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''test interrupt function'''
+            )
+    # interrupt api bring-up tests END
     
     # fuse api test
     test_args   =   ['-py erot_fuse_override_api_test.py ']
