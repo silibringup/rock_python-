@@ -412,9 +412,9 @@ with feature('erot_fpga/lighton'):
             desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
             )   
         
-    #UART bring-up test
+    #uart test
     test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG 
-    test_tags   =   ['uart']
+    test_tags   =   ['io_pad','uart']
     AddTest(
         name    =   'erot_uart_loopback_test' ,
         config  =   ['erot_fpga'],
@@ -422,6 +422,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''confirm uart_tx and uart_rx pads functional correct'''
             )     
+    #i2c test
+    test_args   =   ['''-py erot_oobhub_i2c_test.py -pyarg '--mst I2C_IB1 ' '''] + PLATFORM_JTAG + RCV_BOOT
+    test_tags   =   ['io_pad','i2c']
+    AddTest(
+        name    =   'erot_oobhub_i2c_test' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''oobhub'''
+            )
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
