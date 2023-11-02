@@ -413,7 +413,7 @@ with feature('erot_fpga/lighton'):
             )   
         
     #UART bring-up test
-    test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test.py '''] + PLATFORM_JTAG 
+    test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG 
     test_tags   =   ['uart']
     AddTest(
         name    =   'erot_uart_loopback_test' ,
