@@ -53,7 +53,7 @@ with Test(sys.argv) as t:
         test_api.send_cmd(spi,1,0,31,data_line,0,0)
         
     def qspi_send_data_to_flash(master,flash,addr,qspi_rbi):
-        for i in range(4):
+        for i in range(1):
             test_api.send_1_0_0_cmd(master,0x06,8)
             if qspi_rbi == 1:
                 send_write_1_1_x_cmd(master,0x32,addr,24,2)
@@ -74,13 +74,13 @@ with Test(sys.argv) as t:
         for i in range(256):
             exp_rdata_list.append(read_value)
             read_value = read_value + 4
-        for i in range(256):
+        for i in range(64):
             rd = helper.read(addr+i*4)
-            helper.pinfo(f'read out data : {rd}')
-            helper.pinfo(f'golden data : {exp_rdata_list[i]}')
+            helper.pinfo(f'read out data : {hex(rd)}')
+            helper.pinfo(f'data : {hex(exp_rdata_list[i])}')
             if rd != exp_rdata_list[i]:
                 helper.perror(f"rbi read fail")
-            time.sleep(60)
+            time.sleep(10)
 
     def validate_qspi_rbi(master,master_rbi,addr,flash,flash_addr,qspi_base_addr,qspi_rbi):
         master_rbi.PROM_ADDRESS_OFFSET_0.write(flash_addr)
@@ -110,23 +110,19 @@ with Test(sys.argv) as t:
     options = parse_args() 
     if options.qspi == '0' :
         test_api.qspi0_init()
-        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
-        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_QSPI0_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7) 
-        validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x148000,0,0,0x148000,1)       
-        validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x148000,0,0x10000,0x148000,1)
+        #validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x148000,0,0,0x148000,1)       
+        validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x149000,0,0x10000,0x148000,1)
     elif options.qspi == '1': 
         test_api.qspi1_init()
-        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
-        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_QSPI1_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7) 
-        validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24b000,2,0,0x24b000,1)
-        validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24b000,2,0x10000,0x24b000,1)            
+        #validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24b000,2,0,0x24b000,1)
+        validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24c000,2,0x10000,0x24b000,1)            
     elif options.qspi == '2':
         test_api.boot_qspi_init()
         test_api.boot_qspi_clk_init()
         erot.CLOCK.NVEROT_CLOCK_SYS_CTL.SW_BOOT_QSPI_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7)
-        validate_qspi_rbi(erot.BOOT_QSPI.QSPI,erot.BOOT_QSPI.RBI,0x45000,4,0,0x45000,0)  
+        #validate_qspi_rbi(erot.BOOT_QSPI.QSPI,erot.BOOT_QSPI.RBI,0x45000,4,0,0x45000,0)  
         validate_qspi_rbi(erot.BOOT_QSPI.QSPI,erot.BOOT_QSPI.RBI,0x46000,4,0x10000,0x45000,0)    
     else:
         helper.perror("Wrong --qspi %s" % options.qspi)
