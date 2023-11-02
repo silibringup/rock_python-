@@ -619,7 +619,7 @@ class Helper:
                 return self.__oob.read_lio(addr,*args, **kwargs)
             else:
                 return self.__fsp.read_lio(addr,*args, **kwargs)
-        elif Helper.platform == "HEAD":
+        elif ((Helper.platform == "HEAD") or (Helper.platform == "JTAG" and "fpga" in Helper.target)):
             if "cpu" in kwargs and kwargs["cpu"] == "OOB":
                 self.pplatform_unsupport("OOB read_l0")
             else:
@@ -634,7 +634,7 @@ class Helper:
                 self.__oob.write_lio(addr, value,*args, **kwargs)
             else:
                 self.__fsp.write_lio(addr, value,*args, **kwargs)
-        elif Helper.platform == "HEAD":
+        elif ((Helper.platform == "HEAD") or (Helper.platform == "JTAG" and "fpga" in Helper.target)):
             if "cpu" in kwargs and kwargs["cpu"] == "OOB":
                 self.pplatform_unsupport("OOB write_l0")
             else:
