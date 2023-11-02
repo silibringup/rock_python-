@@ -63,7 +63,9 @@ with Test(sys.argv) as t:
     def ini_bm(monitor):
         config_bm_filter(monitor)
         enable_bypass_monitor(monitor)
-        helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
+        # simulation need to change the frequency, however fpga does not need
+        if helper.target in ["simv_fpga"]:
+            helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
 
     def validate_ap_access_flash(ap_id,bm_cs,monitor):
         ########################################################################
