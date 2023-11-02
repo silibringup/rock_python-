@@ -83,7 +83,7 @@ with Test(sys.argv) as t:
     enable_uart()
 
     # poll per 100us
-    erot.UART.UARTRIS_0.debug_poll(timeout=30, interval=100000, RXRIS=1)
+    erot.UART.UARTRIS_0.debug_poll(timeout=10000, interval=100000, RXRIS=1)
 
     for i in range(4):
         if golden_value_list[i]+1 >= 256:
