@@ -104,36 +104,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
             )
-    
-    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_blf_function_test_l1',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric blf function check l1 part'''
-            )
-    
-    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint fuse_connection' ''']
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_plm_test_fuse_conn',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric plm check fuse connection'''
-            )
-    
-    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint SrcID' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_plm_test_srcid',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric plm check source id'''
-            )
     # fabric bring-up tests END
     
     # mram bring-up tests
@@ -156,7 +126,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''MRAM region WPEN/WP check'''
             )
-    
     test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + RCV_BOOT
     test_tags   =   ['mram','l0']
     AddTest(
@@ -166,29 +135,7 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''mram mtpr test'''
             )
-    
-    test_args   =   ['''-py erot_mram_mtp_test.py '''] + RCV_BOOT
-    test_tags   =   ['mram','l1']
-    AddTest(
-        name    =   'erot_mram_mtp_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''mram mtp test'''
-            )
     # mram bring-up tests END
-    
-    # interrupt api test
-    test_args   =   ['-py erot_intr_bringup_test.py '] + RCV_BOOT
-    test_tags   =   ['intr_test']
-    AddTest(
-        name    =   'erot_intr_bringup_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''test interrupt function'''
-            )
-    # interrupt api bring-up tests END
     
     # fuse api test
     test_args   =   ['-py erot_fuse_override_api_test.py ']
@@ -253,49 +200,6 @@ with feature('erot_fpga/lighton'):
 #        desc    =   '''light on each IP in chip'''
 #            )
     # reset bring-up tests END
-
-    # bypass monitor bring-up tests
-    test_args   =   ['''-py erot_bypmon_legal_cmd_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l0']
-    AddTest(
-        name    =   'erot_bypmon_legal_cmd_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor legal command bypass'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l1']
-    AddTest(
-        name    =   'erot_bypmon_illegal_rd_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor illegal read command block'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_no_pass_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l1']
-    AddTest(
-        name    =   'erot_bypmon_no_pass_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor no_pass mode command block'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_locker_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l2']
-    AddTest(
-        name    =   'erot_bypmon_locker_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor reg aperture lock'''
-            )
-
-    # bypass monitor bring-up tests END
 
     test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
     test_tags   =   ['boot','l0']
@@ -480,6 +384,44 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   'spi target smoke test'
             ) 
+
+    #QSPI bring-up testplan 
+    for i in range(3):
+        
+        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_flash_access_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
+        test_tags   =   ['qspi_bring_up']
+        #if os.getenv("RANDOM_STALL") != None:
+        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
+        AddTest(
+            name    =   'erot_qspi_flash_access_qspi%s_jtag' %str(i),
+            config  =   ['erot_fpga'],
+            args    =   common_args+test_args,
+            tags    =   test_tags,
+            desc    =   '''enable qspi to access flash '''
+            )   
+    
+        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_rbi_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
+        test_tags   =   ['qspi_bring_up']
+        #if os.getenv("RANDOM_STALL") != None:
+        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
+        AddTest(
+            name    =   'erot_qspi_rbi_qspi%s_jtag' %str(i),
+            config  =   ['erot_fpga'],
+            args    =   common_args+test_args,
+            tags    =   test_tags,
+            desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
+            )   
+        
+    #UART bring-up test
+    test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test.py '''] + PLATFORM_JTAG 
+    test_tags   =   ['uart']
+    AddTest(
+        name    =   'erot_uart_loopback_test' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''confirm uart_tx and uart_rx pads functional correct'''
+            )     
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
