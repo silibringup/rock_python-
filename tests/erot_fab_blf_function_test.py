@@ -3,6 +3,8 @@ from driver import *
 
 with Test(sys.argv) as t:
 
+    OOBHUB_FABRIC_BASE = 0x2000000000000000
+
     def parse_args():
         t.parser.add_argument("--Fabric", action='store', help="Check BLF function of L1/L2 fabric", default='L1')
         opts, unknown = t.parser.parse_known_args(sys.argv[1:])
@@ -76,22 +78,44 @@ with Test(sys.argv) as t:
     def write_with_err_code_checking(address, write_value, blocked_priv_id, current_priv_id, current_priv_level):
         if helper.target in ["fpga", "simv_fpga"]:
             test_read_value = 0
+            oob_write_err = 0
             #use jtag to write
             if(current_priv_id == 0):
                 helper.j2h_write(address, 0xabcdef00)
             #use fsp to check
             elif (current_priv_id == 2):
                 helper.write(address, 0xabcdef00)
+            #use oobhub to check
+            elif (current_priv_id == 3):
+                if (blocked_priv_id == 3):
+                    oob_write_err = test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, 0xabcdef00, check_error_resp=0)
+                else:
+                    test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, 0xabcdef00)
             else:
                 helper.perror("NOT support priv_id %d" %(current_priv_id))
-            if(blocked_priv_id == 0):
-                test_read_value = helper.read(address)
+            
+            if(options.Fabric == 'L1'):
+                if(blocked_priv_id == 0):
+                    test_read_value = helper.read(address)
+                else:
+                    test_read_value = helper.j2h_read(address)
+            elif(options.Fabric == 'L2'):
+                if(blocked_priv_id == 3): # blocked is oobhub
+                    test_read_value = helper.read(address)
+                else: # blocked is other initiators
+                    test_read_value = test_api.oobhub_icd_read(address+OOBHUB_FABRIC_BASE)
             else:
-                test_read_value = helper.j2h_read(address)
+                helper.perror("Not support option %s" % (options.Fabric))
+            
             if(current_priv_id == blocked_priv_id):
+                if (current_priv_id == 3) and (oob_write_err != 1):
+                    helper.perror("OOBHUB is blocked, but write without error, priv_id is %d" %(current_priv_id))
+                    
                 if (test_read_value == 0xabcdef00):
                     helper.perror("blocked_priv_id has been written in the test value, priv_id is %d" %(current_priv_id))
             else:
+                if (current_priv_id == 3) and (oob_write_err == 1):
+                    helper.perror("OOBHUB is non-blocked, but write with error, priv_id is %d" %(current_priv_id))
                 if (test_read_value != 0xabcdef00):
                     helper.perror("NON blocked_priv_id does not write in the test value, priv_id is %d, blocked_priv_id is %d" %(current_priv_id, blocked_priv_id))
                 #use jtag to write
@@ -100,6 +124,9 @@ with Test(sys.argv) as t:
                 #use fsp to check
                 elif (current_priv_id == 2):
                     helper.write(address, write_value)
+            #use oobhub to check
+                elif (current_priv_id == 3):
+                    test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, write_value)
                 else:
                     helper.perror("NOT support priv_id %d" %(current_priv_id))
         else:
@@ -130,11 +157,22 @@ with Test(sys.argv) as t:
             #use fsp to check
             elif (current_priv_id == 2):
                 read_rdata = helper.read(address)
+            #use oobhub to check
+            elif (current_priv_id == 3):
+                read_rdata = test_api.oobhub_icd_read(address+OOBHUB_FABRIC_BASE, check_error_resp=0)
             else:
                 helper.perror("NOT support priv_id %d" %(current_priv_id))
+            
             if((current_priv_id == blocked_priv_id) and (current_priv_id == 0)):
                 if (read_rdata != 0xdead1010):
                     helper.perror("blocked_priv_id %d does not read the error code, exp: %x, act: %x" %(blocked_priv_id, 0xdead1010, read_rdata))
+            elif(current_priv_id == 3):
+                if (current_priv_id == blocked_priv_id):
+                    if read_rdata["err_resp"] != 1:
+                        helper.perror("OOBHUB read blocked_priv_id %d without error response" %(blocked_priv_id))
+                else:
+                    if read_rdata["err_resp"] == 1:
+                        helper.perror("OOBHUB read blocked_priv_id %d with error response" %(blocked_priv_id))
             elif((current_priv_id == blocked_priv_id) and (current_priv_id == 2)):
                 helper.log("FSP cannot get the error code, so not check this")
             else:
@@ -178,9 +216,14 @@ with Test(sys.argv) as t:
                 helper.log("Checking BLF write block of %s, blocked source: %s" %(ip['name'], source))
                 if((ip['name'] == 'l1_csr' or ip['name'] == 'l2_csr') and source_id == 0xfffff7ff):
                     if helper.target in ["fpga", "simv_fpga"]:
-                        helper.j2h_write(ip['WRITE'].abs_addr, source_id)
-                        helper.j2h_write(ip['READ'].abs_addr, source_id)
-                        helper.j2h_write(ip['CTL'].abs_addr, 0x30000)
+                        if(options.Fabric == 'L1'):
+                            helper.j2h_write(ip['WRITE'].abs_addr, source_id)
+                            helper.j2h_write(ip['READ'].abs_addr, source_id)
+                            helper.j2h_write(ip['CTL'].abs_addr, 0x30000)
+                        else:
+                            helper.write(ip['WRITE'].abs_addr, source_id)
+                            helper.write(ip['READ'].abs_addr, source_id)
+                            helper.write(ip['CTL'].abs_addr, 0x30000)
                     #if(source_id == 0xfffff7ff): #now jtag is blocked, so use sysctrl to write to csr
                     else:
                         helper.write(ip['WRITE'].abs_addr, source_id, 1, 3)
@@ -188,9 +231,14 @@ with Test(sys.argv) as t:
                         helper.write(ip['CTL'].abs_addr, 0x30000, 1, 3)
                 else:
                     if helper.target in ["fpga", "simv_fpga"]:
-                        ip['WRITE'].debug_write(source_id)
-                        ip['READ'].debug_write(source_id)
-                        ip['CTL'].debug_write(0x30000)
+                        if(options.Fabric == 'L1'):
+                            ip['WRITE'].debug_write(source_id)
+                            ip['READ'].debug_write(source_id)
+                            ip['CTL'].debug_write(0x30000)
+                        else:
+                            ip['WRITE'].write(source_id)
+                            ip['READ'].write(source_id)
+                            ip['CTL'].write(0x30000)
                     else:
                         ip['WRITE'].write(source_id)
                         if((ip['name'] == 'l1_csr' or ip['name'] == 'l2_csr') and source_id == 0xfffffeff): #now jtag is blocked, so use sysctrl to write to READ CTRL register
@@ -203,7 +251,7 @@ with Test(sys.argv) as t:
                     if (options.Fabric == 'L1'):
                         fpga_allowed_priv_id_list = [0, 2]
                     else:
-                        fpga_allowed_priv_id_list = [0, 3]
+                        fpga_allowed_priv_id_list = [2, 3]
                     cannot_change_ip_list = ['clock_vrefro_ctl','clock_sys_ctl', 'clock_io_ctl', 'clock_status', 'clock_cmn_pad_ctl', 'clock_podvmon', 'clock_fmon', 'fuse', 'mram_tmc', 'puf_dbg', 'mram_cfg', 'mram_otp', 'mram_mtp', 'mram_mtpr', 'oobhub', 'qspi0_core', 'qspi1_core', 'boot_qspi_core', 'reset_reg', 'reset_status', 'rts', 'nv_pmc', 'nv_pbus', 'nv_ptop', 'therm']
                     do_not_have_resp_ip_list = ['boot_qspi_nv_prom_data', 'boot_qspi_nv_prom_2_data', 'qspi0_nv_prom_data', 'qspi0_nv_prom_2_data', 'qspi1_nv_prom_data', 'qspi1_nv_prom_2_data', 'jtag', 'spi_mon0', 'spi_mon1']
                     for priv_id in fpga_allowed_priv_id_list:
@@ -233,11 +281,31 @@ with Test(sys.argv) as t:
                                     read_with_err_code_checking(ip['addr_low_boundary'], blocked_priv_id, priv_id, 3)
                     
                     # reset the BLF config
-                    if (source_id == 0xfffffeff):
-                        helper.write(ip['CTL'].abs_addr, 0x0)
-                        ip['CTL'].poll(BLF_LCK=0,WEN=0,REN=0)
+                    if (options.Fabric == 'L1'):
+                        if (source_id == 0xfffffeff):
+                            helper.write(ip['CTL'].abs_addr, 0x0)
+                            ip['CTL'].poll(BLF_LCK=0,WEN=0,REN=0)
+                        else:
+                            helper.j2h_write(ip['CTL'].abs_addr, 0x0)
+                    elif (options.Fabric == 'L2'):
+                        if (source_id == 0xffff7fff): #FSP blocked
+                            test_api.oobhub_icd_write(ip['CTL'].abs_addr+OOBHUB_FABRIC_BASE, 0x0)
+                            for idx in range(10):
+                                reset_value = test_api.oobhub_icd_read(ip['CTL'].abs_addr+OOBHUB_FABRIC_BASE)
+                                if (reset_value == 0):
+                                    break
+                                if (idx == 9):
+                                    helper.perror("IP %s CTL register cannot be reset" % (ip['name']))
+                        elif (source_id == 0xfffff7ff): #OOBHUB blocked
+                            helper.write(ip['CTL'].abs_addr, 0x0)
+                            ip['CTL'].poll(timeout=50,BLF_LCK=0,WEN=0,REN=0)
+                        elif (source_id == 0xffffffbf): #sysctrl blocked
+                            helper.write(ip['CTL'].abs_addr, 0x0)
+                            ip['CTL'].poll(timeout=50,BLF_LCK=0,WEN=0,REN=0)
+                        else:
+                            helper.perror("L2 check does not support source id %x" %(source_id))
                     else:
-                        helper.j2h_write(ip['CTL'].abs_addr, 0x0)
+                        helper.perror("option %s cannot be supported" % (options.Fabric))
                 else:
                     for priv_id in range(1, 4): #jtag cannot call burst_operation to collect error
                         helper.log("Write %s with priv_id %d" %(ip['name'], priv_id))
@@ -412,31 +480,37 @@ with Test(sys.argv) as t:
                 helper.hdl_force(fuse_path+'opt_secure_pri_source_isolation_en', 1)
 
     options = parse_args()
+    OOBHUB_FABRIC_BASE = 0x2000000000000000
     if helper.target in ["fpga", "simv_fpga"]:
-        #jtag unlock
-        helper.log("Test start")
-        helper.wait_sim_time("us", 50)
-        helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
+        if (options.Fabric == 'L1'):
+            #jtag unlock
+            helper.log("Test start")
+            helper.wait_sim_time("us", 50)
+            helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
 
-        helper.jtag.Reset(0)
-        helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-        helper.jtag.Reset(1)
+            helper.jtag.Reset(0)
+            helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            helper.jtag.Reset(1)
 
 
-        helper.pinfo(f'j2h_unlock sequence start')
-        helper.j2h_unlock()
-        helper.pinfo(f'j2h_unlock sequence finish')
+            helper.pinfo(f'j2h_unlock sequence start')
+            helper.j2h_unlock()
+            helper.pinfo(f'j2h_unlock sequence finish')
 
-        helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
         
         if ((options.Fabric == 'L1_DISABLE_MAPPING') or (options.Fabric == 'L2_DISABLE_MAPPING')):
             helper.log("Do not need to force the fuse options to 1")
-        else:
-            helper.log("Force fabric fuse 1 start")
-            test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
-            # BLF does not care the PL
-            #test_api.fuse_opts_override("opt_priv_sec_en", 1)
-            helper.log("Force fabric fuse 1 done")
+        
+        if (options.Fabric == 'L2'):
+            helper.log("init oobhub")
+            test_api.oobhub_icd_init()
+        
+        helper.log("Force fabric fuse 1 start")
+        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
+        # BLF does not care the PL
+        #test_api.fuse_opts_override("opt_priv_sec_en", 1)
+        helper.log("Force fabric fuse 1 done")
     else:
         fuse_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_fuse.'
         helper.log("Force fabric fuse 1 start")
@@ -457,7 +531,7 @@ with Test(sys.argv) as t:
             source_id_list = [0xffffffbf, 0xfffffeff, 0xfffff7ff] # SYSCTRL, JTAG, FSP
         check_BLF_function(L1_FABRIC_TARGET, source_id_list)
     elif(options.Fabric == 'L2'):
-        source_id_list = [0xffff7fff] #OOBHUB
+        source_id_list = [0xffffffbf, 0xfffff7ff, 0xffff7fff] #FSP, OOBHUB
         check_BLF_function(L2_FABRIC_TARGET, source_id_list)
     # TODO how to change the sub id ???
     #elif(options.Fabric == 'L1_MNOC'):
