@@ -21,6 +21,11 @@ int SPI_read(FT_HANDLE ftHandle,uint32_t cs_id,int spiMode, int sendLen, uint8_t
 int SPI_write(FT_HANDLE ftHandle,uint32_t cs_id,int spiMode, int sendLen, uint8_t* sbuf,bool deassert, int singleBytes);
 void SPI_close(FT_HANDLE ftHandle);
 
+int  GPIO_init(void);
+int  GPIO_read(int pin);
+void GPIO_write(int pin,int value);
+void GPIO_dly_us(uint32_t howLong,uint8_t type); //time unit : us 
+
 //int DeviceInfo(void);
 
 #ifdef __cplusplus
