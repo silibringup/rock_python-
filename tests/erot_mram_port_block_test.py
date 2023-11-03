@@ -269,6 +269,7 @@ with Test(sys.argv) as t:
             # try MTP write to the whole MRAM, it shouldn't be covered by any region
             test_api.mram_mtp_write(wr_addr, wr_data_list, rand_shuffle=1)
     
+        return exp_dict
     
     def init_mram_in_a_region_with_frontdoor(region_start, region_end):
         exp_dict = {}
