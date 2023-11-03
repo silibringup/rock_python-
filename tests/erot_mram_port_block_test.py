@@ -268,6 +268,33 @@ with Test(sys.argv) as t:
 
             # try MTP write to the whole MRAM, it shouldn't be covered by any region
             test_api.mram_mtp_write(wr_addr, wr_data_list, rand_shuffle=1)
+    
+    
+    def init_mram_in_a_region_with_frontdoor(region_start, region_end):
+        exp_dict = {}
+        for i in range(6):
+            if i == 0:
+                wr_addr = region_start
+            elif i == 1:
+                wr_addr = region_start + 32
+            elif i == 2:
+                wr_addr = region_start + 32*2
+            elif i == 3:
+                wr_addr = region_end
+            elif i == 4:
+                wr_addr = region_end-32
+            elif i == 5:
+                wr_addr = region_end-32*2
+            else:
+                helper.perror("should not be here")
+            #wr_addr_list.append(wr_addr)
+            wr_data_list = []
+            for j in range(8):
+                wr_data_list.append(random.randint(0,0xffffffff))
+            exp_dict[wr_addr] = wr_data_list
+
+            # try MTP write to the whole MRAM, it shouldn't be covered by any region
+            test_api.mram_mtp_write(wr_addr, wr_data_list, rand_shuffle=1)
 
         return exp_dict
 
@@ -375,10 +402,11 @@ with Test(sys.argv) as t:
             else:
                 rd_addr = MRAM_MTPR_BASE + MRAM_MTPR_SIZE - 32*32*2
             rd_resp = helper.read(rd_addr)
-            if rd_resp != real_data_dict[rd_addr][0]:
+            data_dict_addr = rd_addr - MRAM_MTPR_BASE
+            if rd_resp != real_data_dict[data_dict_addr][0]:
                 helper.perror("MTPR to out_region with mram_cfg_b_mtpr_acl_0_0.out_region = 1 should return an correct data, but now is %x, address is %x" % (rd_resp, rd_addr))
             else:
-                helper.log("MTPR with address %x return %x, the correct data is %x" % (rd_addr, rd_resp, real_data_dict[rd_addr][0]))
+                helper.log("MTPR with address %x return %x, the correct data is %x" % (rd_addr, rd_resp, real_data_dict[data_dict_addr][0]))
         #mram.mram_cfg_b_mtp_rport_acl_0_0.update(out_region=0)
         mram.mram_cfg_b_mtpr_acl_0.update(out_region=0)
         rd = mram.mram_cfg_b_mtpr_acl_0.read()
@@ -403,84 +431,132 @@ with Test(sys.argv) as t:
             else:
                 rd_addr = MRAM_MTPR_BASE + MRAM_MTPR_SIZE - 32*32*2
             rd_resp = helper.read(rd_addr)
-            if rd_resp == real_data_dict[rd_addr][0]:
+            data_dict_addr = rd_addr - MRAM_MTPR_BASE
+            if rd_resp == real_data_dict[data_dict_addr][0]:
                 helper.perror("MTPR to out_region with mram_cfg_b_mtpr_acl_0_0.out_region = 0 should return an incorrect data, but now is %x, address is %x" % (rd_resp, rd_addr))
             else:
-                helper.log("MTPR with address %x return %x, the correct data is %x" % (rd_addr, rd_resp, real_data_dict[rd_addr][0]))
+                helper.log("MTPR with address %x return %x, the correct data is %x" % (rd_addr, rd_resp, real_data_dict[data_dict_addr][0]))
         
         
-#        helper.log("Scenario 1, configure region x, with writeable/readable = 1, try to access this region")
-#        for i in range(8):
-#            helper.log("-- 1.%0d --" % i)
-#            helper.log("Test region %0d" % i)
-#           
-#            reset_region_cfg()
-#            [region_start_addr, region_end_addr] = setup_a_region(i)
-#
-#
-#            helper.log("Check MTP write block for region %0d" % i)
-#            config_region_x_block_port0(i,rd_allowed=1,wr_allowed=0,mtpr_allowed=1)
-#            exp_dict = {}
-#            wr_addr_list = []
-#            for j in range(10):
-#                if j == 0:
-#                    wr_addr = region_start_addr
-#                elif j == 9:
-#                    wr_addr = region_end_addr-32
-#                else:
-#                    wr_addr = random.randint(region_start_addr, region_end_addr-1)
-#                    wr_addr = wr_addr & 0xffffffe0
-#                wr_addr_list.append(wr_addr)
-#                wr_data_list = []
-#                for k in range(8):
-#                    wr_data_list.append(random.randint(0,0xffffffff))
-#                exp_dict[wr_addr] = wr_data_list
-#
-#                mram_mtp_write(wr_addr, wr_data_list, priv_id=2, rand_shuffle=1)
-#                rd = mram.mram_mtp_wport_state_0.read()
-#                if rd['ERROR'] != 1:
-#                    helper.perror("MTP write to region %0d with port block should return an ERROR" % i)
-#                mram.mram_mtp_wport_state_0.write(ERROR=1)
-#            Check_result(wr_addr_list, exp_dict, frontdoor=0, expect_fail=1)
-#
-#            helper.log("Check MTP read block for region %0d" % i)
-#            config_region_x_block_port0(i,rd_allowed=0,wr_allowed=1,mtpr_allowed=1)
-#            for j in range(10):
-#                if j == 0:
-#                    rd_addr = region_start_addr
-#                elif j == 9:
-#                    rd_addr = region_end_addr-32
-#                else:
-#                    rd_addr = random.randint(region_start_addr, region_end_addr-1)
-#                    rd_addr = rd_addr & 0xffffffe0
-#
-#                mram_mtp_read(rd_addr, priv_id=2)
-#                rd = mram.mram_mtp_rport_state_0.read()
-#                if rd['ERROR'] != 1:
-#                    helper.perror("MTP read to region %0d with port block should return an ERROR" % i)
-#                mram.mram_mtp_rport_state_0.write(ERROR=1)
-#           
-#            helper.log("Check MTPR port block for region %0d" % i)
-#            config_region_x_block_port0(i,rd_allowed=1,wr_allowed=1,mtpr_allowed=0)
-#            addr_list = []
-#            cmd_list = []
-#            data_list = []
-#            for j in range(20):
-#                if j == 0:
-#                    rd_addr = MRAM_MTPR_BASE + region_start_addr
-#                elif j == 1:
-#                    rd_addr = MRAM_MTPR_BASE + region_end_addr - 4
-#                else:
-#                    rd_addr = MRAM_MTPR_BASE + random.randint(region_start_addr, region_end_addr-1)
-#                    rd_addr = rd_addr & 0xfffffffc
-#                cmd_list.append(0)
-#                addr_list.append(rd_addr)
-#                data_list.append(random.randint(0, 0xffffffff))
-#
-#            [resp_data_list, resp_err_list] = helper.burst_operation(addr_list, data_list, cmd_list, priv_id=2)
-#            for resp_err_item in resp_err_list:
-#                if resp_err_item != 1:
-#                    helper.perror("MTPR to region %0d with mram_cfg_b_mtp_rport_acl_0_0.region%0d = 0 should return an error" % (i, i))
+        helper.log("Scenario 1, configure region x, with writeable/readable = 1, try to access this region")
+        for i in range(2):
+            helper.log("-- 1.%0d --" % i)
+            helper.log("Test region %0d" % i)
+           
+            reset_region_cfg()
+            [region_start_addr, region_end_addr] = setup_a_region(i)
+            helper.log("init mram with frontdoor in some fixed address of a region")
+            reset_xport_acl()
+            real_region_data_dict = init_mram_in_a_region_with_frontdoor(region_start_addr, region_end_addr) # some fixed address write
+            helper.log("print the init data in MRAM")
+            for add_idx in real_region_data_dict:
+                helper.log("The address %x data is: "%(add_idx))
+                for data in real_region_data_dict[add_idx]:
+                    helper.log("%x" % (data))
+
+
+            helper.log("Check MTP write block for region %0d" % i)
+            config_region_x_block_port0(i,rd_allowed=1,wr_allowed=0,mtpr_allowed=1)
+            exp_dict = {}
+            wr_addr_list = []
+            for j in range(6):
+                if j == 0:
+                    wr_addr = region_start_addr
+                elif j == 1:
+                    wr_addr = region_start_addr + 32
+                elif j == 2:
+                    wr_addr = region_start_addr + 32*2
+                elif j == 3:
+                    wr_addr = region_end_addr
+                elif j == 4:
+                    wr_addr = region_end_addr-32
+                elif j == 5:
+                    wr_addr = region_end_addr-32*2
+                else:
+                    helper.perror("should not be here")
+                wr_addr_list.append(wr_addr)
+                wr_data_list = []
+                for k in range(8):
+                    wr_data_list.append(random.randint(0,0xffffffff))
+                exp_dict[wr_addr] = wr_data_list
+
+                #mram_mtp_write(wr_addr, wr_data_list, priv_id=2, rand_shuffle=1)
+                test_api.mram_mtp_write(wr_addr, wr_data_list, rand_shuffle=1)
+                rd = mram.mram_mtp_wport_state_0.read()
+                if rd['ERROR'] != 1:
+                    helper.perror("MTP write to region %0d with port block should return an ERROR" % i)
+                mram.mram_mtp_wport_state_0.write(ERROR=1)
+            Check_result(wr_addr_list, exp_dict, frontdoor=1, expect_fail=1)
+
+            helper.log("Check MTP read block for region %0d" % i)
+            config_region_x_block_port0(i,rd_allowed=0,wr_allowed=1,mtpr_allowed=1)
+            for j in range(6):
+                if j == 0:
+                    rd_addr = region_start_addr
+                elif j == 1:
+                    rd_addr = region_start_addr + 32
+                elif j == 2:
+                    rd_addr = region_start_addr + 32*2
+                elif j == 3:
+                    rd_addr = region_end_addr
+                elif j == 4:
+                    rd_addr = region_end_addr-32
+                elif j == 5:
+                    rd_addr = region_end_addr-32*2
+                else:
+                    helper.perror("should not be here")
+
+                mram_mtp_read(rd_addr, priv_id=0)
+                rd = mram.mram_mtp_rport_state_0.read()
+                if rd['ERROR'] != 1:
+                    helper.perror("MTP read to region %0d with port block should return an ERROR" % i)
+                mram.mram_mtp_rport_state_0.write(ERROR=1)
+           
+            helper.log("Check MTPR port block for region %0d" % i)
+            for j in range(6):
+                if j == 0:
+                    rd_addr = region_start_addr + MRAM_MTPR_BASE
+                elif j == 1:
+                    rd_addr = region_start_addr + 32 + MRAM_MTPR_BASE
+                elif j == 2:
+                    rd_addr = region_start_addr + 32*2  + MRAM_MTPR_BASE
+                elif j == 3:
+                    rd_addr = region_end_addr + MRAM_MTPR_BASE
+                elif j == 4:
+                    rd_addr = region_end_addr-32 + MRAM_MTPR_BASE
+                elif j == 5:
+                    rd_addr = region_end_addr-32*2 + MRAM_MTPR_BASE
+                else:
+                    helper.perror("should not be here")
+                rd_resp = helper.read(rd_addr)
+                region_data_dict_addr = rd_addr - MRAM_MTPR_BASE
+                if ((rd_resp != real_region_data_dict[region_data_dict_addr][0]) and (region_data_dict_addr != region_end_addr)) :
+                    helper.perror("MTPR to region%d with mram_cfg_b_mtpr_acl_0_0.out_region%d = 0 should return an correct data, but now is %x, address is %x" % (i,i,rd_resp, rd_addr))
+                else:
+                    helper.log("In region%d, MTPR with address %x return %x, the correct data is %x" % (i,rd_addr, rd_resp, real_region_data_dict[region_data_dict_addr][0]))
+            
+            config_region_x_block_port0(i,rd_allowed=1,wr_allowed=1,mtpr_allowed=0)
+            for j in range(6):
+                if j == 0:
+                    rd_addr = region_start_addr + MRAM_MTPR_BASE
+                elif j == 1:
+                    rd_addr = region_start_addr + 32 + MRAM_MTPR_BASE
+                elif j == 2:
+                    rd_addr = region_start_addr + 32*2  + MRAM_MTPR_BASE
+                elif j == 3:
+                    rd_addr = region_end_addr + MRAM_MTPR_BASE
+                elif j == 4:
+                    rd_addr = region_end_addr-32 + MRAM_MTPR_BASE
+                elif j == 5:
+                    rd_addr = region_end_addr-32*2 + MRAM_MTPR_BASE
+                else:
+                    helper.perror("should not be here")
+                rd_resp = helper.read(rd_addr)
+                region_data_dict_addr = rd_addr - MRAM_MTPR_BASE
+                if rd_resp == real_region_data_dict[region_data_dict_addr][0]:
+                    helper.perror("MTPR to region%d with mram_cfg_b_mtpr_acl_0_0.out_region%d = 0 should return an incorrect data, but now is %x, address is %x" % (i,i,rd_resp, rd_addr))
+                else:
+                    helper.log("In region%d, MTPR with address %x return %x, the correct data is %x" % (i,rd_addr, rd_resp, real_region_data_dict[region_data_dict_addr][0]))
 
 
 
