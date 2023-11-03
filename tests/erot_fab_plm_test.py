@@ -146,17 +146,17 @@ with Test(sys.argv) as t:
                 helper.log("check fuse0 with fuse field %s" % (fuse['field']))
                 if(fuse['field'] == 'SOURCE_ENABLE'):
                     helper.log("Polling SOURCE_ENABLE")
-                    fuse['reg'].debug_poll(SOURCE_ENABLE=1048575)
+                    fuse['reg'].poll(SOURCE_ENABLE=1048575)
                 else:
                     if(fuse['field'] == 'WRITE_PROTECTION'):
                         helper.log("Polling WRITE_PROTECTION")
                         if(fuse['fuse_name'] == 'opt_skate_and_brp_dev_mode_en'):
-                            fuse['reg'].debug_poll(WRITE_PROTECTION=0)
+                            fuse['reg'].poll(WRITE_PROTECTION=0)
                         else:
-                            fuse['reg'].debug_poll(WRITE_PROTECTION=15)
+                            fuse['reg'].poll(WRITE_PROTECTION=15)
                     elif(fuse['field'] == 'READ_PROTECTION'):
                         helper.log("Polling READ_PROTECTION")
-                        fuse['reg'].debug_poll(READ_PROTECTION=15)
+                        fuse['reg'].poll(READ_PROTECTION=15)
         else:
             if(fuse['fuse_name'] == 'opt_secure_pjtag_access_wr_secure'):
                 jtag_plm_value = helper.read(fuse['reg'])
@@ -182,11 +182,11 @@ with Test(sys.argv) as t:
                     helper.perror("JTAG fuse1 check fail, PLM register value is %d" %jtag_plm_value)
             else:
                 if(fuse['field'] == 'WRITE_PROTECTION'):
-                    fuse['reg'].debug_poll(WRITE_PROTECTION=fuse['fuse1'])
+                    fuse['reg'].poll(WRITE_PROTECTION=fuse['fuse1'])
                 elif(fuse['field'] == 'READ_PROTECTION'):
-                    fuse['reg'].debug_poll(READ_PROTECTION=fuse['fuse1'])
+                    fuse['reg'].poll(READ_PROTECTION=fuse['fuse1'])
                 elif(fuse['field'] == 'SOURCE_ENABLE'):
-                    fuse['reg'].debug_poll(SOURCE_ENABLE=fuse['fuse1'])
+                    fuse['reg'].poll(SOURCE_ENABLE=fuse['fuse1'])
         else:
             if(fuse['fuse_name'] == 'opt_secure_pjtag_access_wr_secure'):
                 jtag_plm_value = helper.read(fuse['reg'])
@@ -261,7 +261,7 @@ with Test(sys.argv) as t:
         elif(priv_id == 3):
             oobhub_read_value = test_api.oobhub_icd_read(read_addr)
             if (oobhub_read_value != exp_err_code):
-                helper.perror("oobhub read check mismatch, exp: %x, act: %x" %(exp_err_code, jtag_read_value))
+                helper.perror("oobhub read check mismatch, exp: %x, act: %x" %(exp_err_code, oobhub_read_value))
 
     def write_with_err_code_checking(reg, write_value, current_priv_id, allowed_priv_id, current_priv_level, allowed_priv_level):
         if helper.target in ["fpga", "simv_fpga"]:
@@ -273,7 +273,7 @@ with Test(sys.argv) as t:
             if(current_priv_id == 0): #JTAG
                 reg.debug_write(write_value)
             elif(current_priv_id == 2): #FSP
-                reg.write(write_value)
+                reg.write(write_value,2,1,current_priv_level)
             elif(current_priv_id == 3): #OOBHUB
                 test_api.oobhub_icd_write(write_addr, write_value)
             else:
@@ -536,21 +536,21 @@ with Test(sys.argv) as t:
     ##force these two fuse to fabric to 1 to enable all source_id and priv level
     options = parse_args()
     if helper.target in ["fpga", "simv_fpga"]:
-        #jtag unlock
-        helper.log("Test start")
-        helper.wait_sim_time("us", 50)
-        helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
+        ##jtag unlock
+        #helper.log("Test start")
+        #helper.wait_sim_time("us", 50)
+        #helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
 
-        helper.jtag.Reset(0)
-        helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-        helper.jtag.Reset(1)
+        #helper.jtag.Reset(0)
+        #helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+        #helper.jtag.Reset(1)
 
 
-        helper.pinfo(f'j2h_unlock sequence start')
-        helper.j2h_unlock()
-        helper.pinfo(f'j2h_unlock sequence finish')
+        #helper.pinfo(f'j2h_unlock sequence start')
+        #helper.j2h_unlock()
+        #helper.pinfo(f'j2h_unlock sequence finish')
 
-        helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+        #helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
         
         helper.log("Force fabric fuse start")
         test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
