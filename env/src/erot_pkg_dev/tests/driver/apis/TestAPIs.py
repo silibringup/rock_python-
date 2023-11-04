@@ -1864,26 +1864,14 @@ class TestAPIs:
                         is_override_valid = 0
         
         if is_override_valid:
-            # jtag unlock
-            self.helper.pinfo("j2h unlocking")
-            self.helper.wait_sim_time("us", 50)
-            self.helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
-            self.helper.jtag.Reset(0)
-            self.helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-            self.helper.jtag.Reset(1)
-            self.helper.pinfo(f'j2h_unlock sequence start')
-            self.helper.j2h_unlock()
-            self.helper.pinfo(f'j2h_unlock sequence finish')
-            self.helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-            
             # write the value to corresponding address
             FUSE_BASE = erot.FUSE.base
-            erot.FUSE.EN_SW_OVERRIDE_0.debug_write(1)
+            erot.FUSE.EN_SW_OVERRIDE_0.write(1)
             self.helper.pinfo(f"FUSE base address is {FUSE_BASE}")
             opt_addr = fuse_info['physdata']['fuse']['fuses']['NV_FUSE']['Chip_options'][fuse_opt_name][2] + FUSE_BASE
             if re.search(r'\d+', str(opt_addr)):
-                self.helper.j2h_write(opt_addr, int(str(value), 2))
-                opt_data = self.helper.j2h_read(opt_addr)
+                self.helper.write(opt_addr, int(str(value), 2))
+                opt_data = self.helper.read(opt_addr)
                 if opt_data == value:
                     self.helper.pinfo(f"{fuse_opt_name} has been overrided to {value}")
                 else:
@@ -1891,4 +1879,4 @@ class TestAPIs:
             else:
                 self.helper.perror(f"{fuse_opt_name} address in fusegen.yml is {opt_addr} which is not a number")
 
-            erot.FUSE.EN_SW_OVERRIDE_0.debug_write(0)
+            erot.FUSE.EN_SW_OVERRIDE_0.write(0)

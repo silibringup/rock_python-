@@ -18,6 +18,10 @@ class EROTComponent(Component):
     SIM_PRIV_FSP = 11
     SIM_PRIV_OOBHUB = 12
 
+    BM_SIM = 13
+
+    GPIO = 14
+
     SIM_PRIV_WRITE = 0
     SIM_PRIV_READ = 1
     SIM_PRIV_BURST_READ = 2

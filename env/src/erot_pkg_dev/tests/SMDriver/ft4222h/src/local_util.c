@@ -24,6 +24,38 @@ std::string bytes_stringfy(uint8_t* data, uint32_t len){
     return sstrm.str();
 }
 
+// GPIO APIs on RPI
+int GPIO_init(){
+	if(wiringPiSetupGpio() == -1){ //GPIO BCM pins
+        std::cerr << "GPIO initialization Succeeded" << std::endl;
+        return 0;
+	}else{
+        std::cout << "GPIO initialization Succeeded" << std::endl;
+	}
+    return 1;
+}
+
+int GPIO_read(int pin){
+    pinMode(pin, INPUT); 
+    return digitalRead(pin);    
+}
+
+void GPIO_write(int pin,int value){
+    pinMode(pin, OUTPUT); 
+    digitalWrite(pin, value);
+}
+
+void GPIO_dly_us(uint32_t howLong, uint8_t type){ //time unit us 
+    if (type == 0){ // us time unit
+        delayMicroseconds(howLong);
+    }else{ // ms time unit
+        delay(howLong);
+    }
+}
+
+
+
+// FT4222 SPI APIs on RPI
 
 int SPI_init(FT_HANDLE* ftHandle,char dev_type){
     FT_STATUS ftStatus;
@@ -87,15 +119,16 @@ int SPI_init(FT_HANDLE* ftHandle,char dev_type){
         std::cout << "FT4222 Core Clock : "<< clk << "  (0 : 60, 1 : 24, 2 : 48, 3 : 80MHZ)" << std::endl;
     }
 
+    return 1;
 
 	//GPIO init
-	if(wiringPiSetupGpio() == -1){
-        std::cerr << "GPIO initialization Succeeded" << std::endl;
-        return 0;
-	}else{
-        std::cout << "GPIO initialization Succeeded" << std::endl;
-	}
-    return 1;
+	//if(wiringPiSetupGpio() == -1){
+    //       std::cerr << "GPIO initialization Succeeded" << std::endl;
+    //       return 0;
+	//}else{
+    //       std::cout << "GPIO initialization Succeeded" << std::endl;
+	//}
+    //return 1;
     //ftStatus = FT_Open(4, ftHandle);
     //if (FT_OK != ftStatus){
     //    std::cerr << "SPI Open ftHandle failed! Status :" << ftStatus << std::endl;
@@ -103,7 +136,6 @@ int SPI_init(FT_HANDLE* ftHandle,char dev_type){
     //} else {
     //    std::cout << "SPI Open ftHandle succeeded!" << std::endl;
     //}
-    //return 1;
 }
 
 
@@ -289,6 +321,11 @@ int SPI_write(FT_HANDLE ftHandle,uint32_t cs_id,int spiMode, int sendLen, uint8_
     return 1;
 
 }
+
+
+
+// FT4222 I2C/SMBUS APIs on RPI
+
 int SMBus_init(uint32_t i2c_kbps, FT_HANDLE* ftHandle){
     FT_STATUS ftStatus;
     FT4222_STATUS ft4222Status;

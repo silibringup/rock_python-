@@ -40,6 +40,7 @@
 #include "PystMain.hpp"
 #include "PystForPureC.h"
 #include "local_util.h"
+//#include <cstring>
 
 #ifdef HAVE_STRINGS_H
 #include <strings.h>
@@ -263,6 +264,99 @@ void tdo2bytes(uint32_t scan_nbits){
 	}
 }
 
+int intf2pin(char* intf_array){
+	int pin = 0; // no connected GPIO pin in RPI 
+	if (!strcmp(intf_array,"ap0_boot_ctrl_0_n_gp01")){
+		pin =  4;
+	}else if(!strcmp(intf_array,"ap1_boot_ctrl_0_n_gp12")){
+		pin =  4;
+	}else if(!strcmp(intf_array,"ap0_boot_ctrl_1_n_gp01")){
+		pin = 17;
+	}else if(!strcmp(intf_array,"ap1_boot_ctrl_1_n_gp13")){
+		pin = 17;
+	}else if(!strcmp(intf_array,"ap0_reset_n_gp08")){
+		pin = 28;
+	}else if(!strcmp(intf_array,"ap1_reset_n_gp19")){
+		pin = 28;
+	}else if(!strcmp(intf_array,"ap0_reset_ind_n_gp09")){
+		pin = 22;	
+	}else if(!strcmp(intf_array,"ap1_reset_ind_n_gp20")){
+		pin = 22;
+	}else if(!strcmp(intf_array,"erot_error_n")){
+		pin = 13;
+	}else if(!strcmp(intf_array,"ap0_fw_intr_n_gp05")){
+		pin = 19;
+	}else if(!strcmp(intf_array,"ap1_fw_intr_n_gp16")){
+		pin = 19;
+	}else if(!strcmp(intf_array,"ap0_reset_mon_n_gp10")){
+		pin = 18;
+	}else if(!strcmp(intf_array,"ap1_reset_mon_n_gp21")){
+		pin = 18;
+	}else if(!strcmp(intf_array,"ap0_pgood_gp07")){
+		pin = 23;
+	}else if(!strcmp(intf_array,"ap1_pgood_gp18")){
+		pin = 23;
+	}else if(!strcmp(intf_array,"ap0_mux_ctrl_n_gp06")){
+		pin = 24;
+	}else if(!strcmp(intf_array,"ap1_mux_ctrl_n_gp17")){
+		pin = 24;
+	}else if(!strcmp(intf_array,"ap0_qspi_erot_cs_n")){
+		pin = 25;
+	}else if(!strcmp(intf_array,"ap1_qspi_erot_cs_n")){
+		pin = 25;
+	}else if(!strcmp(intf_array,"erot_reset_n")){
+		pin = 12;
+	}else if(!strcmp(intf_array,"erot_req_ap0_n_gp03")){
+		pin = 20;
+	}else if(!strcmp(intf_array,"erot_req_ap1_n_gp14")){
+		pin = 20;
+	}else if(!strcmp(intf_array,"erot_gnt_ap0_n_gp04")){
+		pin = 21;
+	}else if(!strcmp(intf_array,"erot_gnt_ap1_n_gp15")){
+		pin = 21;	
+	}else if(!strcmp(intf_array,"erot_oob_dspi_intr_n")){
+		pin = 26;
+	}else if(!strcmp(intf_array,"erot_recovery_n")){
+		pin = 16;
+	}else{
+		LOG_USER("unsupported interface name : %s \n",intf_array);
+	}
+	//switch(*intf_array){
+	//	case 'ap0_boot_ctrl_0_n_gp01' : 
+	//	case "ap1_boot_ctrl_0_n_gp12" : pin =  4 ; break;
+	//	case "ap0_boot_ctrl_1_n_gp01" : 
+	//	case "ap1_boot_ctrl_1_n_gp13" : pin =  17; break;
+	//	case "ap0_reset_n_gp08"       : 
+	//	case "ap1_reset_n_gp19"       : pin =  28; break; 
+	//	case "ap0_reset_ind_n_gp09"   : 
+	//	case "ap1_reset_ind_n_gp20"   : pin =  22; break; 
+	//	case "erot_error_n"			  : pin =  13; break;
+	//	case "ap0_fw_intr_n_gp05"	  : 
+	//	case "ap1_fw_intr_n_gp16"	  : pin =  19; break;
+	//	case "ap0_reset_mon_n_gp10"	  : 
+	//	case "ap1_reset_mon_n_gp21"	  : pin =  18; break;
+	//	case "ap0_pgood_gp07"    	  : 
+	//	case "ap1_pgood_gp18"    	  : pin =  23; break;
+	//	case "ap0_mux_ctrl_n_gp06"    :  
+	//	case "ap1_mux_ctrl_n_gp17"    : pin =  24: break; 
+	//	case "ap0_qspi_erot_cs_n" .   :
+	//	case "ap1_qspi_erot_cs_n" .   : pin =  25; break;
+	//	case "erot_reset_n"           : pin =  12; break;
+	//	case "erot_req_ap0_n_gp03"    :
+	//	case "erot_req_ap1_n_gp14"    : pin =  20; break;
+	//	case "erot_gnt_ap0_n_gp04"    :
+	//	case "erot_gnt_ap1_n_gp15"    : pin =  21; break;
+	//	case "erot_oob_dspi_intr_n"   : pin =  26; break;
+	//	case "erot_recovery_n"        : pin =  16; break;
+	//	default :{
+	//		LOG_USER("unsupported interface name : %s \n",intf_array);
+	//		break;
+	//	}
+	//}
+	LOG_USER("Select RPI GPIO %d for interface %s ",pin,intf_array);
+	return pin;
+}
+
 // ----------------------------------------------------------
 
 /* OpenOCD can't really handle failure of this command. Patches welcome! :-) */
@@ -305,6 +399,13 @@ COMMAND_HANDLER(handle_init_command)
 	uint8_t SMBus_read_command = 0;
     uint32_t SMBus_read_address = 0;
 
+    if(!GPIO_init()){
+		LOG_USER("wiringPi GPIO initialization failed\n");
+        return 1;
+    } else {
+		LOG_USER("wiringPi GPIO initialization Succeeded\n");
+	}
+
 	// BMC i2c init
 	FT_HANDLE ftHandle = NULL;
     if(!SMBus_init(20, &ftHandle)){
@@ -314,7 +415,7 @@ COMMAND_HANDLER(handle_init_command)
 		LOG_USER("BMC I2C initialization Succeeded\n");
 	}
 
-	//AP0 SPI init
+	//SPI init
 	FT_HANDLE fthandle_spi = NULL;
 	FT_HANDLE fthandle_spimon_0 = NULL; //cs 0
 	FT_HANDLE fthandle_spimon_1 = NULL; //cs 1
@@ -823,6 +924,83 @@ COMMAND_HANDLER(handle_init_command)
 				break;
 		}
 
+		case 14: {
+			switch(p_in_pkt->routine){
+				case 0 : { // gpio write
+					uint8_t intf_name_size = p_in_pkt->n_each_field_bytes[0];
+					char*   intf_name_bytes_array = NULL;
+					uint8_t data = p_in_pkt->fields[1][0];
+					int		pin = 0;
+
+					intf_name_bytes_array = (char*)malloc(intf_name_size+1);
+					for(int i=0;i<(intf_name_size+1);i++){
+						if (i < intf_name_size){
+							intf_name_bytes_array[i] = p_in_pkt->fields[0][i];
+						}else{
+							intf_name_bytes_array[i] = '\0';
+						}
+					}
+					//memcpy(intf_name_bytes_array,p_in_pkt->fields[0],intf_name_size);
+					//intf_name_bytes_array[intf_name_size+1] = '\0';
+					LOG_USER("\nGPIO Trans : interface is %s, write %d",intf_name_bytes_array,data);
+					pin = intf2pin(intf_name_bytes_array);
+					if (pin > 0){
+						GPIO_write(pin,data);
+					}else{
+						LOG_USER("GPIO Trans : Error,unsupported gpio pins ");
+					}
+					packet_copy(p_in_pkt, p_out_pkt);
+					free(intf_name_bytes_array);
+					break;
+				} 
+				case 1 : { // gpio read 
+					uint8_t intf_name_size = p_in_pkt->n_each_field_bytes[0];
+					char*   intf_name_bytes_array = NULL;
+					int		pin = 0;						
+					uint8_t* data = NULL;
+					intf_name_bytes_array = (char*)malloc(intf_name_size+1);
+					for(int i=0;i<(intf_name_size+1);i++){
+						if (i < intf_name_size){
+							intf_name_bytes_array[i] = p_in_pkt->fields[0][i];
+						}else{
+							intf_name_bytes_array[i] = '\0';
+						}
+					}
+					data = (uint8_t*)malloc(p_in_pkt->n_each_field_bytes[1]);
+					//memcpy(intf_name_bytes_array,p_in_pkt->fields[0],intf_name_size);
+					//intf_name_bytes_array[intf_name_size+1] = '\0';
+					LOG_USER("\nGPIO Trans : interface is %s, read operation",intf_name_bytes_array);
+					pin = intf2pin(intf_name_bytes_array);
+					if (pin > 0){
+						data[0] = GPIO_read(pin);
+						LOG_USER("GPIO Trans : GPIO read pin %d, value %d",pin,data[0]);
+					}else{
+						LOG_USER("GPIO Trans : Error,unsupported gpio pins ");
+					}
+					packet_copy(p_in_pkt, p_out_pkt);
+					p_out_pkt->n_fields = 0; // field number before return data
+					add_ret(p_out_pkt, (uint32_t*)&len, data, 1);
+					free(intf_name_bytes_array);
+					if (data != NULL){
+						free(data);
+					}
+					break;
+				}
+				case 2 : { // wait RPI time
+					uint32_t howLong = bytes4_to_u32(p_in_pkt->fields[0]);
+					uint8_t  type    = p_in_pkt->fields[1][0];
+					GPIO_dly_us(howLong,type);
+					packet_copy(p_in_pkt, p_out_pkt);
+					break;
+				}
+				default : {
+					LOG_USER("Error: Unknown GPIO routine");
+					break;
+				}
+			}
+			break;
+		}
+
         default: {
 			if(p_in_pkt->component != 0 && p_in_pkt->routine != 0){ // not "DONE" routine
 				LOG_USER("Warning: Unsupported component %d, routine %d for FPGA", p_in_pkt->component, p_in_pkt->routine);
@@ -832,7 +1010,7 @@ COMMAND_HANDLER(handle_init_command)
 			break;
 		} 
       }
-	  // display_pkt(p_out_pkt);
+	  //display_pkt(p_out_pkt);
       pyst_send_message(len, p_out_pkt->bytes, 1);
 
       if(p_in_pkt->ptype == 2000){
