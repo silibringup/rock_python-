@@ -60,11 +60,11 @@ if __name__ == "__main__":
         os.system(f'rm -rf {batch_dir}')
     os.mkdir(batch)
 
-    infra_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src/erot_pkg_dev/tests'))
+    infra_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'../env/src/erot_pkg_dev/tests'))
     cur_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
     clean_file = os.path.join(os.path.dirname(__file__),'libs','clean.sh')
     logcheck = os.path.join(os.path.dirname(__file__),'libs','logcheck')
-    openocd = os.path.abspath(os.path.join(os.path.dirname(__file__),'../openocd/src','openocd'))
+    openocd = os.path.abspath(os.path.join(os.path.dirname(__file__),'../env/src','openocd'))
     cfg = os.path.abspath(os.path.join(os.path.dirname(__file__),'..','sr01.cfg'))
 
     testlist = os.path.join(batch_dir,'testlist.sh')
