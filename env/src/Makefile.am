@@ -1,5 +1,17 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
+
+erot_pkg = $(abs_builddir)/src/erot_pkg_dev
+RoPy = $(erot_pkg)/tests/RoPy
+ROCK_ARGS =
+ROCK_LDD_ARGS = 
+ROCK_ARGS += -I$(RoPy)/Pyst/cpp/include
+ROCK_ARGS += -I$(erot_pkg)/tests/SMDriver/ft4222h/src
+ROCK_ARGS += -L$(erot_pkg) -Wl,-rpath,$(erot_pkg) -lpyst
+ROCK_ARGS += -L$(erot_pkg)/tests/SMDriver/ft4222h -Wl,-rpath,$(erot_pkg)/tests/SMDriver/ft4222h -Wl,-rpath,/usr/local/lib -lutilft4222h -lft4222
+ROCK_LDD_ARGS += -lpyst
+ROCK_LDD_ARGS += -lutilft4222h -lft4222
+
 noinst_LTLIBRARIES += %D%/libopenocd.la
 bin_PROGRAMS += %D%/openocd
 
@@ -20,6 +32,12 @@ else
 %C%_openocd_LDADD += -ljim
 endif
 
+%C%_openocd_LDADD += $(ROCK_LDD_ARGS)
+
+%C%_openocd_LDFLAGS =
+%C%_openocd_LDFLAGS += -L$(erot_pkg) -Wl,-rpath,$(erot_pkg) -lpyst
+%C%_openocd_LDFLAGS += -L$(erot_pkg)/tests/SMDriver/ft4222h -Wl,-rpath,$(erot_pkg)/tests/SMDriver/ft4222h -Wl,-rpath,/usr/local/lib -lutilft4222h -lft4222
+
 %C%_libopenocd_la_CPPFLAGS =
 
 # banner output includes RELSTR appended to $VERSION from the configure script
@@ -35,6 +53,8 @@ endif
 
 # add default CPPFLAGS
 %C%_libopenocd_la_CPPFLAGS += $(AM_CPPFLAGS) $(CPPFLAGS)
+
+%C%_libopenocd_la_CPPFLAGS += $(ROCK_ARGS)
 
 # the library search path.
 %C%_libopenocd_la_LDFLAGS = $(all_libraries)

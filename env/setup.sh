@@ -10,7 +10,7 @@
 
 ./bootstrap 
 ./configure --enable-ftdi --enable-ft2232_ftd2xx --enable-maintainer-mode --enable-ft2232_libftdi
-cp Makefile Makefile.old
-cp Makefile.new Makefile
+#cp Makefile Makefile.old
+#cp Makefile.new Makefile
 make
 
