@@ -111,11 +111,15 @@ with Test(sys.argv) as t:
     options = parse_args() 
     if options.qspi == '0' :
         test_api.qspi0_init()
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_QSPI0_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7) 
         #validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x148000,0,0,0x148000,1)       
         validate_qspi_rbi(erot.QSPI0.QSPI,erot.QSPI0.RBI,0x149000,0,0x10000,0x148000,1)
     elif options.qspi == '1': 
         test_api.qspi1_init()
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_QSPI1_CLK_RCM_CFG_0.update(DIV_SEL_DIV_SW=7) 
         #validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24b000,2,0,0x24b000,1)
         validate_qspi_rbi(erot.QSPI1.QSPI,erot.QSPI1.RBI,0x24c000,2,0x10000,0x24b000,1)            

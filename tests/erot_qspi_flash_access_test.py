@@ -123,8 +123,8 @@ with Test(sys.argv) as t:
         helper.wait_sim_time("us", 600)
         test_api.qspi0_init()
         #test_api.qspi0_clk_init()
-        #erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
-        #erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
         validate_qspi_flash(erot.QSPI0.QSPI,0,0,0,0x1000)
         validate_qspi_flash(erot.QSPI0.QSPI,1,0,0,0x1000)    
         #if helper.target != 'simv_fpga':
@@ -137,8 +137,8 @@ with Test(sys.argv) as t:
         helper.wait_sim_time("us", 600)        
         test_api.qspi1_init()
         #test_api.qspi1_clk_init()
-        #erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
-        #erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)           
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)           
         validate_qspi_flash(erot.QSPI1.QSPI,0,1,0,0x1000)
         validate_qspi_flash(erot.QSPI1.QSPI,1,1,0,0x1000) 
         #if helper.target != 'simv_fpga':
