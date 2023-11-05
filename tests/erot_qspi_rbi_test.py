@@ -107,6 +107,7 @@ with Test(sys.argv) as t:
     LOG("START QSPI INI TEST") 
     test_api.connect_to_micron_flash()    
     helper.wait_sim_time("us", 600)
+    time.sleep(60)
     options = parse_args() 
     if options.qspi == '0' :
         test_api.qspi0_init()
