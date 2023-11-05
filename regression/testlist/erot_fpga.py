@@ -124,6 +124,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric plm function check fuse connection part'''
             )
+    
+    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint PL' '''] + RCV_BOOT
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_plm_test_PL',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric plm function check priv level part'''
+            )
     # fabric bring-up tests END
     
     # mram bring-up tests

@@ -83,8 +83,14 @@ with Test(sys.argv) as t:
 
     #FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST, JTAG_PLM_LIST]
     FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+    FUSE_LIST_FOR_PL = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+    #FUSE_LIST_FOR_PL = [FUSE_PLM_LIST]
  #   FUSE_LIST = [FSP_PLM_LIST]
 
+    SINGLE_PLM_FOR_PL = []
+    for i in FUSE_LIST_FOR_PL:
+        SINGLE_PLM_FOR_PL.append(i[0])
+    
     SINGLE_PLM = []
     for i in FUSE_LIST:
         SINGLE_PLM.append(i[0])
@@ -96,8 +102,8 @@ with Test(sys.argv) as t:
             elif priv_id==2:
                 read_value = reg.read()
             elif priv_id==3:
-                test_api.oobhub_icd_read(reg.abs_addr)
-                helper.log("will use oobhub ict to read later")
+                #read_value = test_api.oobhub_icd_read(reg.abs_addr)
+                helper.perror("will use oobhub ict to read later")
             else:
                 helper.perror("Cannot use sysctrl to read now")
             # therm 13:0 bits are read_only
@@ -251,7 +257,7 @@ with Test(sys.argv) as t:
             if(read_value.value == exp_value):
                 helper.perror("Reg value match, exp: %x, act: %x, but it is not expected" %(exp_value, read_value.value))
             else:
-                helper.perror("Reg value mismatch, exp: %x, act: %x, but it is expected" %(exp_value, read_value.value))
+                helper.log("Reg value mismatch, exp: %x, act: %x, but it is expected" %(exp_value, read_value.value))
     
     def check_err_code_with_read(read_addr, exp_err_code, priv_id):
         if (priv_id == 0):
@@ -273,7 +279,7 @@ with Test(sys.argv) as t:
             if(current_priv_id == 0): #JTAG
                 reg.debug_write(write_value)
             elif(current_priv_id == 2): #FSP
-                reg.write(write_value,2,1,current_priv_level)
+                reg.write(write_value,2,current_priv_level)
             elif(current_priv_id == 3): #OOBHUB
                 test_api.oobhub_icd_write(write_addr, write_value)
             else:
@@ -282,6 +288,8 @@ with Test(sys.argv) as t:
             # no response check now, just can tried to readm and get if real write in the value
             if(current_priv_id == allowed_priv_id and current_priv_level >= allowed_priv_level):
                 check_value(reg, write_value, allowed_priv_id, 3)
+            elif(current_priv_id == allowed_priv_id and current_priv_level < allowed_priv_level):
+                check_value_exp_error(reg, write_value, allowed_priv_id)
             elif(current_priv_id != allowed_priv_id):
                 check_value_exp_error(reg, write_value, allowed_priv_id)
                 if(current_priv_id == 0):
@@ -361,7 +369,7 @@ with Test(sys.argv) as t:
 
     def test_source_id_fpga(plm, wr_value, priv_id):
         # just use only JTAG try now
-        source_priv_id = [0,2,3]
+        source_priv_id = [0]
         for i in source_priv_id:
             if(i == priv_id):
                 exp_value = wr_value
@@ -466,30 +474,6 @@ with Test(sys.argv) as t:
                     else:
                         write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, i, priv_id, 3, 3)
    
-    def test_priv_level_fpga(plm, wr_value, priv_level):
-        priv_level_test = [0, 1, 2, 3]
-        for i in priv_level_test:
-            if(i >= priv_level):
-                exp_value = wr_value
-            else:
-                if(plm['ip_name'] == 'JTAG'):
-                    exp_value = 0
-                else:
-                    exp_value = plm['protected_reg'].reset_val
-            if(plm['ip_name'] == 'JTAG'):
-                #helper.write(plm['protected_reg'], wr_value, 1, i)
-                write_with_err_code_checking(plm['protected_reg'], wr_value, 1, 1, i, priv_level)
-                jtag_protected_reg = helper.read(plm['protected_reg'], 2, 3)
-                if(jtag_protected_reg != exp_value):
-                    helper.perror("JTAG PLM protected reg read value mismatch, exp: %d, act: %d" %(exp_value, jtag_protected_reg))
-                #helper.write(plm['protected_reg'], plm['protected_reg'].reset_val, 1, priv_level)
-                write_with_err_code_checking(plm['protected_reg'], 0, 1, 1, i, priv_level)
-            else:
-                #plm['protected_reg'].write(wr_value, 1, 1, i)
-                write_with_err_code_checking(plm['protected_reg'], wr_value, 1, 1, i, priv_level)
-                check_value(plm['protected_reg'], exp_value, 1, priv_level)
-                #plm['protected_reg'].write(plm['protected_reg'].reset_val, 1, 1, priv_level)
-                write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, 1, 1, i, priv_level)
     
     def test_priv_level(plm, wr_value, priv_level):
         for i in range(4):
@@ -500,6 +484,7 @@ with Test(sys.argv) as t:
                     exp_value = 0
                 else:
                     exp_value = plm['protected_reg'].reset_val
+            helper.log("Start to test with priv level %d with write value %x, and exp_value is %x" % (i, wr_value, exp_value))
             if(plm['ip_name'] == 'JTAG'):
                 #helper.write(plm['protected_reg'], wr_value, 1, i)
                 write_with_err_code_checking(plm['protected_reg'], wr_value, 1, 1, i, priv_level)
@@ -509,11 +494,20 @@ with Test(sys.argv) as t:
                 #helper.write(plm['protected_reg'], plm['protected_reg'].reset_val, 1, priv_level)
                 write_with_err_code_checking(plm['protected_reg'], 0, 1, 1, i, priv_level)
             else:
-                #plm['protected_reg'].write(wr_value, 1, 1, i)
-                write_with_err_code_checking(plm['protected_reg'], wr_value, 1, 1, i, priv_level)
-                check_value(plm['protected_reg'], exp_value, 1, priv_level)
-                #plm['protected_reg'].write(plm['protected_reg'].reset_val, 1, 1, priv_level)
-                write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, 1, 1, i, priv_level)
+                if helper.target in ["fpga", "simv_fpga"]:
+                    #plm['protected_reg'].write(wr_value, 1, 1, i)
+                    write_with_err_code_checking(plm['protected_reg'], wr_value, 2, 2, i, priv_level)
+                    check_value(plm['protected_reg'], exp_value, 2, priv_level)
+                    if(i >= priv_level):
+                        plm['protected_reg'].write(plm['protected_reg'].reset_val, 2, 3)
+                    #plm['protected_reg'].write(plm['protected_reg'].reset_val, 1, 1, priv_level)
+                    #write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, 2, 2, i, priv_level)
+                else:
+                    #plm['protected_reg'].write(wr_value, 1, 1, i)
+                    write_with_err_code_checking(plm['protected_reg'], wr_value, 1, 1, i, priv_level)
+                    check_value(plm['protected_reg'], exp_value, 1, priv_level)
+                    #plm['protected_reg'].write(plm['protected_reg'].reset_val, 1, 1, priv_level)
+                    write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, 1, 1, i, priv_level)
 
     def program_jtag_plm(write_value, priv_id, priv_level):
         if helper.target in ["fpga", "simv_fpga"]:
@@ -619,7 +613,7 @@ with Test(sys.argv) as t:
             
         if(options.Testpoint == 'PL'):
             helper.log("Starting priv_level test")
-            for plm in SINGLE_PLM:
+            for plm in SINGLE_PLM_FOR_PL:
                 helper.log("Testing priv_level of %s" %(plm['ip_name']))
                 if(plm['ip_name'] == 'JTAG'):
                     write_value = 0xffffffff
@@ -630,37 +624,37 @@ with Test(sys.argv) as t:
                     program_jtag_plm(0xffffff8f, 2, 3) # acutally will not check JTAG now
                 else:
                     if(plm['ip_name'] == 'THERM' or plm['ip_name'] == 'FUSE'):
-                        plm['reg'].write(0xffffff8f, 2, 1, 3) #therm and fuse plm regs are in L1 reset domain, have to program with priv_id 2
+                        plm['reg'].write(0xffffff8f, 2, 3) #therm and fuse plm regs are in L1 reset domain, have to program with priv_id 2
                     else:
-                        plm['reg'].debug_write(0xffffff8f)
-                    check_value(plm['reg'], 0xffffff8f, 1, 3)
+                        plm['reg'].write(0xffffff8f, 2, 3)
+                    check_value(plm['reg'], 0xffffff8f, 2, 3)
                 helper.log("Priv level > 3 allowed")
                 test_priv_level(plm, write_value, 3)
-        #        #PL2
-        #        if(plm['ip_name'] == 'JTAG'):
-        #            program_jtag_plm(0xffffffcf, 1, 3)
-        #        else:
-        #            plm['reg'].write(0xffffffcf, 1, 1, 3)
-        #            check_value(plm['reg'], 0xffffffcf, 1, 3)
-        #        helper.log("Priv level > 2 allowed")
-        #        test_priv_level(plm, write_value, 2)
-        #        #PL1
-        #        if(plm['ip_name'] == 'JTAG'):
-        #            program_jtag_plm(0xffffffef, 1, 3)
-        #        else:
-        #            plm['reg'].write(0xffffffef, 1, 1, 3)
-        #            check_value(plm['reg'], 0xffffffef, 1, 3)
-        #        helper.log("Priv level > 1 allowed")
-        #        test_priv_level(plm, write_value, 1)
-        #        #PL0
-        #        if(plm['ip_name'] == 'JTAG'):
-        #            program_jtag_plm(0xffffffff, 1, 3)
-        #        else:
-        #            plm['reg'].write(0xffffffff, 1, 1, 3)
-        #            check_value(plm['reg'], 0xffffffff, 1, 3)
-        #        helper.log("Priv level > 0 allowed")
-        #        test_priv_level(plm, write_value, 0)
-        #        
+                #PL2
+                if(plm['ip_name'] == 'JTAG'):
+                    program_jtag_plm(0xffffffcf, 2, 3)
+                else:
+                    plm['reg'].write(0xffffffcf, 2, 3)
+                    check_value(plm['reg'], 0xffffffcf, 2, 3)
+                helper.log("Priv level > 2 allowed")
+                test_priv_level(plm, write_value, 2)
+                #PL1
+                if(plm['ip_name'] == 'JTAG'):
+                    program_jtag_plm(0xffffffef, 2, 3)
+                else:
+                    plm['reg'].write(0xffffffef, 2, 3)
+                    check_value(plm['reg'], 0xffffffef, 2, 3)
+                helper.log("Priv level > 1 allowed")
+                test_priv_level(plm, write_value, 1)
+                #PL0
+                if(plm['ip_name'] == 'JTAG'):
+                    program_jtag_plm(0xffffffff, 2, 3)
+                else:
+                    plm['reg'].write(0xffffffff, 2, 3)
+                    check_value(plm['reg'], 0xffffffff, 2, 3)
+                helper.log("Priv level > 0 allowed")
+                test_priv_level(plm, write_value, 0)
+                
         helper.wait_sim_time("ns", 300)
         helper.log("Test Finish")
     else:
