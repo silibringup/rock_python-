@@ -100,7 +100,7 @@ with Test(sys.argv) as t:
             if priv_id==0:
                 read_value = reg.debug_read()
             elif priv_id==2:
-                read_value = reg.read()
+                read_value = reg.read(2,3)
             elif priv_id==3:
                 #read_value = test_api.oobhub_icd_read(reg.abs_addr)
                 helper.perror("will use oobhub ict to read later")
@@ -484,7 +484,7 @@ with Test(sys.argv) as t:
                     exp_value = 0
                 else:
                     exp_value = plm['protected_reg'].reset_val
-            helper.log("Start to test with priv level %d with write value %x, and exp_value is %x" % (i, wr_value, exp_value))
+            helper.log("Start to test with priv level %d with write value %x, and exp_value is %x, and the reg reset value is %x" % (i, wr_value, exp_value, plm['protected_reg'].reset_val))
             if(plm['ip_name'] == 'JTAG'):
                 #helper.write(plm['protected_reg'], wr_value, 1, i)
                 write_with_err_code_checking(plm['protected_reg'], wr_value, 1, 1, i, priv_level)
@@ -496,9 +496,12 @@ with Test(sys.argv) as t:
             else:
                 if helper.target in ["fpga", "simv_fpga"]:
                     #plm['protected_reg'].write(wr_value, 1, 1, i)
+                    helper.log("write with error code checking")
                     write_with_err_code_checking(plm['protected_reg'], wr_value, 2, 2, i, priv_level)
+                    helper.log("checking if the register has the exp value")
                     check_value(plm['protected_reg'], exp_value, 2, priv_level)
                     if(i >= priv_level):
+                        helper.log("writing the valur to reset val %x when i >= priv level" % (plm['protected_reg'].reset_val))
                         plm['protected_reg'].write(plm['protected_reg'].reset_val, 2, 3)
                         check_value(plm['protected_reg'], plm['protected_reg'].reset_val, 2, 3)
                     #plm['protected_reg'].write(plm['protected_reg'].reset_val, 1, 1, priv_level)
