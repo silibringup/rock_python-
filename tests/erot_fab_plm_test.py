@@ -83,8 +83,8 @@ with Test(sys.argv) as t:
 
     #FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST, JTAG_PLM_LIST]
     FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
-    FUSE_LIST_FOR_PL = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
-    #FUSE_LIST_FOR_PL = [FUSE_PLM_LIST]
+    #FUSE_LIST_FOR_PL = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+    FUSE_LIST_FOR_PL = [FUSE_PLM_LIST]
  #   FUSE_LIST = [FSP_PLM_LIST]
 
     SINGLE_PLM_FOR_PL = []
@@ -500,6 +500,7 @@ with Test(sys.argv) as t:
                     check_value(plm['protected_reg'], exp_value, 2, priv_level)
                     if(i >= priv_level):
                         plm['protected_reg'].write(plm['protected_reg'].reset_val, 2, 3)
+                        check_value(plm['protected_reg'], plm['protected_reg'].reset_val, 2, 3)
                     #plm['protected_reg'].write(plm['protected_reg'].reset_val, 1, 1, priv_level)
                     #write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, 2, 2, i, priv_level)
                 else:
