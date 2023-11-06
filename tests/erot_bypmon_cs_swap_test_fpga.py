@@ -91,7 +91,9 @@ with Test(sys.argv) as t:
                 break 
 
     def ini_bm(monitor):
+        helper.pinfo("config bypmon")
         config_bm_filter(monitor)
+        helper.pinfo("enable bypmon")
         enable_bypass_monitor(monitor)
         if helper.target == "simv_fpga":
             helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
