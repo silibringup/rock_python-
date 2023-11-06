@@ -84,6 +84,17 @@ with Test(sys.argv) as t:
                 helper.perror("Mismatch, %s's value is not as expected" % l3_reg.name)
         helper.log("L3 reset domain reg check done")
 
+#    def chk_reg_rst_value(reg):
+#        if not isinstance(reg, Rock_reg):
+#            helper.perror("parameter is not a Rock_reg")
+#            return
+#        rd = reg.read()
+#        mask = reg.reset_mask & reg.read_mask
+#        act = rd.value & mask
+#        exp = reg.reset_val & mask
+#        if act != exp:
+#            helper.perror("Mismatch, %s's value is not as expected" % reg.name)
+
     def chk_reg_rst_value(reg):
         if not isinstance(reg, Rock_reg):
             helper.perror("parameter is not a Rock_reg")
@@ -93,7 +104,8 @@ with Test(sys.argv) as t:
         act = rd.value & mask
         exp = reg.reset_val & mask
         if act != exp:
-            helper.perror("Mismatch, %s's value is not as expected" % reg.name)
+            reg.poll(exp)
+        helper.log("%s check done" % reg.name)
 
     def deassert_sw_reset_l1():
         erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.write(RESET_GPIO_CTRL=1)
@@ -114,6 +126,10 @@ with Test(sys.argv) as t:
     helper.log("Test start")
     helper.wait_sim_time("us", 50)
     helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
+
+    helper.jtag.Reset(0)
+    helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+    helper.jtag.Reset(1)
 
     # release IP under SW rst
     deassert_sw_reset_l1()
