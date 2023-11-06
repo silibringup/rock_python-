@@ -1,5 +1,6 @@
 #!/home/utils/Python/3.8/3.8.6-20201005/bin/python3
 from driver import * 
+import random
 
 with Test(sys.argv) as t:
 
@@ -12,6 +13,7 @@ with Test(sys.argv) as t:
  
     def parse_args():
         t.parser.add_argument("--qspi", action='store', help="Verify QSPI INTI and AP to access flash", default='0')
+        t.parser.add_argument("--seed", action='store', help="random seed", default='0')
         return t.parser.parse_args(sys.argv[1:])
                  
     def backdoor_check(flash,addr):
@@ -119,6 +121,11 @@ with Test(sys.argv) as t:
     LOG("START QSPI INI TEST") 
     test_api.connect_to_micron_flash()
     options = parse_args() 
+    random.seed(options.seed)
+    data_value_0 = random.randint(0, 0xffffffff)
+    data_value_1 = random.randint(0, 0xffffffff)
+    data_value_2 = random.randint(0, 0xffffffff)
+    data_value_3 = random.randint(0, 0xffffffff)
     if options.qspi == '0' :
         helper.wait_sim_time("us", 600)
         test_api.qspi0_init()
