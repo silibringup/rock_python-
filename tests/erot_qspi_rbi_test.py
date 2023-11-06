@@ -13,7 +13,7 @@ with Test(sys.argv) as t:
 #    data_list = [data_value_0,data_value_1,data_value_2,data_value_3]  
     def parse_args():
         t.parser.add_argument("--qspi", action='store', help="Verify QSPI INTI and AP to access flash", default='0')
-        t.parser.add_argument("--seed", action='store', help="random_seed", default='0')
+        t.parser.add_argument("--random_seed", action='store', help="random_seed", default='0')
         return t.parser.parse_args(sys.argv[1:])
       
     def config_bm_register(bm):
@@ -30,10 +30,10 @@ with Test(sys.argv) as t:
     def config_write_data(spi,addr):
         spi.DMA_BLK_SIZE_0.write(63)
         for i in range(64):
-            #data = addr+i*4
-            #spi.TX_FIFO_0.write(data)      
-            data = random.randint(0, 0xffffffff)
+            data = addr+i*4
             spi.TX_FIFO_0.write(data)      
+            #data = random.randint(0, 0xffffffff)
+            #spi.TX_FIFO_0.write(data)      
 
     def burst_read_check(start_addr, golden_words, is_posted=0):
         n_trans_words = len(golden_words)
@@ -113,7 +113,7 @@ with Test(sys.argv) as t:
     helper.wait_sim_time("us", 600)
     time.sleep(60)
     options = parse_args() 
-    random.seed(options.seed)
+    random.seed(options.random_seed)
     if options.qspi == '0' :
         test_api.qspi0_init()
         erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
