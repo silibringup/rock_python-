@@ -242,6 +242,46 @@ with feature('erot_fpga/lighton'):
         desc    =   '''EROT bypass monitor reg aperture lock'''
             )
 
+    test_args   =   ['''-py erot_bypmon_cs_swap_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l2']
+    AddTest(
+        name    =   'erot_bypmon_cs_swap_test_fpga.py',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor CS0/1 swap'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_addr_mode_4b_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l2']
+    AddTest(
+        name    =   'erot_bypmon_addr_mode_4b_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor ADDR_MODE_4B set by BROM'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_addr_mode_4b_int_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l2']
+    AddTest(
+        name    =   'erot_bypmon_addr_mode_4b_int_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor ADDR_MODE_4B_INT set by AP'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_instr_4b_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l2']
+    AddTest(
+        name    =   'erot_bypmon_instr_4b_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor INSTR_4B set by FSP'''
+            )
+
     # bypass monitor bring-up tests END
 
     test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
