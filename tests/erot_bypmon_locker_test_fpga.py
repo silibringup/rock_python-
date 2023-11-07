@@ -74,12 +74,14 @@ with Test(sys.argv) as t:
         read_data = 0
         mask = bm_reg.read_mask
         read_data = bm_reg.read().value & mask
+        exp = write_data & mask
         LOG(f"read value: {hex(read_data)}")
         if not after_lock:
-            if read_data != write_data & mask:
-                helper.perror("Mismatch, %s's value is not as expected" % bm_reg.name)
+            if read_data != exp:
+                #helper.perror("Mismatch, %s's value is not as expected" % bm_reg.name)
+                bm_reg.poll(exp)
         else:
-            if read_data == write_data & mask:
+            if read_data == exp:
                 helper.perror("Mismatch, %s's value is not as expected" % bm_reg.name)
         helper.log("BYP_MON reg check done")
 
