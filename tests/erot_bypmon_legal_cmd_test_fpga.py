@@ -92,7 +92,8 @@ with Test(sys.argv) as t:
         config_bm_filter(monitor)
         helper.pinfo("enable bypmon")
         enable_bypass_monitor(monitor)
-        #helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
+        if helper.target == "simv_fpga":
+            helper.spi_set_sclk_frequency(spi_port=0, freq_sel=SPI_SCLK_FREQ_SEL.SPI_SCLK_10MHZ)
 
     def validate_ap_access_flash(ap_id,bm_cs):
         ########################################################################
@@ -151,6 +152,7 @@ with Test(sys.argv) as t:
         #Enable VIP to send legal memory rd: 0x01_2300 - 0x01_2307(8 byte)
         #1-1-1 read
         helper.wait_sim_time("us", 1)
+        time.sleep(1)
         read_bytes = helper.spi_read(spi_port=ap_id, cs_id=bm_cs, 
                      n_instruction_lane=1, n_instruction_bits=8, instruction=[0x03],
                      n_address_lane=1, n_address_bits=24, address=addr_list_0, 
