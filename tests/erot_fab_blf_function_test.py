@@ -49,8 +49,35 @@ with Test(sys.argv) as t:
     ]
 
     L2_FABRIC_TARGET = [
-        {'name' : 'l2_csr',        'reg' : erot.L2_CSR,         'addr_low_boundary' : 0x9a4000,    'CTL' : erot.L2_CSR.L2_CSR_BLF_CTL_0,       'WRITE' : erot.L2_CSR.L2_CSR_BLF_WRITE_CTL_0,           'READ' : erot.L2_CSR.L2_CSR_BLF_READ_CTL_0},
-        {'name' : 'gpio_cmn',      'reg' : 'none',              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
+#        {'name' : 'l2_csr',        'reg' : erot.L2_CSR,         'addr_low_boundary' : 0x9a4000,    'CTL' : erot.L2_CSR.L2_CSR_BLF_CTL_0,       'WRITE' : erot.L2_CSR.L2_CSR_BLF_WRITE_CTL_0,           'READ' : erot.L2_CSR.L2_CSR_BLF_READ_CTL_0},
+#        {'name' : 'gpio_cmn',      'reg' : 'none',              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
+        {'name' : 'gpio_vm1',      'reg' : 'none',              'addr_low_boundary' : 0x985000,    'CTL' : erot.L2_CSR.GPIO_VM1_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM1_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM1_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm2',      'reg' : 'none',              'addr_low_boundary' : 0x986000,    'CTL' : erot.L2_CSR.GPIO_VM2_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM2_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM2_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm3',      'reg' : 'none',              'addr_low_boundary' : 0x987000,    'CTL' : erot.L2_CSR.GPIO_VM3_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM3_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM3_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm4',      'reg' : 'none',              'addr_low_boundary' : 0x988000,    'CTL' : erot.L2_CSR.GPIO_VM4_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM4_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM4_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm5',      'reg' : 'none',              'addr_low_boundary' : 0x989000,    'CTL' : erot.L2_CSR.GPIO_VM5_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM5_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM5_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm6',      'reg' : 'none',              'addr_low_boundary' : 0x98a000,    'CTL' : erot.L2_CSR.GPIO_VM6_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM6_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM6_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm7',      'reg' : 'none',              'addr_low_boundary' : 0x98b000,    'CTL' : erot.L2_CSR.GPIO_VM7_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM7_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM7_BLF_READ_CTL_0},
+#        {'name' : 'gpio_vm8',      'reg' : 'none',              'addr_low_boundary' : 0x98c000,    'CTL' : erot.L2_CSR.GPIO_VM8_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM8_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM8_BLF_READ_CTL_0},
+#        {'name' : 'i2c_ib0',       'reg' : erot.I2C_IB0,        'addr_low_boundary' : 0x914000,    'CTL' : erot.L2_CSR.I2C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB0_BLF_READ_CTL_0},
+#        {'name' : 'i2c_ib1',       'reg' : erot.I2C_IB1,        'addr_low_boundary' : 0x944000,    'CTL' : erot.L2_CSR.I2C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB1_BLF_READ_CTL_0},
+#        {'name' : 'i3c_ib0',       'reg' : erot.I3C_IB0,        'addr_low_boundary' : 0x924000,    'CTL' : erot.L2_CSR.I3C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB0_BLF_READ_CTL_0},
+#        {'name' : 'i3c_ib1',       'reg' : erot.I3C_IB1,        'addr_low_boundary' : 0x954000,    'CTL' : erot.L2_CSR.I3C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB1_BLF_READ_CTL_0},
+#        {'name' : 'io_expander',   'reg' : erot.IO_EXPANDER,    'addr_low_boundary' : 0x964000,    'CTL' : erot.L2_CSR.IO_EXPANDER_BLF_CTL_0,  'WRITE' : erot.L2_CSR.IO_EXPANDER_BLF_WRITE_CTL_0,      'READ' : erot.L2_CSR.IO_EXPANDER_BLF_READ_CTL_0},
+#        {'name' : 'fsp',           'reg' : erot.PFSP,           'addr_low_boundary' : 0x8f0000,    'CTL' : erot.L2_CSR.FSP_BLF_CTL_0,          'WRITE' : erot.L2_CSR.FSP_BLF_WRITE_CTL_0,              'READ' : erot.L2_CSR.FSP_BLF_READ_CTL_0},
+#        {'name' : 'oobhub_spi',    'reg' : erot.OOBHUB_SPI,     'addr_low_boundary' : 0x8f4000,    'CTL' : erot.L2_CSR.OOBHUB_SPI_BLF_CTL_0,   'WRITE' : erot.L2_CSR.OOBHUB_SPI_BLF_WRITE_CTL_0,       'READ' : erot.L2_CSR.OOBHUB_SPI_BLF_READ_CTL_0},
+#        {'name' : 'padctrl_e',     'reg' : erot.PADCTRL_E,      'addr_low_boundary' : 0x99c000,    'CTL' : erot.L2_CSR.PADCTRL_E_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_E_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_E_BLF_READ_CTL_0},
+#        {'name' : 'padctrl_n',     'reg' : erot.PADCTRL_N,      'addr_low_boundary' : 0x994000,    'CTL' : erot.L2_CSR.PADCTRL_N_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_N_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_N_BLF_READ_CTL_0},
+#        {'name' : 'padctrl_s',     'reg' : erot.PADCTRL_S,      'addr_low_boundary' : 0x998fff,    'CTL' : erot.L2_CSR.PADCTRL_S_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_S_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_S_BLF_READ_CTL_0},
+#        {'name' : 'padctrl_w',     'reg' : erot.PADCTRL_W,      'addr_low_boundary' : 0x9a0000,    'CTL' : erot.L2_CSR.PADCTRL_W_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_W_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_W_BLF_READ_CTL_0},
+#        {'name' : 'spi_ib0',       'reg' : erot.SPI_IB0,        'addr_low_boundary' : 0x904000,    'CTL' : erot.L2_CSR.SPI_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.SPI_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.SPI_IB0_BLF_READ_CTL_0},
+#        {'name' : 'spi_ib1',       'reg' : erot.SPI_IB1,        'addr_low_boundary' : 0x934000,    'CTL' : erot.L2_CSR.SPI_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.SPI_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.SPI_IB1_BLF_READ_CTL_0},
+#        {'name' : 'uart',          'reg' : erot.UART,           'addr_low_boundary' : 0x974000,    'CTL' : erot.L2_CSR.UART_BLF_CTL_0,         'WRITE' : erot.L2_CSR.UART_BLF_WRITE_CTL_0,             'READ' : erot.L2_CSR.UART_BLF_READ_CTL_0},
+    ]
+    
+    L2_FABRIC_TARGET_FPGA = [
+#        {'name' : 'l2_csr',        'reg' : erot.L2_CSR,         'addr_low_boundary' : 0x9a4000,    'CTL' : erot.L2_CSR.L2_CSR_BLF_CTL_0,       'WRITE' : erot.L2_CSR.L2_CSR_BLF_WRITE_CTL_0,           'READ' : erot.L2_CSR.L2_CSR_BLF_READ_CTL_0},
+        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm1',      'reg' : 'none',              'addr_low_boundary' : 0x985000,    'CTL' : erot.L2_CSR.GPIO_VM1_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM1_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM1_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm2',      'reg' : 'none',              'addr_low_boundary' : 0x986000,    'CTL' : erot.L2_CSR.GPIO_VM2_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM2_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM2_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm3',      'reg' : 'none',              'addr_low_boundary' : 0x987000,    'CTL' : erot.L2_CSR.GPIO_VM3_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM3_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM3_BLF_READ_CTL_0},
@@ -75,22 +102,79 @@ with Test(sys.argv) as t:
 #        {'name' : 'uart',          'reg' : erot.UART,           'addr_low_boundary' : 0x974000,    'CTL' : erot.L2_CSR.UART_BLF_CTL_0,         'WRITE' : erot.L2_CSR.UART_BLF_WRITE_CTL_0,             'READ' : erot.L2_CSR.UART_BLF_READ_CTL_0},
     ]
 
+    def write_with_err_code_checking_fpga(reg, blocked_priv_id, current_priv_id):
+        test_read_value = 0
+        oob_write_err = 0
+        #use jtag to write
+        if(current_priv_id == 0):
+            reg.debug_write(0xabcdef12)
+        #use fsp to check
+        elif (current_priv_id == 2):
+            reg.write(0xabcdef12)
+        #use oobhub to check
+        elif (current_priv_id == 3):
+            helper.log("reg abs address is %x" % (reg.abs_addr))
+            if (blocked_priv_id == 3):
+                oob_write_err = test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, 0xabcdef12, check_error_resp=0)
+            else:
+                test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, 0xabcdef12)
+        else:
+            helper.perror("NOT support priv_id %d" %(current_priv_id))
+        
+        if(options.Fabric == 'L1'):
+            if(blocked_priv_id == 0):
+                test_read_value = helper.read(address)
+            else:
+                test_read_value = helper.j2h_read(address)
+        elif(options.Fabric == 'L2'):
+            if(blocked_priv_id == 3): # blocked is oobhub
+                test_read_value_dic = reg.read()
+                test_read_value = test_read_value_dic.value
+            else: # blocked is other initiators
+                test_read_value = test_api.oobhub_icd_read(reg.abs_addr+OOBHUB_FABRIC_BASE)
+        else:
+            helper.perror("Not support option %s" % (options.Fabric))
+        
+        masked_exp_value = 0xabcdef12 & reg.read_mask
+        if(current_priv_id == blocked_priv_id):
+            #if (current_priv_id == 3) and (oob_write_err != 1):
+            #    helper.perror("OOBHUB is blocked, but write without error, priv_id is %d" %(current_priv_id))
+                
+            if (test_read_value == masked_exp_value):
+                helper.perror("blocked_priv_id has been written in the test value, priv_id is %d" %(current_priv_id))
+        else:
+            if (current_priv_id == 3) and (oob_write_err == 1):
+                helper.perror("OOBHUB is non-blocked, but write with error, priv_id is %d" %(current_priv_id))
+            if (test_read_value != masked_exp_value):
+                helper.perror("NON blocked_priv_id does not write in the test value, priv_id is %d, blocked_priv_id is %d, and act: %x, exp: 0xabcdef12" %(current_priv_id, blocked_priv_id, test_read_value))
+            #use jtag to write
+            if(current_priv_id == 0):
+                reg.debug_write(reg.reset_val)
+            #use fsp to check
+            elif (current_priv_id == 2):
+                reg.write(reg.reset_val)
+        #use oobhub to check
+            elif (current_priv_id == 3):
+                test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, reg.reset_val)
+            else:
+                helper.perror("NOT support priv_id %d" %(current_priv_id))
+    
     def write_with_err_code_checking(address, write_value, blocked_priv_id, current_priv_id, current_priv_level):
         if helper.target in ["fpga", "simv_fpga"]:
             test_read_value = 0
             oob_write_err = 0
             #use jtag to write
             if(current_priv_id == 0):
-                helper.j2h_write(address, 0xabcdef00)
+                helper.j2h_write(address, 0xabcdef12)
             #use fsp to check
             elif (current_priv_id == 2):
-                helper.write(address, 0xabcdef00)
+                helper.write(address, 0xabcdef12)
             #use oobhub to check
             elif (current_priv_id == 3):
                 if (blocked_priv_id == 3):
-                    oob_write_err = test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, 0xabcdef00, check_error_resp=0)
+                    oob_write_err = test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, 0xabcdef12, check_error_resp=0)
                 else:
-                    test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, 0xabcdef00)
+                    test_api.oobhub_icd_write(address+OOBHUB_FABRIC_BASE, 0xabcdef12)
             else:
                 helper.perror("NOT support priv_id %d" %(current_priv_id))
             
@@ -108,16 +192,16 @@ with Test(sys.argv) as t:
                 helper.perror("Not support option %s" % (options.Fabric))
             
             if(current_priv_id == blocked_priv_id):
-                if (current_priv_id == 3) and (oob_write_err != 1):
-                    helper.perror("OOBHUB is blocked, but write without error, priv_id is %d" %(current_priv_id))
+                #if (current_priv_id == 3) and (oob_write_err != 1):
+                #    helper.perror("OOBHUB is blocked, but write without error, priv_id is %d" %(current_priv_id))
                     
-                if (test_read_value == 0xabcdef00):
+                if (test_read_value == 0xabcdef12):
                     helper.perror("blocked_priv_id has been written in the test value, priv_id is %d" %(current_priv_id))
             else:
                 if (current_priv_id == 3) and (oob_write_err == 1):
                     helper.perror("OOBHUB is non-blocked, but write with error, priv_id is %d" %(current_priv_id))
-                if (test_read_value != 0xabcdef00):
-                    helper.perror("NON blocked_priv_id does not write in the test value, priv_id is %d, blocked_priv_id is %d" %(current_priv_id, blocked_priv_id))
+                if (test_read_value != 0xabcdef12):
+                    helper.perror("NON blocked_priv_id does not write in the test value, priv_id is %d, blocked_priv_id is %d, and act: %x, exp: 0xabcdef12" %(current_priv_id, blocked_priv_id, test_read_value))
                 #use jtag to write
                 if(current_priv_id == 0):
                     helper.j2h_write(address, write_value)
@@ -148,6 +232,39 @@ with Test(sys.argv) as t:
                 if(write_rdata == 0xdead1100):
                     helper.perror("write_rdata is 0xdead1100 while write access is allowed")
 
+    def read_with_err_code_checking_fpga(reg, blocked_priv_id, current_priv_id):
+        if helper.target in ["fpga", "simv_fpga"]:
+            read_rdata = 0
+            #use jtag to write
+            if(current_priv_id == 0):
+                read_rdata = reb.debug_read()
+            #use fsp to check
+            elif (current_priv_id == 2):
+                read_rdata = reg.read()
+            #use oobhub to check
+            elif (current_priv_id == 3):
+                read_rdata = test_api.oobhub_icd_read(reg.abs_addr+OOBHUB_FABRIC_BASE, check_error_resp=0)
+                helper.log("read_with_err_code_checking OOBHUB done")
+            else:
+                helper.perror("NOT support priv_id %d" %(current_priv_id))
+            
+            if((current_priv_id == blocked_priv_id) and (current_priv_id == 0)):
+                if (read_rdata != 0xdead1010):
+                    helper.perror("blocked_priv_id %d does not read the error code, exp: %x, act: %x" %(blocked_priv_id, 0xdead1010, read_rdata))
+            elif(current_priv_id == 3):
+                helper.log("read_with_err_code_checking -- checking the OOBHUB response")
+                if (current_priv_id == blocked_priv_id):
+                    if read_rdata["err_resp"] != 1:
+                        helper.perror("OOBHUB read blocked_priv_id %d without error response" %(blocked_priv_id))
+                else:
+                    if read_rdata["err_resp"] == 1:
+                        helper.perror("OOBHUB read blocked_priv_id %d with error response" %(blocked_priv_id))
+            elif((current_priv_id == blocked_priv_id) and (current_priv_id == 2)):
+                helper.log("FSP cannot get the error code, so not check this")
+            else:
+                if (read_rdata == 0xdead1010):
+                    helper.perror("read_rdata is 0xdead1010 while read access is allowed")
+    
     def read_with_err_code_checking(address, blocked_priv_id, current_priv_id, current_priv_level):
         if helper.target in ["fpga", "simv_fpga"]:
             read_rdata = 0
@@ -160,6 +277,7 @@ with Test(sys.argv) as t:
             #use oobhub to check
             elif (current_priv_id == 3):
                 read_rdata = test_api.oobhub_icd_read(address+OOBHUB_FABRIC_BASE, check_error_resp=0)
+                helper.log("read_with_err_code_checking OOBHUB done")
             else:
                 helper.perror("NOT support priv_id %d" %(current_priv_id))
             
@@ -167,6 +285,7 @@ with Test(sys.argv) as t:
                 if (read_rdata != 0xdead1010):
                     helper.perror("blocked_priv_id %d does not read the error code, exp: %x, act: %x" %(blocked_priv_id, 0xdead1010, read_rdata))
             elif(current_priv_id == 3):
+                helper.log("read_with_err_code_checking -- checking the OOBHUB response")
                 if (current_priv_id == blocked_priv_id):
                     if read_rdata["err_resp"] != 1:
                         helper.perror("OOBHUB read blocked_priv_id %d without error response" %(blocked_priv_id))
@@ -257,16 +376,16 @@ with Test(sys.argv) as t:
                     for priv_id in fpga_allowed_priv_id_list:
                         helper.log("Write %s with priv_id %d" %(ip['name'], priv_id))
                         if ((ip['name'] == 'l1_csr' or ip['name'] == 'l2_csr') and (priv_id != blocked_priv_id)):
-                            helper.log("%s should be changed, so not to check the write" % (ip['name']))
+                            helper.log("%s should not be changed, so not to check the write" % (ip['name']))
                         elif ((ip['name'] in cannot_change_ip_list) and (priv_id != blocked_priv_id)):
                             helper.log("%s cannot be changed, so not to check the write" % (ip['name']))
                         elif ((ip['name'] in do_not_have_resp_ip_list)):
                             helper.log("%s does not have response when use jtag to access, so not to check the write" % (ip['name']))
                         else:
                             if(ip['reg'] != 'none'):
-                                write_with_err_code_checking(ip['reg'].base + ip['reg'].reg_list[0].offset, ip['reg'].reg_list[0].reset_val, blocked_priv_id, priv_id, 3)
+                                write_with_err_code_checking_fpga(ip['reg'], blocked_priv_id, priv_id)
                             else:
-                                write_with_err_code_checking(ip['addr_low_boundary'], 0, blocked_priv_id, priv_id, 3)
+                                helper.perror("Should not use none for reg")
                     #check read block
                     helper.log("Checking BLF read block of %s, blocked source: %s" %(ip['name'], source))
                     for priv_id in fpga_allowed_priv_id_list:
@@ -276,10 +395,11 @@ with Test(sys.argv) as t:
                                 helper.log("%s does not have response when use jtag to access, so not to check the read" % (ip['name']))
                             else:
                                 if(ip['reg'] != 'none'):
-                                    read_with_err_code_checking(ip['reg'].base + ip['reg'].reg_list[0].offset, blocked_priv_id, priv_id, 3)
+                                    read_with_err_code_checking_fpga(ip['reg'], blocked_priv_id, priv_id)
                                 else:
-                                    read_with_err_code_checking(ip['addr_low_boundary'], blocked_priv_id, priv_id, 3)
+                                    helper.perror("Should not use none for reg")
                     
+                    helper.log("starting reset BLF, blocked source: %s" %(source))
                     # reset the BLF config
                     if (options.Fabric == 'L1'):
                         if (source_id == 0xfffffeff):
@@ -288,20 +408,22 @@ with Test(sys.argv) as t:
                         else:
                             helper.j2h_write(ip['CTL'].abs_addr, 0x0)
                     elif (options.Fabric == 'L2'):
-                        if (source_id == 0xffff7fff): #FSP blocked
+                        if (source_id == 0xfffff7ff): #FSP blocked
+                            helper.log("starting override the BLF setting by the OOBHUB")
                             test_api.oobhub_icd_write(ip['CTL'].abs_addr+OOBHUB_FABRIC_BASE, 0x0)
                             for idx in range(10):
                                 reset_value = test_api.oobhub_icd_read(ip['CTL'].abs_addr+OOBHUB_FABRIC_BASE)
+                                helper.log("%d, Checking the OOBHUB ICD read value: %x" % (idx, reset_value))
                                 if (reset_value == 0):
                                     break
                                 if (idx == 9):
                                     helper.perror("IP %s CTL register cannot be reset" % (ip['name']))
-                        elif (source_id == 0xfffff7ff): #OOBHUB blocked
+                        elif (source_id == 0xffff7fff): #OOBHUB blocked
                             helper.write(ip['CTL'].abs_addr, 0x0)
-                            ip['CTL'].poll(timeout=50,BLF_LCK=0,WEN=0,REN=0)
+                            ip['CTL'].poll(BLF_LCK=0,WEN=0,REN=0)
                         elif (source_id == 0xffffffbf): #sysctrl blocked
                             helper.write(ip['CTL'].abs_addr, 0x0)
-                            ip['CTL'].poll(timeout=50,BLF_LCK=0,WEN=0,REN=0)
+                            ip['CTL'].poll(BLF_LCK=0,WEN=0,REN=0)
                         else:
                             helper.perror("L2 check does not support source id %x" %(source_id))
                     else:
@@ -426,9 +548,9 @@ with Test(sys.argv) as t:
                     data_test = 0
                 
                 if helper.target in ["fpga", "simv_fpga"]:
-                    helper.write(address_test, 0xabcdef00,priv_id,1,3)
+                    helper.write(address_test, 0xabcdef12,priv_id,1,3)
                     test_read_value = helper.j2h_read(address_test)
-                    if (test_read_value == 0xabcdef00):
+                    if (test_read_value == 0xabcdef12):
                         helper.perror("priv_id has been written in the test value, priv_id is %d" %(priv_id))
                         helper.write(address_test, data_test,priv_id,1,3)
                 else:
@@ -532,7 +654,10 @@ with Test(sys.argv) as t:
         check_BLF_function(L1_FABRIC_TARGET, source_id_list)
     elif(options.Fabric == 'L2'):
         source_id_list = [0xffffffbf, 0xfffff7ff, 0xffff7fff] #FSP, OOBHUB
-        check_BLF_function(L2_FABRIC_TARGET, source_id_list)
+        if helper.target in ["fpga", "simv_fpga"]:
+            check_BLF_function(L2_FABRIC_TARGET_FPGA, source_id_list)
+        else:
+            check_BLF_function(L2_FABRIC_TARGET, source_id_list)
     # TODO how to change the sub id ???
     #elif(options.Fabric == 'L1_MNOC'):
     #    check_block_mnoc(L1_FABRIC_TARGET)
