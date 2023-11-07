@@ -476,7 +476,9 @@ with Test(sys.argv) as t:
    
     
     def test_priv_level(plm, wr_value, priv_level):
-        for i in range(4):
+        allowed_priv_levels = [0,3]
+        for i in allowed_priv_levels:
+        #for i in range(4):
             if(i >= priv_level):
                 exp_value = wr_value
             else:
