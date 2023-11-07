@@ -218,6 +218,17 @@ with Test(sys.argv) as t:
         if read_value_2 != write_data_1:
             helper.perror("read data did not match write data")
 
+        #Enable VIP to send legal cfg: 4B exit
+        #1-0-0 config
+        #WARNING: need to take Flash out of 4B mode
+        helper.spi_write(spi_port=ap_id, cs_id=bm_cs, 
+                     n_instruction_lane=1, n_instruction_bits=0, instruction=[],
+                     n_address_lane=1, n_address_bits=0, address=[], 
+                     n_data_lane=1, data=[0xe9])
+        LOG(f"legal 1-0-0 4B exit to Flash")
+        helper.wait_sim_time("us", 1)
+        time.sleep(1)
+
         
         
     def validate_qspi_access_flash(qspi,cs):    
