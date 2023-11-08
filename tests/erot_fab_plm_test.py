@@ -621,7 +621,7 @@ with Test(sys.argv) as t:
             FULL_PLM_LIST_for_conn = []
             for i in FUSE_LIST:
                 FULL_PLM_LIST_for_conn.append(i[0])
-            test_fuse_fpga(FULL_PLM_LIST_for_conn) # should change to full list when fsp pass
+            test_fuse(FULL_PLM_LIST_for_conn) # should change to full list when fsp pass
 
         if(options.Testpoint == 'SrcID'):
             #Test source_id
