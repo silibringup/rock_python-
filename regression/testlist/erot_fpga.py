@@ -115,7 +115,7 @@ with feature('erot_fpga/lighton'):
         desc    =   '''fabric plm function check fuse connection part'''
             )
     
-    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint SrcID' ''']
+    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint SrcID' '''] + RCV_BOOT
     test_tags   =   ['fabric','l1']
     AddTest(
         name    =   'erot_fab_plm_test_SrcID',
