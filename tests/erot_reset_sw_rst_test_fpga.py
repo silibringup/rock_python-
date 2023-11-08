@@ -99,13 +99,19 @@ with Test(sys.argv) as t:
         if not isinstance(reg, Rock_reg):
             helper.perror("parameter is not a Rock_reg")
             return
-        rd = reg.read()
+        count = 0
+        timeout = 20
         mask = reg.reset_mask & reg.read_mask
-        act = rd.value & mask
         exp = reg.reset_val & mask
-        if act != exp:
-            reg.poll(exp)
-        helper.log("%s check done" % reg.name)
+        while count < timeout:
+            rd = reg.read()
+            act = rd.value & mask
+            count += 1
+            if act == exp:
+                helper.log(f"Poll REG {reg.name} done after {count} times. Reg value = {hex(act)}")
+                return
+        helper.perror(f"Poll timeout after {count} times try. Reg value = {hex(act)}. Exp value = {hex(exp)}")
+
 
     def deassert_sw_reset_l1():
         erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.write(RESET_GPIO_CTRL=1)
