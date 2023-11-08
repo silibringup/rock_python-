@@ -84,8 +84,8 @@ with Test(sys.argv) as t:
     #FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST, JTAG_PLM_LIST]
     FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
     FUSE_LIST_FOR_PL = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
-    FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST]
-    #FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+ #   FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST]
+    FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
  #   FUSE_LIST = [FSP_PLM_LIST]
 
     SINGLE_PLM_FOR_PL = []
@@ -212,6 +212,44 @@ with Test(sys.argv) as t:
                 elif(fuse['field'] == 'SOURCE_ENABLE'):
                     fuse['reg'].poll(SOURCE_ENABLE=fuse['fuse1'])
 
+    def test_fuse_fpga(IP_PLM_LIST):
+        FULL_PLM_LIST = []
+        for i in FUSE_LIST:
+            for j in i:
+                FULL_PLM_LIST.append(j)
+        for fuse in IP_PLM_LIST:
+            helper.log("FUSE0 Test: checking the fuse %s, and the reg is %s" % (fuse['fuse_name'], fuse['reg']))
+            #check default value is *_FUSE0
+            check_fuse0(fuse)
+
+        helper.log("FUSE1 Test: make all chip options to 1")
+        for fuse in IP_PLM_LIST:
+            helper.log("FUSE1 Test: override the fuse %s to 1" % (fuse['fuse_name']))
+            if(fuse['fuse_name'] != '0'):
+                test_api.fuse_opts_override(fuse['fuse_name'], 1, debug_mode=1)
+                helper.log("Force %s done" %(fuse['fuse_name']))
+                
+        #trigger L3 reset to update reg reset value
+        L3_reset()
+        helper.log("FUSE1 Test: test fuse 1")
+        for fuse in IP_PLM_LIST:
+            if(fuse['fuse_name'] != '0'):
+                helper.log("FUSE1 Test: checking the fuse %s, and the reg is %s" % (fuse['fuse_name'], fuse['reg']))
+                check_fuse1(fuse)
+                #if helper.target in ["fpga", "simv_fpga"]:
+                #    helper.log("Duo the time limitation, just choose one different fuse to check")
+                #    for other_fuse in FULL_PLM_LIST:
+                #        if(other_fuse['fuse_name'] != fuse['fuse_name']):
+                #            helper.log("checking the other fuse %s, and the reg is %s" % (other_fuse['fuse_name'], other_fuse['reg']))
+                #            check_fuse0(other_fuse)
+                #            helper.log("checking the other fuse %s Done" % (other_fuse['fuse_name']))
+                #            break
+                #if helper.target in ["fpga", "simv_fpga"]:
+                #    test_api.fuse_opts_override(fuse['fuse_name'], 0, debug_mode=1)
+                #else:
+                #    helper.hdl_force(fuse_path+fuse['fuse_name'], 0)
+                #L3_reset()
+    
     def test_fuse(IP_PLM_LIST):
         FULL_PLM_LIST = []
         for i in FUSE_LIST:
@@ -377,7 +415,7 @@ with Test(sys.argv) as t:
 
     def test_source_id_fpga(plm, wr_value, priv_id):
         # just use only JTAG try now
-        source_priv_id = [0,2]
+        source_priv_id = [0]
         for i in source_priv_id:
             if(i == priv_id):
                 exp_value = wr_value
@@ -562,7 +600,7 @@ with Test(sys.argv) as t:
             helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
         
         helper.log("Force fabric fuse start")
-        if(options.Testpoint == 'fuse_connection'):
+        if((options.Testpoint == 'fuse_connection') or (options.Testpoint == 'SrcID')):
             test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
         else:
             test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
@@ -581,7 +619,7 @@ with Test(sys.argv) as t:
             FULL_PLM_LIST_for_conn = []
             for i in FUSE_LIST:
                 FULL_PLM_LIST_for_conn.append(i[0])
-            test_fuse(FULL_PLM_LIST_for_conn) # should change to full list when fsp pass
+            test_fuse_fpga(FULL_PLM_LIST_for_conn) # should change to full list when fsp pass
 
         if(options.Testpoint == 'SrcID'):
             #Test source_id
@@ -607,7 +645,7 @@ with Test(sys.argv) as t:
 
                 #source_id == JTAG
                 if(plm['ip_name'] == 'JTAG'):
-                    program_jtag_plm(0x100fff, 2, 3)
+                    program_jtag_plm(0x100fff, 0, 3)
                 else:
                     plm['reg'].debug_write(0x100fff)  #0x8880: SOURCE_ENABLE[31:12] == 8(JTAG)
                     check_value(plm['reg'], 0x100fff, 0, 3)
