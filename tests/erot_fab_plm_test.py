@@ -121,7 +121,7 @@ with Test(sys.argv) as t:
     
     def L3_reset():
         if helper.target in ["fpga", "simv_fpga"]:
-            erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.write(0,False)
+            erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_write(0,False)
         else:
             erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.write(0, 1)
         helper.log("L3 Reset Triggered")
@@ -135,7 +135,7 @@ with Test(sys.argv) as t:
             test_api.reset_init()
         helper.log("reset init done")
         if helper.target in ["fpga", "simv_fpga"]:
-            erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.poll(RESET_LEVEL3=1)
+            erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_poll(RESET_LEVEL3=1)
         else:
             erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.poll(RESET_LEVEL3=1)
         helper.log("L3 Reset Recovered")
