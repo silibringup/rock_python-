@@ -72,18 +72,23 @@ with Test(sys.argv) as t:
 
     def bypmon_reg_check(bm_reg, write_data, after_lock):
         read_data = 0
+        count = 0
+        timeout = 20
         mask = bm_reg.read_mask
-        read_data = bm_reg.read().value & mask
         exp = write_data & mask
-        LOG(f"read value: {hex(read_data)}")
-        if not after_lock:
-            if read_data != exp:
-                #helper.perror("Mismatch, %s's value is not as expected" % bm_reg.name)
-                bm_reg.poll(exp)
-        else:
-            if read_data == exp:
-                helper.perror("Mismatch, %s's value is not as expected" % bm_reg.name)
-        helper.log("BYP_MON reg check done")
+        while count < timeout:
+            read_data = bm_reg.read().value & mask
+            count += 1
+            if not after_lock:
+                if read_data == exp:
+                    helper.log(f"Poll REG {bm_reg.name} done after {count} times. Reg value = {hex(read_data)}. Exp value = {hex(exp)}")
+                    return
+            else:
+                if read_data != exp:
+                    helper.log(f"Poll REG {bm_reg.name} done after {count} times. Reg value = {hex(read_data)}. Exp value = {hex(exp)}")
+                    return
+        helper.perror(f"Poll timeout after {count} times try. Reg value = {hex(read_data)}. Exp value = {hex(exp)}")
+
 
     def chk_reg_rst_value(reg):
         if not isinstance(reg, Rock_reg):
