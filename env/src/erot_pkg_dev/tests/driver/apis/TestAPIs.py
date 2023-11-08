@@ -1874,8 +1874,8 @@ class TestAPIs:
             opt_addr = fuse_info['physdata']['fuse']['fuses']['NV_FUSE']['Chip_options'][fuse_opt_name][2] + FUSE_BASE
             if re.search(r'\d+', str(opt_addr)):
                 if debug_mode == 1:
-                    self.helper.debug_write(opt_addr, int(str(value), 2))
-                    opt_data = self.helper.debug_read(opt_addr)
+                    self.helper.j2h_write(opt_addr, int(str(value), 2))
+                    opt_data = self.helper.j2h_read(opt_addr)
                 else:
                     self.helper.write(opt_addr, int(str(value), 2))
                     opt_data = self.helper.read(opt_addr)
