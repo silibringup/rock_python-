@@ -84,11 +84,17 @@ with Test(sys.argv) as t:
     #FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST, JTAG_PLM_LIST]
     FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, QSPI1_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
     FUSE_LIST_FOR_PL = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+    FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST]
+    #FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
  #   FUSE_LIST = [FSP_PLM_LIST]
 
     SINGLE_PLM_FOR_PL = []
     for i in FUSE_LIST_FOR_PL:
         SINGLE_PLM_FOR_PL.append(i[0])
+    
+    SINGLE_PLM_FOR_SRCID = []
+    for i in FUSE_LIST_FOR_SRCID:
+        SINGLE_PLM_FOR_SRCID.append(i[0])
     
     SINGLE_PLM = []
     for i in FUSE_LIST:
@@ -371,7 +377,7 @@ with Test(sys.argv) as t:
 
     def test_source_id_fpga(plm, wr_value, priv_id):
         # just use only JTAG try now
-        source_priv_id = [0]
+        source_priv_id = [0,2]
         for i in source_priv_id:
             if(i == priv_id):
                 exp_value = wr_value
@@ -538,7 +544,7 @@ with Test(sys.argv) as t:
     ##force these two fuse to fabric to 1 to enable all source_id and priv level
     options = parse_args()
     if helper.target in ["fpga", "simv_fpga"]:
-        if(options.Testpoint == 'fuse_connection'):
+        if((options.Testpoint == 'fuse_connection') or (options.Testpoint == 'SrcID')):
             #jtag unlock
             helper.log("Test start")
             helper.wait_sim_time("us", 50)
@@ -567,21 +573,20 @@ with Test(sys.argv) as t:
         #helper.hdl_force("ntb_top.u_nv_top.u_sra_sys0.test_master.host_to_1500.opt_secure_host2jtag_standard_mode",1) # bug 4102635
         helper.log("Force fabric fuse done")
 
-        if (options.Testpoint == 'SrcID'):
-            test_api.oobhub_icd_init()
+        #if (options.Testpoint == 'SrcID'):
+        #    test_api.oobhub_icd_init()
 
         #Test Fuse
         if(options.Testpoint == 'fuse_connection'):
-            FULL_PLM_LIST = []
+            FULL_PLM_LIST_for_conn = []
             for i in FUSE_LIST:
-                for j in i:
-                    FULL_PLM_LIST.append(j)
-            test_fuse(FULL_PLM_LIST) # should change to full list when fsp pass
+                FULL_PLM_LIST_for_conn.append(i[0])
+            test_fuse(FULL_PLM_LIST_for_conn) # should change to full list when fsp pass
 
         if(options.Testpoint == 'SrcID'):
             #Test source_id
             helper.log("Starting source_id test")
-            for plm in SINGLE_PLM:
+            for plm in SINGLE_PLM_FOR_SRCID:
                 helper.log("Testing source_id of %s" %(plm['ip_name']))
                 if(plm['ip_name'] == 'JTAG'):
                     write_value = 0xaaaaaaaa
@@ -599,6 +604,7 @@ with Test(sys.argv) as t:
 #                    check_value(plm['reg'], 0x40fff, 0, 3)
 #                helper.log("Sysctrl allowed")
 #                test_source_id_fpga(plm, write_value, 1)
+
                 #source_id == JTAG
                 if(plm['ip_name'] == 'JTAG'):
                     program_jtag_plm(0x100fff, 2, 3)
@@ -616,7 +622,7 @@ with Test(sys.argv) as t:
                         check_value(plm['reg'], 0x800fff, 0, 3)
                     helper.log("FSP allowed")
                     test_source_id_fpga(plm, write_value, 2)
-                else:
+                else: # will not check FSP 
                     #source_id == OOBHUB
                     plm['reg'].debug_write(0x8000fff) #0xf880: SOURCE_ENABLE[31:12] == f(OOBHUB)
                     check_value(plm['reg'], 0x8000fff, 0, 3)
