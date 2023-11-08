@@ -158,6 +158,7 @@ with Test(sys.argv) as t:
                         if(fuse['fuse_name'] == 'opt_skate_and_brp_dev_mode_en'):
                             fuse['reg'].poll(WRITE_PROTECTION=0)
                         else:
+                            helper.log("CHecking reg %s has WRITE_PROTECTION=15" % (fuse['reg']))
                             fuse['reg'].poll(WRITE_PROTECTION=15)
                     elif(fuse['field'] == 'READ_PROTECTION'):
                         helper.log("Polling READ_PROTECTION")
@@ -227,6 +228,7 @@ with Test(sys.argv) as t:
                     helper.log("Duo the time limitation, just choose one different fuse to check")
                     for other_fuse in FULL_PLM_LIST:
                         if(other_fuse['fuse_name'] != fuse['fuse_name']):
+                            helper.log("checking the other fuse %s, and the reg is %s" % (other_fuse['fuse_name'], other_fuse['reg']))
                             check_fuse0(other_fuse)
                             break
                 else:
