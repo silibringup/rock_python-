@@ -217,7 +217,7 @@ with Test(sys.argv) as t:
             check_fuse0(fuse)
             if(fuse['fuse_name'] != '0'):
                 if helper.target in ["fpga", "simv_fpga"]:
-                    test_api.fuse_opts_override(fuse['fuse_name'], 1)
+                    test_api.fuse_opts_override(fuse['fuse_name'], 1, debug_mode=1)
                 else:
                     helper.hdl_force(fuse_path+fuse['fuse_name'], 1)
                 helper.log("Force %s done" %(fuse['fuse_name']))
@@ -239,7 +239,7 @@ with Test(sys.argv) as t:
                         else:
                             check_fuse1(other_fuse)
                 if helper.target in ["fpga", "simv_fpga"]:
-                    test_api.fuse_opts_override(fuse['fuse_name'], 0)
+                    test_api.fuse_opts_override(fuse['fuse_name'], 0, debug_mode=1)
                 else:
                     helper.hdl_force(fuse_path+fuse['fuse_name'], 0)
                 L3_reset()
@@ -556,7 +556,10 @@ with Test(sys.argv) as t:
             helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
         
         helper.log("Force fabric fuse start")
-        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
+        if(options.Testpoint == 'fuse_connection'):
+            test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
+        else:
+            test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
         # SrcID_PL check for making jtag to PL3, so not force "opt_priv_sec_en" to 1
         if(options.Testpoint == 'PL'):
             test_api.fuse_opts_override("opt_priv_sec_en", 1)

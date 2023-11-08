@@ -1823,7 +1823,7 @@ class TestAPIs:
         
         return exp_addr_data_dist
 
-    def fuse_opts_override(self, fuse_opt_name, value):
+    def fuse_opts_override(self, fuse_opt_name, value, debug_mode=0):
         is_override_valid = 1
 
         # fusegen.yml load
@@ -1866,17 +1866,27 @@ class TestAPIs:
         if is_override_valid:
             # write the value to corresponding address
             FUSE_BASE = erot.FUSE.base
-            erot.FUSE.EN_SW_OVERRIDE_0.write(1)
+            if debug_mode == 1:
+                erot.FUSE.EN_SW_OVERRIDE_0.debug_write(1)
+            else:
+                erot.FUSE.EN_SW_OVERRIDE_0.write(1)
             self.helper.pinfo(f"FUSE base address is {FUSE_BASE}")
             opt_addr = fuse_info['physdata']['fuse']['fuses']['NV_FUSE']['Chip_options'][fuse_opt_name][2] + FUSE_BASE
             if re.search(r'\d+', str(opt_addr)):
-                self.helper.write(opt_addr, int(str(value), 2))
-                opt_data = self.helper.read(opt_addr)
+                if debug_mode == 1:
+                    self.helper.debug_write(opt_addr, int(str(value), 2))
+                    opt_data = self.helper.debug_read(opt_addr)
+                else:
+                    self.helper.write(opt_addr, int(str(value), 2))
+                    opt_data = self.helper.read(opt_addr)
                 if opt_data == value:
                     self.helper.pinfo(f"{fuse_opt_name} has been overrided to {value}")
                 else:
                     self.helper.perror(f"{fuse_opt_name} overrided to {value} failed")
             else:
                 self.helper.perror(f"{fuse_opt_name} address in fusegen.yml is {opt_addr} which is not a number")
-
-            erot.FUSE.EN_SW_OVERRIDE_0.write(0)
+            
+            if debug_mode == 1:
+                erot.FUSE.EN_SW_OVERRIDE_0.debug_write(0)
+            else:
+                erot.FUSE.EN_SW_OVERRIDE_0.write(0)
