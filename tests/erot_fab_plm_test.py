@@ -86,8 +86,8 @@ with Test(sys.argv) as t:
     FUSE_LIST = [FSP_PLM_LIST, FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
     FUSE_LIST_FOR_PL = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
  #   FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST]
-    FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
-    #FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+    #FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, QSPI0_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
+    FUSE_LIST_FOR_SRCID = [FUSE_PLM_LIST, SYSCTRL_PLM_LIST, BT_QSPI_PLM_LIST, OOBHUB_PLM_LIST, THERM_PLM_LIST]
  #   FUSE_LIST = [FSP_PLM_LIST]
 
     SINGLE_PLM_FOR_PL = []
@@ -214,43 +214,43 @@ with Test(sys.argv) as t:
                 elif(fuse['field'] == 'SOURCE_ENABLE'):
                     fuse['reg'].poll(SOURCE_ENABLE=fuse['fuse1'])
 
-    def test_fuse_fpga(IP_PLM_LIST):
-        FULL_PLM_LIST = []
-        for i in FUSE_LIST:
-            for j in i:
-                FULL_PLM_LIST.append(j)
-        for fuse in IP_PLM_LIST:
-            helper.log("FUSE0 Test: checking the fuse %s, and the reg is %s" % (fuse['fuse_name'], fuse['reg']))
-            #check default value is *_FUSE0
-            check_fuse0(fuse)
-
-        helper.log("FUSE1 Test: make all chip options to 1")
-        for fuse in IP_PLM_LIST:
-            helper.log("FUSE1 Test: override the fuse %s to 1" % (fuse['fuse_name']))
-            if(fuse['fuse_name'] != '0'):
-                test_api.fuse_opts_override(fuse['fuse_name'], 1, debug_mode=1)
-                helper.log("Force %s done" %(fuse['fuse_name']))
-                
-        #trigger L3 reset to update reg reset value
-        L3_reset()
-        helper.log("FUSE1 Test: test fuse 1")
-        for fuse in IP_PLM_LIST:
-            if(fuse['fuse_name'] != '0'):
-                helper.log("FUSE1 Test: checking the fuse %s, and the reg is %s" % (fuse['fuse_name'], fuse['reg']))
-                check_fuse1(fuse)
-                #if helper.target in ["fpga", "simv_fpga"]:
-                #    helper.log("Duo the time limitation, just choose one different fuse to check")
-                #    for other_fuse in FULL_PLM_LIST:
-                #        if(other_fuse['fuse_name'] != fuse['fuse_name']):
-                #            helper.log("checking the other fuse %s, and the reg is %s" % (other_fuse['fuse_name'], other_fuse['reg']))
-                #            check_fuse0(other_fuse)
-                #            helper.log("checking the other fuse %s Done" % (other_fuse['fuse_name']))
-                #            break
-                #if helper.target in ["fpga", "simv_fpga"]:
-                #    test_api.fuse_opts_override(fuse['fuse_name'], 0, debug_mode=1)
-                #else:
-                #    helper.hdl_force(fuse_path+fuse['fuse_name'], 0)
-                #L3_reset()
+#    def test_fuse_fpga(IP_PLM_LIST):
+#        FULL_PLM_LIST = []
+#        for i in FUSE_LIST:
+#            for j in i:
+#                FULL_PLM_LIST.append(j)
+#        for fuse in IP_PLM_LIST:
+#            helper.log("FUSE0 Test: checking the fuse %s, and the reg is %s" % (fuse['fuse_name'], fuse['reg']))
+#            #check default value is *_FUSE0
+#            check_fuse0(fuse)
+#
+#        helper.log("FUSE1 Test: make all chip options to 1")
+#        for fuse in IP_PLM_LIST:
+#            helper.log("FUSE1 Test: override the fuse %s to 1" % (fuse['fuse_name']))
+#            if(fuse['fuse_name'] != '0'):
+#                test_api.fuse_opts_override(fuse['fuse_name'], 1, debug_mode=1)
+#                helper.log("Force %s done" %(fuse['fuse_name']))
+#                
+#        #trigger L3 reset to update reg reset value
+#        L3_reset()
+#        helper.log("FUSE1 Test: test fuse 1")
+#        for fuse in IP_PLM_LIST:
+#            if(fuse['fuse_name'] != '0'):
+#                helper.log("FUSE1 Test: checking the fuse %s, and the reg is %s" % (fuse['fuse_name'], fuse['reg']))
+#                check_fuse1(fuse)
+#                #if helper.target in ["fpga", "simv_fpga"]:
+#                #    helper.log("Duo the time limitation, just choose one different fuse to check")
+#                #    for other_fuse in FULL_PLM_LIST:
+#                #        if(other_fuse['fuse_name'] != fuse['fuse_name']):
+#                #            helper.log("checking the other fuse %s, and the reg is %s" % (other_fuse['fuse_name'], other_fuse['reg']))
+#                #            check_fuse0(other_fuse)
+#                #            helper.log("checking the other fuse %s Done" % (other_fuse['fuse_name']))
+#                #            break
+#                #if helper.target in ["fpga", "simv_fpga"]:
+#                #    test_api.fuse_opts_override(fuse['fuse_name'], 0, debug_mode=1)
+#                #else:
+#                #    helper.hdl_force(fuse_path+fuse['fuse_name'], 0)
+#                #L3_reset()
     
     def test_fuse(IP_PLM_LIST):
         FULL_PLM_LIST = []
@@ -417,7 +417,7 @@ with Test(sys.argv) as t:
 
     def test_source_id_fpga(plm, wr_value, priv_id):
         # just use only JTAG try now
-        source_priv_id = [0]
+        source_priv_id = [0,2]
         for i in source_priv_id:
             if(i == priv_id):
                 exp_value = wr_value
@@ -434,12 +434,16 @@ with Test(sys.argv) as t:
                     else:
                         write_with_err_code_checking(plm['protected_reg'], wr_value, i, priv_id, 3, 3)
                     check_value(plm['protected_reg'], exp_value, priv_id, 3)
-                    if(i == 0):
-                        plm['protected_reg'].debug_write(plm['protected_reg'].reset_val)
-                    else:
-                        write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, i, priv_id, 3, 3)
+                    
+                    # write the reset value back if allowed priv_id
+                    if (i == priv_id):
+                        if(i == 0):
+                            plm['protected_reg'].debug_write(plm['protected_reg'].reset_val)
+                        elif(i == 2):
+                            plm['protected_reg'].write(plm['protected_reg'].reset_val)
+                        else:
+                            helper.perror("Not support priv id %d now" % (i))
             else:
-                # OOBHUB just can check FSP
                 if (i != 3):
                     if(plm['ip_name'] == 'JTAG'):
                         helper.log("Write with priv_id %d" %i)
@@ -470,10 +474,14 @@ with Test(sys.argv) as t:
                         else:
                             write_with_err_code_checking(plm['protected_reg'], wr_value, i, priv_id, 3, 3)
                         check_value(plm['protected_reg'], exp_value, priv_id, 3)
-                        if(i == 0):
-                            plm['protected_reg'].debug_write(plm['protected_reg'].reset_val)
-                        else:
-                            write_with_err_code_checking(plm['protected_reg'], plm['protected_reg'].reset_val, i, priv_id, 3, 3)
+                        # write the reset value back if allowed priv_id
+                        if (i == priv_id):
+                            if(i == 0):
+                                plm['protected_reg'].debug_write(plm['protected_reg'].reset_val)
+                            elif(i == 2):
+                                plm['protected_reg'].write(plm['protected_reg'].reset_val)
+                            else:
+                                helper.perror("Not support priv id %d now" % (i))
     
     def test_source_id(plm, wr_value, priv_id):
         for i in range(4):
