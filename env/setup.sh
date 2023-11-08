@@ -27,6 +27,7 @@ sudo cp ./build-arm-v7-hf/libft4222.so.1.4.4.170 /usr/local/lib/
 # install test dependecy
 sudo apt install python3-termcolor
 sudo apt install python3-yaml 
+cd ..
 
 
 ./bootstrap 
