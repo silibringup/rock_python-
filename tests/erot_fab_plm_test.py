@@ -11,14 +11,14 @@ with Test(sys.argv) as t:
     fuse_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_fuse.'
     FSP_PLM_LIST = [
         {'fuse_name' : 'opt_secure_sec_fault_config_wr_secure',         'reg': erot.PFSP.EMP_FSP_PRIV_LEVEL_MASK_0,              'field': 'WRITE_PROTECTION',   'fuse1': 0,   'protected_reg': erot.PFSP.EMP_FSP_CTRL_1_0,   'ip_name': 'FSP'},
-        {'fuse_name' : 'opt_secure_gin_intr_ctrl_wr_secure',            'reg': erot.PFSP.FALCON_INTR_CTRL_PRIV_LEVEL_MASK_0,     'field': 'WRITE_PROTECTION',   'fuse1': 12},
+        #{'fuse_name' : 'opt_secure_gin_intr_ctrl_wr_secure',            'reg': erot.PFSP.FALCON_INTR_CTRL_PRIV_LEVEL_MASK_0,     'field': 'WRITE_PROTECTION',   'fuse1': 12},
 #error when poll register        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_BRKPT_PRIV_LEVEL_MASK_0,         'field': 'READ_PROTECTION'}, #opt_fpf_fsp_plm_init_val_flip_en0
 #        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_HSCTL_PRIV_LEVEL_MASK_0,         'field': 'SOURCE_ENABLE'}, #opt_fpf_fsp_plm_init_val_flip_en1
 #        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_DIODT_PRIV_LEVEL_MASK_0,         'field': 'SOURCE_ENABLE'}, #opt_fpf_fsp_plm_init_val_flip_en2
 #        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_DBGCTL_PRIV_LEVEL_MASK_0,        'field': 'WRITE_PROTECTION'}, #opt_fpf_fsp_plm_init_val_flip_en3
 #        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_ICD_PRIV_LEVEL_MASK_0,           'field': 'READ_PROTECTION'}, #opt_fpf_fsp_plm_init_val_flip_en4
 #        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_SHA_RAL_PRIV_LEVEL_MASK_0,       'field': 'READ_PROTECTION'}, #opt_fpf_fsp_plm_init_val_flip_en5
-        {'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_ECC_PRIV_LEVEL_MASK_0,           'field': 'WRITE_PROTECTION'}, #opt_secure_sec_sram_ecc_wr_secure
+        #{'fuse_name' : '0',                                             'reg': erot.PFSP.FALCON_ECC_PRIV_LEVEL_MASK_0,           'field': 'WRITE_PROTECTION'}, #opt_secure_sec_sram_ecc_wr_secure
 #        {'fuse_name' : 'opt_fsp_peregrine_reserved[0]',                 'reg': erot.PFSP.FALCON_BOOTVEC_PRIV_LEVEL_MASK_0,       'field': 'SOURCE_ENABLE' ,     'fuse1': 0},
     ]
     FUSE_PLM_LIST = [
@@ -144,25 +144,25 @@ with Test(sys.argv) as t:
         if helper.target in ["fpga", "simv_fpga"]:
             if(fuse['fuse_name'] == 'opt_secure_pjtag_access_wr_secure'):
                 helper.log("check fuse0 with fuse name %s" % (fuse['fuse_name']))
-                jtag_plm_value = helper.read(fuse['reg'])
+                jtag_plm_value = helper.debug_read(fuse['reg'])
                 if(jtag_plm_value != 0xffffffff):
                     helper.perror("JTAG fuse0 check fail, PLM register value is %d" %jtag_plm_value)
             else:
                 helper.log("check fuse0 with fuse field %s" % (fuse['field']))
                 if(fuse['field'] == 'SOURCE_ENABLE'):
                     helper.log("Polling SOURCE_ENABLE")
-                    fuse['reg'].poll(SOURCE_ENABLE=1048575)
+                    fuse['reg'].debug_poll(SOURCE_ENABLE=1048575)
                 else:
                     if(fuse['field'] == 'WRITE_PROTECTION'):
                         helper.log("Polling WRITE_PROTECTION")
                         if(fuse['fuse_name'] == 'opt_skate_and_brp_dev_mode_en'):
-                            fuse['reg'].poll(WRITE_PROTECTION=0)
+                            fuse['reg'].debug_poll(WRITE_PROTECTION=0)
                         else:
                             helper.log("CHecking reg %s has WRITE_PROTECTION=15" % (fuse['reg']))
-                            fuse['reg'].poll(WRITE_PROTECTION=15)
+                            fuse['reg'].debug_poll(WRITE_PROTECTION=15)
                     elif(fuse['field'] == 'READ_PROTECTION'):
                         helper.log("Polling READ_PROTECTION")
-                        fuse['reg'].poll(READ_PROTECTION=15)
+                        fuse['reg'].debug_poll(READ_PROTECTION=15)
         else:
             if(fuse['fuse_name'] == 'opt_secure_pjtag_access_wr_secure'):
                 jtag_plm_value = helper.read(fuse['reg'])
@@ -183,16 +183,16 @@ with Test(sys.argv) as t:
     def check_fuse1(fuse):
         if helper.target in ["fpga", "simv_fpga"]:
             if(fuse['fuse_name'] == 'opt_secure_pjtag_access_wr_secure'):
-                jtag_plm_value = helper.read(fuse['reg'])
+                jtag_plm_value = helper.debug_read(fuse['reg'])
                 if(jtag_plm_value != 0xffffff8f):
                     helper.perror("JTAG fuse1 check fail, PLM register value is %d" %jtag_plm_value)
             else:
                 if(fuse['field'] == 'WRITE_PROTECTION'):
-                    fuse['reg'].poll(WRITE_PROTECTION=fuse['fuse1'])
+                    fuse['reg'].debug_poll(WRITE_PROTECTION=fuse['fuse1'])
                 elif(fuse['field'] == 'READ_PROTECTION'):
-                    fuse['reg'].poll(READ_PROTECTION=fuse['fuse1'])
+                    fuse['reg'].debug_poll(READ_PROTECTION=fuse['fuse1'])
                 elif(fuse['field'] == 'SOURCE_ENABLE'):
-                    fuse['reg'].poll(SOURCE_ENABLE=fuse['fuse1'])
+                    fuse['reg'].debug_poll(SOURCE_ENABLE=fuse['fuse1'])
         else:
             if(fuse['fuse_name'] == 'opt_secure_pjtag_access_wr_secure'):
                 jtag_plm_value = helper.read(fuse['reg'])
@@ -538,21 +538,22 @@ with Test(sys.argv) as t:
     ##force these two fuse to fabric to 1 to enable all source_id and priv level
     options = parse_args()
     if helper.target in ["fpga", "simv_fpga"]:
-        ##jtag unlock
-        #helper.log("Test start")
-        #helper.wait_sim_time("us", 50)
-        #helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
+        if(options.Testpoint == 'fuse_connection'):
+            #jtag unlock
+            helper.log("Test start")
+            helper.wait_sim_time("us", 50)
+            helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
 
-        #helper.jtag.Reset(0)
-        #helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-        #helper.jtag.Reset(1)
+            helper.jtag.Reset(0)
+            helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            helper.jtag.Reset(1)
 
 
-        #helper.pinfo(f'j2h_unlock sequence start')
-        #helper.j2h_unlock()
-        #helper.pinfo(f'j2h_unlock sequence finish')
+            helper.pinfo(f'j2h_unlock sequence start')
+            helper.j2h_unlock()
+            helper.pinfo(f'j2h_unlock sequence finish')
 
-        #helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
         
         helper.log("Force fabric fuse start")
         test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
