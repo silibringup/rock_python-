@@ -230,7 +230,7 @@ with Test(sys.argv) as t:
                         if(other_fuse['fuse_name'] != fuse['fuse_name']):
                             helper.log("checking the other fuse %s, and the reg is %s" % (other_fuse['fuse_name'], other_fuse['reg']))
                             check_fuse0(other_fuse)
-                            helper.log("checking the other fuse %s Done" % (other_fuse['fuse_name'], other_fuse['reg']))
+                            helper.log("checking the other fuse %s Done" % (other_fuse['fuse_name']))
                             break
                 else:
                     for other_fuse in FULL_PLM_LIST:
