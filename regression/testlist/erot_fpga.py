@@ -434,7 +434,7 @@ with feature('erot_fpga/lighton'):
             )     
 
     #gpio
-    test_args   =   [''' -rtlarg '+assertion_off' ''','-py erot_gpio_loopback_test_fpga.py -fpga 1'] + PLATFORM_JTAG + RCV_BOOT
+    test_args   =   [''' -rtlarg '+assertion_off' ''','-py erot_gpio_loopback_test_fpga.py -fpga 1'] + PLATFORM_JTAG 
     test_tags   =   ['io_pad','gpio']
     AddTest(
         name    =   'erot_gpio_loopback_test',

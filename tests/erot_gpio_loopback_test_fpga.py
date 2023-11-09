@@ -53,27 +53,27 @@ with Test(sys.argv) as t:
         return opts   
 
     def ap0_padctrl(input):
-        erot.PADCTRL_E.AP0_BOOT_CTRL_0_N_GP01_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_BOOT_CTRL_1_N_GP02_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.EROT_REQ_AP0_N_GP03_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.EROT_GNT_AP0_N_GP04_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_FW_INTR_N_GP05_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_MUX_CTRL_N_GP06_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_PGOOD_GP07_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_RESET_N_GP08_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_RESET_IND_N_GP09_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_RESET_MON_N_GP10_0.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)   
+        erot.PADCTRL_E.AP0_BOOT_CTRL_0_N_GP01_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_BOOT_CTRL_1_N_GP02_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.EROT_REQ_AP0_N_GP03_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.EROT_GNT_AP0_N_GP04_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_FW_INTR_N_GP05_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_MUX_CTRL_N_GP06_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_PGOOD_GP07_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_RESET_N_GP08_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_RESET_IND_N_GP09_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_RESET_MON_N_GP10_0.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)   
 
-        erot.PADCTRL_E.AP0_BOOT_CTRL_0_N_GP01_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_BOOT_CTRL_1_N_GP02_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.EROT_REQ_AP0_N_GP03_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.EROT_GNT_AP0_N_GP04_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_FW_INTR_N_GP05_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_MUX_CTRL_N_GP06_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_PGOOD_GP07_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_RESET_N_GP08_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_RESET_IND_N_GP09_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-        erot.PADCTRL_E.AP0_RESET_MON_N_GP10_0.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_BOOT_CTRL_0_N_GP01_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_BOOT_CTRL_1_N_GP02_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.EROT_REQ_AP0_N_GP03_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.EROT_GNT_AP0_N_GP04_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_FW_INTR_N_GP05_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_MUX_CTRL_N_GP06_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_PGOOD_GP07_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_RESET_N_GP08_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_RESET_IND_N_GP09_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+        erot.PADCTRL_E.AP0_RESET_MON_N_GP10_0.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
 
     def ap1_oobhub_padctrl(loopback_pair_list, input):
         for gpio_pair in loopback_pair_list:
@@ -84,15 +84,15 @@ with Test(sys.argv) as t:
                 gpio_reg_1 = erot.PADCTRL_S.get_reg_by_name(gpio_pair[0]['name']+"_0")
                 gpio_reg_2 = erot.PADCTRL_S.get_reg_by_name(gpio_pair[1]['name']+"_0")               
             
-            gpio_reg_1.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-            gpio_reg_2.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=not input)
+            gpio_reg_1.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+            gpio_reg_2.debug_update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=not input)
 
-            gpio_reg_1.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
-            gpio_reg_2.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=not input)        
+            gpio_reg_1.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=input)
+            gpio_reg_2.debug_poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=not input)        
 
     def check_input_value(gpio):
         gpio_reg = erot.GPIO.get_reg_by_name( f"{gpio['port']}_INPUT_{gpio['pin']}_0")
-        rd = gpio_reg.read()
+        rd = gpio_reg.debug_read()
         if rd.value != 1:
             helper.perror("Reg Read/Write Fail -> %s" % str(gpio_reg))
 
@@ -163,20 +163,35 @@ with Test(sys.argv) as t:
     
     def config_output_enable(gpio):
         gpio_reg = erot.GPIO.get_reg_by_name(f"{gpio['port']}_ENABLE_CONFIG_{gpio['pin']}_0")
-        gpio_reg.update(GPIO_ENABLE=1, IN_OUT=1, TRIGGER_TYPE=2, TRIGGER_LEVEL=1)
+        gpio_reg.debug_update(GPIO_ENABLE=1, IN_OUT=1, TRIGGER_TYPE=2, TRIGGER_LEVEL=1)
 
     def config_output_value(gpio, value):
         gpio_reg = erot.GPIO.get_reg_by_name(f"{gpio['port']}_OUTPUT_VALUE_{gpio['pin']}_0")
-        gpio_reg.write(value)
+        gpio_reg.debug_write(value)
 
     def config_output_control(gpio):
         gpio_reg = erot.GPIO.get_reg_by_name(f"{gpio['port']}_OUTPUT_CONTROL_{gpio['pin']}_0")
-        gpio_reg.write(0)
+        gpio_reg.debug_write(0)
 
     def config_input_enable(gpio):
         gpio_reg = erot.GPIO.get_reg_by_name(f"{gpio['port']}_ENABLE_CONFIG_{gpio['pin']}_0")
-        gpio_reg.update(GPIO_ENABLE=1, IN_OUT=0, TRIGGER_TYPE=2, TRIGGER_LEVEL=1)           
+        gpio_reg.debug_update(GPIO_ENABLE=1, IN_OUT=0, TRIGGER_TYPE=2, TRIGGER_LEVEL=1)           
 
+    helper.wait_sim_time('us', 50)
+    helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
+
+    helper.jtag.Reset(0)
+    helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+    helper.jtag.Reset(1)  
+
+    #unlock j2h interface
+    helper.pinfo(f'j2h_unlock sequence start')
+    helper.j2h_unlock()
+    helper.pinfo(f'j2h_unlock sequence finish')
+    #make sure l3 reset is released
+    erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_poll(timeout=10, RESET_LEVEL3=1)
+    #reset uart 
+    erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.poll(RESET_GPIO_CTRL=1)
     helper.set_gpio_loop_back(1)
     LOG("START GPIO LOOPBACK SANITY TEST")
 
