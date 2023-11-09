@@ -35,6 +35,8 @@ if __name__ == "__main__":
     grouptest = options.grouptest
     batch = options.batch
 
+    os.environ['NVBUILD_PY_LIB'] = os.path.join(os.path.dirname(__file__),'libs')
+
     testplan = os.path.join(os.path.dirname(__file__),'testlist','erot_fpga.py')
 
     spec = importlib.util.spec_from_file_location("module.name",testplan)
