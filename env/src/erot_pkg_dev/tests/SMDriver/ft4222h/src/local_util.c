@@ -328,15 +328,54 @@ int SPI_write(FT_HANDLE ftHandle,uint32_t cs_id,int spiMode, int sendLen, uint8_
 
 int SMBus_init(uint32_t i2c_kbps, FT_HANDLE* ftHandle){
     FT_STATUS ftStatus;
+    uint32_t num_devs = 0;
+    uint8_t index = 0;
+
+
     FT4222_STATUS ft4222Status;
-    
-    ftStatus = FT_Open(0, ftHandle);
-    if (FT_OK != ftStatus){
-        std::cerr << "Open ftHandle failed!" << std::endl;
+    if(FT_OK != FT_CreateDeviceInfoList(&num_devs))
+    {
+        printf("FT_CreateDeviceInfoList fail\n");
         return 0;
-    } else {
-        std::cout << "Open ftHandle succeeded!" << std::endl;
     }
+    if(0 == num_devs)
+    {
+        printf("Cannot find FT4222\n");
+        return 0;
+    }
+    std::vector<FT_DEVICE_LIST_INFO_NODE> dev_info(num_devs);
+    if(FT_OK != FT_GetDeviceInfoList(dev_info.data(), &num_devs))
+    {
+        printf("FT_GetDeviceInfoList fail\n");
+        return 0;
+    }
+    for(index = 0 ; index<(int)num_devs ; index++)
+    {   
+        size_t descLen = strlen(dev_info[index].Description);
+        printf("device_index %0d, type %0d,Locid %d, desc %s\n",index,dev_info[index].Type,dev_info[index].LocId,dev_info[index].Description);
+        if(FT_DEVICE_4222H_0 == dev_info[index].Type && 'A' == dev_info[index].Description[descLen - 1])
+        {
+            printf("Find FT4222 location ID is %d\n", dev_info[index].LocId);
+            ftStatus = FT_OpenEx((PVOID)(uintptr_t)dev_info[index].LocId, 
+                                 FT_OPEN_BY_LOCATION, 
+                                 ftHandle);
+            if (FT_OK != ftStatus){
+                std::cerr << "I2C Open ftHandle failed! Status :" << ftStatus << std::endl;
+                return 0;
+            } else {
+                std::cout << "I2C Open ftHandle succeeded!" << std::endl;
+            }                                 
+            break;
+        }
+    }
+    
+    //ftStatus = FT_Open(0, ftHandle);
+    //if (FT_OK != ftStatus){
+    //    std::cerr << "Open ftHandle failed!" << std::endl;
+    //    return 0;
+    //} else {
+    //    std::cout << "Open ftHandle succeeded!" << std::endl;
+    //}
 
     // initial i2c master with 1000K bps
     ft4222Status = FT4222_I2CMaster_Init(*ftHandle, i2c_kbps);
