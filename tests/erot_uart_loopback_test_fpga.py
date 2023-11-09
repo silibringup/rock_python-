@@ -4,6 +4,11 @@ from driver import *
 with Test(sys.argv) as t:
 
     golden_value_list = [0x5b, 0xad, 0x00, 0xff]
+    
+    def parse_args():
+        t.parser.add_argument("--baud", "-b", action='store', help="Select baud rate", type=int, default=0)
+        opts, unknown = t.parser.parse_known_args(sys.argv[1:])
+        return opts
 
     # Line control
     # BRK, PEN=ParityENable, STP2=2SToPbits, FEN=FifoENable, WLEN=WordLENgth, SPS=StickyParityS
@@ -11,7 +16,30 @@ with Test(sys.argv) as t:
         erot.UART.UARTLCR_H_0.debug_update(BRK=0,PEN=0,STP2=0,FEN=1,WLEN=3,SPS=0)
         erot.UART.UARTLCR_H_0.debug_poll(timeout=1000,BRK=0,PEN=0,STP2=0,FEN=1,WLEN=3,SPS=0)
 
+    def set_baud(idx):
+        if (idx == 0):
+            freq = 651
+        elif (idx == 1):
+            freq = 326 
+        elif (idx == 2):
+            freq = 217
+        elif (idx == 3):
+            #freq = 324
+            freq = 163
+        elif (idx == 4):
+            freq = 109
+        elif (idx == 5):
+            freq = 81
+        elif (idx == 6):
+            freq = 54
 
+        rd = erot.UART.UARTIBRD_0.read()
+        LOG("BAUD is %s" % str(rd))
+
+        erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.update(DIV_SEL_1_DIV=freq)
+        erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.poll(timeout=100,DIV_SEL_1_DIV=freq)
+        #erot.UART.UARTIBRD_0.update(BAUD_DIVINT=freq)
+        #erot.UART.UARTIBRD_0.poll(timeout=100,BAUD_DIVINT=freq)
 
     # UARTDMACR_0
 

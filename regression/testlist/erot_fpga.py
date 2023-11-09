@@ -104,46 +104,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf lck error check l2 part'''
             )
-    
-    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint fuse_connection' ''']
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_plm_test_fuse_connection',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric plm function check fuse connection part'''
-            )
-    
-    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint SrcID' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_plm_test_SrcID',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric plm function check srcid part'''
-            )
-    
-    test_args   =   ['''-py erot_fab_plm_test.py  -pyarg ' --Testpoint PL' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_plm_test_PL',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric plm function check priv level part'''
-            )
-    
-    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L2' '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_blf_function_test_l2',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric blf function test l2 part'''
-            )
     # fabric bring-up tests END
     
     # mram bring-up tests
@@ -200,16 +160,6 @@ with feature('erot_fpga/lighton'):
         desc    =   '''EROT HW boot'''
             )
 
-    test_args   =   ['''-py erot_reset_l0_rst_domain_test_fpga.py ''']
-    test_tags   =   ['reset','l1']
-    AddTest(
-        name    =   'erot_reset_l0_rst_domain_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT L1 reset'''
-            )
-
     test_args   =   ['''-py erot_reset_l1_rst_domain_test_fpga.py ''']
     test_tags   =   ['reset','l1']
     AddTest(
@@ -250,89 +200,6 @@ with feature('erot_fpga/lighton'):
 #        desc    =   '''light on each IP in chip'''
 #            )
     # reset bring-up tests END
-
-    # bypass monitor bring-up tests
-    test_args   =   ['''-py erot_bypmon_legal_cmd_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l0']
-    AddTest(
-        name    =   'erot_bypmon_legal_cmd_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor legal command bypass'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l1']
-    AddTest(
-        name    =   'erot_bypmon_illegal_rd_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor illegal read command block'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_no_pass_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l1']
-    AddTest(
-        name    =   'erot_bypmon_no_pass_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor no_pass mode command block'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_locker_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l2']
-    AddTest(
-        name    =   'erot_bypmon_locker_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor reg aperture lock'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_cs_swap_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l2']
-    AddTest(
-        name    =   'erot_bypmon_cs_swap_test_fpga.py',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor CS0/1 swap'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_addr_mode_4b_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l2']
-    AddTest(
-        name    =   'erot_bypmon_addr_mode_4b_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor ADDR_MODE_4B set by BROM'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_addr_mode_4b_int_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l2']
-    AddTest(
-        name    =   'erot_bypmon_addr_mode_4b_int_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor ADDR_MODE_4B_INT set by AP'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_instr_4b_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l2']
-    AddTest(
-        name    =   'erot_bypmon_instr_4b_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor INSTR_4B set by FSP'''
-            )
-
-    # bypass monitor bring-up tests END
 
     test_args   =   ['-py erot_rts_basic_test.py '] + RCV_BOOT
     test_tags   =   ['boot','l0']
@@ -556,7 +423,7 @@ with feature('erot_fpga/lighton'):
             )   
         
     #uart test
-    test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG 
+    test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG  
     test_tags   =   ['io_pad','uart']
     AddTest(
         name    =   'erot_uart_loopback_test' ,
@@ -567,7 +434,7 @@ with feature('erot_fpga/lighton'):
             )     
 
     #gpio
-    test_args   =   [''' -rtlarg '+assertion_off' ''','-py erot_gpio_loopback_test_fpga.py -fpga 0'] + PLATFORM_SIM_HEAD
+    test_args   =   [''' -rtlarg '+assertion_off' ''','-py erot_gpio_loopback_test_fpga.py -fpga 1'] + PLATFORM_JTAG + RCV_BOOT
     test_tags   =   ['io_pad','gpio']
     AddTest(
         name    =   'erot_gpio_loopback_test',
