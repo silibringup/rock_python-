@@ -98,7 +98,10 @@ with Test(sys.argv) as t:
 
     def rpi_check_input_value(gpio,fpga,exp_value):
         if(fpga):
+            helper.pinfo(gpio['name'].lower())
             value = helper.gpio_read(gpio['name'].lower())
+            if value != exp_value:
+                helper.perror("rpi Read Fail -> gpio:%s" % str(gpio['name']))
         else:
             if helper.target == 'simv_fpga':
                 helper.hdl_wait(f"ntb_top.u_nv_fpga_dut.dpcs.dpcs_{gpio['name'].lower()}",exp_value)

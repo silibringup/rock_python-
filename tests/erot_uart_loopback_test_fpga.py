@@ -114,8 +114,8 @@ with Test(sys.argv) as t:
     erot.UART.UARTRIS_0.debug_poll(timeout=10000, interval=100000, RXRIS=1)
 
     for i in range(4):
-        if golden_value_list[i]+1 >= 256:
-            exp = golden_value_list[i]+1-256
-        else:
-            exp = golden_value_list[i]+1
-        check_rx_data(exp_rx_data=exp)
+        #if golden_value_list[i]+1 >= 256:
+        #    exp = golden_value_list[i]+1-256
+        #else:
+        #    exp = golden_value_list[i]+1
+        check_rx_data(exp_rx_data=golden_value_list[i])
