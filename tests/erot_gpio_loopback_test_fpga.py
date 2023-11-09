@@ -198,5 +198,5 @@ with Test(sys.argv) as t:
     options = parse_args() 
     fpga = int(options.fpga)
     
-    #ap0_gpio_test(AP0_GPIO_LIST,fpga)
+    ap0_gpio_test(AP0_GPIO_LIST,fpga)
     ap1_oobhub_gpio_test(LOOPBACK_GPIO_LIST)
