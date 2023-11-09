@@ -191,7 +191,7 @@ with Test(sys.argv) as t:
     #make sure l3 reset is released
     erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_poll(timeout=10, RESET_LEVEL3=1)
     #reset uart 
-    erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.poll(RESET_GPIO_CTRL=1)
+    erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.debug_update(RESET_GPIO_CTRL=1)
     helper.set_gpio_loop_back(1)
     LOG("START GPIO LOOPBACK SANITY TEST")
 
