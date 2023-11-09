@@ -23,12 +23,16 @@ sudo ldconfig -v
 cd libft4222-linux-1.4.4.170
 sudo ./install4222.sh
 sudo cp ./build-arm-v7-hf/libft4222.so.1.4.4.170 /usr/local/lib/
+cd ..
 
 # install test dependecy
 sudo apt install python3-termcolor
 sudo apt install python3-yaml 
-cd ..
 
+# build ft4222
+cd ./src/erot_pkg_dev/tests/SMDriver/ft4222h
+make buildso
+cd ../../../../../
 
 ./bootstrap 
 ./configure --enable-ftdi --enable-ft2232_ftd2xx --enable-maintainer-mode --enable-ft2232_libftdi
