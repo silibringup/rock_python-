@@ -42,6 +42,7 @@ with Test(sys.argv) as t:
                 exp = l0_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l0_reg.name)
+            helper.log(f'reg name: {l0_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L0 reset domain reg check done")
 
     def l1_rst_domain_reg_check(after_reset):
@@ -57,6 +58,7 @@ with Test(sys.argv) as t:
                 exp = l1_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l1_reg.name)
+            helper.log(f'reg name: {l1_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L1 reset domain reg check done")
 
     def l3_rst_domain_reg_check(after_reset):
@@ -72,6 +74,7 @@ with Test(sys.argv) as t:
                 exp = l3_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l3_reg.name)
+            helper.log(f'reg name: {l3_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L3 reset domain reg check done")
 
     def chk_reg_rst_value(reg):
@@ -113,6 +116,10 @@ with Test(sys.argv) as t:
     helper.pinfo(f'j2h_unlock sequence start')
     helper.j2h_unlock()
     helper.pinfo(f'j2h_unlock sequence finish') 
+
+    helper.log("##############################################################")
+    helper.log("####################### HW BOOT DONE #########################")
+    helper.log("##############################################################")
 
     # FIXME, JTAG unlock
     # FIXME, check SYS_STATUS_NONSECURE[26:24]==3'b111
