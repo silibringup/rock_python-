@@ -42,6 +42,7 @@ with Test(sys.argv) as t:
                 exp = l0_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l0_reg.name)
+            helper.log(f'reg name: {l0_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L0 reset domain reg check done")
 
     def l1_rst_domain_reg_check(after_reset):
@@ -57,6 +58,7 @@ with Test(sys.argv) as t:
                 exp = l1_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l1_reg.name)
+            helper.log(f'reg name: {l1_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L1 reset domain reg check done")
 
     def l3_rst_domain_reg_check(after_reset):
@@ -72,6 +74,7 @@ with Test(sys.argv) as t:
                 exp = l3_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l3_reg.name)
+            helper.log(f'reg name: {l3_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L3 reset domain reg check done")
 
     def chk_reg_rst_value(reg):
@@ -116,8 +119,15 @@ with Test(sys.argv) as t:
 
     reg_cfg()
     helper.wait_sim_time("us", 5)
+    l0_rst_domain_reg_check(after_reset=0)
+    l1_rst_domain_reg_check(after_reset=0)
+    l3_rst_domain_reg_check(after_reset=0)
+    helper.wait_sim_time("us", 5)
    
     # oobhub force recovery trigger L1_rst_
+    helper.log("##############################################################")
+    helper.log("###################### Trigger L1_rst_ #######################")
+    helper.log("##############################################################")
     test_api.trigger_recovery()
 
     # FIXME, JTAG unlock
