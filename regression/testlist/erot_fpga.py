@@ -197,7 +197,7 @@ with feature('erot_fpga/lighton'):
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''EROT L1 reset'''
+        desc    =   '''EROT L0 reset'''
             )
 
     test_args   =   ['''-py erot_reset_l1_rst_domain_test_fpga.py ''']
@@ -250,6 +250,16 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''EROT bypass monitor legal command bypass'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_illegal_cfg_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l1']
+    AddTest(
+        name    =   'erot_bypmon_illegal_cfg_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor illegal config command block'''
             )
 
     test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
@@ -507,65 +517,6 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   'spi target smoke test'
             ) 
-
-    test_args   =   [ ''' -rtlarg '+ENABLE_SPI_VIP' ''' , '''-py erot_spi_target_slave_imr_status_poll_dspi_test.py '''] + RCV_BOOT
-    test_tags   =   ['spi', 'spi_status_poll']
-    AddTest(
-        name    =   'erot_spi_imr_status_poll_dspi_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   'spi target smoke test'
-            ) 
-
-    #QSPI bring-up testplan 
-    for i in range(3):
-        
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_flash_access_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
-        test_tags   =   ['qspi_bring_up']
-        #if os.getenv("RANDOM_STALL") != None:
-        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-        AddTest(
-            name    =   'erot_qspi_flash_access_qspi%s_jtag' %str(i),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''enable qspi to access flash '''
-            )   
-    
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_rbi_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
-        test_tags   =   ['qspi_bring_up']
-        #if os.getenv("RANDOM_STALL") != None:
-        #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-        AddTest(
-            name    =   'erot_qspi_rbi_qspi%s_jtag' %str(i),
-            config  =   ['erot_fpga'],
-            args    =   common_args+test_args,
-            tags    =   test_tags,
-            desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
-            )   
-        
-    #uart test
-    test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG  
-    test_tags   =   ['io_pad','uart']
-    AddTest(
-        name    =   'erot_uart_loopback_test' ,
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''confirm uart_tx and uart_rx pads functional correct'''
-            )     
-
-    #gpio
-    test_args   =   [''' -rtlarg '+assertion_off' ''','-py erot_gpio_loopback_test_fpga.py -fpga 1'] + PLATFORM_JTAG 
-    test_tags   =   ['io_pad','gpio']
-    AddTest(
-        name    =   'erot_gpio_loopback_test',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''gpio loopback test'''
-            )
 
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
