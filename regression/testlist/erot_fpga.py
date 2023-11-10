@@ -197,7 +197,7 @@ with feature('erot_fpga/lighton'):
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''EROT L1 reset'''
+        desc    =   '''EROT L0 reset'''
             )
 
     test_args   =   ['''-py erot_reset_l1_rst_domain_test_fpga.py ''']
