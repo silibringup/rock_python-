@@ -132,12 +132,6 @@ with Test(sys.argv) as t:
 
     
     helper.log("Test start")
-    helper.wait_sim_time("us", 50)
-    helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
-
-    helper.jtag.Reset(0)
-    helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-    helper.jtag.Reset(1)
 
     # release IP under SW rst
     deassert_sw_reset_l1()
