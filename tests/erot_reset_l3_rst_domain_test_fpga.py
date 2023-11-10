@@ -42,6 +42,7 @@ with Test(sys.argv) as t:
                 exp = l0_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l0_reg.name)
+            helper.log(f'reg name: {l0_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L0 reset domain reg check done")
 
     def l1_rst_domain_reg_check(after_reset):
@@ -57,6 +58,7 @@ with Test(sys.argv) as t:
                 exp = l1_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l1_reg.name)
+            helper.log(f'reg name: {l1_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L1 reset domain reg check done")
 
     def l3_rst_domain_reg_check(after_reset):
@@ -72,6 +74,7 @@ with Test(sys.argv) as t:
                 exp = l3_reg.reset_val & mask
             if act != exp:
                 helper.perror("Mismatch, %s's value is not as expected" % l3_reg.name)
+            helper.log(f'reg name: {l3_reg.name}, act: {hex(act)}, exp: {hex(exp)}')
         helper.log("L3 reset domain reg check done")
 
     def chk_reg_rst_value(reg):
@@ -117,7 +120,14 @@ with Test(sys.argv) as t:
 
     reg_cfg()
     helper.wait_sim_time("us", 5)
+    l0_rst_domain_reg_check(after_reset=0)
+    l1_rst_domain_reg_check(after_reset=0)
+    l3_rst_domain_reg_check(after_reset=0)
+    helper.wait_sim_time("us", 5)
    
+    helper.log("##############################################################")
+    helper.log("###################### Trigger L3_rst_ #######################")
+    helper.log("##############################################################")
     erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_write(0,False)
 
     helper.wait_sim_time("us", 50)
@@ -126,5 +136,5 @@ with Test(sys.argv) as t:
     l1_rst_domain_reg_check(after_reset=0)
     l3_rst_domain_reg_check(after_reset=1)
 
-    helper.log("Configure L3 SW reset one-by-one")
+    helper.log("Test done")
 
