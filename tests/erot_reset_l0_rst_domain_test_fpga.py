@@ -252,6 +252,15 @@ with Test(sys.argv) as t:
 
     helper.wait_sim_time("us", 50)
 
+    helper.jtag.Reset(0)
+    helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+    helper.jtag.Reset(1)  
+
+    #unlock j2h interface
+    helper.pinfo(f'j2h_unlock sequence start')
+    helper.j2h_unlock()
+    helper.pinfo(f'j2h_unlock sequence finish')
+
     l0_rst_domain_reg_check(after_reset=1)
     l1_rst_domain_reg_check(after_reset=1)
     l3_rst_domain_reg_check(after_reset=1)
