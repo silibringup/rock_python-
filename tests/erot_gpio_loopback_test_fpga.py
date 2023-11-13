@@ -1,23 +1,7 @@
 #!/home/utils/Python/3.8/3.8.6-20201005/bin/python3
 from driver import * 
 
-RPI_AP0_BOOT_CTRL_0_N = 11
-RPI_AP0_BOOT_CTRL_1_N = 7
-RPI_EROT_REQ_AP0_N = 38
-RPI_EROT_GNT_AP0_N = 40
-RPI_AP0_FW_INTR_N = 35
-RPI_AP0_MUX_CTRL_N = 18
-RPI_AP0_PGOOD = 16
-RPI_RESET_N = 13
-RPI_RESET_IND_N = 15
-RPI_RESET_MON_N = 12
-
 with Test(sys.argv) as t:
-
-    ap0_input_value_reg_list = ['A_INPUT_00_0','A_INPUT_01_0','A_INPUT_02_0','A_INPUT_03_0','A_INPUT_04_0','A_INPUT_05_0', 'A_INPUT_06_0', 'B_INPUT_00_0', 'B_INPUT_01_0', 'B_INPUT_02_0']
-    ap0_enable_reg_list = ['A_ENABLE_CONFIG_00_0','A_ENABLE_CONFIG_01_0','A_ENABLE_CONFIG_02_0','A_ENABLE_CONFIG_03_0','A_ENABLE_CONFIG_04_0','A_ENABLE_CONFIG_05_0', 'A_ENABLE_CONFIG_06_0', 'B_ENABLE_CONFIG_00_0', 'B_ENABLE_CONFIG_01_0', 'B_ENABLE_CONFIG_02_0']
-    ap0_output_control_reg_list = ['A_OUTPUT_CONTROL_00_0','A_OUTPUT_CONTROL_01_0','A_OUTPUT_CONTROL_02_0','A_OUTPUT_CONTROL_03_0','A_OUTPUT_CONTROL_04_0','A_OUTPUT_CONTROL_05_0', 'A_OUTPUT_CONTROL_06_0', 'B_OUTPUT_CONTROL_00_0', 'B_OUTPUT_CONTROL_01_0', 'B_OUTPUT_CONTROL_02_0']
-    ap0_value_reg_list = [ 'A_OUTPUT_VALUE_00_0','A_OUTPUT_VALUE_01_0','A_OUTPUT_VALUE_02_0','A_OUTPUT_VALUE_03_0','A_OUTPUT_VALUE_04_0','A_OUTPUT_VALUE_05_0', 'A_OUTPUT_VALUE_06_0', 'B_OUTPUT_VALUE_00_0', 'B_OUTPUT_VALUE_01_0', 'B_OUTPUT_VALUE_02_0']
 
     AP0_GPIO_LIST = [ 
         {'name':'AP0_BOOT_CTRL_0_N_GP01', 'port':'A', 'pin':'00' }, 
@@ -28,8 +12,8 @@ with Test(sys.argv) as t:
         {'name':'AP0_MUX_CTRL_N_GP06', 'port':'A', 'pin':'05' }, 
         #{'name':'AP0_PGOOD_GP07', 'port':'A', 'pin':'06' }, 
         {'name':'AP0_RESET_N_GP08', 'port':'B', 'pin':'00' }, 
-        {'name':'AP0_RESET_IND_N_GP09', 'port':'B', 'pin':'00' }, 
-        {'name':'AP0_RESET_MON_N_GP10', 'port':'B', 'pin':'00' }, 
+        {'name':'AP0_RESET_IND_N_GP09', 'port':'B', 'pin':'01' }, 
+        {'name':'AP0_RESET_MON_N_GP10', 'port':'B', 'pin':'02' }, 
      ]
      
     LOOPBACK_GPIO_LIST = [
@@ -96,7 +80,7 @@ with Test(sys.argv) as t:
         if rd.value != 1:
             helper.perror("Reg Read/Write Fail -> %s" % str(gpio_reg))
 
-    def rpi_check_input_value(gpio,fpga,exp_value):
+    def rpi_check_input_value(gpio,exp_value,fpga):
         if(fpga):
             helper.pinfo(gpio['name'].lower())
             value = helper.gpio_read(gpio['name'].lower())
@@ -107,9 +91,6 @@ with Test(sys.argv) as t:
                 helper.hdl_wait(f"ntb_top.u_nv_fpga_dut.dpcs.dpcs_{gpio['name'].lower()}",exp_value)
             else:
                 helper.hdl_wait(f"ntb_top.u_nv_top.dpcs.dpcs_{gpio['name'].lower()}",exp_value)
-
-        #if value != 1:
-        #    helper.perror("rpi Read Fail -> gpio:%s" % str(gpio['name']))
 
     def rpi_config_output_value(gpio,value,fpga):
         if(fpga):
@@ -190,7 +171,7 @@ with Test(sys.argv) as t:
     helper.pinfo(f'j2h_unlock sequence finish')
     #make sure l3 reset is released
     erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.debug_poll(timeout=10, RESET_LEVEL3=1)
-    #reset uart 
+    #reset gpio 
     erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.debug_update(RESET_GPIO_CTRL=1)
     helper.set_gpio_loop_back(1)
     LOG("START GPIO LOOPBACK SANITY TEST")
