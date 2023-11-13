@@ -978,8 +978,9 @@ COMMAND_HANDLER(handle_init_command)
 						LOG_USER("GPIO Trans : Error,unsupported gpio pins ");
 					}
 					packet_copy(p_in_pkt, p_out_pkt);
-					p_out_pkt->n_fields = 0; // field number before return data
+					p_out_pkt->n_fields = 1; // field number before return data
 					add_ret(p_out_pkt, (uint32_t*)&len, data, 1);
+	  				//display_pkt(p_out_pkt);
 					free(intf_name_bytes_array);
 					if (data != NULL){
 						free(data);
