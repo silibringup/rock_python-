@@ -2,25 +2,30 @@
 from driver import * 
 
 with Test(sys.argv) as t:
+    
+    def parse_args():
+        t.parser.add_argument("--engine", action='store', help="Check the interrupt transfer path", default='FSP')
+        opts, unknown = t.parser.parse_known_args(sys.argv[1:])
+        return opts
 
     OOBHUB_IP_LIST = [
-        {'name' : 'UART',            'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_sbsa_uart.sbsa_uart_intr',       'read_value' : 0x2000},
-        {'name' : 'I2C_IO_Expander', 'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_io_expander.i2c_rupt',          'read_value' : 0x4000},
-        {'name' : 'SPI_OOBHUB',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_oobhub_spi.intr',                   'read_value' : 0x8000},
+#        {'name' : 'UART',            'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_sbsa_uart.sbsa_uart_intr',       'read_value' : 0x2000},
+#        {'name' : 'I2C_IO_Expander', 'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_io_expander.i2c_rupt',          'read_value' : 0x4000},
+#        {'name' : 'SPI_OOBHUB',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_oobhub_spi.intr',                   'read_value' : 0x8000},
         {'name' : 'GPIO_CRTL0',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[0]',     'read_value' : 0x10000},
-        {'name' : 'GPIO_CRTL1',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[1]',     'read_value' : 0x20000},
-        {'name' : 'GPIO_CRTL2',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[2]',     'read_value' : 0x40000},
-        {'name' : 'GPIO_CRTL3',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[3]',     'read_value' : 0x80000},
-        {'name' : 'GPIO_CRTL4',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[4]',     'read_value' : 0x100000},
-        {'name' : 'GPIO_CRTL5',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[5]',     'read_value' : 0x200000},
-        {'name' : 'GPIO_CRTL6',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[6]',     'read_value' : 0x400000},
-        {'name' : 'GPIO_CRTL7',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[7]',     'read_value' : 0x800000},
-        {'name' : 'SPI_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_spi_ib0.intr',                      'read_value' : 0x1000000},
-        {'name' : 'I2C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib0.i2c_rupt',                  'read_value' : 0x2000000},
-        {'name' : 'I3C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i3c_ib0.ic_intr',                   'read_value' : 0x4000000},
-        {'name' : 'SPI_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_spi_ib1.intr',                      'read_value' : 0x10000000},
-        {'name' : 'I2C_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib1.i2c_rupt',                  'read_value' : 0x20000000},
-        {'name' : 'I3C_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i3c_ib1.ic_intr',                   'read_value' : 0x40000000},
+#        {'name' : 'GPIO_CRTL1',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[1]',     'read_value' : 0x20000},
+#        {'name' : 'GPIO_CRTL2',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[2]',     'read_value' : 0x40000},
+#        {'name' : 'GPIO_CRTL3',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[3]',     'read_value' : 0x80000},
+#        {'name' : 'GPIO_CRTL4',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[4]',     'read_value' : 0x100000},
+#        {'name' : 'GPIO_CRTL5',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[5]',     'read_value' : 0x200000},
+#        {'name' : 'GPIO_CRTL6',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[6]',     'read_value' : 0x400000},
+#        {'name' : 'GPIO_CRTL7',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[7]',     'read_value' : 0x800000},
+#        {'name' : 'SPI_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_spi_ib0.intr',                      'read_value' : 0x1000000},
+#        {'name' : 'I2C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib0.i2c_rupt',                  'read_value' : 0x2000000},
+#        {'name' : 'I3C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i3c_ib0.ic_intr',                   'read_value' : 0x4000000},
+#        {'name' : 'SPI_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_spi_ib1.intr',                      'read_value' : 0x10000000},
+#        {'name' : 'I2C_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib1.i2c_rupt',                  'read_value' : 0x20000000},
+#        {'name' : 'I3C_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i3c_ib1.ic_intr',                   'read_value' : 0x40000000},
     ]
     FSP_IP_LIST = [
     #    {'name' : 'OOBHUB',          'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_oobhub.oobhub2sys_intr',                    'read_value' : 0x1000000},
@@ -138,19 +143,158 @@ with Test(sys.argv) as t:
         helper.wait_sim_time("us", 5)
         validate_ap_socv(erot.QSPI0.QSPI,erot.SPI_MON0,0,0)
 
+    bidir_pad_reg = [['PADCTRL_E','AP0_BOOT_CTRL_0_N_GP01_0'], ['PADCTRL_E','AP0_BOOT_CTRL_1_N_GP02_0'], ['PADCTRL_E','EROT_REQ_AP0_N_GP03_0'], ['PADCTRL_E','EROT_GNT_AP0_N_GP04_0'], ['PADCTRL_E','AP0_FW_INTR_N_GP05_0'], ['PADCTRL_E','AP0_MUX_CTRL_N_GP06_0'], ['PADCTRL_E','AP0_PGOOD_GP07_0'], ['PADCTRL_E','AP0_RESET_N_GP08_0'], ['PADCTRL_E','AP0_RESET_IND_N_GP09_0'], ['PADCTRL_E','AP0_RESET_MON_N_GP10_0'], ['PADCTRL_E','AP0_SPI_PWR_KILL_GP11_0'],['PADCTRL_W','AP1_BOOT_CTRL_0_N_GP12_0'],['PADCTRL_W','AP1_BOOT_CTRL_1_N_GP13_0'], ['PADCTRL_W','EROT_REQ_AP1_N_GP14_0'], ['PADCTRL_W','EROT_GNT_AP1_N_GP15_0'], ['PADCTRL_W','AP1_FW_INTR_N_GP16_0'], ['PADCTRL_W','AP1_MUX_CTRL_N_GP17_0'], ['PADCTRL_W','AP1_PGOOD_GP18_0'], ['PADCTRL_W','AP1_RESET_N_GP19_0'], ['PADCTRL_W','AP1_RESET_IND_N_GP20_0'], ['PADCTRL_W','AP1_RESET_MON_N_GP21_0'], ['PADCTRL_W','AP1_SPI_PWR_KILL_GP22_0'], ['PADCTRL_S','EROT_LED_GP23_0'], ['PADCTRL_S','MISC_I2C_SCL_GP24_0'],['PADCTRL_S','MISC_I2C_SDA_GP25_0'], ['PADCTRL_S','OBS0_GP26_0'], ['PADCTRL_S','OBS1_GP27_0'], ['PADCTRL_S','HW_STRAP_GP28_0'], ['PADCTRL_N','BOOT_QSPI_IO3_GP29_0']]
+    #bidir_pad_reg = [['PADCTRL_E','AP0_FW_INTR_N_GP05_0']]
+
+    bidir_port_enable = ['A_ENABLE_CONFIG_00_0','A_ENABLE_CONFIG_01_0','A_ENABLE_CONFIG_02_0','A_ENABLE_CONFIG_03_0','A_ENABLE_CONFIG_04_0','A_ENABLE_CONFIG_05_0','A_ENABLE_CONFIG_06_0','B_ENABLE_CONFIG_00_0','B_ENABLE_CONFIG_01_0','B_ENABLE_CONFIG_02_0','B_ENABLE_CONFIG_03_0','C_ENABLE_CONFIG_00_0','C_ENABLE_CONFIG_01_0','C_ENABLE_CONFIG_02_0','C_ENABLE_CONFIG_03_0','C_ENABLE_CONFIG_04_0','C_ENABLE_CONFIG_05_0','C_ENABLE_CONFIG_06_0','D_ENABLE_CONFIG_00_0','D_ENABLE_CONFIG_01_0','D_ENABLE_CONFIG_02_0','D_ENABLE_CONFIG_03_0','E_ENABLE_CONFIG_01_0','E_ENABLE_CONFIG_03_0','E_ENABLE_CONFIG_04_0','E_ENABLE_CONFIG_05_0','E_ENABLE_CONFIG_06_0','E_ENABLE_CONFIG_07_0','F_ENABLE_CONFIG_00_0']
+    #bidir_port_enable = ['A_ENABLE_CONFIG_04_0']
+
+    intr_c = ['A_INTERRUPT_CLEAR_00_0','A_INTERRUPT_CLEAR_01_0','A_INTERRUPT_CLEAR_02_0','A_INTERRUPT_CLEAR_03_0','A_INTERRUPT_CLEAR_04_0','A_INTERRUPT_CLEAR_05_0','A_INTERRUPT_CLEAR_06_0','B_INTERRUPT_CLEAR_00_0','B_INTERRUPT_CLEAR_01_0','B_INTERRUPT_CLEAR_02_0','B_INTERRUPT_CLEAR_03_0','C_INTERRUPT_CLEAR_00_0','C_INTERRUPT_CLEAR_01_0','C_INTERRUPT_CLEAR_02_0','C_INTERRUPT_CLEAR_03_0','C_INTERRUPT_CLEAR_04_0','C_INTERRUPT_CLEAR_05_0','C_INTERRUPT_CLEAR_06_0','D_INTERRUPT_CLEAR_00_0','D_INTERRUPT_CLEAR_01_0','D_INTERRUPT_CLEAR_02_0','D_INTERRUPT_CLEAR_03_0','E_INTERRUPT_CLEAR_01_0','E_INTERRUPT_CLEAR_03_0','E_INTERRUPT_CLEAR_04_0','E_INTERRUPT_CLEAR_05_0','E_INTERRUPT_CLEAR_06_0','E_INTERRUPT_CLEAR_07_0','F_INTERRUPT_CLEAR_00_0']
+    #intr_c = ['A_INTERRUPT_CLEAR_04_0']
+
+    vm = ['A_VM_00_0','A_VM_01_0','A_VM_02_0','A_VM_03_0','A_VM_04_0','A_VM_05_0','A_VM_06_0','B_VM_00_0','B_VM_01_0','B_VM_02_0','B_VM_03_0','C_VM_00_0','C_VM_01_0','C_VM_02_0','C_VM_03_0','C_VM_04_0','C_VM_05_0','C_VM_06_0','D_VM_00_0','D_VM_01_0','D_VM_02_0','D_VM_03_0','E_VM_01_0','E_VM_03_0','E_VM_04_0','E_VM_05_0','E_VM_06_0','E_VM_07_0','F_VM_00_0']
+    #vm = ['A_VM_04_0']
+    
+    bidir_hack_path = ['gpio1_reg','gpio2_reg','gpio3_reg','gpio4_reg','gpio5_reg','gpio6_reg','gpio7_reg','gpio8_reg','gpio9_reg','gpio10_reg','gpio11_reg','gpio12_reg','gpio13_reg','gpio14_reg','gpio15_reg','gpio16_reg','gpio17_reg','gpio18_reg','gpio19_reg','gpio20_reg','gpio21_reg','gpio22_reg','gpio23_reg','gpio24_reg','gpio25_reg','gpio26_reg','gpio27_reg','gpio28_reg','gpio29_reg','gpio30_reg']
+    
+    route = ['A_INT0_ROUTE_MAPPING_0','A_INT1_ROUTE_MAPPING_0','A_INT2_ROUTE_MAPPING_0','A_INT3_ROUTE_MAPPING_0','A_INT4_ROUTE_MAPPING_0','A_INT5_ROUTE_MAPPING_0','A_INT6_ROUTE_MAPPING_0','A_INT7_ROUTE_MAPPING_0','B_INT0_ROUTE_MAPPING_0','B_INT1_ROUTE_MAPPING_0','B_INT2_ROUTE_MAPPING_0','B_INT3_ROUTE_MAPPING_0','B_INT4_ROUTE_MAPPING_0','B_INT5_ROUTE_MAPPING_0','B_INT6_ROUTE_MAPPING_0','B_INT7_ROUTE_MAPPING_0','C_INT0_ROUTE_MAPPING_0','C_INT1_ROUTE_MAPPING_0','C_INT2_ROUTE_MAPPING_0','C_INT3_ROUTE_MAPPING_0','C_INT4_ROUTE_MAPPING_0','C_INT5_ROUTE_MAPPING_0','C_INT6_ROUTE_MAPPING_0','C_INT7_ROUTE_MAPPING_0','D_INT0_ROUTE_MAPPING_0','D_INT1_ROUTE_MAPPING_0','D_INT2_ROUTE_MAPPING_0','D_INT3_ROUTE_MAPPING_0','D_INT4_ROUTE_MAPPING_0','D_INT5_ROUTE_MAPPING_0','D_INT6_ROUTE_MAPPING_0','D_INT7_ROUTE_MAPPING_0','E_INT0_ROUTE_MAPPING_0','E_INT1_ROUTE_MAPPING_0','E_INT2_ROUTE_MAPPING_0','E_INT3_ROUTE_MAPPING_0','E_INT4_ROUTE_MAPPING_0','E_INT5_ROUTE_MAPPING_0','E_INT6_ROUTE_MAPPING_0','E_INT7_ROUTE_MAPPING_0','F_INT0_ROUTE_MAPPING_0','F_INT1_ROUTE_MAPPING_0','F_INT2_ROUTE_MAPPING_0','F_INT3_ROUTE_MAPPING_0','F_INT4_ROUTE_MAPPING_0','F_INT5_ROUTE_MAPPING_0','F_INT6_ROUTE_MAPPING_0','F_INT7_ROUTE_MAPPING_0']
+    def clear_intr(reg):
+        gpio_reg = erot.GPIO.get_reg_by_name(reg)
+        gpio_reg.update(GPIO_INTERRUPT_CLEAR=1)
+
+    def config_intr_enable(reg):
+        gpio_reg = erot.GPIO.get_reg_by_name(reg)
+        gpio_reg.update(GPIO_ENABLE=1, IN_OUT=0, TRIGGER_TYPE=2, TRIGGER_LEVEL=1, INTERRUPT_FUNCTION=1)
+
+    def set_pad_input(reg_pair):
+        pos_reg = erot.get_reg_by_name(reg_pair[0])
+        pad_reg = pos_reg.get_reg_by_name(reg_pair[1])
+        pad_reg.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=1)
+        pad_reg.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=1)
+
+    def pin_group(idx):
+        reg = vm[idx]
+        #A_VM_01_0
+        if reg[0] == 'A':
+            group = 0
+        if reg[0] == 'B':
+            group = 1
+        if reg[0] == 'C':
+            group = 2
+        if reg[0] == 'D':
+            group = 3
+        if reg[0] == 'E':
+            group = 4
+        if reg[0] == 'F':
+            group = 5
+        return group
+    
+    def pin_idx(idx):
+        reg = vm[idx]
+        return int(reg[6])
+    
+    def set_vm(reg, des):
+        gpio_reg = erot.GPIO.get_reg_by_name(reg)
+        gpio_reg.update(VM1=((des>>0)&0x01)*0x03,VM2=((des>>1)&0x01)*0x03,VM3=((des>>2)&0x01)*0x03,VM4=((des>>3)&0x01)*0x03,VM5=((des>>4)&0x01)*0x03,VM6=((des>>5)&0x01)*0x03,VM7=((des>>6)&0x01)*0x03,VM8=((des>>7)&0x01)*0x03)
+        rd = gpio_reg.read()
+        helper.log("Reg is %s" % str(rd))
+    
+    def test_deposit(val):
+        #helper.gpio_write('ap0_fw_intr_n_gp05',val)
+        reg_num = len(bidir_port_enable)
+        path_head_wr = 'ntb_top.'
+        for onehot_loop in range(0, reg_num):
+            path = path_head_wr + bidir_hack_path[onehot_loop]
+            helper.hdl_deposit(path,val)
+            helper.wait_sim_time("ns", 1000)
+
+    def set_route(reg, val):
+        gpio_reg = erot.GPIO.get_reg_by_name(reg)
+        gpio_reg.update(VAL=(0x1<<val))#onehot
+
+    def gpio0_trig_intr():
+        reg_num = len(bidir_port_enable)
+        #? it seems not support the JTAG or HEAD platform, it is needed? 
+
+        helper.set_gpio_test(1)
+        #test_api.oobhub_icd_init()
+
+        for port in range(0, reg_num):
+            set_pad_input(bidir_pad_reg[port])
+
+        #test_deposit(0)# maybe no need to force all 0
+        helper.gpio_write('ap0_fw_intr_n_gp05',0)
+        helper.wait_rpi_time(1, 1) # wait 1000 us
+
+        for port in range(0, reg_num):
+            config_intr_enable(bidir_port_enable[port])
+
+        for port in range(0, reg_num):
+            clear_intr(intr_c[port])
+        
+        vm_code = 0xc3
+        for port in range(0, reg_num):
+            set_vm(vm[port], vm_code)
+        
+
+        
+        onehot_loop = 4
+        group = pin_group(onehot_loop)
+        idx = pin_idx(onehot_loop)
+
+        #mapping = group*8+intr_out
+        mapping = group*8+0
+
+        set_route(route[mapping], idx)
+
+        helper.log("SAtarting to make ap0_fw_intr_n_gp05 to 1")
+        helper.gpio_write('ap0_fw_intr_n_gp05',1)
+        #path_head_wr = 'ntb_top.'
+        #path = path_head_wr + bidir_hack_path[onehot_loop]
+        #helper.hdl_deposit(path,1)
+        #helper.wait_sim_time("ns", 1000)
+        helper.wait_rpi_time(1, 1) # wait 1000 us
+        helper.log("end of ap0_fw_intr_n_gp05")
+
+        #        for intr_loop in range(0,8):
+        #            if(intr_loop == intr_out):
+        #                check_intr_wire(intr_loop, 1)
+        #            else:
+        #                check_intr_wire(intr_loop, 0)
+
+
     def checking_interrupt(ip_list, reg):
         #assert interrupt -> read status regs -> de-assert --> read again
         for ip in ip_list:
+            helper.log("Checking ip %s" % (ip['name']))
             if helper.target in ["fpga", "simv_fpga"]:
-                reg.poll(timeout=10, EXT=0)
+                if (options.engine == 'FSP'):
+                    reg.poll(timeout=5, EXT=0)
+                elif (options.engine == 'OOBHUB'):
+                    reg.poll(timeout=5, EXT=0x2000000) # I2C_AP0 will have interrupt in fpga env
+                else:
+                    helper.perror("no engine %s" % (options.engine))
                 helper.log("%s interrupt de-asserted and detected" % (ip['name']))
                 if(ip['name'] == "SPIMON_AP0"):
                     bypmon_trig_intr()
                     helper.log("bypass monitor triggers the interrupt")
+                elif(ip['name'] == "GPIO_CRTL0"):
+                    gpio0_trig_intr()
+                    helper.log("gpio0 triggers the interrupt")
                 else:
                     helper.perror("%s cannot do the interrupt action in FPGA env" % (ip['name']))
-                reg.poll(timeout=20, EXT=ip['read_value'])
-                helper.log("%s interrupt asserted and detected" % (ip['name']))
+                if (options.engine == 'FSP'):
+                    reg.poll(timeout=5, EXT=ip['read_value'])
+                elif (options.engine == 'OOBHUB'):
+                    final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
+                    reg.poll(timeout=5, EXT=final_EXT)
+                else:
+                    helper.perror("no engine %s" % (options.engine))
+                #reg.poll(timeout=20, EXT=ip['read_value'])
+                #
+                ## also check the FSP corresponding register value when OOBHUB has the interrupt
+
+         #       #helper.log("%s interrupt asserted and detected" % (ip['name']))
             else:
                 helper.hdl_force(ip['intr_force_path'],1)
                 reg.poll(EXT=ip['read_value'])
@@ -159,35 +303,31 @@ with Test(sys.argv) as t:
                 reg.poll(EXT=0)
                 print(ip['name'] + " interrupt de-asserted and detected")
 
+    options = parse_args()
     #programming configuration regs
     if helper.target in ["fpga", "simv_fpga"]:
-#        #jtag unlock
-#        helper.log("Test start")
-#        helper.wait_sim_time("us", 50)
-#        helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
-#
-#        helper.jtag.Reset(0)
-#        helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-#        helper.jtag.Reset(1)
-#
-#
-#        helper.pinfo(f'j2h_unlock sequence start')
-#        helper.j2h_unlock()
-#        helper.pinfo(f'j2h_unlock sequence finish')
-#
-#
-#        helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-
         helper.log("Programming START")
-    #    erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
-    #    erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffffffff) #mask set to all 1
-        erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
-        erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
+        if (options.engine == 'FSP'):
+            erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
+            erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
+            erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
+            erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
+        elif(options.engine == 'OOBHUB'):
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffffffff) #mask set to all 1
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
+        else:
+            helper.perror("no engine %s" % (options.engine))
         helper.log("Programming DONE")
-    #    erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
-    #    erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
-        erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
-        erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
+        
+        helper.log("Starting to check the interrupt.")
+        if (options.engine == 'FSP'):
+            checking_interrupt(FSP_IP_LIST, erot.FSP.RISCV_EXTIRQSTAT_0)
+        elif(options.engine == 'OOBHUB'):
+            checking_interrupt(OOBHUB_IP_LIST, erot.OOBHUB.PEREGRINE_RISCV_EXTIRQSTAT_0)
+        else:
+            helper.perror("no engine %s" % (options.engine))
     else:
         helper.log("Programming START")
         erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
@@ -200,6 +340,6 @@ with Test(sys.argv) as t:
         erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
         erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
 
-    helper.log("Starting to check the interrupt.")
-    #checking_interrupt(OOBHUB_IP_LIST, erot.OOBHUB.PEREGRINE_RISCV_EXTIRQSTAT_0)
-    checking_interrupt(FSP_IP_LIST, erot.FSP.RISCV_EXTIRQSTAT_0)
+        helper.log("Starting to check the interrupt.")
+        checking_interrupt(OOBHUB_IP_LIST, erot.OOBHUB.PEREGRINE_RISCV_EXTIRQSTAT_0)
+        checking_interrupt(FSP_IP_LIST, erot.FSP.RISCV_EXTIRQSTAT_0)

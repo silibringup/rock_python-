@@ -136,6 +136,29 @@ with feature('erot_fpga/lighton'):
             )
     # fabric bring-up tests END
     
+    # interrupt bring-up tests
+    test_args   =   ['''-py erot_intr_bringup_test.py -pyarg ' --engine FSP' '''] + RCV_BOOT
+    test_tags   =   ['interrupt','l0']
+    AddTest(
+        name    =   'erot_intr_bringup_test_fsp',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''interrupt test from SPI_MON to fabric'''
+            )
+    
+    test_args   =   ['''-py erot_intr_bringup_test.py -pyarg ' --engine OOBHUB' '''] + RCV_BOOT
+    test_tags   =   ['interrupt','l0']
+    AddTest(
+        name    =   'erot_intr_bringup_test_oobhub',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''interrupt test from GPIO to OOBHUB and FSP'''
+            )
+      
+    # interrupt bring-up tests END
+    
     # mram bring-up tests
     test_args   =   ['-py erot_mram_tmc_test.py '] + RCV_BOOT
     test_tags   =   ['mram','l1']
