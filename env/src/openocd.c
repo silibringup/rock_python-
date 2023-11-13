@@ -270,7 +270,7 @@ int intf2pin(char* intf_array){
 		pin =  4;
 	}else if(!strcmp(intf_array,"ap1_boot_ctrl_0_n_gp12")){
 		pin =  4;
-	}else if(!strcmp(intf_array,"ap0_boot_ctrl_1_n_gp01")){
+	}else if(!strcmp(intf_array,"ap0_boot_ctrl_1_n_gp02")){
 		pin = 17;
 	}else if(!strcmp(intf_array,"ap1_boot_ctrl_1_n_gp13")){
 		pin = 17;
