@@ -54,28 +54,33 @@ with Test(sys.argv) as t:
             #1-1-1 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x02,addr,24,0,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(30)
+            #time.sleep(30)
+            time.sleep(10)
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-2 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0xa2,addr+32,24,1,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)   
-            time.sleep(30)
+            #time.sleep(30)
+            time.sleep(10)
             send_1_0_0_cmd(master,cs,0x06,8) 
             #1-1-4 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x32,addr+64,24,2,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash) 
-            time.sleep(30)
+            #time.sleep(30)
+            time.sleep(10)
         elif boot == 1 :
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-1 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x02,addr,24,0,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(30)
+            #time.sleep(30)
+            time.sleep(10)
             send_1_0_0_cmd(master,cs,0x06,8)
             #1-1-2 write mode and 32byte for one command
             send_write_1_1_x_cmd(master,cs,0x02,addr+32,24,0,7,data_value_0,data_value_1,data_value_2,data_value_3)
             #test_api.wait_socv_flash_write_done(flash)
-            time.sleep(30) 
+            #time.sleep(30) 
+            time.sleep(10) 
 
     def validate_qspi_read(master,cs,addr,boot):
         if boot == 0 :
@@ -84,32 +89,37 @@ with Test(sys.argv) as t:
             for i in range(len(data_list)):    
                 test_api.read_flash_data_for_check(master,data_list[i]) 
             helper.wait_sim_time("us", 1)    
-            time.sleep(30)           
+            #time.sleep(30)           
+            time.sleep(10)           
         #1-1-2 read mode for 32 btye
             send_read_1_1_x_cmd_flash(master,cs,0x3b,addr+32,24,1,7,0x8)
             for i in range(len(data_list)):    
                 test_api.read_flash_data_for_check(master,data_list[i]) 
             helper.wait_sim_time("us", 1)
-            time.sleep(30)
+            #time.sleep(30)
+            time.sleep(10)
         #1-1-4 read mode for 32 btye
             send_read_1_1_x_cmd_flash(master,cs,0x6b,addr+64,24,2,7,0x8)
             for i in range(len(data_list)):    
                 test_api.read_flash_data_for_check(master,data_list[i]) 
             helper.wait_sim_time("us", 1)
-            time.sleep(30)    
+            #time.sleep(30)    
+            time.sleep(10)    
         elif boot == 1 :
         #1-1-1 read mode for 32 btye
             send_read_1_1_x_cmd_flash(master,cs,0x0b,addr,24,0,7,0x8)
             for i in range(len(data_list)):    
                 test_api.read_flash_data_for_check(master,data_list[i]) 
             helper.wait_sim_time("us", 1)
-            time.sleep(30)               
+            #time.sleep(30)               
+            time.sleep(10)               
         #1-1-2 read mode for 32 btye
             send_read_1_1_x_cmd_flash(master,cs,0x3b,addr+32,24,1,7,0x8)
             for i in range(len(data_list)):    
                 test_api.read_flash_data_for_check(master,data_list[i]) 
             helper.wait_sim_time("us", 1)
-            time.sleep(30)            
+            #time.sleep(30)            
+            time.sleep(10)            
 
     def validate_qspi_flash(master,cs,flash_num,boot,addr):
         flash = flash_num * 2 + cs

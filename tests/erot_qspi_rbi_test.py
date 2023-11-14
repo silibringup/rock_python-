@@ -12,7 +12,6 @@ with Test(sys.argv) as t:
 #    data_list = [data_value_0,data_value_1,data_value_2,data_value_3]  
     def parse_args():
         t.parser.add_argument("--qspi", action='store', help="Verify QSPI INTI and AP to access flash", default='0')
-        t.parser.add_argument("--random_seed", action='store', help="random_seed", default='0')
         return t.parser.parse_args(sys.argv[1:])
       
     def config_bm_register(bm):
@@ -81,7 +80,7 @@ with Test(sys.argv) as t:
             helper.pinfo(f'data : {hex(exp_rdata_list[i])}')
             if rd != exp_rdata_list[i]:
                 helper.perror(f"rbi read fail")
-            time.sleep(60)
+            time.sleep(10)
 
     def validate_qspi_rbi(master,master_rbi,addr,flash,flash_addr,qspi_base_addr,qspi_rbi):
         master_rbi.PROM_ADDRESS_OFFSET_0.write(flash_addr)
