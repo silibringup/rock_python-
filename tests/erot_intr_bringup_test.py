@@ -332,6 +332,10 @@ with Test(sys.argv) as t:
             erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
             erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
         elif(options.engine == 'OOBHUB'):
+            #make sure l3 reset is released
+            erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.poll(timeout=10, RESET_LEVEL3=1)
+            #reset gpio 
+            erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.update(RESET_GPIO_CTRL=1)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
            # erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffdfffff) #mask set to all 1 besides the I2C AP0 interrupt
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x0) #mask set to all 1 besides the I2C AP0 interrupt
