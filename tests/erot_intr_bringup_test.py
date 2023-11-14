@@ -163,11 +163,15 @@ with Test(sys.argv) as t:
         if (reg == 'A_INTERRUPT_CLEAR_04_0'):
             gpio_reg = erot.GPIO.get_reg_by_name(reg)
             gpio_reg.update(GPIO_INTERRUPT_CLEAR=1)
+            rd = gpio_reg.read()
+            helper.log("clear_intr -- Reg is %s" % str(rd))
 
     def config_intr_enable(reg):
         if (reg == 'A_ENABLE_CONFIG_04_0'):
             gpio_reg = erot.GPIO.get_reg_by_name(reg)
             gpio_reg.update(GPIO_ENABLE=1, IN_OUT=0, TRIGGER_TYPE=2, TRIGGER_LEVEL=1, INTERRUPT_FUNCTION=1)
+            rd = gpio_reg.read()
+            helper.log("config_intr_enable -- Reg is %s" % str(rd))
 
     def set_pad_input(reg_pair):
         if (reg_pair[1] == "AP0_FW_INTR_N_GP05_0"):
@@ -202,7 +206,7 @@ with Test(sys.argv) as t:
             gpio_reg = erot.GPIO.get_reg_by_name(reg)
             gpio_reg.update(VM1=((des>>0)&0x01)*0x03,VM2=((des>>1)&0x01)*0x03,VM3=((des>>2)&0x01)*0x03,VM4=((des>>3)&0x01)*0x03,VM5=((des>>4)&0x01)*0x03,VM6=((des>>5)&0x01)*0x03,VM7=((des>>6)&0x01)*0x03,VM8=((des>>7)&0x01)*0x03)
             rd = gpio_reg.read()
-            helper.log("Reg is %s" % str(rd))
+            helper.log("set_vm -- Reg is %s" % str(rd))
     
     intr_status = ['A_INTERRUPT_STATUS_G0_0','B_INTERRUPT_STATUS_G0_0','C_INTERRUPT_STATUS_G0_0','D_INTERRUPT_STATUS_G0_0','E_INTERRUPT_STATUS_G0_0','F_INTERRUPT_STATUS_G0_0']
 
@@ -223,6 +227,8 @@ with Test(sys.argv) as t:
     def set_route(reg, val):
         gpio_reg = erot.GPIO.get_reg_by_name(reg)
         gpio_reg.update(VAL=(0x1<<val))#onehot
+        rd = gpio_reg.read()
+        helper.log("set_route -- Reg is %s" % str(rd))
 
     def gpio0_trig_intr():
         reg_num = len(bidir_port_enable)
