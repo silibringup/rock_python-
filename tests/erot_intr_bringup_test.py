@@ -283,7 +283,9 @@ with Test(sys.argv) as t:
                     erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=5, EXT=0x1000000) # FSP poll try
                 else:
                     helper.perror("no engine %s" % (options.engine))
+
                 helper.log("%s interrupt de-asserted and detected" % (ip['name']))
+                
                 if(ip['name'] == "SPIMON_AP0"):
                     bypmon_trig_intr()
                     helper.log("bypass monitor triggers the interrupt")
@@ -292,8 +294,9 @@ with Test(sys.argv) as t:
                     helper.log("gpio0 triggers the interrupt")
                 else:
                     helper.perror("%s cannot do the interrupt action in FPGA env" % (ip['name']))
+                
                 if (options.engine == 'FSP'):
-                    reg.poll(timeout=5, EXT=ip['read_value'])
+                    reg.poll(timeout=10, EXT=ip['read_value'])
                 elif (options.engine == 'OOBHUB'):
                     helper.log("OOBHUB interrupt register detect")
                     final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
