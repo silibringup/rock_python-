@@ -221,7 +221,7 @@ with Test(sys.argv) as t:
         reg_num = len(bidir_port_enable)
         #? it seems not support the JTAG or HEAD platform, it is needed? 
 
-        #helper.set_gpio_test(1)
+        helper.set_gpio_test(1)
         #test_api.oobhub_icd_init()
 
         helper.log("start set pad input")
@@ -283,7 +283,7 @@ with Test(sys.argv) as t:
                 elif (options.engine == 'OOBHUB'):
                     reg.poll(timeout=5, EXT=0x2000000) # I2C_AP0 will have interrupt in fpga env
                    # reg.poll(timeout=5, EXT=0x0)
-                 #   erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=5, EXT=0x1000000) # FSP poll try
+                    erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=5, EXT=0x1000000) # FSP poll try
                 else:
                     helper.perror("no engine %s" % (options.engine))
 
@@ -303,10 +303,10 @@ with Test(sys.argv) as t:
                 elif (options.engine == 'OOBHUB'):
                     helper.log("OOBHUB interrupt register detect")
                     final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
-                    reg.poll(timeout=5, EXT=final_EXT)
+                    reg.poll(timeout=20, EXT=final_EXT)
                     #reg.poll(timeout=5, EXT=ip['read_value'])
-                  #  helper.log("FSP interrupt register detect")
-                  #  erot.FSP.RISCV_EXTIRQSTAT_0.poll(EXT=0x1000000) #OOBHUB interface to FSP
+                    helper.log("FSP interrupt register detect")
+                    erot.FSP.RISCV_EXTIRQSTAT_0.poll(EXT=0x1000000) #OOBHUB interface to FSP
                 else:
                     helper.perror("no engine %s" % (options.engine))
                 #reg.poll(timeout=20, EXT=ip['read_value'])
@@ -333,21 +333,23 @@ with Test(sys.argv) as t:
             erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
         elif(options.engine == 'OOBHUB'):
             #make sure l3 reset is released
+            helper.log("checking the l3 reset value")
             erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.poll(timeout=10, RESET_LEVEL3=1)
             #reset gpio 
+            helper.log("update the gpio reset")
             erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.update(RESET_GPIO_CTRL=1)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
-           # erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffdfffff) #mask set to all 1 besides the I2C AP0 interrupt
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x0) #mask set to all 1 besides the I2C AP0 interrupt
-       #     erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0xffffffff) #set interrupt destination to FSP
-       #     erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
-       #     erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffdfffff) #mask set to all 1 besides the I2C AP0 interrupt
+           # erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x0) #mask set to all 1 besides the I2C AP0 interrupt
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0xffffffff) #set interrupt destination to FSP
+            erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
+            erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0x0)
-            #erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffdfffff)
-       #     erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0xffffffff)
-       #     erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
-       #     erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
+            #erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0x0)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffdfffff)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0xffffffff)
+            erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
+            erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
         else:
             helper.perror("no engine %s" % (options.engine))
         helper.log("Programming DONE")
