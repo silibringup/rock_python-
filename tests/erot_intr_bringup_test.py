@@ -333,12 +333,14 @@ with Test(sys.argv) as t:
             erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
         elif(options.engine == 'OOBHUB'):
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffdfffff) #mask set to all 1 besides the I2C AP0 interrupt
+           # erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffdfffff) #mask set to all 1 besides the I2C AP0 interrupt
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x0) #mask set to all 1 besides the I2C AP0 interrupt
        #     erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0xffffffff) #set interrupt destination to FSP
        #     erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
        #     erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffdfffff)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0x0)
+            #erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffdfffff)
        #     erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0xffffffff)
        #     erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
        #     erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
