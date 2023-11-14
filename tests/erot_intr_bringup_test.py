@@ -159,18 +159,21 @@ with Test(sys.argv) as t:
     
     route = ['A_INT0_ROUTE_MAPPING_0','A_INT1_ROUTE_MAPPING_0','A_INT2_ROUTE_MAPPING_0','A_INT3_ROUTE_MAPPING_0','A_INT4_ROUTE_MAPPING_0','A_INT5_ROUTE_MAPPING_0','A_INT6_ROUTE_MAPPING_0','A_INT7_ROUTE_MAPPING_0','B_INT0_ROUTE_MAPPING_0','B_INT1_ROUTE_MAPPING_0','B_INT2_ROUTE_MAPPING_0','B_INT3_ROUTE_MAPPING_0','B_INT4_ROUTE_MAPPING_0','B_INT5_ROUTE_MAPPING_0','B_INT6_ROUTE_MAPPING_0','B_INT7_ROUTE_MAPPING_0','C_INT0_ROUTE_MAPPING_0','C_INT1_ROUTE_MAPPING_0','C_INT2_ROUTE_MAPPING_0','C_INT3_ROUTE_MAPPING_0','C_INT4_ROUTE_MAPPING_0','C_INT5_ROUTE_MAPPING_0','C_INT6_ROUTE_MAPPING_0','C_INT7_ROUTE_MAPPING_0','D_INT0_ROUTE_MAPPING_0','D_INT1_ROUTE_MAPPING_0','D_INT2_ROUTE_MAPPING_0','D_INT3_ROUTE_MAPPING_0','D_INT4_ROUTE_MAPPING_0','D_INT5_ROUTE_MAPPING_0','D_INT6_ROUTE_MAPPING_0','D_INT7_ROUTE_MAPPING_0','E_INT0_ROUTE_MAPPING_0','E_INT1_ROUTE_MAPPING_0','E_INT2_ROUTE_MAPPING_0','E_INT3_ROUTE_MAPPING_0','E_INT4_ROUTE_MAPPING_0','E_INT5_ROUTE_MAPPING_0','E_INT6_ROUTE_MAPPING_0','E_INT7_ROUTE_MAPPING_0','F_INT0_ROUTE_MAPPING_0','F_INT1_ROUTE_MAPPING_0','F_INT2_ROUTE_MAPPING_0','F_INT3_ROUTE_MAPPING_0','F_INT4_ROUTE_MAPPING_0','F_INT5_ROUTE_MAPPING_0','F_INT6_ROUTE_MAPPING_0','F_INT7_ROUTE_MAPPING_0']
     def clear_intr(reg):
-        gpio_reg = erot.GPIO.get_reg_by_name(reg)
-        gpio_reg.update(GPIO_INTERRUPT_CLEAR=1)
+        if (reg == 'A_INTERRUPT_CLEAR_04_0'):
+            gpio_reg = erot.GPIO.get_reg_by_name(reg)
+            gpio_reg.update(GPIO_INTERRUPT_CLEAR=1)
 
     def config_intr_enable(reg):
-        gpio_reg = erot.GPIO.get_reg_by_name(reg)
-        gpio_reg.update(GPIO_ENABLE=1, IN_OUT=0, TRIGGER_TYPE=2, TRIGGER_LEVEL=1, INTERRUPT_FUNCTION=1)
+        if (reg == 'A_ENABLE_CONFIG_04_0'):
+            gpio_reg = erot.GPIO.get_reg_by_name(reg)
+            gpio_reg.update(GPIO_ENABLE=1, IN_OUT=0, TRIGGER_TYPE=2, TRIGGER_LEVEL=1, INTERRUPT_FUNCTION=1)
 
     def set_pad_input(reg_pair):
-        pos_reg = erot.get_reg_by_name(reg_pair[0])
-        pad_reg = pos_reg.get_reg_by_name(reg_pair[1])
-        pad_reg.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=1)
-        pad_reg.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=1)
+        if (reg_pair[1] == "AP0_FW_INTR_N_GP05_0"):
+            pos_reg = erot.get_reg_by_name(reg_pair[0])
+            pad_reg = pos_reg.get_reg_by_name(reg_pair[1])
+            pad_reg.update(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=1)
+            pad_reg.poll(TRISTATE=0,GPIO_SF_SEL=0,E_INPUT=1)
 
     def pin_group(idx):
         reg = vm[idx]
@@ -194,19 +197,20 @@ with Test(sys.argv) as t:
         return int(reg[6])
     
     def set_vm(reg, des):
-        gpio_reg = erot.GPIO.get_reg_by_name(reg)
-        gpio_reg.update(VM1=((des>>0)&0x01)*0x03,VM2=((des>>1)&0x01)*0x03,VM3=((des>>2)&0x01)*0x03,VM4=((des>>3)&0x01)*0x03,VM5=((des>>4)&0x01)*0x03,VM6=((des>>5)&0x01)*0x03,VM7=((des>>6)&0x01)*0x03,VM8=((des>>7)&0x01)*0x03)
-        rd = gpio_reg.read()
-        helper.log("Reg is %s" % str(rd))
+        if (reg == 'A_VM_04_0'):
+            gpio_reg = erot.GPIO.get_reg_by_name(reg)
+            gpio_reg.update(VM1=((des>>0)&0x01)*0x03,VM2=((des>>1)&0x01)*0x03,VM3=((des>>2)&0x01)*0x03,VM4=((des>>3)&0x01)*0x03,VM5=((des>>4)&0x01)*0x03,VM6=((des>>5)&0x01)*0x03,VM7=((des>>6)&0x01)*0x03,VM8=((des>>7)&0x01)*0x03)
+            rd = gpio_reg.read()
+            helper.log("Reg is %s" % str(rd))
     
-    def test_deposit(val):
-        #helper.gpio_write('ap0_fw_intr_n_gp05',val)
-        reg_num = len(bidir_port_enable)
-        path_head_wr = 'ntb_top.'
-        for onehot_loop in range(0, reg_num):
-            path = path_head_wr + bidir_hack_path[onehot_loop]
-            helper.hdl_deposit(path,val)
-            helper.wait_sim_time("ns", 1000)
+#    def test_deposit(val):
+#        #helper.gpio_write('ap0_fw_intr_n_gp05',val)
+#        reg_num = len(bidir_port_enable)
+#        path_head_wr = 'ntb_top.'
+#        for onehot_loop in range(0, reg_num):
+#            path = path_head_wr + bidir_hack_path[onehot_loop]
+#            helper.hdl_deposit(path,val)
+#            helper.wait_sim_time("ns", 1000)
 
     def set_route(reg, val):
         gpio_reg = erot.GPIO.get_reg_by_name(reg)
@@ -219,13 +223,17 @@ with Test(sys.argv) as t:
         helper.set_gpio_test(1)
         #test_api.oobhub_icd_init()
 
+        helper.log("start set pad input")
         for port in range(0, reg_num):
             set_pad_input(bidir_pad_reg[port])
 
+        helper.log("start gpio write ap0_fw_intr_n_gp05 to 0")
         #test_deposit(0)# maybe no need to force all 0
         helper.gpio_write('ap0_fw_intr_n_gp05',0)
+        helper.log("after gpio write ap0_fw_intr_n_gp05, wait for 1 ms")
         helper.wait_rpi_time(1, 1) # wait 1000 us
 
+        helper.log("start config intr enable")
         for port in range(0, reg_num):
             config_intr_enable(bidir_port_enable[port])
 
@@ -272,6 +280,7 @@ with Test(sys.argv) as t:
                     reg.poll(timeout=5, EXT=0)
                 elif (options.engine == 'OOBHUB'):
                     reg.poll(timeout=5, EXT=0x2000000) # I2C_AP0 will have interrupt in fpga env
+                    erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=5, EXT=0x1000000) # FSP poll try
                 else:
                     helper.perror("no engine %s" % (options.engine))
                 helper.log("%s interrupt de-asserted and detected" % (ip['name']))
@@ -286,8 +295,11 @@ with Test(sys.argv) as t:
                 if (options.engine == 'FSP'):
                     reg.poll(timeout=5, EXT=ip['read_value'])
                 elif (options.engine == 'OOBHUB'):
+                    helper.log("OOBHUB interrupt register detect")
                     final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
                     reg.poll(timeout=5, EXT=final_EXT)
+                    helper.log("FSP interrupt register detect")
+                    erot.FSP.RISCV_EXTIRQSTAT_0.poll(EXT=0x1000000) #OOBHUB interface to FSP
                 else:
                     helper.perror("no engine %s" % (options.engine))
                 #reg.poll(timeout=20, EXT=ip['read_value'])
@@ -315,8 +327,14 @@ with Test(sys.argv) as t:
         elif(options.engine == 'OOBHUB'):
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffffffff) #mask set to all 1
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0xffffffff) #set interrupt destination to FSP
+            erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
+            erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0xffffffff)
+            erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
+            erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
         else:
             helper.perror("no engine %s" % (options.engine))
         helper.log("Programming DONE")
