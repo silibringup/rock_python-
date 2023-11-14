@@ -204,6 +204,13 @@ with Test(sys.argv) as t:
             rd = gpio_reg.read()
             helper.log("Reg is %s" % str(rd))
     
+    intr_status = ['A_INTERRUPT_STATUS_G0_0','B_INTERRUPT_STATUS_G0_0','C_INTERRUPT_STATUS_G0_0','D_INTERRUPT_STATUS_G0_0','E_INTERRUPT_STATUS_G0_0','F_INTERRUPT_STATUS_G0_0']
+
+    def check_reg(reg):
+        gpio_reg = erot.GPIO.get_reg_by_name(reg)
+        rd = gpio_reg.read()
+        helper.log("Reg value is %x in -> %s" % (rd.value , str(gpio_reg)))
+        return rd.value
 #    def test_deposit(val):
 #        #helper.gpio_write('ap0_fw_intr_n_gp05',val)
 #        reg_num = len(bidir_port_enable)
@@ -265,6 +272,11 @@ with Test(sys.argv) as t:
         #helper.wait_sim_time("ns", 1000)
         helper.wait_rpi_time(1, 1) # wait 1000 us
         helper.log("end of ap0_fw_intr_n_gp05")
+
+        val = check_reg(intr_status[group])
+        helper.log("group is %d, idx is %d, intr_out is %d" % (group, idx, 0))
+        if val != (1<<idx):
+            helper.perror("check reg fail, exp %d, real %d" % (1<<idx, val))
 
         #        for intr_loop in range(0,8):
         #            if(intr_loop == intr_out):
