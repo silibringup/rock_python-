@@ -221,7 +221,7 @@ with Test(sys.argv) as t:
         reg_num = len(bidir_port_enable)
         #? it seems not support the JTAG or HEAD platform, it is needed? 
 
-        helper.set_gpio_test(1)
+        #helper.set_gpio_test(1)
         #test_api.oobhub_icd_init()
 
         helper.log("start set pad input")
@@ -229,10 +229,10 @@ with Test(sys.argv) as t:
             set_pad_input(bidir_pad_reg[port])
 
         helper.log("start gpio write ap0_fw_intr_n_gp05 to 0")
-        #test_deposit(0)# maybe no need to force all 0
-        #helper.gpio_write('ap0_fw_intr_n_gp05',0)
-        #helper.log("after gpio write ap0_fw_intr_n_gp05, wait for 1 ms")
-        #helper.wait_rpi_time(1, 1) # wait 1000 us
+        test_deposit(0)# maybe no need to force all 0
+        helper.gpio_write('ap0_fw_intr_n_gp05',0)
+        helper.log("after gpio write ap0_fw_intr_n_gp05, wait for 1 ms")
+        helper.wait_rpi_time(1, 1) # wait 1000 us
 
         helper.log("start config intr enable")
         for port in range(0, reg_num):
