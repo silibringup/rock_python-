@@ -303,7 +303,7 @@ with Test(sys.argv) as t:
                 elif (options.engine == 'OOBHUB'):
                     helper.log("OOBHUB interrupt register detect")
                     final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
-                    reg.poll(timeout=20, EXT=final_EXT)
+                    reg.poll(timeout=5, EXT=final_EXT)
                     #reg.poll(timeout=5, EXT=ip['read_value'])
                     helper.log("FSP interrupt register detect")
                     erot.FSP.RISCV_EXTIRQSTAT_0.poll(EXT=0x1000000) #OOBHUB interface to FSP
