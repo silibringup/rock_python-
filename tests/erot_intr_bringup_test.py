@@ -229,7 +229,6 @@ with Test(sys.argv) as t:
             set_pad_input(bidir_pad_reg[port])
 
         helper.log("start gpio write ap0_fw_intr_n_gp05 to 0")
-        test_deposit(0)# maybe no need to force all 0
         helper.gpio_write('ap0_fw_intr_n_gp05',0)
         helper.log("after gpio write ap0_fw_intr_n_gp05, wait for 1 ms")
         helper.wait_rpi_time(1, 1) # wait 1000 us
