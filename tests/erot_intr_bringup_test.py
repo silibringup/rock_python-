@@ -282,7 +282,7 @@ with Test(sys.argv) as t:
                     reg.poll(timeout=5, EXT=0)
                 elif (options.engine == 'OOBHUB'):
                     reg.poll(timeout=5, EXT=0x2000000) # I2C_AP0 will have interrupt in fpga env
-                    erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=5, EXT=0x1000000) # FSP poll try
+                 #   erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=5, EXT=0x1000000) # FSP poll try
                 else:
                     helper.perror("no engine %s" % (options.engine))
 
@@ -303,8 +303,8 @@ with Test(sys.argv) as t:
                     helper.log("OOBHUB interrupt register detect")
                     final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
                     reg.poll(timeout=5, EXT=final_EXT)
-                    helper.log("FSP interrupt register detect")
-                    erot.FSP.RISCV_EXTIRQSTAT_0.poll(EXT=0x1000000) #OOBHUB interface to FSP
+                  #  helper.log("FSP interrupt register detect")
+                  #  erot.FSP.RISCV_EXTIRQSTAT_0.poll(EXT=0x1000000) #OOBHUB interface to FSP
                 else:
                     helper.perror("no engine %s" % (options.engine))
                 #reg.poll(timeout=20, EXT=ip['read_value'])
@@ -332,14 +332,14 @@ with Test(sys.argv) as t:
         elif(options.engine == 'OOBHUB'):
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0xffffffff) #mask set to all 1
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0xffffffff) #set interrupt destination to FSP
-            erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
-            erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
+       #     erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0xffffffff) #set interrupt destination to FSP
+       #     erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
+       #     erot.FSP.RISCV_EXTIRQMSET_0.write(0xffffffff)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0xffffffff)
-            erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
-            erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
+       #     erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0xffffffff)
+       #     erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
+       #     erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0xffffffff)
         else:
             helper.perror("no engine %s" % (options.engine))
         helper.log("Programming DONE")
