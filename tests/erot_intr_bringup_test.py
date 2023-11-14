@@ -238,9 +238,11 @@ with Test(sys.argv) as t:
         for port in range(0, reg_num):
             config_intr_enable(bidir_port_enable[port])
 
+        helper.log("start clear intr enable")
         for port in range(0, reg_num):
             clear_intr(intr_c[port])
         
+        helper.log("start set vm")
         vm_code = 0xc3
         for port in range(0, reg_num):
             set_vm(vm[port], vm_code)
