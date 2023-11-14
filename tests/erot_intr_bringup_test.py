@@ -1,5 +1,6 @@
 #!/home/utils/Python/3.8/3.8.6-20201005/bin/python3
 from driver import * 
+from driver.components.spi_mst import SPI_SCLK_FREQ_SEL
 
 with Test(sys.argv) as t:
     
