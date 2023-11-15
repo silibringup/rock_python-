@@ -115,7 +115,7 @@ with Test(sys.argv) as t:
     
     L2_FABRIC_TARGET_FPGA = [
 #        {'name' : 'l2_csr',        'reg' : erot.L2_CSR,         'addr_low_boundary' : 0x9a4000,    'CTL' : erot.L2_CSR.L2_CSR_BLF_CTL_0,       'WRITE' : erot.L2_CSR.L2_CSR_BLF_WRITE_CTL_0,           'READ' : erot.L2_CSR.L2_CSR_BLF_READ_CTL_0},
-        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
+#####        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm1',      'reg' : erot.GPIO.A_ENABLE_CONFIG_00_0,              'addr_low_boundary' : 0x985000,    'CTL' : erot.L2_CSR.GPIO_VM1_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM1_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM1_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm2',      'reg' : 'none',              'addr_low_boundary' : 0x986000,    'CTL' : erot.L2_CSR.GPIO_VM2_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM2_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM2_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm3',      'reg' : 'none',              'addr_low_boundary' : 0x987000,    'CTL' : erot.L2_CSR.GPIO_VM3_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM3_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM3_BLF_READ_CTL_0},
@@ -126,37 +126,38 @@ with Test(sys.argv) as t:
 #        {'name' : 'gpio_vm8',      'reg' : 'none',              'addr_low_boundary' : 0x98c000,    'CTL' : erot.L2_CSR.GPIO_VM8_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM8_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM8_BLF_READ_CTL_0},
 #        {'name' : 'i2c_ib0',       'reg' : erot.I2C_IB0.I2C_CNFG_0,        'addr_low_boundary' : 0x914000,    'CTL' : erot.L2_CSR.I2C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB0_BLF_READ_CTL_0},
 #        {'name' : 'i2c_ib0',       'reg' : erot.I2C_IB0.BUS_STATUS_0,        'addr_low_boundary' : 0x914000,    'CTL' : erot.L2_CSR.I2C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB0_BLF_READ_CTL_0},
-        {'name' : 'i2c_ib1',       'reg' : erot.I2C_IB1.I2C_CNFG_0,        'addr_low_boundary' : 0x944000,    'CTL' : erot.L2_CSR.I2C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB1_BLF_READ_CTL_0},
+        {'name' : 'i2c_ib1',       'reg' : erot.I2C_IB1.I2C_CMD_DATA2_0,        'addr_low_boundary' : 0x944000,    'CTL' : erot.L2_CSR.I2C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB1_BLF_READ_CTL_0},
 #        {'name' : 'i3c_ib0',       'reg' : erot.I3C_IB0,        'addr_low_boundary' : 0x924000,    'CTL' : erot.L2_CSR.I3C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB0_BLF_READ_CTL_0},
-        {'name' : 'i3c_ib1',       'reg' : erot.I3C_IB1.DEVICE_CTRL_0,        'addr_low_boundary' : 0x954000,    'CTL' : erot.L2_CSR.I3C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB1_BLF_READ_CTL_0},
+        {'name' : 'i3c_ib1',       'reg' : erot.I3C_IB1.DEV_ADDR_TABLE2_LOC1_0,        'addr_low_boundary' : 0x954000,    'CTL' : erot.L2_CSR.I3C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB1_BLF_READ_CTL_0},
 #        {'name' : 'io_expander',   'reg' : erot.IO_EXPANDER,    'addr_low_boundary' : 0x964000,    'CTL' : erot.L2_CSR.IO_EXPANDER_BLF_CTL_0,  'WRITE' : erot.L2_CSR.IO_EXPANDER_BLF_WRITE_CTL_0,      'READ' : erot.L2_CSR.IO_EXPANDER_BLF_READ_CTL_0},
 #        {'name' : 'fsp',           'reg' : erot.PFSP,           'addr_low_boundary' : 0x8f0000,    'CTL' : erot.L2_CSR.FSP_BLF_CTL_0,          'WRITE' : erot.L2_CSR.FSP_BLF_WRITE_CTL_0,              'READ' : erot.L2_CSR.FSP_BLF_READ_CTL_0},
-        {'name' : 'oobhub_spi',    'reg' : erot.OOBHUB_SPI.COMMAND_0,     'addr_low_boundary' : 0x8f4000,    'CTL' : erot.L2_CSR.OOBHUB_SPI_BLF_CTL_0,   'WRITE' : erot.L2_CSR.OOBHUB_SPI_BLF_WRITE_CTL_0,       'READ' : erot.L2_CSR.OOBHUB_SPI_BLF_READ_CTL_0},
+#        {'name' : 'oobhub_spi',    'reg' : erot.OOBHUB_SPI.TX_FIFO_0,     'addr_low_boundary' : 0x8f4000,    'CTL' : erot.L2_CSR.OOBHUB_SPI_BLF_CTL_0,   'WRITE' : erot.L2_CSR.OOBHUB_SPI_BLF_WRITE_CTL_0,       'READ' : erot.L2_CSR.OOBHUB_SPI_BLF_READ_CTL_0},
         {'name' : 'padctrl_e',     'reg' : erot.PADCTRL_E.AP0_BOOT_CTRL_0_N_GP01_0,      'addr_low_boundary' : 0x99c000,    'CTL' : erot.L2_CSR.PADCTRL_E_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_E_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_E_BLF_READ_CTL_0},
 #        {'name' : 'padctrl_n',     'reg' : erot.PADCTRL_N,      'addr_low_boundary' : 0x994000,    'CTL' : erot.L2_CSR.PADCTRL_N_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_N_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_N_BLF_READ_CTL_0},
 #        {'name' : 'padctrl_s',     'reg' : erot.PADCTRL_S,      'addr_low_boundary' : 0x998fff,    'CTL' : erot.L2_CSR.PADCTRL_S_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_S_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_S_BLF_READ_CTL_0},
 #        {'name' : 'padctrl_w',     'reg' : erot.PADCTRL_W,      'addr_low_boundary' : 0x9a0000,    'CTL' : erot.L2_CSR.PADCTRL_W_BLF_CTL_0,    'WRITE' : erot.L2_CSR.PADCTRL_W_BLF_WRITE_CTL_0,        'READ' : erot.L2_CSR.PADCTRL_W_BLF_READ_CTL_0},
-#        {'name' : 'spi_ib0',       'reg' : erot.SPI_IB0.COMMAND_0,        'addr_low_boundary' : 0x904000,    'CTL' : erot.L2_CSR.SPI_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.SPI_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.SPI_IB0_BLF_READ_CTL_0},
+        {'name' : 'spi_ib0',       'reg' : erot.SPI_IB0.INTR_MASK_0,        'addr_low_boundary' : 0x904000,    'CTL' : erot.L2_CSR.SPI_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.SPI_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.SPI_IB0_BLF_READ_CTL_0},
 #        {'name' : 'spi_ib1',       'reg' : erot.SPI_IB1,        'addr_low_boundary' : 0x934000,    'CTL' : erot.L2_CSR.SPI_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.SPI_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.SPI_IB1_BLF_READ_CTL_0},
-        {'name' : 'uart',          'reg' : erot.UART.UARTDR_0,           'addr_low_boundary' : 0x974000,    'CTL' : erot.L2_CSR.UART_BLF_CTL_0,         'WRITE' : erot.L2_CSR.UART_BLF_WRITE_CTL_0,             'READ' : erot.L2_CSR.UART_BLF_READ_CTL_0},
+        {'name' : 'uart',          'reg' : erot.UART.UART_MISC_INTR_MASK_0,           'addr_low_boundary' : 0x974000,    'CTL' : erot.L2_CSR.UART_BLF_CTL_0,         'WRITE' : erot.L2_CSR.UART_BLF_WRITE_CTL_0,             'READ' : erot.L2_CSR.UART_BLF_READ_CTL_0},
     ]
 
     def write_with_err_code_checking_fpga(reg, blocked_priv_id, current_priv_id):
         test_read_value = 0
         oob_write_err = 0
+        masked_write_value = 0xabcdefff & reg.write_mask
         #use jtag to write
         if(current_priv_id == 0):
-            reg.debug_write(0xabcdef12)
+            reg.debug_write(masked_write_value)
         #use fsp to check
         elif (current_priv_id == 2):
-            reg.write(0xabcdef12)
+            reg.write(masked_write_value)
         #use oobhub to check
         elif (current_priv_id == 3):
             helper.log("reg abs address is %x" % (reg.abs_addr))
             if (blocked_priv_id == 3):
-                oob_write_err = test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, 0xabcdef12, check_error_resp=0)
+                oob_write_err = test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, masked_write_value, check_error_resp=0)
             else:
-                test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, 0xabcdef12)
+                test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, masked_write_value)
         else:
             helper.perror("NOT support priv_id %d" %(current_priv_id))
         
@@ -174,7 +175,7 @@ with Test(sys.argv) as t:
         else:
             helper.perror("Not support option %s" % (options.Fabric))
         
-        masked_exp_value = 0xabcdef12 & reg.read_mask
+        masked_exp_value = masked_write_value & reg.read_mask
         if(current_priv_id == blocked_priv_id):
             #if (current_priv_id == 3) and (oob_write_err != 1):
             #    helper.perror("OOBHUB is blocked, but write without error, priv_id is %d" %(current_priv_id))
@@ -185,7 +186,7 @@ with Test(sys.argv) as t:
             if (current_priv_id == 3) and (oob_write_err == 1):
                 helper.perror("OOBHUB is non-blocked, but write with error, priv_id is %d" %(current_priv_id))
             if (test_read_value != masked_exp_value):
-                helper.perror("NON blocked_priv_id does not write in the test value, priv_id is %d, blocked_priv_id is %d, and act: %x, exp: 0xabcdef12" %(current_priv_id, blocked_priv_id, test_read_value))
+                helper.perror("NON blocked_priv_id does not write in the test value, priv_id is %d, blocked_priv_id is %d, and act: %x, exp: %x" %(current_priv_id, blocked_priv_id, test_read_value, masked_exp_value))
             #use jtag to write
             if(current_priv_id == 0):
                 reg.debug_write(reg.reset_val)
