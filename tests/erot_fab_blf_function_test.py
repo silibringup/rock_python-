@@ -410,7 +410,7 @@ with Test(sys.argv) as t:
                             ip['CTL'].write(0x30000)
                 if helper.target in ["fpga", "simv_fpga"]:
                     if (options.Fabric == 'L1'):
-                        fpga_allowed_priv_id_list = [0, 2]
+                        fpga_allowed_priv_id_list = [0]
                     else:
                         fpga_allowed_priv_id_list = [2, 3]
                     cannot_change_ip_list = []
