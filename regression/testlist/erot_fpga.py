@@ -143,6 +143,7 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''fabric blf function test for l2 part'''
+            )
     # fabric bring-up tests END
     
     # interrupt bring-up tests
