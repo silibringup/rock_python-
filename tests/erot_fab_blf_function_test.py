@@ -277,7 +277,7 @@ with Test(sys.argv) as t:
             read_rdata = 0
             #use jtag to write
             if(current_priv_id == 0):
-                read_rdata = reb.debug_read()
+                read_rdata = reg.debug_read()
             #use fsp to check
             elif (current_priv_id == 2):
                 read_rdata = reg.read()
