@@ -144,6 +144,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf function test for l2 part'''
             )
+    
+    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_function_test_l1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function test for l1 part'''
+            )
     # fabric bring-up tests END
     
     # interrupt bring-up tests
@@ -554,7 +564,7 @@ with feature('erot_fpga/lighton'):
     #QSPI bring-up testplan 
     for i in range(3):
         
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_flash_access_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
+        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_flash_access_test_fpga.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
         test_tags   =   ['qspi_bring_up']
         #if os.getenv("RANDOM_STALL") != None:
         #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
@@ -566,7 +576,7 @@ with feature('erot_fpga/lighton'):
             desc    =   '''enable qspi to access flash '''
             )   
     
-        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_rbi_test.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
+        test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_rbi_test_fpga.py   -pyarg '--qspi %s' ''' % str(i)] + PLATFORM_JTAG + RCV_BOOT
         test_tags   =   ['qspi_bring_up']
         #if os.getenv("RANDOM_STALL") != None:
         #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
