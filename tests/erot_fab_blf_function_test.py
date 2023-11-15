@@ -277,10 +277,12 @@ with Test(sys.argv) as t:
             read_rdata = 0
             #use jtag to write
             if(current_priv_id == 0):
-                read_rdata = reg.debug_read()
+                read_rdata_dic = reg.debug_read()
+                read_rdata = read_rdata_dic.value
             #use fsp to check
             elif (current_priv_id == 2):
-                read_rdata = reg.read()
+                read_rdata_dic = reg.read()
+                read_rdata = read_rdata_dic.value
             #use oobhub to check
             elif (current_priv_id == 3):
                 read_rdata = test_api.oobhub_icd_read(reg.abs_addr+OOBHUB_FABRIC_BASE, check_error_resp=0)
