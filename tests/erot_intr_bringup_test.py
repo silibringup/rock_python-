@@ -13,7 +13,7 @@ with Test(sys.argv) as t:
 #        {'name' : 'UART',            'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_sbsa_uart.sbsa_uart_intr',       'read_value' : 0x2000},
 #        {'name' : 'I2C_IO_Expander', 'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_io_expander.i2c_rupt',          'read_value' : 0x4000},
 #        {'name' : 'SPI_OOBHUB',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_oobhub_spi.intr',                   'read_value' : 0x8000},
-        {'name' : 'GPIO_CRTL0',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[0]',     'read_value' : 0x10000},
+#        {'name' : 'GPIO_CRTL0',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[0]',     'read_value' : 0x10000},
 #        {'name' : 'GPIO_CRTL1',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[1]',     'read_value' : 0x20000},
 #        {'name' : 'GPIO_CRTL2',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[2]',     'read_value' : 0x40000},
 #        {'name' : 'GPIO_CRTL3',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[3]',     'read_value' : 0x80000},
@@ -22,7 +22,7 @@ with Test(sys.argv) as t:
 #        {'name' : 'GPIO_CRTL6',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[6]',     'read_value' : 0x400000},
 #        {'name' : 'GPIO_CRTL7',      'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_NV_GPIO_ctl0.gpioctl0_rupt[7]',     'read_value' : 0x800000},
 #        {'name' : 'SPI_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_spi_ib0.intr',                      'read_value' : 0x1000000},
-#        {'name' : 'I2C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib0.i2c_rupt',                  'read_value' : 0x2000000},
+        {'name' : 'I2C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib0.i2c_rupt',                  'read_value' : 0x2000000},
 #        {'name' : 'I3C_AP0',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i3c_ib0.ic_intr',                   'read_value' : 0x4000000},
 #        {'name' : 'SPI_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_spi_ib1.intr',                      'read_value' : 0x10000000},
 #        {'name' : 'I2C_AP1',         'intr_force_path' : 'ntb_top.u_nv_top.u_sra_sys0.u_l2_cluster.u_i2c_ib1.i2c_rupt',                  'read_value' : 0x20000000},
@@ -317,9 +317,9 @@ with Test(sys.argv) as t:
                 if(ip['name'] == "SPIMON_AP0"):
                     bypmon_trig_intr()
                     helper.log("bypass monitor triggers the interrupt")
-                elif(ip['name'] == "GPIO_CRTL0"):
-                    gpio0_trig_intr()
-                    helper.log("gpio0 triggers the interrupt")
+                elif(ip['name'] == "I2C_AP0"):
+                    #gpio0_trig_intr()
+                    helper.log("i2c_ap0 triggers the interrupt when recover")
                 else:
                     helper.perror("%s cannot do the interrupt action in FPGA env" % (ip['name']))
                 
@@ -327,10 +327,12 @@ with Test(sys.argv) as t:
                     reg.poll(timeout=10, EXT=ip['read_value'])
                 elif (options.engine == 'OOBHUB'):
                     helper.log("OOBHUB interrupt register detect")
-                    final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
-                    reg.poll(timeout=20, EXT=final_EXT)
+                    #final_EXT = 0x2000000 + ip['read_value'] # add the I2C_AP0 interrupt value
+                    reg.poll(timeout=20, EXT=ip['read_value'])
                     #reg.poll(timeout=5, EXT=ip['read_value'])
                     helper.log("FSP interrupt register detect")
+                    erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0x2000000) #set interrupt destination to FSP
+                    erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0x2000000)
                     erot.FSP.RISCV_EXTIRQSTAT_0.poll(timeout=20, EXT=0x1000000) #OOBHUB interface to FSP
                 else:
                     helper.perror("no engine %s" % (options.engine))
@@ -364,15 +366,15 @@ with Test(sys.argv) as t:
             helper.log("update the gpio reset")
             erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.update(RESET_GPIO_CTRL=1)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.write(0xffffffff) #level-base interrupt
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x10000) #mask set to all 1 besides the I2C AP0 interrupt
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x2000000) #mask set to all 1 besides the I2C AP0 interrupt
            # erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMSET_0.write(0x0) #mask set to all 1 besides the I2C AP0 interrupt
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0x10000) #set interrupt destination to FSP
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.write(0x0) #set interrupt destination to FSP
             erot.FSP.RISCV_EXTIRQMODE_0.write(0xffffffff)
             erot.FSP.RISCV_EXTIRQMSET_0.write(0x0)
             erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
             #erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0x0)
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0x10000)
-            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0x10000)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQMASK_0.poll(EXT=0x2000000)
+            erot.OOBHUB.PEREGRINE_RISCV_EXTIRQDEST_0.poll(0x0)
             erot.FSP.RISCV_EXTIRQMODE_0.poll(LVL_EXT=0xffffffff)
             erot.FSP.RISCV_EXTIRQMASK_0.poll(EXT=0x0)
         else:
