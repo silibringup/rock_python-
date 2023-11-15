@@ -163,9 +163,9 @@ with Test(sys.argv) as t:
         
         if(options.Fabric == 'L1'):
             if(blocked_priv_id == 0):
-                test_read_value = helper.read(address)
+                test_read_value = helper.read(reg.abs_addr)
             else:
-                test_read_value = helper.j2h_read(address)
+                test_read_value = helper.j2h_read(reg.abs_addr)
         elif(options.Fabric == 'L2'):
             if(blocked_priv_id == 2): # blocked is fsp
                 test_read_value = test_api.oobhub_icd_read(reg.abs_addr+OOBHUB_FABRIC_BASE)
