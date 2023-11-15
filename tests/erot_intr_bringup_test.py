@@ -247,7 +247,7 @@ with Test(sys.argv) as t:
         helper.wait_rpi_time(1, 1) # wait 1000 us
         gpio_input_reg = erot.GPIO.get_reg_by_name("A_INPUT_04_0")
         input_rd = gpio_input_reg.read()
-        helper.perror("Reg %s -> value is %d" % (str(gpio_input_reg), input_rd.value))
+        helper.log("Reg %s -> value is %d" % (str(gpio_input_reg), input_rd.value))
 
         helper.log("start config intr enable")
         for port in range(0, reg_num):
@@ -283,7 +283,7 @@ with Test(sys.argv) as t:
         helper.log("end of ap0_fw_intr_n_gp05")
         gpio_input_reg = erot.GPIO.get_reg_by_name("A_INPUT_04_0")
         input_rd = gpio_input_reg.read()
-        helper.perror("Reg %s -> value is %d" % (str(gpio_input_reg), input_rd.value))
+        helper.log("Reg %s -> value is %d" % (str(gpio_input_reg), input_rd.value))
 
         val = check_reg(intr_status[group])
         helper.log("group is %d, idx is %d, intr_out is %d" % (group, idx, 0))
