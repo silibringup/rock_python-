@@ -681,7 +681,7 @@ with Test(sys.argv) as t:
             erot.RESET.NVEROT_RESET_CFG.SW_UART_RST_0.update(RESET_UART=1)
 
         helper.log("Force fabric fuse 1 start")
-        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
+        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
         # BLF does not care the PL
         #test_api.fuse_opts_override("opt_priv_sec_en", 1)
         helper.log("Force fabric fuse 1 done")
