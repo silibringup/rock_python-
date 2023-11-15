@@ -115,7 +115,7 @@ with Test(sys.argv) as t:
     
     L2_FABRIC_TARGET_FPGA = [
 #        {'name' : 'l2_csr',        'reg' : erot.L2_CSR,         'addr_low_boundary' : 0x9a4000,    'CTL' : erot.L2_CSR.L2_CSR_BLF_CTL_0,       'WRITE' : erot.L2_CSR.L2_CSR_BLF_WRITE_CTL_0,           'READ' : erot.L2_CSR.L2_CSR_BLF_READ_CTL_0},
-#        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
+        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm1',      'reg' : erot.GPIO.A_ENABLE_CONFIG_00_0,              'addr_low_boundary' : 0x985000,    'CTL' : erot.L2_CSR.GPIO_VM1_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM1_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM1_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm2',      'reg' : 'none',              'addr_low_boundary' : 0x986000,    'CTL' : erot.L2_CSR.GPIO_VM2_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM2_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM2_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm3',      'reg' : 'none',              'addr_low_boundary' : 0x987000,    'CTL' : erot.L2_CSR.GPIO_VM3_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM3_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM3_BLF_READ_CTL_0},
@@ -125,7 +125,7 @@ with Test(sys.argv) as t:
 #        {'name' : 'gpio_vm7',      'reg' : 'none',              'addr_low_boundary' : 0x98b000,    'CTL' : erot.L2_CSR.GPIO_VM7_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM7_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM7_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm8',      'reg' : 'none',              'addr_low_boundary' : 0x98c000,    'CTL' : erot.L2_CSR.GPIO_VM8_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM8_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM8_BLF_READ_CTL_0},
 #        {'name' : 'i2c_ib0',       'reg' : erot.I2C_IB0.I2C_CNFG_0,        'addr_low_boundary' : 0x914000,    'CTL' : erot.L2_CSR.I2C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB0_BLF_READ_CTL_0},
-        {'name' : 'i2c_ib0',       'reg' : erot.I2C_IB0.BUS_STATUS_0,        'addr_low_boundary' : 0x914000,    'CTL' : erot.L2_CSR.I2C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB0_BLF_READ_CTL_0},
+#        {'name' : 'i2c_ib0',       'reg' : erot.I2C_IB0.BUS_STATUS_0,        'addr_low_boundary' : 0x914000,    'CTL' : erot.L2_CSR.I2C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB0_BLF_READ_CTL_0},
 #        {'name' : 'i2c_ib1',       'reg' : erot.I2C_IB1,        'addr_low_boundary' : 0x944000,    'CTL' : erot.L2_CSR.I2C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I2C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I2C_IB1_BLF_READ_CTL_0},
 #        {'name' : 'i3c_ib0',       'reg' : erot.I3C_IB0,        'addr_low_boundary' : 0x924000,    'CTL' : erot.L2_CSR.I3C_IB0_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB0_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB0_BLF_READ_CTL_0},
 #        {'name' : 'i3c_ib1',       'reg' : erot.I3C_IB1.DEVICE_CTRL_0,        'addr_low_boundary' : 0x954000,    'CTL' : erot.L2_CSR.I3C_IB1_BLF_CTL_0,      'WRITE' : erot.L2_CSR.I3C_IB1_BLF_WRITE_CTL_0,          'READ' : erot.L2_CSR.I3C_IB1_BLF_READ_CTL_0},
@@ -666,6 +666,12 @@ with Test(sys.argv) as t:
         if (options.Fabric == 'L2'):
             helper.log("init oobhub")
             test_api.oobhub_icd_init()
+            #make sure l3 reset is released
+            helper.log("checking the l3 reset value")
+            erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.poll(timeout=10, RESET_LEVEL3=1)
+            #reset gpio 
+            helper.log("update the gpio reset")
+            erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.update(RESET_GPIO_CTRL=1)
         
         helper.log("Force fabric fuse 1 start")
         test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
