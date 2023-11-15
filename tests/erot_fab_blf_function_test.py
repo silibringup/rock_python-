@@ -671,10 +671,10 @@ with Test(sys.argv) as t:
             helper.log("checking the l3 reset value")
             erot.RESET.NVEROT_RESET_CFG.SW_L3_RST_0.poll(timeout=10, RESET_LEVEL3=1)
             #reset gpio 
-            helper.log("update the gpio and spi_ib0 reset")
+            helper.log("update the gpio and spi_ib0. uart reset")
             erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.update(RESET_GPIO_CTRL=1)
             erot.RESET.NVEROT_RESET_CFG.SW_IB0_SPI_RST_0.update(RESET_IB0_SPI=1)
-
+            erot.RESET.NVEROT_RESET_CFG.SW_UART_RST_0.update(RESET_UART=1)
 
         helper.log("Force fabric fuse 1 start")
         test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1)
