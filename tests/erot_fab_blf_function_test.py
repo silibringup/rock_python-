@@ -57,17 +57,18 @@ with Test(sys.argv) as t:
 #        {'name' : 'clock_cmn_pad_ctl',        'reg' : erot.CLOCK.NVEROT_CLOCK_CMN_PAD_CTL,   'addr_low_boundary' : 0x27000,      'CTL' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_CTL_0,           'WRITE' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_WRITE_CTL_0,          'READ' : erot.L1_CSR.CLOCK_CMN_PAD_CTL_BLF_READ_CTL_0},
 #        {'name' : 'clock_podvmon',            'reg' : erot.CLOCK.NVEROT_CLOCK_PODVMON,       'addr_low_boundary' : 0x28000,      'CTL' : erot.L1_CSR.CLOCK_PODVMON_BLF_CTL_0,               'WRITE' : erot.L1_CSR.CLOCK_PODVMON_BLF_WRITE_CTL_0,              'READ' : erot.L1_CSR.CLOCK_PODVMON_BLF_READ_CTL_0},
 #        {'name' : 'clock_fmon',               'reg' : erot.CLOCK.NVEROT_CLOCK_FMON,          'addr_low_boundary' : 0x29000,      'CTL' : erot.L1_CSR.CLOCK_FMON_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.CLOCK_FMON_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.CLOCK_FMON_BLF_READ_CTL_0},
-        {'name' : 'boot_qspi_nv_prom_data',   'reg' : erot.BOOT_QSPI.RBI.ERR_INTR_MASK_0,                                'addr_low_boundary' : 0x45000,      'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0,      'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0,     'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0},
+        {'name' : 'boot_qspi_core',   'reg' : erot.BOOT_QSPI.RBI.ERR_INTR_MASK_0,                                'addr_low_boundary' : 0x44000,      'CTL' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_CTL_0,      'WRITE' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_WRITE_CTL_0,     'READ' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_READ_CTL_0},
+#        {'name' : 'boot_qspi_nv_prom_data',   'reg' : erot.BOOT_QSPI.RBI.ERR_INTR_MASK_0,                                'addr_low_boundary' : 0x45000,      'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_CTL_0,      'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_WRITE_CTL_0,     'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_DATA_BLF_READ_CTL_0},
 #        {'name' : 'boot_qspi_nv_prom_2_data', 'reg' : 'none',                                'addr_low_boundary' : 0x145000,     'CTL' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_CTL_0,    'WRITE' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_WRITE_CTL_0,   'READ' : erot.L1_CSR.BOOT_QSPI_NV_PROM_2_DATA_BLF_READ_CTL_0},
-#        {'name' : 'fuse',                     'reg' : erot.FUSE,                             'addr_low_boundary' : 0x820000,     'CTL' : erot.L1_CSR.FUSE_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.FUSE_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.FUSE_BLF_READ_CTL_0},
+     #   {'name' : 'fuse',                     'reg' : erot.FUSE.OPT_EN_RESERVED_0_0,                             'addr_low_boundary' : 0x820000,     'CTL' : erot.L1_CSR.FUSE_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.FUSE_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.FUSE_BLF_READ_CTL_0},
 #        {'name' : 'jtag',                     'reg' : 'none',                                'addr_low_boundary' : 0x4a6000,     'CTL' : erot.L1_CSR.JTAG_BLF_CTL_0,                        'WRITE' : erot.L1_CSR.JTAG_BLF_WRITE_CTL_0,                       'READ' : erot.L1_CSR.JTAG_BLF_READ_CTL_0},
-#        {'name' : 'mram_cfg',                 'reg' : 'none',                                'addr_low_boundary' : 0xfc0000,     'CTL' : erot.L1_CSR.MRAM_CFG_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_CFG_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_CFG_BLF_READ_CTL_0},
+        {'name' : 'mram_cfg',                 'reg' : erot.MRAM.mram_cfg_b_mtp_region_acl_2_0,                                'addr_low_boundary' : 0xfc0000,     'CTL' : erot.L1_CSR.MRAM_CFG_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_CFG_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_CFG_BLF_READ_CTL_0},
 #        {'name' : 'mram_tmc',                 'reg' : 'none',                                'addr_low_boundary' : 0xfd0000,     'CTL' : erot.L1_CSR.MRAM_TMC_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_TMC_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_TMC_BLF_READ_CTL_0},
 #        {'name' : 'mram_otp',                 'reg' : 'none',                                'addr_low_boundary' : 0xfe0000,     'CTL' : erot.L1_CSR.MRAM_OTP_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_OTP_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_OTP_BLF_READ_CTL_0},
 #        {'name' : 'mram_mtp',                 'reg' : 'none',                                'addr_low_boundary' : 0xff0000,     'CTL' : erot.L1_CSR.MRAM_MTP_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.MRAM_MTP_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.MRAM_MTP_BLF_READ_CTL_0},
 #        {'name' : 'mram_mtpr',                'reg' : 'none',                                'addr_low_boundary' : 0x1000000,    'CTL' : erot.L1_CSR.MRAM_MTPR_BLF_CTL_0,                   'WRITE' : erot.L1_CSR.MRAM_MTPR_BLF_WRITE_CTL_0,                  'READ' : erot.L1_CSR.MRAM_MTPR_BLF_READ_CTL_0},
-#        {'name' : 'oobhub',                   'reg' : erot.OOBHUB,                           'addr_low_boundary' : 0x8a8000,     'CTL' : erot.L1_CSR.OOBHUB_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.OOBHUB_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.OOBHUB_BLF_READ_CTL_0},
-#        {'name' : 'puf_dbg',                  'reg' : erot.PUF_DBG,                          'addr_low_boundary' : 0x4a5000,     'CTL' : erot.L1_CSR.PUF_DBG_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.PUF_DBG_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.PUF_DBG_BLF_READ_CTL_0},
+        {'name' : 'oobhub',                   'reg' : erot.OOBHUB.PEREGRINE_RISCV_EXTIRQSCMASK_0,                           'addr_low_boundary' : 0x8a8000,     'CTL' : erot.L1_CSR.OOBHUB_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.OOBHUB_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.OOBHUB_BLF_READ_CTL_0},
+        {'name' : 'puf_dbg',                  'reg' : erot.PUF_DBG.PUF_ARRAY_CFG_0_0,                          'addr_low_boundary' : 0x4a5000,     'CTL' : erot.L1_CSR.PUF_DBG_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.PUF_DBG_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.PUF_DBG_BLF_READ_CTL_0},
 #        {'name' : 'qspi0_nv_prom_data',       'reg' : 'none',                                'addr_low_boundary' : 0x148000,     'CTL' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_CTL_0,          'WRITE' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_WRITE_CTL_0,         'READ' : erot.L1_CSR.QSPI0_NV_PROM_DATA_BLF_READ_CTL_0},
 #        {'name' : 'qspi0_nv_prom_2_data',     'reg' : 'none',                                'addr_low_boundary' : 0x248000,     'CTL' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_CTL_0,        'WRITE' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_WRITE_CTL_0,       'READ' : erot.L1_CSR.QSPI0_NV_PROM_2_DATA_BLF_READ_CTL_0},
 #        {'name' : 'qspi0_core',               'reg' : 'none',                                'addr_low_boundary' : 0x146000,     'CTL' : erot.L1_CSR.QSPI0_CORE_BLF_CTL_0,                  'WRITE' : erot.L1_CSR.QSPI0_CORE_BLF_WRITE_CTL_0,                 'READ' : erot.L1_CSR.QSPI0_CORE_BLF_READ_CTL_0},
@@ -77,13 +78,13 @@ with Test(sys.argv) as t:
 #        {'name' : 'boot_qspi_core',           'reg' : 'none',                                'addr_low_boundary' : 0x43000,      'CTL' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_CTL_0,              'WRITE' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_WRITE_CTL_0,             'READ' : erot.L1_CSR.BOOT_QSPI_CORE_BLF_READ_CTL_0},
 #        {'name' : 'reset_reg',                'reg' : erot.RESET.NVEROT_RESET_CFG,           'addr_low_boundary' : 0x33000,      'CTL' : erot.L1_CSR.RESET_REG_BLF_CTL_0,                   'WRITE' : erot.L1_CSR.RESET_REG_BLF_WRITE_CTL_0,                  'READ' : erot.L1_CSR.RESET_REG_BLF_READ_CTL_0},
 #        {'name' : 'reset_status',             'reg' : erot.RESET.NVEROT_RESET_STATUS,        'addr_low_boundary' : 0x34000,      'CTL' : erot.L1_CSR.RESET_STATUS_BLF_CTL_0,                'WRITE' : erot.L1_CSR.RESET_STATUS_BLF_WRITE_CTL_0,               'READ' : erot.L1_CSR.RESET_STATUS_BLF_READ_CTL_0},
-#        {'name' : 'rts',                      'reg' : erot.RTS,                              'addr_low_boundary' : 0x4a3000,     'CTL' : erot.L1_CSR.RTS_BLF_CTL_0,                         'WRITE' : erot.L1_CSR.RTS_BLF_WRITE_CTL_0,                        'READ' : erot.L1_CSR.RTS_BLF_READ_CTL_0},
-#        {'name' : 'spi_mon0',                 'reg' : erot.SPI_MON0,                         'addr_low_boundary' : 0x463000,     'CTL' : erot.L1_CSR.SPI_MON0_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON0_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON0_BLF_READ_CTL_0},
+        {'name' : 'rts',                      'reg' : erot.RTS.FLUSH_SHADOW_MASK_0,                              'addr_low_boundary' : 0x4a3000,     'CTL' : erot.L1_CSR.RTS_BLF_CTL_0,                         'WRITE' : erot.L1_CSR.RTS_BLF_WRITE_CTL_0,                        'READ' : erot.L1_CSR.RTS_BLF_READ_CTL_0},
+        {'name' : 'spi_mon0',                 'reg' : erot.SPI_MON0.reg0_start_address_0,                         'addr_low_boundary' : 0x463000,     'CTL' : erot.L1_CSR.SPI_MON0_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON0_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON0_BLF_READ_CTL_0},
 #        {'name' : 'spi_mon1',                 'reg' : erot.SPI_MON1,                         'addr_low_boundary' : 0x483000,     'CTL' : erot.L1_CSR.SPI_MON1_BLF_CTL_0,                    'WRITE' : erot.L1_CSR.SPI_MON1_BLF_WRITE_CTL_0,                   'READ' : erot.L1_CSR.SPI_MON1_BLF_READ_CTL_0},
-#        {'name' : 'nv_pmc',                   'reg' : erot.NV_PMC,                           'addr_low_boundary' : 0,            'CTL' : erot.L1_CSR.NV_PMC_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.NV_PMC_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.NV_PMC_BLF_READ_CTL_0},
+     #   {'name' : 'nv_pmc',                   'reg' : erot.NV_PMC.VOLATILE_OWNERSHIP_RAM_WRITE_DATA_0,                           'addr_low_boundary' : 0,            'CTL' : erot.L1_CSR.NV_PMC_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.NV_PMC_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.NV_PMC_BLF_READ_CTL_0},
 #        {'name' : 'nv_pbus',                  'reg' : erot.NV_PBUS,                          'addr_low_boundary' : 0x1000,       'CTL' : erot.L1_CSR.NV_PBUS_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PBUS_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PBUS_BLF_READ_CTL_0},
 #        {'name' : 'nv_ptop',                  'reg' : erot.NV_PTOP,                          'addr_low_boundary' : 0x22000,      'CTL' : erot.L1_CSR.NV_PTOP_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PTOP_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PTOP_BLF_READ_CTL_0},
-#        {'name' : 'therm',                    'reg' : erot.THERM,                            'addr_low_boundary' : 0x2000,       'CTL' : erot.L1_CSR.THERM_BLF_CTL_0,                       'WRITE' : erot.L1_CSR.THERM_BLF_WRITE_CTL_0,                      'READ' : erot.L1_CSR.THERM_BLF_READ_CTL_0},
+        {'name' : 'therm',                    'reg' : erot.THERM.CHECKER_PRIV_LEVEL_MASK_HIGH_0,                            'addr_low_boundary' : 0x2000,       'CTL' : erot.L1_CSR.THERM_BLF_CTL_0,                       'WRITE' : erot.L1_CSR.THERM_BLF_WRITE_CTL_0,                      'READ' : erot.L1_CSR.THERM_BLF_READ_CTL_0},
     ]
 
     L2_FABRIC_TARGET = [
@@ -115,7 +116,7 @@ with Test(sys.argv) as t:
     
     L2_FABRIC_TARGET_FPGA = [
 #        {'name' : 'l2_csr',        'reg' : erot.L2_CSR,         'addr_low_boundary' : 0x9a4000,    'CTL' : erot.L2_CSR.L2_CSR_BLF_CTL_0,       'WRITE' : erot.L2_CSR.L2_CSR_BLF_WRITE_CTL_0,           'READ' : erot.L2_CSR.L2_CSR_BLF_READ_CTL_0},
-#####        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
+        {'name' : 'gpio_cmn',      'reg' : erot.GPIO.A_VM_00_0,              'addr_low_boundary' : 0x984000,    'CTL' : erot.L2_CSR.GPIO_CMN_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_CMN_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_CMN_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm1',      'reg' : erot.GPIO.A_ENABLE_CONFIG_00_0,              'addr_low_boundary' : 0x985000,    'CTL' : erot.L2_CSR.GPIO_VM1_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM1_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM1_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm2',      'reg' : 'none',              'addr_low_boundary' : 0x986000,    'CTL' : erot.L2_CSR.GPIO_VM2_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM2_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM2_BLF_READ_CTL_0},
 #        {'name' : 'gpio_vm3',      'reg' : 'none',              'addr_low_boundary' : 0x987000,    'CTL' : erot.L2_CSR.GPIO_VM3_BLF_CTL_0,     'WRITE' : erot.L2_CSR.GPIO_VM3_BLF_WRITE_CTL_0,         'READ' : erot.L2_CSR.GPIO_VM3_BLF_READ_CTL_0},
@@ -644,6 +645,46 @@ with Test(sys.argv) as t:
             else:
                 helper.hdl_force(fuse_path+'opt_priv_sec_en', 1)
                 helper.hdl_force(fuse_path+'opt_secure_pri_source_isolation_en', 1)
+    
+    def check_block_1f_fpga(target_list, force_to_one=0):
+        #check blocking when source id mapping in fabric is disabled
+        for ip in target_list:
+            helper.log("Checking BLF write block of %s, and address is %x, blocked source: ALL(0x1f)" %(ip['name'], ip['reg'].abs_addr))
+            ip['WRITE'].debug_write(0x7fffffff)
+            ip['READ'].debug_write(0xffffffff)
+            ip['CTL'].debug_write(0x20000)
+            ip['CTL'].debug_poll(WEN=1,REN=0)
+            
+            masked_write_value = 0xabcdefad & ip['reg'].write_mask
+            ip['reg'].debug_write(masked_write_value)
+            masked_exp_value = masked_write_value & ip['reg'].read_mask
+            test_read = ip['reg'].debug_read()
+            test_read_value = test_read.value
+            if (force_to_one == 0):
+                if (test_read_value == masked_exp_value):
+                    helper.perror("blocked_priv_id has been written in the test value, value is %x" %(test_read_value))
+                else:
+                    helper.log("exp: %x, act: %x " %(masked_exp_value, test_read_value))
+            else:
+                if (test_read_value != masked_exp_value):
+                    helper.perror("non blocked_priv_id has NOT been written in the test value, exp: %x, act: %x" %(masked_exp_value, test_read_value))
+            
+            helper.log("Checking BLF read block of %s, blocked source: ALL(0x1f)" %ip['name'])
+            ip['WRITE'].debug_write(0x7fffffff)
+            ip['READ'].debug_write(0x7fffffff)
+            ip['CTL'].debug_write(0x30000)
+            ip['CTL'].debug_poll(WEN=1,REN=1)
+            
+            read_rdata_dic = ip['reg'].debug_read()
+            read_rdata = read_rdata_dic.value
+            if (force_to_one == 0):
+                if (read_rdata != 0xdead1010):
+                    helper.perror("IP %s with 1f does not read the error code, exp: %x, act: %x" %(ip['name'], 0xdead1010, read_rdata))
+            else:
+                if (read_rdata == 0xdead1010):
+                    helper.perror("IP %s read the error code, exp: %x, act: %x" %(ip['name'], 0xdead1010, read_rdata))
+                
+
 
     options = parse_args()
     OOBHUB_FABRIC_BASE = 0x2000000000000000
@@ -665,8 +706,6 @@ with Test(sys.argv) as t:
 
             helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
         
-        if ((options.Fabric == 'L1_DISABLE_MAPPING') or (options.Fabric == 'L2_DISABLE_MAPPING')):
-            helper.log("Do not need to force the fuse options to 1")
         
         if (options.Fabric == 'L2'):
             helper.log("init oobhub")
@@ -679,12 +718,40 @@ with Test(sys.argv) as t:
             erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.update(RESET_GPIO_CTRL=1)
             erot.RESET.NVEROT_RESET_CFG.SW_IB0_SPI_RST_0.update(RESET_IB0_SPI=1)
             erot.RESET.NVEROT_RESET_CFG.SW_UART_RST_0.update(RESET_UART=1)
+        
+        if ((options.Fabric == 'L1_DISABLE_MAPPING') or (options.Fabric == 'L2_DISABLE_MAPPING')):
+            #jtag unlock
+            helper.log("Test start")
+            helper.wait_sim_time("us", 50)
+            helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
 
-        helper.log("Force fabric fuse 1 start")
-        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
-        # BLF does not care the PL
-        #test_api.fuse_opts_override("opt_priv_sec_en", 1)
-        helper.log("Force fabric fuse 1 done")
+            helper.jtag.Reset(0)
+            helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            helper.jtag.Reset(1)
+
+
+            helper.pinfo(f'j2h_unlock sequence start')
+            helper.j2h_unlock()
+            helper.pinfo(f'j2h_unlock sequence finish')
+
+            helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            helper.log("Do not need to force the fuse options to 1")
+
+            if (options.Fabric == 'L1_DISABLE_MAPPING'):
+                helper.log("update the spi_mon0 reset")
+                erot.RESET.NVEROT_RESET_CFG.SW_SPIMON0_RST_0.debug_update(RESET_SPIMON0=1)
+            
+            if (options.Fabric == 'L2_DISABLE_MAPPING'):
+                helper.log("update the gpio and spi_ib0. uart reset")
+                erot.RESET.NVEROT_RESET_CFG.SW_GPIO_CTRL_RST_0.debug_update(RESET_GPIO_CTRL=1)
+                erot.RESET.NVEROT_RESET_CFG.SW_IB0_SPI_RST_0.debug_update(RESET_IB0_SPI=1)
+                erot.RESET.NVEROT_RESET_CFG.SW_UART_RST_0.debug_update(RESET_UART=1)
+        else:
+            helper.log("Force fabric fuse 1 start")
+            test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
+            # BLF does not care the PL
+            #test_api.fuse_opts_override("opt_priv_sec_en", 1)
+            helper.log("Force fabric fuse 1 done")
     else:
         fuse_path = 'ntb_top.u_nv_top.u_sra_sys0.u_l1_cluster.u_NV_fuse.'
         helper.log("Force fabric fuse 1 start")
@@ -716,8 +783,20 @@ with Test(sys.argv) as t:
     #elif(options.Fabric == 'L2_MNOC'):
     #    check_block_mnoc(L2_FABRIC_TARGET)
     elif(options.Fabric == 'L1_DISABLE_MAPPING'):
-        check_block_1f(L1_FABRIC_TARGET)
+        check_block_1f_fpga(L1_FABRIC_TARGET_FPGA)
+        erot.L1_CSR.FUSE_BLF_CTL_0.debug_write(0x0)
+        erot.L1_CSR.FUSE_BLF_CTL_0.debug_poll(WEN=0,REN=0)
+        helper.log("Force fabric fuse 1 start")
+        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
+        helper.log("Force fabric fuse 1 done")
+        check_block_1f_fpga(L1_FABRIC_TARGET_FPGA, force_to_one=1)
     elif(options.Fabric == 'L2_DISABLE_MAPPING'):
-        check_block_1f(L2_FABRIC_TARGET)
+        check_block_1f_fpga(L2_FABRIC_TARGET_FPGA)
+        erot.L1_CSR.FUSE_BLF_CTL_0.debug_write(0x0)
+        erot.L1_CSR.FUSE_BLF_CTL_0.debug_poll(WEN=0,REN=0)
+        helper.log("Force fabric fuse 1 start")
+        test_api.fuse_opts_override("opt_secure_pri_source_isolation_en", 1, debug_mode=1)
+        helper.log("Force fabric fuse 1 done")
+        check_block_1f_fpga(L2_FABRIC_TARGET_FPGA, force_to_one=1)
     else:
         helper.perror("Wrong --Fabric %s" % options.monitor)

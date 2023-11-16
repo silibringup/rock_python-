@@ -154,6 +154,26 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''fabric blf function test for l1 part'''
             )
+    
+    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1_DISABLE_MAPPING' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_function_test_l1_disable_mapping',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function test for l1 disable mapping part'''
+            )
+    
+    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L2_DISABLE_MAPPING' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_function_test_l2_disable_mapping',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function test for l2 diaable mapping part'''
+            )
     # fabric bring-up tests END
     
     # interrupt bring-up tests
