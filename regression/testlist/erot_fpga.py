@@ -155,6 +155,16 @@ with feature('erot_fpga/lighton'):
         desc    =   '''fabric blf function test for l1 part'''
             )
     
+    test_args   =   ['''-py erot_fab_jtag_fsp_try.py '''] + RCV_BOOT
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_jtag_fsp_try',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function test for l1 part'''
+            )
+    
     test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1_DISABLE_MAPPING' ''']
     test_tags   =   ['fabric','l1']
     AddTest(
