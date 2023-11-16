@@ -152,6 +152,9 @@ with Test(sys.argv) as t:
         #use fsp to check
         elif (current_priv_id == 2):
             reg.write(masked_write_value)
+            # wait for write operation done
+            helper.log("wait for 50 us to make the write done")
+            helper.wait_rpi_time(50) # wait 1000 us
         #use oobhub to check
         elif (current_priv_id == 3):
             helper.log("reg abs address is %x" % (reg.abs_addr))
@@ -162,8 +165,6 @@ with Test(sys.argv) as t:
         else:
             helper.perror("NOT support priv_id %d" %(current_priv_id))
         
-        # wait for write operation done
-        helper.wait_rpi_time(50) # wait 1000 us
 
         if(options.Fabric == 'L1'):
             if(blocked_priv_id == 0):
