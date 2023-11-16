@@ -20,10 +20,11 @@ with Test(sys.argv) as t:
     helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
     
     helper.log("start to use fsp write")
-    masked_write_value = 0xabcdefff & erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.write_mask
+    masked_write_value = 0xabcdefad & erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.write_mask
+    helper.log("write data is %x" % (masked_write_value))
     erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.write(masked_write_value)
 
     helper.log("start to use fsp read")
     test_read_value = erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.read()
 
-    helper.log("read data is %s" % (str(test_read_value)))
+    helper.log("read data is %x" % (test_read_value.value))
