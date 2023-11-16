@@ -162,6 +162,9 @@ with Test(sys.argv) as t:
         else:
             helper.perror("NOT support priv_id %d" %(current_priv_id))
         
+        # wait for write operation done
+        helper.wait_rpi_time(50) # wait 1000 us
+
         if(options.Fabric == 'L1'):
             if(blocked_priv_id == 0):
                 test_read_value = helper.read(reg.abs_addr)
@@ -178,9 +181,6 @@ with Test(sys.argv) as t:
         
         masked_exp_value = masked_write_value & reg.read_mask
         if(current_priv_id == blocked_priv_id):
-            #if (current_priv_id == 3) and (oob_write_err != 1):
-            #    helper.perror("OOBHUB is blocked, but write without error, priv_id is %d" %(current_priv_id))
-                
             if (test_read_value == masked_exp_value):
                 helper.perror("blocked_priv_id has been written in the test value, priv_id is %d" %(current_priv_id))
         else:
@@ -194,6 +194,7 @@ with Test(sys.argv) as t:
             #use fsp to check
             elif (current_priv_id == 2):
                 reg.write(reg.reset_val)
+                helper.wait_rpi_time(50) # wait 1000 us
         #use oobhub to check
             elif (current_priv_id == 3):
                 test_api.oobhub_icd_write(reg.abs_addr+OOBHUB_FABRIC_BASE, reg.reset_val)
