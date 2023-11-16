@@ -148,7 +148,7 @@ with feature('erot_fpga/lighton'):
     test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
     test_tags   =   ['fabric','l1']
     AddTest(
-        name    =   'erot_fab_blf_function_test_l1',
+        name    =   'erot_fab_blf_function_test_l1_test',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
