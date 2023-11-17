@@ -195,17 +195,18 @@ with Test(sys.argv) as t:
         flash_gpio_cfg_padctl_init()
         LOG(f"Flash power PAD init")
         helper.wait_sim_time("us", 5)
-        time.sleep(1)
+        time.sleep(2)
         flash_pwr_down()
         LOG(f"Flash power down")
         helper.wait_sim_time("us", 5)
-        time.sleep(1)
+        time.sleep(2)
         flash_pwr_up()
         LOG(f"Flash power up")
 
         #PRIV write RESUME
         monitor.clear_ctrl_0.update(resume=1)
         helper.wait_sim_time("us", 10)
+        time.sleep(2)
         LOG(f"RESUME DONE")
         LOG(f"----- BYP_MON exit NON_RCV state -----")
 
