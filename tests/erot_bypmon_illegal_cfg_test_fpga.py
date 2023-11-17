@@ -198,10 +198,10 @@ with Test(sys.argv) as t:
         time.sleep(2)
         flash_pwr_down()
         LOG(f"Flash power down")
-        helper.wait_sim_time("us", 5)
+#        helper.wait_sim_time("us", 5)
         time.sleep(2)
-        flash_pwr_up()
-        LOG(f"Flash power up")
+#        flash_pwr_up()
+#        LOG(f"Flash power up")
 
         #PRIV write RESUME
         monitor.clear_ctrl_0.update(resume=1)
