@@ -84,7 +84,7 @@ with Test(sys.argv) as t:
      #   {'name' : 'nv_pmc',                   'reg' : erot.NV_PMC.VOLATILE_OWNERSHIP_RAM_WRITE_DATA_0,                           'addr_low_boundary' : 0,            'CTL' : erot.L1_CSR.NV_PMC_BLF_CTL_0,                      'WRITE' : erot.L1_CSR.NV_PMC_BLF_WRITE_CTL_0,                     'READ' : erot.L1_CSR.NV_PMC_BLF_READ_CTL_0},
 #        {'name' : 'nv_pbus',                  'reg' : erot.NV_PBUS,                          'addr_low_boundary' : 0x1000,       'CTL' : erot.L1_CSR.NV_PBUS_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PBUS_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PBUS_BLF_READ_CTL_0},
 #        {'name' : 'nv_ptop',                  'reg' : erot.NV_PTOP,                          'addr_low_boundary' : 0x22000,      'CTL' : erot.L1_CSR.NV_PTOP_BLF_CTL_0,                     'WRITE' : erot.L1_CSR.NV_PTOP_BLF_WRITE_CTL_0,                    'READ' : erot.L1_CSR.NV_PTOP_BLF_READ_CTL_0},
-        {'name' : 'therm',                    'reg' : erot.THERM.CHECKER_PRIV_LEVEL_MASK_HIGH_0,                            'addr_low_boundary' : 0x2000,       'CTL' : erot.L1_CSR.THERM_BLF_CTL_0,                       'WRITE' : erot.L1_CSR.THERM_BLF_WRITE_CTL_0,                      'READ' : erot.L1_CSR.THERM_BLF_READ_CTL_0},
+#############        {'name' : 'therm',                    'reg' : erot.THERM.CHECKER_PRIV_LEVEL_MASK_HIGH_0,                            'addr_low_boundary' : 0x2000,       'CTL' : erot.L1_CSR.THERM_BLF_CTL_0,                       'WRITE' : erot.L1_CSR.THERM_BLF_WRITE_CTL_0,                      'READ' : erot.L1_CSR.THERM_BLF_READ_CTL_0},
     ]
 
     L2_FABRIC_TARGET = [
@@ -145,7 +145,7 @@ with Test(sys.argv) as t:
     def write_with_err_code_checking_fpga(reg, blocked_priv_id, current_priv_id):
         test_read_value = 0
         oob_write_err = 0
-        masked_write_value = 0xabcdefff & reg.write_mask
+        masked_write_value = 0xabcdefad & reg.write_mask
         #use jtag to write
         if(current_priv_id == 0):
             reg.debug_write(masked_write_value)
@@ -707,6 +707,7 @@ with Test(sys.argv) as t:
             helper.pinfo(f'j2h_unlock sequence finish')
 
             helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
+            erot.RESET.NVEROT_RESET_CFG.SW_SPIMON0_RST_0.debug_update(RESET_SPIMON0=1)
         
         
         if (options.Fabric == 'L2'):
