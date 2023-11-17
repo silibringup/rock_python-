@@ -23,10 +23,10 @@ with Test(sys.argv) as t:
     reg = erot.L1_CSR.CLOCK_SYS_CTL_BLF_WRITE_CTL_0
     masked_write_value = 0xabcdefad & reg.write_mask
     helper.log("write data is %x" % (masked_write_value))
-    erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.write(masked_write_value)
+    reg.write(masked_write_value)
 
     helper.log("start to use fsp read")
-    test_read_value = erot.CLOCK.NVEROT_CLOCK_IO_CTL.SW_UART_CLK_DIVISOR_0.read()
+    test_read_value = reg.read()
     masked_value = test_read_value.value & reg.read_mask
 
     helper.log("read data is %x" % (masked_value))
