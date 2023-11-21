@@ -317,7 +317,15 @@ int intf2pin(char* intf_array){
 	}else if(!strcmp(intf_array,"erot_oob_dspi_intr_n")){
 		pin = 26;
 	}else if(!strcmp(intf_array,"erot_recovery_n")){
-		pin = 16;
+		pin = 8;
+	}else if(!strcmp(intf_array,"nvjtag_sel")){
+		pin = 10;
+	}else if(!strcmp(intf_array,"erot_power_toggle_en")){
+		pin = 9;
+	}else if(!strcmp(intf_array,"fuse_en")){
+		pin = 5;
+	}else if(!strcmp(intf_array,"mram_wp_n")){
+		pin = 6;
 	}else{
 		LOG_USER("unsupported interface name : %s \n",intf_array);
 	}
