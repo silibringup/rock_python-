@@ -19,6 +19,64 @@ class TestAPIs:
     def init(self,helper=None):
         self.helper = helper
 
+        # JTAG_chain_dict = {chain_name : [chain_id, chain_length]}
+        self.JTAG_chain_dict = {}
+        self.JTAG_chain_dict.update({'CLK_CFG'                      : [0x00a74a0, 498]  })
+        self.JTAG_chain_dict.update({'CLK_CFG_MASK'                 : [0x00a75a0, 140]  })
+        self.JTAG_chain_dict.update({'CHIPLET_LOGIC'                : [0x00a1320, 655]  })
+        self.JTAG_chain_dict.update({'JTAG_POD_SCPM_OVR'            : [0x00a0ca0, 117]  })
+        self.JTAG_chain_dict.update({'JTAG_FUSE_NONSECURE'          : [0x00a1520, 110]  })
+        self.JTAG_chain_dict.update({'SYS_STATUS_NONSECURE'         : [0x11a02a0, 85]   })
+        self.JTAG_chain_dict.update({'CLK_CTL'                      : [0x00a09a0, 392]  })
+
+        # JTAG_reg_dict = {reg_name : [ [JTAG_DATA_chain_name, DATA_reg_addr_JRT, DATA_reg_length_JRT], [JTAG_SEL_chain_name, SEL_reg_addr_JRT, SEL_reg_length_JRT] ]}
+        self.JTAG_reg_dict = {}
+        self.JTAG_reg_dict.update({'vrefro_freqadj'                 : [ ['CLK_CFG', 482, 6],                ['CLK_CFG_MASK', 137, 1]        ] })
+        self.JTAG_reg_dict.update({'vrefro_schmitt'                 : [ ['CLK_CFG', 488, 2],                ['CLK_CFG_MASK', 138, 1]        ] })
+        self.JTAG_reg_dict.update({'vrefro_spare'                   : [ ['CLK_CFG', 490, 8],                ['CLK_CFG_MASK', 139, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_vreg14v_ctrl'               : [ ['CLK_CFG', 429, 2],                ['CLK_CFG_MASK', 126, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_vreg10v_ctrl'               : [ ['CLK_CFG', 427, 2],                ['CLK_CFG_MASK', 125, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_kcp'                        : [ ['CLK_CFG', 401, 2],                ['CLK_CFG_MASK', 119, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_kvco'                       : [ ['CLK_CFG', 403, 1],                ['CLK_CFG_MASK', 120, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_setup'                      : [ ['CLK_CFG', 433, 28],               ['CLK_CFG_MASK', 129, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_pdiv'                       : [ ['CLK_CFG', 421, 6],                ['CLK_CFG_MASK', 124, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_en_lckdet'                  : [ ['CLK_CFG', 400, 1],                ['CLK_CFG_MASK', 118, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_lock_override'              : [ ['CLK_CFG', 404, 1],                ['CLK_CFG_MASK', 121, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_bypasspll'                  : [ ['CLK_CFG', 399, 1],                ['CLK_CFG_MASK', 117, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_mdiv'                       : [ ['CLK_CFG', 405, 8],                ['CLK_CFG_MASK', 122, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_ndiv'                       : [ ['CLK_CFG', 413, 8],                ['CLK_CFG_MASK', 123, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_iddq'                       : [ ['CLK_CFG', 432, 1],                ['CLK_CFG_MASK', 128, 1]        ] })
+        self.JTAG_reg_dict.update({'pll_enable'                     : [ ['CLK_CFG', 431, 1],                ['CLK_CFG_MASK', 127, 1]        ] })
+        self.JTAG_reg_dict.update({'obs_pad_sel'                    : [ ['CLK_CFG', 0, 1],                  ['CLK_CFG_MASK', 0, 1]          ] })
+        self.JTAG_reg_dict.update({'dbg_mux_safe_clk_mode_'         : [ ['CLK_CFG', 179, 1],                ['CLK_CFG_MASK', 30, 1]         ] })
+        self.JTAG_reg_dict.update({'dbg_mux_clk_sel'                : [ ['CLK_CFG', 162, 16],               ['CLK_CFG_MASK', 28, 1]         ] })
+        self.JTAG_reg_dict.update({'fuse_vrefro_freqadj_calib'      : [ ['CHIPLET_LOGIC', 300, 6]                                           ] })
+        self.JTAG_reg_dict.update({'fuse_vrefro_schmitt_calib'      : [ ['CHIPLET_LOGIC', 314, 2]                                           ] })
+        self.JTAG_reg_dict.update({'fuse_vrefro_spare_calib'        : [ ['CHIPLET_LOGIC', 306, 8]                                           ] })
+        self.JTAG_reg_dict.update({'fmon_count_thresh_high'         : [ ['CLK_CFG', 98, 32],                ['CLK_CFG_MASK', 26, 1]         ] })
+        self.JTAG_reg_dict.update({'fmon_count_thresh_low'          : [ ['CLK_CFG', 130, 32],               ['CLK_CFG_MASK', 27, 1]         ] })
+        self.JTAG_reg_dict.update({'fmon_ref_window_count'          : [ ['CLK_CFG', 50, 24],                ['CLK_CFG_MASK', 24, 1]         ] })
+        self.JTAG_reg_dict.update({'fmon_ref_window_dc_check_count' : [ ['CLK_CFG', 74, 24],                ['CLK_CFG_MASK', 25, 1]         ] })
+        self.JTAG_reg_dict.update({'vmon_plus_ov_threshold'         : [ ['JTAG_POD_SCPM_OVR', 88, 24],      ['JTAG_POD_SCPM_OVR', 70, 1]    ] })
+        self.JTAG_reg_dict.update({'vmon_plus_uv_threshold'         : [ ['JTAG_POD_SCPM_OVR', 80, 8],       ['JTAG_POD_SCPM_OVR', 69, 1]    ] })
+        self.JTAG_reg_dict.update({'gate_priv_signals'              : [ ['JTAG_FUSE_NONSECURE', 38, 1]                                      ] })
+        self.JTAG_reg_dict.update({'l0_reset'                       : [ ['SYS_STATUS_NONSECURE', 24, 1]                                     ] })
+        self.JTAG_reg_dict.update({'l1_reset'                       : [ ['SYS_STATUS_NONSECURE', 25, 1]                                     ] })
+        self.JTAG_reg_dict.update({'l3_reset'                       : [ ['SYS_STATUS_NONSECURE', 26, 1]                                     ] })
+        self.JTAG_reg_dict.update({'vrefro_ck_ok'                   : [ ['SYS_STATUS_NONSECURE', 27, 1]                                     ] })
+        self.JTAG_reg_dict.update({'pll_lock'                       : [ ['SYS_STATUS_NONSECURE', 34, 1]                                     ] })
+        self.JTAG_reg_dict.update({'fuse2all_fuse_outputs_valid'    : [ ['SYS_STATUS_NONSECURE', 10, 1]                                     ] })
+        self.JTAG_reg_dict.update({'sys_clk_rcm_cfg_div_sel'        : [ ['CLK_CFG', 466, 5],                ['CLK_CFG_MASK', 132, 1]        ] })
+        self.JTAG_reg_dict.update({'jtag_pattern_detector'          : [ ['JTAG_POD_SCPM_OVR', 9, 32]                                        ] })
+        self.JTAG_reg_dict.update({'vmon_plus_ov_reset_dis'         : [ ['JTAG_POD_SCPM_OVR', 55, 1]                                        ] })
+        self.JTAG_reg_dict.update({'vmon_plus_uv_reset_dis'         : [ ['JTAG_POD_SCPM_OVR', 54, 1]                                        ] })
+        self.JTAG_reg_dict.update({'pod_io_reset_dis'               : [ ['JTAG_POD_SCPM_OVR', 50, 1]                                        ] })
+        self.JTAG_reg_dict.update({'pod_plus_reset_dis'             : [ ['JTAG_POD_SCPM_OVR', 51, 1]                                        ] })
+        self.JTAG_reg_dict.update({'pod_plus_io_grp1_reset_dis'     : [ ['JTAG_POD_SCPM_OVR', 52, 1]                                        ] })
+        self.JTAG_reg_dict.update({'pod_plus_io_grp2_reset_dis'     : [ ['JTAG_POD_SCPM_OVR', 53, 1]                                        ] })
+        self.JTAG_reg_dict.update({'pod_plus_io_grp3_reset_dis'     : [ ['JTAG_POD_SCPM_OVR', 56, 1]                                        ] })
+        self.JTAG_reg_dict.update({'jtag_ext_xtal_clk_ovr'          : [ ['CLK_CTL', 330, 1],                                                ] })
+
     def log(self,s):
         self.helper.log(s)
 
@@ -112,7 +170,7 @@ class TestAPIs:
         self.helper.hdl_force('ntb_top.vsr1',1)
         self.helper.hdl_force('ntb_top.pdm_io',1)
         self.helper.hdl_force('ntb_top.fuse_vqps',1)
-        self.helper.wait_sim_time('ns',10)
+        self.helper.wait_sim_time('ns',20)
         # 0.8v power rail
         self.helper.hdl_force('ntb_top.vsr2',1)
         self.helper.wait_sim_time('ns',100)
@@ -216,6 +274,14 @@ class TestAPIs:
         erot.PADCTRL_N.BOOT_QSPI_IO1_0.poll(TRISTATE=0)
         erot.PADCTRL_N.BOOT_QSPI_IO2_0.poll(TRISTATE=0)
         erot.PADCTRL_N.BOOT_QSPI_IO3_GP29_0.poll(TRISTATE=0)
+
+    def qspi0_clk_init(self):      
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI0.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)
+        
+    def qspi1_clk_init(self):      
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
+        erot.QSPI1.QSPI.GLOBAL_TRIM_CNTRL_0.poll(SEL=1)       
 
     def boot_qspi_clk_init(self):      
         erot.BOOT_QSPI.QSPI.GLOBAL_TRIM_CNTRL_0.update(SEL=1)     
@@ -965,7 +1031,7 @@ class TestAPIs:
             rd = mst.INTERRUPT_STATUS_REGISTER_0.read()
             req_time = req_time - 1
         if req_time == 0:
-            helper.perror("can not transfer packet")
+            self.helper.perror("can not transfer packet")
 
 ########################################################################################
 #Config QSPI initiator API
@@ -1025,7 +1091,7 @@ class TestAPIs:
         spi.COMMAND_0.update(M_S='MASTER',CS_SEL=cs,BIT_LENGTH=bit_length,Tx_EN=tx_en,Rx_EN=rx_en,PACKED='ENABLE',INTERFACE_WIDTH=data_line,En_LE_Byte=0,En_LE_Bit=0)
         spi.MISC_0.update(NUM_OF_DUMMY_CLK_CYCLES=dummy_cycle)
         spi.COMMAND_0.update(PIO='PIO')
-        spi.TRANSFER_STATUS_0.poll(timeout=100,RDY=1)
+        spi.TRANSFER_STATUS_0.poll(timeout=1000,RDY=1)
         spi.TRANSFER_STATUS_0.write(RDY=1)    
 
     def send_write_1_1_x_cmd(self,spi,opcode,address,address_size,data_line,data_byte,data0,data1,data2,data3):
@@ -1516,7 +1582,7 @@ class TestAPIs:
             self.helper.wait_sim_time("us", 10)
             WIP_valid = self.helper.hdl_read(wip_path)
             if WIP_valid == 0:
-                print("Sector Erase/Program done")
+                self.log("Sector Erase/Program done")
                 break   
             
     def connect_to_micron_flash(self):
@@ -1755,6 +1821,7 @@ class TestAPIs:
 
     def rcv_load_image(self,fmc_bin,BMC_I2C_SLV_ADDR):
 
+        # FIXME, need to comment this when WAR re-boot
         self.trigger_recovery()
     
         self.helper.pinfo("start default cms selection")
@@ -1879,10 +1946,11 @@ class TestAPIs:
                 else:
                     self.helper.write(opt_addr, int(str(value), 2))
                     opt_data = self.helper.read(opt_addr)
-                if opt_data == value:
-                    self.helper.pinfo(f"{fuse_opt_name} has been overrided to {value}")
+                value_in_number = int(str(value), 2)
+                if opt_data == value_in_number:
+                    self.helper.pinfo("%s has been overrided to %x" % (fuse_opt_name, value_in_number))
                 else:
-                    self.helper.perror(f"{fuse_opt_name} overrided to {value} failed")
+                    self.helper.perror("%s overrided to %x failed, and the act value is %x" % (fuse_opt_name, value_in_number, opt_data))
             else:
                 self.helper.perror(f"{fuse_opt_name} address in fusegen.yml is {opt_addr} which is not a number")
             
@@ -1890,3 +1958,765 @@ class TestAPIs:
                 erot.FUSE.EN_SW_OVERRIDE_0.debug_write(0)
             else:
                 erot.FUSE.EN_SW_OVERRIDE_0.write(0)
+
+
+
+################################################################################################################################
+##################################################### SR01 JTAG override API ###################################################
+################################################################################################################################
+    # JTAG unlock
+    def jtag_unlock(self):
+        #self.helper.jtag.Reset(0)
+        #self.helper.jtag.Reset(1)
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x018) #Cycle 13
+        dr_scan_out = self.helper.jtag_DRScan(19, 0x00000) #Cycle 30
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0600) #Cycle 121
+        dr_scan_out = self.helper.jtag_DRScan(19, 0x00080) #Cycle 143
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520) #Cycle 167
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00a1520) #Cycle 189
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) #Cycle 220
+        dr_scan_out = self.helper.jtag_DRScan(121, 0x0600000000000000003000000000220) #Cycle 236
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00a1520) #Cycle 181307
+        dr_scan_out = self.helper.jtag_DRScan(121, 0x0600000000000000003000000000220) #Cycle 181338
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x0120280) #Cycle 181468
+        dr_scan_out = self.helper.jtag_DRScan(7, 0x40) #Cycle 181499
+        dr_scan_out = self.helper.jtag_DRScan(15, 0x00c0) #Cycle 181511
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0840) #Cycle 181535
+        dr_scan_out = self.helper.jtag_DRScan(17, 0x1ffff) #Cycle 181557
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 181583
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x8800) #Cycle 181599
+        dr_scan_out = self.helper.jtag_DRScan(7, 0x40) #Cycle 181621
+        dr_scan_out = self.helper.jtag_DRScan(457, 0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040) #Cycle 181633
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0740) #Cycle 182099
+        dr_scan_out = self.helper.jtag_DRScan(3076, 0x2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 182121
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x01d) #Cycle 185206
+        dr_scan_out = self.helper.jtag_DRScan(3076, 0x4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 185222
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x01d) #Cycle 244307
+        dr_scan_out = self.helper.jtag_DRScan(3076, 0x6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 244323
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x01d) #Cycle 247408
+        dr_scan_out = self.helper.jtag_DRScan(3076, 0x8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 247424
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x025) #Cycle 250519
+        dr_scan_out = self.helper.jtag_DRScan(9, 0x001) #Cycle 250535
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 250553
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0530) #Cycle 250569
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x0d8364d90) #Cycle 250591
+        dr_scan_out = self.helper.jtag_DRScan(13, 0x1ff0) #Cycle 250631
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x3e5f97e50) #Cycle 250649
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x3e5) #Cycle 250689
+        dr_scan_out = self.helper.jtag_DRScan(21, 0x000000) #Cycle 250705
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x3e5) #Cycle 251735
+        dr_scan_out = self.helper.jtag_DRScan(21, 0x000000) #Cycle 251751
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 251781
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x3600) #Cycle 251797
+        dr_scan_out = self.helper.jtag_DRScan(7, 0x70) #Cycle 251819
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x3e4f97e50) #Cycle 251831
+        dr_scan_out = self.helper.jtag_DRScan(57, 0x000010000400010) #Cycle 251871
+        self.helper.log('JTAG unlock done')
+
+    def jtag_read_modify_write(self, args):
+        ######################################################
+        ##################### parameter ######################
+        ######################################################
+        JTAG_DATA_reg = args[0]
+        JTAG_SEL_reg = args[1]
+        JTAG_DATA_length = args[2]
+        JTAG_SEL_length = args[3]
+        JTAG_DATA_start_addr = args[4]
+        JTAG_DATA_end_addr = args[5]
+        JTAG_SEL_start_addr = args[6]
+        JTAG_SEL_end_addr = args[7]
+        JTAG_DATA_chain_id = args[8]
+        JTAG_SEL_chain_id = args[9]
+#        JTAG_DATA_chain_rd_code = args[8]
+#        JTAG_SEL_chain_rd_code = args[9]
+#        JTAG_DATA_chain_wr_code = args[10]
+#        JTAG_SEL_chain_wr_code = args[11]
+
+        ######################################################
+        ######################## MISC ########################
+        ######################################################
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x014f97e40) #Cycle 252437
+
+        ######################################################
+        ###### extract read-back JTAG_DATA chain value #######
+        ######################################################
+        # JTAG shift data = 1-bit SIB + chain content + 10-bit JTAG chain info (related to JTAG chain decode)
+        # not familiar about these 11-bit JTAG reg, so DO NOT TOUCH them during read JTAG chain, other bits could be 1'b0
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_DATA_chain_id) #Cycle 252477
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_DATA_length+11, 0x220) #Cycle 252508
+        JTAG_DATA_pre_list = list(bin(dr_scan_out)[2:].zfill(JTAG_DATA_length+11))
+        self.helper.log('=================== Old JTAG_DATA_reg ======================')
+        self.helper.log(JTAG_DATA_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr])
+
+        ######################################################
+        ####### extract read-back JTAG_SEL chain value #######
+        ######################################################
+        # JTAG shift data = 1-bit SIB + chain content + 10-bit JTAG chain info (related to JTAG chain decode)
+        # not familiar about these 11-bit JTAG reg, so DO NOT TOUCH them during read JTAG chain, other bits could be 1'b0
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520) #Cycle 253581
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_SEL_chain_id) #Cycle 253603
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) #Cycle 253634
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_SEL_length+11, 0x220) #Cycle 253650
+        JTAG_SEL_pre_list = list(bin(dr_scan_out)[2:].zfill(JTAG_SEL_length+11))
+        self.helper.log('=================== Old JTAG_SEL_reg ======================')
+        self.helper.log(JTAG_SEL_pre_list[JTAG_SEL_start_addr:JTAG_SEL_end_addr])
+
+        ######################################################
+        ####### modify JTAG_DATA chain value and write #######
+        ######################################################
+        # chain length + 11
+        JTAG_DATA_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr] = JTAG_DATA_reg
+        self.helper.log('=================== New JTAG_DATA_reg ======================')
+        self.helper.log(JTAG_DATA_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr])
+        JTAG_DATA_pre = ''.join(JTAG_DATA_pre_list)
+        JTAG_DATA = '0b' +  JTAG_DATA_pre
+        JTAG_DATA_int = int(JTAG_DATA, 2)
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_DATA_chain_id) #Cycle 253026
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_DATA_length+11, JTAG_DATA_int) #Cycle 253057
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 253565
+
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0510) #Cycle 254056
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00ac150) #Cycle 254078
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x017) #Cycle 254109
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 254125
+
+        ######################################################
+        ####### modify JTAG_SEL chain value and write ########
+        ######################################################
+        # chain length + 11
+        JTAG_SEL_pre_list[JTAG_SEL_start_addr:JTAG_SEL_end_addr] = JTAG_SEL_reg
+        self.helper.log('=================== New JTAG_SEL_reg ======================')
+        self.helper.log(JTAG_SEL_pre_list[JTAG_SEL_start_addr:JTAG_SEL_end_addr])
+        JTAG_SEL_pre = ''.join(JTAG_SEL_pre_list)
+        JTAG_SEL = '0b' +  JTAG_SEL_pre
+        JTAG_SEL_int = int(JTAG_SEL, 2)
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_SEL_chain_id) #Cycle 253810
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_SEL_length+11, JTAG_SEL_int) #Cycle 253841
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 254040
+
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0510) #Cycle 254056
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00ac150) #Cycle 254078
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x017) #Cycle 254109
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 254125
+
+    # CLK_CFG/CLK_CFG_MASK chain mapping b/w JRT & chain
+    def clk_cfg_chain_mapping(self, data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT):
+        CLK_CFG_length = 498
+        CLK_CFG_start_addr = CLK_CFG_length - CLK_CFG_reg_addr_JRT - CLK_CFG_reg_length_JRT + 1
+        CLK_CFG_end_addr = CLK_CFG_length - CLK_CFG_reg_addr_JRT + 1
+        CLK_CFG_reg = list(bin(data)[2:].zfill(CLK_CFG_reg_length_JRT))
+
+        CLK_CFG_MASK_length = 140
+        CLK_CFG_MASK_start_addr = CLK_CFG_MASK_length - CLK_CFG_MASK_reg_addr_JRT - CLK_CFG_MASK_reg_length_JRT + 1
+        CLK_CFG_MASK_end_addr = CLK_CFG_MASK_length - CLK_CFG_MASK_reg_addr_JRT + 1
+        CLK_CFG_MASK_reg = list(bin(sel)[2:].zfill(CLK_CFG_MASK_reg_length_JRT))
+
+        CLK_CFG_chain_id = 0x00a74a0
+        CLK_CFG_MASK_chain_id = 0x00a75a0
+
+        return CLK_CFG_reg, CLK_CFG_MASK_reg, CLK_CFG_length, CLK_CFG_MASK_length, \
+               CLK_CFG_start_addr, CLK_CFG_end_addr, CLK_CFG_MASK_start_addr, CLK_CFG_MASK_end_addr, \
+               CLK_CFG_chain_id, CLK_CFG_MASK_chain_id
+
+    def jtag_read_write_back(self, args):
+        ######################################################
+        ##################### parameter ######################
+        ######################################################
+        JTAG_DATA_length = args[0]
+        JTAG_DATA_start_addr = args[1]
+        JTAG_DATA_end_addr = args[2]
+        JTAG_DATA_chain_id = args[3]
+
+        ######################################################
+        ######################## MISC ########################
+        ######################################################
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x014f97e40) #Cycle 252437
+
+        ######################################################
+        ###### extract read-back JTAG_DATA chain value #######
+        ######################################################
+        # JTAG shift data = 1-bit SIB + chain content + 10-bit JTAG chain info (related to JTAG chain decode)
+        # not familiar about these 11-bit JTAG reg, so DO NOT TOUCH them during read JTAG chain, other bits could be 1'b0
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_DATA_chain_id) #Cycle 252477
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_DATA_length+11, 0x220) #Cycle 252508
+#        self.helper.log(f'FUSE chain read: {str(bin(dr_scan_out))}')
+        JTAG_DATA_pre_list = list(bin(dr_scan_out)[2:].zfill(JTAG_DATA_length+11))
+        self.helper.log('=================== READ JTAG_DATA_reg ======================')
+        self.helper.log(JTAG_DATA_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr])
+
+        ######################################################
+        ######### write back JTAG_DATA chain value ###########
+        ######################################################
+        JTAG_DATA_pre = ''.join(JTAG_DATA_pre_list)
+        JTAG_DATA = '0b' +  JTAG_DATA_pre
+        JTAG_DATA_int = int(JTAG_DATA, 2)
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_DATA_chain_id) #Cycle 253026
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_DATA_length+11, JTAG_DATA_int) #Cycle 253057
+#        self.helper.log(f'FUSE chain write: {str(bin(JTAG_DATA_int))}')
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 253565
+
+        ######################################################
+        ######################## MISC ########################
+        ######################################################
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0510) #Cycle 254056
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00ac150) #Cycle 254078
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x017) #Cycle 254109
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 254125
+
+        return int(''.join(JTAG_DATA_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr]), 2)
+
+    # FUSE CHIPLET_LOGIC chain mapping b/w JRT & chain
+    def chiplet_logic_chain_mapping(self, CHIPLET_LOGIC_reg_addr_JRT, CHIPLET_LOGIC_reg_length_JRT):
+        CHIPLET_LOGIC_length = 655
+        CHIPLET_LOGIC_start_addr = CHIPLET_LOGIC_length - CHIPLET_LOGIC_reg_addr_JRT - CHIPLET_LOGIC_reg_length_JRT + 1
+        CHIPLET_LOGIC_end_addr = CHIPLET_LOGIC_length - CHIPLET_LOGIC_reg_addr_JRT + 1
+
+        CHIPLET_LOGIC_chain_id = 0x00a1320
+        CHIPLET_LOGIC_chain_id = 0x00a1320
+
+        return CHIPLET_LOGIC_length, \
+               CHIPLET_LOGIC_start_addr, CHIPLET_LOGIC_end_addr, \
+               CHIPLET_LOGIC_chain_id
+
+    # POD_SCPM/POD_SCPM_MASK chain mapping b/w JRT & chain
+    def pod_scpm_chain_mapping(self, data, sel, POD_SCPM_reg_addr_JRT, POD_SCPM_reg_length_JRT, POD_SCPM_MASK_reg_addr_JRT, POD_SCPM_MASK_reg_length_JRT):
+        POD_SCPM_chain_length = 117
+
+        POD_SCPM_start_addr = POD_SCPM_chain_length - POD_SCPM_reg_addr_JRT - POD_SCPM_reg_length_JRT + 1
+        POD_SCPM_end_addr = POD_SCPM_chain_length - POD_SCPM_reg_addr_JRT + 1
+        POD_SCPM_reg = list(bin(data)[2:].zfill(POD_SCPM_reg_length_JRT))
+
+        POD_SCPM_MASK_start_addr = POD_SCPM_chain_length - POD_SCPM_MASK_reg_addr_JRT - POD_SCPM_MASK_reg_length_JRT + 1
+        POD_SCPM_MASK_end_addr = POD_SCPM_chain_length - POD_SCPM_MASK_reg_addr_JRT + 1
+        POD_SCPM_MASK_reg = list(bin(sel)[2:].zfill(POD_SCPM_MASK_reg_length_JRT))
+
+        POD_SCPM_chain_id = 0x00a0ca0
+
+        return POD_SCPM_reg, POD_SCPM_MASK_reg, POD_SCPM_chain_length, \
+               POD_SCPM_start_addr, POD_SCPM_end_addr, POD_SCPM_MASK_start_addr, POD_SCPM_MASK_end_addr, \
+               POD_SCPM_chain_id
+
+    def jtag_read_modify_write_single_chain(self, args):
+        ######################################################
+        ##################### parameter ######################
+        ######################################################
+        JTAG_DATA_reg = args[0]
+        JTAG_SEL_reg = args[1]
+        JTAG_chain_length = args[2]
+        JTAG_DATA_start_addr = args[3]
+        JTAG_DATA_end_addr = args[4]
+        JTAG_SEL_start_addr = args[5]
+        JTAG_SEL_end_addr = args[6]
+        JTAG_chain_id = args[7]
+
+        ######################################################
+        ######################## MISC ########################
+        ######################################################
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x014f97e40) #Cycle 252437
+
+        ######################################################
+        ######### extract read-back JTAG chain value #########
+        ######################################################
+        # JTAG shift data = 1-bit SIB + chain content + 10-bit JTAG chain info (related to JTAG chain decode)
+        # not familiar about these 11-bit JTAG reg, so DO NOT TOUCH them during read JTAG chain, other bits could be 1'b0
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_chain_id) #Cycle 252477
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_chain_length+11, 0x220) #Cycle 252508
+        JTAG_chain_pre_list = list(bin(dr_scan_out)[2:].zfill(JTAG_chain_length+11))
+        self.helper.log('=================== Old JTAG_DATA_reg ======================')
+        self.helper.log(JTAG_chain_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr])
+        self.helper.log('=================== Old JTAG_SEL_reg ======================')
+        self.helper.log(JTAG_chain_pre_list[JTAG_SEL_start_addr:JTAG_SEL_end_addr])
+
+        ######################################################
+        ########### modify back JTAG chain value #############
+        ######################################################
+        JTAG_chain_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr] = JTAG_DATA_reg
+        self.helper.log('=================== New JTAG_DATA_reg ======================')
+        self.helper.log(JTAG_chain_pre_list[JTAG_DATA_start_addr:JTAG_DATA_end_addr])
+        JTAG_chain_pre_list[JTAG_SEL_start_addr:JTAG_SEL_end_addr] = JTAG_SEL_reg
+        self.helper.log('=================== New JTAG_SEL_reg ======================')
+        self.helper.log(JTAG_chain_pre_list[JTAG_SEL_start_addr:JTAG_SEL_end_addr])
+        JTAG_chain_pre = ''.join(JTAG_chain_pre_list)
+        JTAG_chain = '0b' +  JTAG_chain_pre
+        JTAG_chain_int = int(JTAG_chain, 2)
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # FIXME
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_chain_id) #Cycle 253026
+        dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # FIXME
+        dr_scan_out = self.helper.jtag_DRScan(JTAG_chain_length+11, JTAG_chain_int) #Cycle 253057
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 253565
+
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0510) #Cycle 254056
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00ac150) #Cycle 254078
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x017) #Cycle 254109
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) #Cycle 254125
+
+
+################################################################################################################################
+################################################## SR01 JTAG global definition #################################################
+################################################################################################################################
+# better to think about cooperate w/ JRT file, lead to more general JTAG reg access
+
+    # VrefRO FREQADJ override API
+    def vrefro_freqadj_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 482
+        CLK_CFG_reg_length_JRT = 6
+
+        CLK_CFG_MASK_reg_addr_JRT = 137
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+
+    # VrefRO SCHMITT override API
+    def vrefro_schmitt_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 488
+        CLK_CFG_reg_length_JRT = 2
+
+        CLK_CFG_MASK_reg_addr_JRT = 138
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # VrefRO SPARE override API
+    def vrefro_spare_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 490
+        CLK_CFG_reg_length_JRT = 8
+
+        CLK_CFG_MASK_reg_addr_JRT = 139
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL VREG14V_CTRL override API
+    def pll_vreg14v_ctrl_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 429
+        CLK_CFG_reg_length_JRT = 2
+
+        CLK_CFG_MASK_reg_addr_JRT = 126
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL VREG10V_CTRL override API
+    def pll_vreg10v_ctrl_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 427
+        CLK_CFG_reg_length_JRT = 2
+
+        CLK_CFG_MASK_reg_addr_JRT = 125
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL KCP override API
+    def pll_kcp_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 401
+        CLK_CFG_reg_length_JRT = 2
+
+        CLK_CFG_MASK_reg_addr_JRT = 119
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL KVCO override API
+    def pll_kvco_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 403
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 120
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL SETUP override API
+    def pll_setup_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 433
+        CLK_CFG_reg_length_JRT = 28
+
+        CLK_CFG_MASK_reg_addr_JRT = 129
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL PDIV override API
+    def pll_pdiv_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 421
+        CLK_CFG_reg_length_JRT = 6
+
+        CLK_CFG_MASK_reg_addr_JRT = 124
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL EN_LCKDET override API
+    def pll_en_lckdet_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 400
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 118
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL LOCK_OVERRIDE override API
+    def pll_lock_override_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 404
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 121
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL BYPASSPLL override API
+    def pll_bypasspll_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 399
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 117
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL MDIV override API
+    def pll_mdiv_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 405
+        CLK_CFG_reg_length_JRT = 8
+
+        CLK_CFG_MASK_reg_addr_JRT = 122
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL NDIV override API
+    def pll_ndiv_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 413
+        CLK_CFG_reg_length_JRT = 8
+
+        CLK_CFG_MASK_reg_addr_JRT = 123
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL IDDQ override API
+    def pll_iddq_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 432
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 128
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # PLL ENABLE override API
+    def pll_enable_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 431
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 127
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # OBS PAD SEL override API
+    def obs_pad_sel_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 0
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 0
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # DBG_MUX SAFE_CLK_MODE_ override API
+    def dbg_mux_safe_clk_mode__ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 179
+        CLK_CFG_reg_length_JRT = 1
+
+        CLK_CFG_MASK_reg_addr_JRT = 30
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # DBG_MUX CLK_SEL override API
+    def dbg_mux_clk_sel_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 162
+        CLK_CFG_reg_length_JRT = 16
+
+        CLK_CFG_MASK_reg_addr_JRT = 28
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # FUSE VrefRO FREQADJ_calib read API
+    def fuse_vrefro_freqadj_calib_read(self):
+        CHIPLET_LOGIC_reg_addr_JRT = 300
+        CHIPLET_LOGIC_reg_length_JRT = 6
+
+        chain_info = self.chiplet_logic_chain_mapping(CHIPLET_LOGIC_reg_addr_JRT, CHIPLET_LOGIC_reg_length_JRT)
+        fuse_jtag_reg_val = self.jtag_read_write_back(chain_info)
+        return fuse_jtag_reg_val
+
+    # FUSE VrefRO SCHMITT_calib read API
+    def fuse_vrefro_schmitt_calib_read(self):
+        CHIPLET_LOGIC_reg_addr_JRT = 314
+        CHIPLET_LOGIC_reg_length_JRT = 2
+
+        chain_info = self.chiplet_logic_chain_mapping(CHIPLET_LOGIC_reg_addr_JRT, CHIPLET_LOGIC_reg_length_JRT)
+        fuse_jtag_reg_val = self.jtag_read_write_back(chain_info)
+        return fuse_jtag_reg_val
+
+    # FUSE VrefRO SPARE_calib read API
+    def fuse_vrefro_spare_calib_read(self):
+        CHIPLET_LOGIC_reg_addr_JRT = 306
+        CHIPLET_LOGIC_reg_length_JRT = 8
+
+        chain_info = self.chiplet_logic_chain_mapping(CHIPLET_LOGIC_reg_addr_JRT, CHIPLET_LOGIC_reg_length_JRT)
+        fuse_jtag_reg_val = self.jtag_read_write_back(chain_info)
+        return fuse_jtag_reg_val
+
+    # FMON COUNT_THRESH_HIGH override API
+    def fmon_count_thresh_high_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 98
+        CLK_CFG_reg_length_JRT = 32
+
+        CLK_CFG_MASK_reg_addr_JRT = 26
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # FMON COUNT_THRESH_LOW override API
+    def fmon_count_thresh_low_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 130
+        CLK_CFG_reg_length_JRT = 32
+
+        CLK_CFG_MASK_reg_addr_JRT = 27
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # FMON REF_WINDOW_COUNT override API
+    def fmon_ref_window_count_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 50
+        CLK_CFG_reg_length_JRT = 24
+
+        CLK_CFG_MASK_reg_addr_JRT = 24
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # FMON REF_WINDOW_DC_CHECK_COUNT override API
+    def fmon_ref_window_dc_check_count_ovr(self, data, sel):
+        CLK_CFG_reg_addr_JRT = 74
+        CLK_CFG_reg_length_JRT = 24
+
+        CLK_CFG_MASK_reg_addr_JRT = 25
+        CLK_CFG_MASK_reg_length_JRT = 1
+
+        chain_info = self.clk_cfg_chain_mapping(data, sel, CLK_CFG_reg_addr_JRT, CLK_CFG_reg_length_JRT, CLK_CFG_MASK_reg_addr_JRT, CLK_CFG_MASK_reg_length_JRT)
+        self.jtag_read_modify_write(chain_info)
+
+    # VMON PLUS_OV_THRESHOLD override API
+    def vmon_plus_ov_threshold_ovr(self, data, sel):
+        POD_SCPM_reg_addr_JRT = 88
+        POD_SCPM_reg_length_JRT = 24
+
+        POD_SCPM_MASK_reg_addr_JRT = 70
+        POD_SCPM_MASK_reg_length_JRT = 1
+
+        chain_info = self.pod_scpm_chain_mapping(data, sel, POD_SCPM_reg_addr_JRT, POD_SCPM_reg_length_JRT, POD_SCPM_MASK_reg_addr_JRT, POD_SCPM_MASK_reg_length_JRT)
+        self.jtag_read_modify_write_single_chain(chain_info)
+
+    # VMON PLUS_UV_THRESHOLD override API
+    def vmon_plus_uv_threshold_ovr(self, data, sel):
+        POD_SCPM_reg_addr_JRT = 80
+        POD_SCPM_reg_length_JRT = 8
+
+        POD_SCPM_MASK_reg_addr_JRT = 69
+        POD_SCPM_MASK_reg_length_JRT = 1
+
+        chain_info = self.pod_scpm_chain_mapping(data, sel, POD_SCPM_reg_addr_JRT, POD_SCPM_reg_length_JRT, POD_SCPM_MASK_reg_addr_JRT, POD_SCPM_MASK_reg_length_JRT)
+        self.jtag_read_modify_write_single_chain(chain_info)
+
+###############################################################################################################################################################
+#################################################################### new JTAG API #############################################################################
+###############################################################################################################################################################
+
+    #####################################################################################################
+    ################################## general chain capt/shift/updt ####################################
+    #####################################################################################################
+    def jtag_read_modify_write_new(self, args, modify):
+        ######################################################
+        ##################### parameter ######################
+        ######################################################
+        JTAG_reg_value = args[0]
+        JTAG_chain_length = args[1]
+        JTAG_reg_start_addr = args[2]
+        JTAG_reg_end_addr = args[3]
+        JTAG_chain_id = args[4]
+
+        ######################################################
+        ######################## MISC ########################
+        ######################################################
+        ir_scan_out = self.helper.jtag_IRScan(34, 0x014f97e40) 
+
+        ######################################################
+        ######### extract read-back JTAG chain value #########
+        ######################################################
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # just added for common format
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_chain_id) 
+        # SYS_STATUS_NONSECURE (no updateDR, shift process would be exposed to Q)
+        if(JTAG_chain_id == 0x11a02a0):
+            dr_scan_out = self.helper.jtag_DRScan(JTAG_chain_length, 0x0) 
+            JTAG_chain_pre_list = list(bin(dr_scan_out)[2:].zfill(JTAG_chain_length))
+            JTAG_chain_value_list = JTAG_chain_pre_list
+        # Other chain (have updateDR, shift process would NOT be exposed to Q until updateDR asserted)
+        # JTAG shift data = 1-bit SIB + chain content + 10-bit JTAG chain info (related to JTAG chain decode)
+        # not familiar about these 11-bit JTAG reg, so DO NOT TOUCH them during read JTAG chain, other bits could be 1'b0
+        else:
+            dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # just added for common format
+            dr_scan_out = self.helper.jtag_DRScan(JTAG_chain_length+11, 0x220) 
+            JTAG_chain_pre_list = list(bin(dr_scan_out)[2:].zfill(JTAG_chain_length+11))
+            JTAG_chain_value_list = JTAG_chain_pre_list[2:-10]
+        self.helper.log('=================== Old JTAG_reg_value ======================')
+        self.helper.log(JTAG_chain_pre_list[JTAG_reg_start_addr:JTAG_reg_end_addr])
+
+        ######################################################
+        ###### modify JTAG chain value and write back ########
+        ######################################################
+        if (modify == 1):
+            JTAG_chain_pre_list[JTAG_reg_start_addr:JTAG_reg_end_addr] = JTAG_reg_value
+        self.helper.log('=================== New JTAG_reg_value ======================')
+        self.helper.log(JTAG_chain_pre_list[JTAG_reg_start_addr:JTAG_reg_end_addr])
+        JTAG_chain_pre = ''.join(JTAG_chain_pre_list)
+        JTAG_chain = '0b' +  JTAG_chain_pre
+        JTAG_chain_int = int(JTAG_chain, 2)
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0520)    # just added for common format
+        ir_scan_out = self.helper.jtag_IRScan(25, JTAG_chain_id) 
+        # SYS_STATUS_NONSECURE (no updateDR, shift process would be exposed to Q)
+        if(JTAG_chain_id == 0x11a02a0):
+            dr_scan_out = self.helper.jtag_DRScan(JTAG_chain_length, JTAG_chain_int) 
+        # Other chain (have updateDR, shift process would NOT be exposed to Q until updateDR asserted)
+        # JTAG shift data = 1-bit SIB + chain content + 10-bit JTAG chain info (related to JTAG chain decode)
+        # not familiar about these 11-bit JTAG reg, so DO NOT TOUCH them during read JTAG chain, other bits could be 1'b0
+        else:
+            dr_scan_out = self.helper.jtag_DRScan(11, 0x220) # just added for common format
+            dr_scan_out = self.helper.jtag_DRScan(JTAG_chain_length+11, JTAG_chain_int) 
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) 
+        ir_scan_out = self.helper.jtag_IRScan(16, 0x0510) 
+        ir_scan_out = self.helper.jtag_IRScan(25, 0x00ac150) 
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x017) 
+        ir_scan_out = self.helper.jtag_IRScan(10, 0x014) 
+
+#        return int(''.join(JTAG_chain_pre_list[JTAG_reg_start_addr:JTAG_reg_end_addr]), 2)
+        return int(''.join(JTAG_chain_value_list), 2), int(''.join(JTAG_chain_pre_list[JTAG_reg_start_addr:JTAG_reg_end_addr]), 2)
+
+
+    #####################################################################################################
+    ######################################## JRT -> ATE chain trans #####################################
+    #####################################################################################################
+    # chain mapping b/w JRT & chain for shift stage
+    def jtag_chain_mapping_new(self, data, chain_name, reg_addr_JRT, reg_length_JRT):
+        chain_id = self.JTAG_chain_dict[chain_name][0]
+        chain_length = self.JTAG_chain_dict[chain_name][1]
+        reg_start_addr = chain_length - reg_addr_JRT - reg_length_JRT + 1
+        reg_end_addr = chain_length - reg_addr_JRT + 1
+        reg_value = list(bin(data)[2:].zfill(reg_length_JRT))
+
+        return reg_value, chain_length, reg_start_addr, reg_end_addr, chain_id
+
+
+    #####################################################################################################
+    ### chain operation = (JRT -> ATE chain trans) + specific capt/shift/updt based on chain use case ###
+    #####################################################################################################
+    # single JTAG chain update
+    def jtag_chain_update(self, reg_value, chain_name, reg_addr_JRT, reg_length_JRT):
+        chain_info = self.jtag_chain_mapping_new(reg_value, chain_name, reg_addr_JRT, reg_length_JRT)
+        self.jtag_read_modify_write_new(chain_info, 1)
+
+    # single JTAG chain read
+    def jtag_chain_read(self, chain_name, reg_addr_JRT, reg_length_JRT):
+        chain_info = self.jtag_chain_mapping_new(0, chain_name, reg_addr_JRT, reg_length_JRT)
+#        read_reg_value = self.jtag_read_modify_write_new(chain_info, 0)
+#        return read_reg_value
+        read_chain_value, read_reg_value = self.jtag_read_modify_write_new(chain_info, 0)
+        return read_chain_value, read_reg_value
+
+
+    #####################################################################################################
+    ################### decode JTAG reg(chain, addr, len) from dict + chain operation ###################
+    #####################################################################################################
+    ##### JTAG MUX override API #####
+    # DATA/SEL chain update together, maybe on 1 chain, maybe on 2 chains
+    # begin w/ DATA chain, then SEL chain
+    def jtag_mux_ovr(self, reg_name, reg_value, jtag_ovr):
+        JTAG_DATA_chain_name = self.JTAG_reg_dict[reg_name][0][0]
+        JTAG_DATA_reg_addr_JRT = self.JTAG_reg_dict[reg_name][0][1]
+        JTAG_DATA_reg_length_JRT = self.JTAG_reg_dict[reg_name][0][2]
+
+        JTAG_SEL_chain_name = self.JTAG_reg_dict[reg_name][1][0]
+        JTAG_SEL_reg_addr_JRT = self.JTAG_reg_dict[reg_name][1][1]
+        JTAG_SEL_reg_length_JRT = self.JTAG_reg_dict[reg_name][1][2]
+
+        self.helper.log('##################################################### JTAG DATA chain #########################################################')
+        self.jtag_chain_update(reg_value, JTAG_DATA_chain_name, JTAG_DATA_reg_addr_JRT, JTAG_DATA_reg_length_JRT)
+        self.helper.log('##################################################### JTAG SEL chain #########################################################')
+        self.jtag_chain_update(jtag_ovr, JTAG_SEL_chain_name, JTAG_SEL_reg_addr_JRT, JTAG_SEL_reg_length_JRT)
+
+    ##### JTAG reg read API #####
+    # JTAG reg capture D input, maybe from JTAG reg Q, maybe from func logic readback
+    # only impact 1 chain
+    def jtag_reg_read(self, reg_name):
+        JTAG_DATA_chain_name = self.JTAG_reg_dict[reg_name][0][0]
+        JTAG_DATA_reg_addr_JRT = self.JTAG_reg_dict[reg_name][0][1]
+        JTAG_DATA_reg_length_JRT = self.JTAG_reg_dict[reg_name][0][2]
+
+#        read_reg_value = self.jtag_chain_read(JTAG_DATA_chain_name, JTAG_DATA_reg_addr_JRT, JTAG_DATA_reg_length_JRT)
+#        return read_reg_value
+        read_chain_value, read_reg_value = self.jtag_chain_read(JTAG_DATA_chain_name, JTAG_DATA_reg_addr_JRT, JTAG_DATA_reg_length_JRT)
+        return read_chain_value, read_reg_value
+
+
+    ##### JTAG reg update API #####
+    # JTAG single chain update (most likely for JTAG ovr w/o SEL path)
+    # only impact 1 chain
+    def jtag_reg_update(self, reg_name, reg_value):
+        JTAG_DATA_chain_name = self.JTAG_reg_dict[reg_name][0][0]
+        JTAG_DATA_reg_addr_JRT = self.JTAG_reg_dict[reg_name][0][1]
+        JTAG_DATA_reg_length_JRT = self.JTAG_reg_dict[reg_name][0][2]
+
+        self.jtag_chain_update(reg_value, JTAG_DATA_chain_name, JTAG_DATA_reg_addr_JRT, JTAG_DATA_reg_length_JRT)
+
