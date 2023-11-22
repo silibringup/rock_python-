@@ -102,41 +102,87 @@ with Test(sys.argv) as t:
         erot.RESET.NVEROT_RESET_CFG.SW_IO_EXP_RST_0.debug_write(RESET_IO_EXP=1)
         erot.RESET.NVEROT_RESET_CFG.SW_UART_RST_0.debug_write(RESET_UART=1)
 
+    def sys_status_poll(exp_value):
+        count = 0
+        timeout = 100000
+        while count < timeout:
+            chain_value, l0_reset = test_api.jtag_reg_read('l0_reset')
+            helper.log(f"SYS_STATUS_NONSECURE chain value: {hex(chain_value)}")
+            helper.log(f'l0_reset: {str(l0_reset)}')
+
+            chain_value, l1_reset = test_api.jtag_reg_read('l1_reset')
+            helper.log(f"SYS_STATUS_NONSECURE chain value: {hex(chain_value)}")
+            helper.log(f'l1_reset: {str(l1_reset)}')
+
+            chain_value, l3_reset = test_api.jtag_reg_read('l3_reset')
+            helper.log(f"SYS_STATUS_NONSECURE chain value: {hex(chain_value)}")
+            helper.log(f'l3_reset: {str(l3_reset)}')
+
+            SYS_STATUS_NONSECURE = str(l3_reset) + str(l1_reset) + str(l0_reset)
+            helper.log(f"SYS_STATUS_NONSECURE[26:24] = {SYS_STATUS_NONSECURE}")
+            count += 1
+            if( SYS_STATUS_NONSECURE == exp_value ):
+                helper.log(f"Poll SYS_STATUS_NONSECURE[26:24] done @ {count} times try. Act value = {SYS_STATUS_NONSECURE}")
+                return
+            elif count == 99999:
+                helper.perror(f"Poll SYS_STATUS_NONSECURE[26:24] timeout after {count} times try. Act value = {SYS_STATUS_NONSECURE}. Exp value = {exp_value} ")
+                return
+            helper.wait_rpi_time(1) # wait 1us
+
     
-    helper.log("Test start")
+    helper.log("###################################################################################################")
+    helper.log("####################################### L1_rst_ Test Starts! ######################################")
+    helper.log("###################################################################################################")
+
+    #############################################################################################################
+    ################################# simv force, would be ignored on real silicon ##############################
+    #############################################################################################################
     helper.wait_sim_time("us", 50)
     helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
 
+    #############################################################################################################
+    ################################################ J2H unlock #################################################
+    #############################################################################################################
     helper.jtag.Reset(0)
     helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
     helper.jtag.Reset(1)  
-
-    # unlock j2h interface
-    # use J2H instead of FSP access, due to L3_rst_ -> FSP rst -> rcv_boot, which cost > 2 hr in simv
-    helper.pinfo(f'j2h_unlock sequence start')
+    helper.log(f'j2h_unlock sequence start')
     helper.j2h_unlock()
-    helper.pinfo(f'j2h_unlock sequence finish') 
+    helper.log(f'j2h_unlock sequence finish')
 
+    #############################################################################################################
+    ################################################# J2H write #################################################
+    #############################################################################################################
+    helper.log("write J2H reg")
     reg_cfg()
-    helper.wait_sim_time("us", 5)
+
     l0_rst_domain_reg_check(after_reset=0)
     l1_rst_domain_reg_check(after_reset=0)
     l3_rst_domain_reg_check(after_reset=0)
-    helper.wait_sim_time("us", 5)
-   
-    # oobhub force recovery trigger L1_rst_
-    helper.log("##############################################################")
+    helper.log("write J2H reg done")
+
+    #############################################################################################################
+    ############################################## trigger L1_rst_ ##############################################
+    #############################################################################################################
     helper.log("###################### Trigger L1_rst_ #######################")
-    helper.log("##############################################################")
     test_api.trigger_recovery()
 
-    # FIXME, JTAG unlock
-    # FIXME, check SYS_STATUS_NONSECURE[26:24]==3'b111
+    #############################################################################################################
+    ########################################### read SYS_STATUS_NONSECURE #######################################
+    #############################################################################################################
+    helper.log("poll JTAG reg SYS_STATUS_NONSECURE[26:24] == 3'b111")
+    sys_status_poll("111")
+    helper.log("L1_rst_ released successfully")
 
-    helper.wait_sim_time("us", 50)
-
+    #############################################################################################################
+    ################################################# J2H read ##################################################
+    #############################################################################################################
+    helper.log("read J2H reg")
     l0_rst_domain_reg_check(after_reset=0)
     l1_rst_domain_reg_check(after_reset=1)
     l3_rst_domain_reg_check(after_reset=1)
+    helper.log("J2H reg check done")
 
-    helper.log("Test done")
+    helper.log("###################################################################################################")
+    helper.log("######################################## L1_rst_ Test Ends! #######################################")
+    helper.log("###################################################################################################")
