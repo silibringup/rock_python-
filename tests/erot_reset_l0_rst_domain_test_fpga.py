@@ -102,167 +102,104 @@ with Test(sys.argv) as t:
         erot.RESET.NVEROT_RESET_CFG.SW_IO_EXP_RST_0.debug_write(RESET_IO_EXP=1)
         erot.RESET.NVEROT_RESET_CFG.SW_UART_RST_0.debug_write(RESET_UART=1)
 
-    def ck_ok_assert_l0_rst():
-        helper.jtag.Reset(0)
-        helper.jtag.Reset(1)
-        ir_scan_out = helper.jtag_IRScan(10, 0x018) #Cycle 13
-        dr_scan_out = helper.jtag_DRScan(19, 0x00000) #Cycle 30
-        ir_scan_out = helper.jtag_IRScan(16, 0x0600) #Cycle 121
-        dr_scan_out = helper.jtag_DRScan(19, 0x00080) #Cycle 143
-        ir_scan_out = helper.jtag_IRScan(16, 0x0520) #Cycle 167
-        ir_scan_out = helper.jtag_IRScan(25, 0x00a1520) #Cycle 189
-        dr_scan_out = helper.jtag_DRScan(11, 0x220) #Cycle 220
-        dr_scan_out = helper.jtag_DRScan(121, 0x0600000000000000003000000000220) #Cycle 236
-        ir_scan_out = helper.jtag_IRScan(25, 0x00a1520) #Cycle 181307
-        dr_scan_out = helper.jtag_DRScan(121, 0x0600000000000000003000000000220) #Cycle 181338
-        ir_scan_out = helper.jtag_IRScan(25, 0x0120280) #Cycle 181468
-        dr_scan_out = helper.jtag_DRScan(7, 0x40) #Cycle 181499
-        dr_scan_out = helper.jtag_DRScan(15, 0x00c0) #Cycle 181511
-        ir_scan_out = helper.jtag_IRScan(16, 0x0840) #Cycle 181535
-        dr_scan_out = helper.jtag_DRScan(17, 0x1ffff) #Cycle 181557
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 181583
-        ir_scan_out = helper.jtag_IRScan(16, 0x8800) #Cycle 181599
-        dr_scan_out = helper.jtag_DRScan(7, 0x40) #Cycle 181621
-        dr_scan_out = helper.jtag_DRScan(457, 0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040) #Cycle 181633
-        ir_scan_out = helper.jtag_IRScan(16, 0x0740) #Cycle 182099
-        dr_scan_out = helper.jtag_DRScan(3076, 0x2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 182121
-        ir_scan_out = helper.jtag_IRScan(10, 0x01d) #Cycle 185206
-        dr_scan_out = helper.jtag_DRScan(3076, 0x4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 185222
-        ir_scan_out = helper.jtag_IRScan(10, 0x01d) #Cycle 244307
-        dr_scan_out = helper.jtag_DRScan(3076, 0x6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 244323
-        ir_scan_out = helper.jtag_IRScan(10, 0x01d) #Cycle 247408
-        dr_scan_out = helper.jtag_DRScan(3076, 0x8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 247424
-        ir_scan_out = helper.jtag_IRScan(10, 0x025) #Cycle 250519
-        dr_scan_out = helper.jtag_DRScan(9, 0x001) #Cycle 250535
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 250553
-        ir_scan_out = helper.jtag_IRScan(16, 0x0530) #Cycle 250569
-        ir_scan_out = helper.jtag_IRScan(34, 0x0d8364d90) #Cycle 250591
-        dr_scan_out = helper.jtag_DRScan(13, 0x1ff0) #Cycle 250631
-        ir_scan_out = helper.jtag_IRScan(34, 0x3e5f97e50) #Cycle 250649
-        ir_scan_out = helper.jtag_IRScan(10, 0x3e5) #Cycle 250689
-        dr_scan_out = helper.jtag_DRScan(21, 0x000000) #Cycle 250705
-        ir_scan_out = helper.jtag_IRScan(10, 0x3e5) #Cycle 251735
-        dr_scan_out = helper.jtag_DRScan(21, 0x000000) #Cycle 251751
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 251781
-        ir_scan_out = helper.jtag_IRScan(16, 0x3600) #Cycle 251797
-        dr_scan_out = helper.jtag_DRScan(7, 0x70) #Cycle 251819
-        ir_scan_out = helper.jtag_IRScan(34, 0x3e4f97e50) #Cycle 251831
-        dr_scan_out = helper.jtag_DRScan(57, 0x000010000400010) #Cycle 251871
-        ir_scan_out = helper.jtag_IRScan(34, 0x014f97e40) #Cycle 252437
-        ir_scan_out = helper.jtag_IRScan(25, 0x00ae3e0) #Cycle 252477
-        dr_scan_out = helper.jtag_DRScan(22, 0x100001) #Cycle 252508
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 252600
-        ir_scan_out = helper.jtag_IRScan(16, 0x0510) #Cycle 252616
-        ir_scan_out = helper.jtag_IRScan(25, 0x00ac150) #Cycle 252638
-        ir_scan_out = helper.jtag_IRScan(10, 0x017) #Cycle 252669
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 252685
-        LOG("CK_OK assert L0_rst_")
+    def sys_status_poll(exp_value):
+        count = 0
+        timeout = 100000
+        while count < timeout:
+            chain_value, l0_reset = test_api.jtag_reg_read('l0_reset')
+            helper.log(f"SYS_STATUS_NONSECURE chain value: {hex(chain_value)}")
+            helper.log(f'l0_reset: {str(l0_reset)}')
 
+            chain_value, l1_reset = test_api.jtag_reg_read('l1_reset')
+            helper.log(f"SYS_STATUS_NONSECURE chain value: {hex(chain_value)}")
+            helper.log(f'l1_reset: {str(l1_reset)}')
 
-    def ck_ok_deassert_l0_rst():
-        helper.jtag.Reset(0)
-        helper.jtag.Reset(1)
-        ir_scan_out = helper.jtag_IRScan(10, 0x018) #Cycle 13
-        dr_scan_out = helper.jtag_DRScan(19, 0x00000) #Cycle 30
-        ir_scan_out = helper.jtag_IRScan(16, 0x0600) #Cycle 121
-        dr_scan_out = helper.jtag_DRScan(19, 0x00080) #Cycle 143
-        ir_scan_out = helper.jtag_IRScan(16, 0x0520) #Cycle 167
-        ir_scan_out = helper.jtag_IRScan(25, 0x00a1520) #Cycle 189
-        dr_scan_out = helper.jtag_DRScan(11, 0x220) #Cycle 220
-        dr_scan_out = helper.jtag_DRScan(121, 0x0600000000000000003000000000220) #Cycle 236
-        ir_scan_out = helper.jtag_IRScan(25, 0x00a1520) #Cycle 181307
-        dr_scan_out = helper.jtag_DRScan(121, 0x0600000000000000003000000000220) #Cycle 181338
-        ir_scan_out = helper.jtag_IRScan(25, 0x0120280) #Cycle 181468
-        dr_scan_out = helper.jtag_DRScan(7, 0x40) #Cycle 181499
-        dr_scan_out = helper.jtag_DRScan(15, 0x00c0) #Cycle 181511
-        ir_scan_out = helper.jtag_IRScan(16, 0x0840) #Cycle 181535
-        dr_scan_out = helper.jtag_DRScan(17, 0x1ffff) #Cycle 181557
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 181583
-        ir_scan_out = helper.jtag_IRScan(16, 0x8800) #Cycle 181599
-        dr_scan_out = helper.jtag_DRScan(7, 0x40) #Cycle 181621
-        dr_scan_out = helper.jtag_DRScan(457, 0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040) #Cycle 181633
-        ir_scan_out = helper.jtag_IRScan(16, 0x0740) #Cycle 182099
-        dr_scan_out = helper.jtag_DRScan(3076, 0x2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 182121
-        ir_scan_out = helper.jtag_IRScan(10, 0x01d) #Cycle 185206
-        dr_scan_out = helper.jtag_DRScan(3076, 0x4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 185222
-        ir_scan_out = helper.jtag_IRScan(10, 0x01d) #Cycle 244307
-        dr_scan_out = helper.jtag_DRScan(3076, 0x6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 244323
-        ir_scan_out = helper.jtag_IRScan(10, 0x01d) #Cycle 247408
-        dr_scan_out = helper.jtag_DRScan(3076, 0x8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001) #Cycle 247424
-        ir_scan_out = helper.jtag_IRScan(10, 0x025) #Cycle 250519
-        dr_scan_out = helper.jtag_DRScan(9, 0x001) #Cycle 250535
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 250553
-        ir_scan_out = helper.jtag_IRScan(16, 0x0530) #Cycle 250569
-        ir_scan_out = helper.jtag_IRScan(34, 0x0d8364d90) #Cycle 250591
-        dr_scan_out = helper.jtag_DRScan(13, 0x1ff0) #Cycle 250631
-        ir_scan_out = helper.jtag_IRScan(34, 0x3e5f97e50) #Cycle 250649
-        ir_scan_out = helper.jtag_IRScan(10, 0x3e5) #Cycle 250689
-        dr_scan_out = helper.jtag_DRScan(21, 0x000000) #Cycle 250705
-        ir_scan_out = helper.jtag_IRScan(10, 0x3e5) #Cycle 251735
-        dr_scan_out = helper.jtag_DRScan(21, 0x000000) #Cycle 251751
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 251781
-        ir_scan_out = helper.jtag_IRScan(16, 0x3600) #Cycle 251797
-        dr_scan_out = helper.jtag_DRScan(7, 0x70) #Cycle 251819
-        ir_scan_out = helper.jtag_IRScan(34, 0x3e4f97e50) #Cycle 251831
-        dr_scan_out = helper.jtag_DRScan(57, 0x000010000400010) #Cycle 251871
-        ir_scan_out = helper.jtag_IRScan(34, 0x015054150) #Cycle 252480
-        ir_scan_out = helper.jtag_IRScan(10, 0x017) #Cycle 252520
-        ir_scan_out = helper.jtag_IRScan(10, 0x014) #Cycle 252536
-        LOG("CK_OK de-assert L0_rst_")
+            chain_value, l3_reset = test_api.jtag_reg_read('l3_reset')
+            helper.log(f"SYS_STATUS_NONSECURE chain value: {hex(chain_value)}")
+            helper.log(f'l3_reset: {str(l3_reset)}')
 
+            SYS_STATUS_NONSECURE = str(l3_reset) + str(l1_reset) + str(l0_reset)
+            helper.log(f"SYS_STATUS_NONSECURE[26:24] = {SYS_STATUS_NONSECURE}")
+            count += 1
+            if( SYS_STATUS_NONSECURE == exp_value ):
+                helper.log(f"Poll SYS_STATUS_NONSECURE[26:24] done @ {count} times try. Act value = {SYS_STATUS_NONSECURE}")
+                return
+            elif count == 99999:
+                helper.perror(f"Poll SYS_STATUS_NONSECURE[26:24] timeout after {count} times try. Act value = {SYS_STATUS_NONSECURE}. Exp value = {exp_value} ")
+                return
+            helper.wait_rpi_time(1) # wait 1us
+ 
 
-    
-    helper.log("Test start")
+    helper.log("###################################################################################################")
+    helper.log("####################################### L0_rst_ Test Starts! ######################################")
+    helper.log("###################################################################################################")
+
+    #############################################################################################################
+    ################################# simv force, would be ignored on real silicon ##############################
+    #############################################################################################################
     helper.wait_sim_time("us", 50)
     helper.hdl_force('ntb_top.u_nv_fpga_dut.u_nv_top_fpga.u_nv_top_wrapper.u_nv_top.nvjtag_sel', 1)
 
+    #############################################################################################################
+    ################################################ J2H unlock #################################################
+    #############################################################################################################
     helper.jtag.Reset(0)
     helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
     helper.jtag.Reset(1)  
-
-    #unlock j2h interface
-    helper.pinfo(f'j2h_unlock sequence start')
+    helper.log(f'j2h_unlock sequence start')
     helper.j2h_unlock()
-    helper.pinfo(f'j2h_unlock sequence finish') 
+    helper.log(f'j2h_unlock sequence finish') 
 
+    #############################################################################################################
+    ################################################# J2H write #################################################
+    #############################################################################################################
+    helper.log("write J2H reg")
     reg_cfg()
-    helper.wait_sim_time("us", 5)
+
     l0_rst_domain_reg_check(after_reset=0)
     l1_rst_domain_reg_check(after_reset=0)
     l3_rst_domain_reg_check(after_reset=0)
-    helper.wait_sim_time("us", 5)
+    helper.log("write J2H reg done")
    
-    helper.log("##############################################################")
-    helper.log("###################### Trigger L0_rst_ #######################")
-    helper.log("##############################################################")
+    #############################################################################################################
+    ############################################## trigger L0_rst_ ##############################################
+    #############################################################################################################
+    helper.log("###################### Assert L0_rst_ #######################")
 
     # JTAG override CK_OK to trigger l0_rst_
-    ck_ok_assert_l0_rst()
-    helper.wait_sim_time("us", 5)
+    test_api.jtag_mux_ovr('vrefro_ck_ok_trig_l0_rst', 0x0, 1)
 
-    # FIXME, check SYS_STATUS_NONSECURE[26:24]==3'b000
-    # if LDO have to drop voltage to assert erot_vdd_good, then SYS_STATUS_NONSECURE cannot be read.
-    # then we could only check SW reg default value, better to change to other L0_rst_ trigger
+    #############################################################################################################
+    ########################################### read SYS_STATUS_NONSECURE #######################################
+    #############################################################################################################
+    helper.log("poll JTAG reg SYS_STATUS_NONSECURE[26:24] == 3'b000")
+    sys_status_poll("000")
+    helper.log("L0_rst_ triggered successfully")
+
+    #############################################################################################################
+    ############################################## release L0_rst_ ##############################################
+    #############################################################################################################
+    helper.log("###################### De-assert L0_rst_ #######################")
 
     # JTAG override CK_OK to release l0_rst_
-    ck_ok_deassert_l0_rst()
-    helper.wait_sim_time("us", 5)
+    test_api.jtag_mux_ovr('vrefro_ck_ok_trig_l0_rst', 0x0, 0)
 
-    # FIXME, check SYS_STATUS_NONSECURE[26:24]==3'b111
+    #############################################################################################################
+    ########################################### read SYS_STATUS_NONSECURE #######################################
+    #############################################################################################################
+    helper.log("poll JTAG reg SYS_STATUS_NONSECURE[26:24] == 3'b111")
+    sys_status_poll("111")
+    helper.log("L0_rst_ released successfully")
 
-    helper.wait_sim_time("us", 50)
-
-    helper.jtag.Reset(0)
-    helper.jtag.DRScan(100, hex(0x0)) #add some delay as jtag only work when nvjtag_sel stable in real case
-    helper.jtag.Reset(1)  
-
-    #unlock j2h interface
-    helper.pinfo(f'j2h_unlock sequence start')
-    helper.j2h_unlock()
-    helper.pinfo(f'j2h_unlock sequence finish')
-
+    #############################################################################################################
+    ################################################# J2H read ##################################################
+    #############################################################################################################
+    helper.log("read J2H reg")
     l0_rst_domain_reg_check(after_reset=1)
     l1_rst_domain_reg_check(after_reset=1)
     l3_rst_domain_reg_check(after_reset=1)
+    helper.log("J2H reg check done")
 
-    helper.log("Test done")
+    helper.log("###################################################################################################")
+    helper.log("######################################## L0_rst_ Test Ends! #######################################")
+    helper.log("###################################################################################################")
