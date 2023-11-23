@@ -699,7 +699,19 @@ with feature('erot_fpga/lighton'):
             tags    =   test_tags,
             desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
             )   
-        
+
+    test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_boot_qspi_id.py'''] + PLATFORM_JTAG + RCV_BOOT
+    test_tags   =   ['boot_qspi_id']
+    #if os.getenv("RANDOM_STALL") != None:
+    #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
+    AddTest(
+        name    =   'erot_qspi_boot_qspi_id',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''enable qspi to access flash '''
+        )     
+             
     #uart test
     test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG  
     test_tags   =   ['io_pad','uart']
