@@ -15,16 +15,6 @@ RCV_BOOT    = [''' -pyarg ' --rcv_boot --replace_brom %s ' ''' % br_rel]
 
 with feature('erot_fpga/lighton'):
     # fabric bring-up tests
-    test_args   =   ['''-py erot_fab_jtag_fsp_try.py '''] + RCV_BOOT
-    test_tags   =   ['fabric','l1']
-    AddTest(
-        name    =   'erot_fab_jtag_fsp_try',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''fabric blf function test for l1 part'''
-            )
-    
     test_args   =   ['-py erot_light_on_test.py '] + RCV_BOOT
     test_tags   =   ['fabric','l0']
     AddTest(
@@ -158,11 +148,51 @@ with feature('erot_fpga/lighton'):
     test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1' '''] + RCV_BOOT
     test_tags   =   ['fabric','l1']
     AddTest(
-        name    =   'erot_fab_blf_function_test_l1',
+        name    =   'erot_fab_blf_function_test_l1_test',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''fabric blf function test for l1 part'''
+            )
+    
+    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L1_DISABLE_MAPPING' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_function_test_l1_disable_mapping',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function test for l1 disable mapping part'''
+            )
+    
+    test_args   =   ['''-py erot_fab_blf_function_test.py  -pyarg ' --Fabric L2_DISABLE_MAPPING' ''']
+    test_tags   =   ['fabric','l1']
+    AddTest(
+        name    =   'erot_fab_blf_function_test_l2_disable_mapping',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric blf function test for l2 diaable mapping part'''
+            )
+
+    test_args   =   ['''-py erot_fab_IP_AddrUpperBoundary_cov_test.py  -pyarg ' --Fabric L1' ''']
+    test_tags   =   ['fabric','l2']
+    AddTest(
+        name    =   'erot_fab_IP_AddrUpperBoundary_cov_test_l1',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric IP address boundary test for l1 part'''
+            )
+    
+    test_args   =   ['''-py erot_fab_IP_AddrUpperBoundary_cov_test.py  -pyarg ' --Fabric L2' ''']
+    test_tags   =   ['fabric','l2']
+    AddTest(
+        name    =   'erot_fab_IP_AddrUpperBoundary_cov_test_l2',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''fabric IP address boundary test for l2 part'''
             )
     # fabric bring-up tests END
     
@@ -217,6 +247,26 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''mram mtpr test'''
+            )
+    
+    test_args   =   ['''-py erot_mram_mtp_test.py '''] + RCV_BOOT
+    test_tags   =   ['mram','l1']
+    AddTest(
+        name    =   'erot_mram_mtp_test' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''mram mtp test'''
+            )
+    
+    test_args   =   ['''-py erot_mram_port_block_test.py '''] + RCV_BOOT
+    test_tags   =   ['mram','l2']
+    AddTest(
+        name    =   'erot_mram_port_block_test' ,
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''mram port block test'''
             )
     # mram bring-up tests END
     
@@ -303,16 +353,6 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''EROT bypass monitor legal command bypass'''
-            )
-
-    test_args   =   ['''-py erot_bypmon_illegal_cfg_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l1']
-    AddTest(
-        name    =   'erot_bypmon_illegal_cfg_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''EROT bypass monitor illegal config command block'''
             )
 
     test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
@@ -480,6 +520,16 @@ with feature('erot_fpga/lighton'):
         desc    =   '''Ensure that jtag is able to acceess internal registers'''
             )   
 
+    test_args   =   ['''-py erot_jtag_nonsecure_access_test.py --platform JTAG ''']
+    test_tags   =   ['jtag_bring_up']
+    AddTest(
+        name    =   'erot_jtag_nonsecure_access',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   ''' Ensure that no-secure bit in Jtag register can be accessed by NVJTAG chain '''
+            ) 
+
     ## OOBHUB test
 
     test_args   =   ['''-py erot_oobhub_cms_queriable_test.py  '''] + RCV_BOOT
@@ -521,6 +571,48 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''OOBHUB peregrine boot'''
             )
+
+    test_args   =   ['''-py erot_oobhub_jtag_load_data_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_jtag_load_data',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''JTAG exchange recovery image'''
+            )
+
+    test_args   =   ['''-py erot_oobhub_i2c_load_cms2_data_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_i2c_load_cms2_data',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''CMS2 recovery image registers'''
+            )
+
+    test_args   =   ['''-py erot_fsp_mnoc_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_fsp_mnoc_test',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''MNOC-MNOC upstream'''
+            )
+
+    test_args   =   ['''-py erot_oobhub_fsp_mctp_hw_byps_test.py  '''] + RCV_BOOT
+    test_tags   =   ['oobhub']
+    AddTest(
+        name    =   'erot_oobhub_fsp_mctp_hw_byps',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''MCTP downstream'''
+            )
+
+
 
     # SPI target test
     test_args   =   ['''-py erot_spi_smoke_test.py  '''] + RCV_BOOT
@@ -629,7 +721,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''gpio loopback test'''
             )
-
+    #io expander
+    test_args   =   ['-py erot_io_expander_test_fpga.py'] + PLATFORM_JTAG + RCV_BOOT 
+    test_tags   =   ['io_pad','io_expander']
+    AddTest(
+        name    =   'erot_io_expander_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''io expander test'''
+            )
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
