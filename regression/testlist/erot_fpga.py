@@ -240,7 +240,7 @@ with feature('erot_fpga/lighton'):
         desc    =   '''MRAM region WPEN/WP check'''
             )
     test_args   =   ['''-py erot_debug_mram_mtpr_test_sim_head.py '''] + RCV_BOOT
-    test_tags   =   ['mram','l0']
+    test_tags   =   ['mram','l1']
     AddTest(
         name    =   'erot_debug_mram_mtpr_test_head' ,
         config  =   ['erot_fpga'],
