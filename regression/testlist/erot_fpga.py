@@ -282,6 +282,38 @@ with feature('erot_fpga/lighton'):
             )
     # fuse api bring-up tests END
 
+    # clock bring-up tests
+    test_args   =   ['''-py erot_clk_vrefro_char_test_fpga.py ''']
+    test_tags   =   ['clock','l0']
+    AddTest(
+        name    =   'erot_clk_vrefro_char_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT VrefRO Char'''
+            )
+
+    test_args   =   ['''-py erot_clk_pll_char_test_fpga.py ''']
+    test_tags   =   ['clock','l0']
+    AddTest(
+        name    =   'erot_clk_pll_char_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT PLL Char'''
+            )
+
+    test_args   =   ['''-py erot_clk_timer_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['clock','l1']
+    AddTest(
+        name    =   'erot_clk_timer_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT timer feature'''
+            )
+    # clock bring-up tests END
+
     # reset bring-up tests
     test_args   =   ['''-py erot_reset_hw_boot_test_fpga.py ''']
     test_tags   =   ['reset','as2','l0']
@@ -353,6 +385,16 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''EROT bypass monitor legal command bypass'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_illegal_cfg_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l1']
+    AddTest(
+        name    =   'erot_bypmon_illegal_cfg_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor illegal config command block'''
             )
 
     test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
@@ -699,19 +741,7 @@ with feature('erot_fpga/lighton'):
             tags    =   test_tags,
             desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
             )   
-
-    test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_boot_qspi_id.py'''] + PLATFORM_JTAG + RCV_BOOT
-    test_tags   =   ['boot_qspi_id']
-    #if os.getenv("RANDOM_STALL") != None:
-    #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
-    AddTest(
-        name    =   'erot_qspi_boot_qspi_id',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''enable qspi to access flash '''
-        )     
-             
+        
     #uart test
     test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG  
     test_tags   =   ['io_pad','uart']
@@ -733,16 +763,7 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''gpio loopback test'''
             )
-    #io expander
-    test_args   =   ['-py erot_io_expander_test_fpga.py'] + PLATFORM_JTAG + RCV_BOOT 
-    test_tags   =   ['io_pad','io_expander']
-    AddTest(
-        name    =   'erot_io_expander_test_fpga',
-        config  =   ['erot_fpga'],
-        args    =   common_args+test_args,
-        tags    =   test_tags,
-        desc    =   '''io expander test'''
-            )
+
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
