@@ -219,6 +219,19 @@ with feature('erot_fpga/lighton'):
       
     # interrupt bring-up tests END
     
+    # oobhub_status_api bring-up tests
+    test_args   =   ['''-py  erot_recovery_oobhub_api_try.py'''] + RCV_BOOT
+    test_tags   =   ['oobhub_status_api']
+    AddTest(
+        name    =   'erot_recovery_oobhub_api_try',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''test the oobhub recovery status api'''
+            )
+    
+    # oobhub_status_api bring-up tests END
+    
     # mram bring-up tests
     test_args   =   ['-py erot_mram_tmc_test.py '] + RCV_BOOT
     test_tags   =   ['mram','l1']
@@ -378,7 +391,7 @@ with feature('erot_fpga/lighton'):
 
     # bypass monitor bring-up tests
     test_args   =   ['''-py erot_bypmon_legal_cmd_test_fpga.py '''] + RCV_BOOT
-    test_tags   =   ['bypmon','l0']
+    test_tags   =   ['bypmon','l1']
     AddTest(
         name    =   'erot_bypmon_legal_cmd_test_fpga',
         config  =   ['erot_fpga'],
@@ -387,14 +400,14 @@ with feature('erot_fpga/lighton'):
         desc    =   '''EROT bypass monitor legal command bypass'''
             )
 
-    test_args   =   ['''-py erot_bypmon_illegal_cfg_test_fpga.py '''] + RCV_BOOT
+    test_args   =   ['''-py erot_bypmon_illegal_wr_test_fpga.py '''] + RCV_BOOT
     test_tags   =   ['bypmon','l1']
     AddTest(
-        name    =   'erot_bypmon_illegal_cfg_test_fpga',
+        name    =   'erot_bypmon_illegal_wr_test_fpga',
         config  =   ['erot_fpga'],
         args    =   common_args+test_args,
         tags    =   test_tags,
-        desc    =   '''EROT bypass monitor illegal config command block'''
+        desc    =   '''EROT bypass monitor illegal write command block'''
             )
 
     test_args   =   ['''-py erot_bypmon_illegal_rd_test_fpga.py '''] + RCV_BOOT
@@ -405,6 +418,16 @@ with feature('erot_fpga/lighton'):
         args    =   common_args+test_args,
         tags    =   test_tags,
         desc    =   '''EROT bypass monitor illegal read command block'''
+            )
+
+    test_args   =   ['''-py erot_bypmon_illegal_ers_test_fpga.py '''] + RCV_BOOT
+    test_tags   =   ['bypmon','l1']
+    AddTest(
+        name    =   'erot_bypmon_illegal_ers_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''EROT bypass monitor illegal erase command block'''
             )
 
     test_args   =   ['''-py erot_bypmon_no_pass_test_fpga.py '''] + RCV_BOOT
@@ -741,7 +764,19 @@ with feature('erot_fpga/lighton'):
             tags    =   test_tags,
             desc    =   '''enable qspi RBI function to access flash for 8KB via real FSP, test QUAD RBI function for QSPI0 and QSPI1, test DUAL RBI function for BOOT_QSPI'''
             )   
-        
+
+    test_args   =   ['''-rtlarg '+assertion_off' ''', '''-py erot_qspi_boot_qspi_id.py'''] + PLATFORM_JTAG + RCV_BOOT
+    test_tags   =   ['boot_qspi_id']
+    #if os.getenv("RANDOM_STALL") != None:
+    #    test_args +=['-random_stall_strategy special_combined_random__01__for_bypass_monitor_test']
+    AddTest(
+        name    =   'erot_qspi_boot_qspi_id',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''enable qspi to access flash '''
+        )     
+             
     #uart test
     test_args   =   ['''-rtlarg '+assertion_off' ''' , '''-py erot_uart_loopback_test_fpga.py '''] + PLATFORM_JTAG  
     test_tags   =   ['io_pad','uart']
@@ -763,7 +798,16 @@ with feature('erot_fpga/lighton'):
         tags    =   test_tags,
         desc    =   '''gpio loopback test'''
             )
-
+    #io expander
+    test_args   =   ['-py erot_io_expander_test_fpga.py'] + PLATFORM_JTAG + RCV_BOOT 
+    test_tags   =   ['io_pad','io_expander']
+    AddTest(
+        name    =   'erot_io_expander_test_fpga',
+        config  =   ['erot_fpga'],
+        args    =   common_args+test_args,
+        tags    =   test_tags,
+        desc    =   '''io expander test'''
+            )
     #AS2IP_REGEX = '|'.join(as2_list)
     #test_args   =   ['''-py erot_light_on_test.py -pyarg '--unit "(%s)" ' ''' % AS2IP_REGEX] + PLATFORM_SIM_HEADLESS
     #test_tags   =   ['lighton','as2']
